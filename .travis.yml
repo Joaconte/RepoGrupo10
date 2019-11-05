@@ -3,7 +3,5 @@ install: mvn
 
 sudo: false # faster builds
 
-script: mvn clean verify
+script: mvn install
 
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
