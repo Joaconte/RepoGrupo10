@@ -4,7 +4,7 @@ services:
 - docker
 cache:
   directories:
-  - "$HOME/srcActualizado.cache"
+  - "$HOME/.cache"
 
 deploy:
   provider: script
