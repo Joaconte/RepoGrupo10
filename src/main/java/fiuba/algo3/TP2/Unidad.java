@@ -15,7 +15,7 @@ public abstract class Unidad {
 
     public void recibirDanio(int danio) {
         if (vida <= 0) {
-            throw new UnidadEstaMuertaException();
+            throw new fiuba.algo3.TP2.UnidadEstaMuertaException();
         }
         vida -= danio;
     }

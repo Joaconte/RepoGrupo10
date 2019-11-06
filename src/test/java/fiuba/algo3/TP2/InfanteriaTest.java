@@ -1,6 +1,7 @@
 package fiuba.algo3.TP2;
 
 import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 
 public class InfanteriaTest {
@@ -30,7 +31,7 @@ public class InfanteriaTest {
         assertEquals(100-100, soldado.getPuntosVida());
     }
 
-    @Test(expected = UnidadEstaMuertaException.class)
+    @Test(expected = fiuba.algo3.TP2.UnidadEstaMuertaException.class)
     public void test05InfanteriaRecibe101DeDanio_ExceptionUnidadMuerta() {
         Infanteria soldado = new Infanteria();
         soldado.recibirDanio(100);
