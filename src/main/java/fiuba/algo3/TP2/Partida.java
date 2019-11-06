@@ -29,5 +29,15 @@ public class Partida{
     public void agregarJugadores() {
         //¿Construir?
     }
+    
+    public void agregarUnidadesAJugador(Jugador jugador){
+
+        Unidad unidad = jugador.agregarYDevolverUnidad();
+        while( unidad != null ){
+
+            tablero.agregarUnidad(unidad);
+        }
+
+    }
 
 }
