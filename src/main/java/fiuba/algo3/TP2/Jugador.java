@@ -1,18 +1,83 @@
-package fiuba.algo3.TP2;
+package model;
+
+import exception.JugadorSinPuntosException;
+import exception.PuntosInsuficientesException;
+import mock.UnidadMock;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Jugador {
-    static final int PUNTOS_INICIALES = 20;
-    private int puntos;
 
-    public Jugador(){
-        puntos = PUNTOS_INICIALES;
+    private int puntos;
+    private String nombre;
+    private Sector sector;
+    private List<Unidad> ejercito = new ArrayList<Unidad>();
+
+    public Jugador(String nombre, Sector sector){
+        this.nombre = nombre;
+        this.sector = sector;
+        puntos = 20;
     }
 
-    public int getPuntos() {
+    //-----------GETTERS-----------//
+    public String getNombre(){
+        return nombre;
+    }
+    public Sector getSector(){
+        return sector;
+    }
+    public int getPuntos(){
         return puntos;
     }
+    public List<Unidad> getEjercito(){ return ejercito;}
+    public Unidad getUltimaUnidadAgregada(){
 
-    public void descontarPuntos(int i) {
-        puntos-=i;
+        int ultima = ejercito.size();
+        return ejercito.get(ultima);
     }
+
+    public void descontarPuntos( int costoUnidad) throws PuntosInsuficientesException {
+
+        if (puntos < costoUnidad) {
+            throw new PuntosInsuficientesException();
+        }
+        else {
+            puntos = puntos - costoUnidad;
+        }
+    }
+
+    public Unidad agregarYDevolverUnidad() {
+
+        Unidad unidad = new UnidadMock();
+        int costo = unidad.getCosto();
+        try { agregarUnidad(unidad);
+
+        }catch (JugadorSinPuntosException e) {
+            System.out.println(e);
+            return null;
+        }
+        return unidad;
+    }
+
+    public void agregarUnidad(Unidad unidad) throws JugadorSinPuntosException{
+
+        if (puntos == 0) {
+            throw new JugadorSinPuntosException();
+        }
+        else {
+            try {
+                descontarPuntos(unidad.getCosto());
+
+            } catch (PuntosInsuficientesException e) {
+                System.out.println(e);
+                return;
+            }
+
+            ejercito.add(unidad);
+
+        }
+
+    }
+
 }
