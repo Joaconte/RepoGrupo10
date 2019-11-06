@@ -2,9 +2,9 @@ package test;
 
 import exception.JugadorSinPuntosException;
 import exception.PuntosInsuficientesException;
-import mock.UnidadMock;
 import model.Jugador;
 import model.Sector;
+import model.Unidad;
 
 import org.mockito.Mockito;
 import static org.junit.Assert.assertEquals;
@@ -57,7 +57,8 @@ public class JugadorTest {
 
         Sector sector = Mockito.mock( Sector.class );
         Jugador jugador = new Jugador("Jorge",sector );
-        UnidadMock unidadMock = new UnidadMock();
+        Unidad unidadMock = Mockito.mock(Unidad.class);
+        Mockito.when(unidadMock.getCosto()).thenReturn(4);
 
         try { jugador.descontarPuntos(20);
         }catch (PuntosInsuficientesException e) {  }
@@ -70,7 +71,8 @@ public class JugadorTest {
 
         Sector sector = Mockito.mock( Sector.class );
         Jugador jugador = new Jugador("Jorge",sector );
-        UnidadMock unidadMock = new UnidadMock();
+        Unidad unidadMock = Mockito.mock(Unidad.class);
+        Mockito.when(unidadMock.getCosto()).thenReturn(4);
 
         try { jugador.agregarUnidad(unidadMock);
         }catch (JugadorSinPuntosException e) {  }
@@ -83,7 +85,8 @@ public class JugadorTest {
 
         Sector sector = Mockito.mock( Sector.class );
         Jugador jugador = new Jugador("Jorge",sector );
-        UnidadMock unidadMock = new UnidadMock(4);
+        Unidad unidadMock = Mockito.mock(Unidad.class);
+        Mockito.when(unidadMock.getCosto()).thenReturn(4);
         try { jugador.agregarUnidad(unidadMock);
         } catch (JugadorSinPuntosException e) {   }
 
