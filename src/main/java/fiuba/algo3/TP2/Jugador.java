@@ -2,10 +2,13 @@ package model;
 
 import exception.JugadorSinPuntosException;
 import exception.PuntosInsuficientesException;
-import mock.UnidadMock;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.Sector;
+import model.Unidad;
+import org.mockito.Mockito;
+
 
 public class Jugador {
 
@@ -49,7 +52,7 @@ public class Jugador {
 
     public Unidad agregarYDevolverUnidad() {
 
-        Unidad unidad = new UnidadMock();
+        Unidad unidad = Mockito.mock(Unidad.class);
         int costo = unidad.getCosto();
         try { agregarUnidad(unidad);
 
