@@ -2,14 +2,15 @@ package test;
 
 import fiuba.algo3.TP2.exception.JugadorSinPuntosException;
 import fiuba.algo3.TP2.exception.PuntosInsuficientesException;
-import fiuba.algo3.TP2.model.Jugador;
-import fiuba.algo3.TP2.model.Sector;
-import fiuba.algo3.TP2.model.Unidad;
+import fiuba.algo3.TP2.exception.UbicacionInvalidaException;
+import fiuba.algo3.TP2.model.*;
 
-import org.mockito.Mock;
-import static org.junit.Assert.assertEquals;
-import org.junit.Test;
 import org.mockito.Mockito;
+import org.mockito.Mock;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+
 
 public class JugadorTest {
 
@@ -93,5 +94,46 @@ public class JugadorTest {
         assertEquals( (20 - 4) , jugador.getPuntos() );
     }
 
+    @Test
+    public void test08JugadorSeQuedaSinUnidades(){
 
+        Sector sector = Mockito.mock( Sector.class );
+        Jugador jugador = new Jugador("Jorge",sector );
+        Unidad unidadMock = Mockito.mock(Unidad.class);
+        Mockito.when(unidadMock.getCosto()).thenReturn(4);
+
+        Ubicacion ubicacion = Mockito.mock(Ubicacion.class);
+        Mockito.when(ubicacion.darPosicionEnX()).thenReturn(2);
+        Mockito.when(ubicacion.darPosicionEnY()).thenReturn(2);
+
+        try { jugador.agregarUnidad(unidadMock);
+        } catch (JugadorSinPuntosException e) {   }
+
+        jugador.getEjercito().remove(0);
+
+        assertFalse(jugador.tieneEjercito());
+
+    }
+
+   /* @Test(expected = UbicacionInvalidaException.class)
+    public void test09PosicionDeUnidadOcupadaExceptionThrown() throws UbicacionInvalidaException{
+
+        Sector sector = Mockito.mock( Sector.class );
+        Jugador jugador = new Jugador("Jorge",sector );
+        Unidad unidad = Mockito.mock(Unidad.class);
+        Ubicacion ubicacion = Mockito.mock(Ubicacion.class);
+        Unidad unidad2 = Mockito.mock(Unidad.class);
+        Mockito.when(ubicacion.darPosicionEnX()).thenReturn(2);
+        Mockito.when(ubicacion.darPosicionEnY()).thenReturn(2);
+
+        jugador.agregarUbicacionAUnidad( unidad, ubicacion );
+
+        try { jugador.agregarUnidad(unidad);
+        } catch (JugadorSinPuntosException e) {   }
+
+        jugador.agregarUbicacionAUnidad( unidad2, ubicacion );
+
+        assertEquals( 1 , jugador.getEjercito().size());
+    }
+    */
 }
