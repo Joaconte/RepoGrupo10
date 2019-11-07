@@ -4,8 +4,8 @@ import fiuba.algo3.TP2.model.Ubicacion;
 
 public abstract class UnidadViva extends Unidad {
 
-    public void moverUnidad(Ubicacion nuevaUbicacion){
-        this.ubicacion = nuevaUbicacion;
+    public void moverUnidad(Ubicacion miNuevaUbicacion){
+        this.ubicacion = new Ubicacion(miNuevaUbicacion.darPosicionEnX(),miNuevaUbicacion.darPosicionEnY());
     }
 
     public void curarUnidad(int unValorDeCuracion){

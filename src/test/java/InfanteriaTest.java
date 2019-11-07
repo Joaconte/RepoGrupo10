@@ -1,7 +1,9 @@
-package fiuba.algo3.TP2.test;
+package test;
 
 import fiuba.algo3.TP2.model.Infanteria;
 import fiuba.algo3.TP2.exception.UnidadEstaMuertaException;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -40,4 +42,18 @@ public class InfanteriaTest {
         soldado.recibirDanio(1);
     }
 
+    @Test
+    public void test06JineteSeMueveCorrectamenteACualquierDireccionQueMePasen() {
+        Infanteria soldado = new Infanteria();
+        int cualquierDireccion = 999;
+
+        Ubicacion miNuevaUbicacion = Mockito.mock(Ubicacion.class);
+        Mockito.when(miNuevaUbicacion.darPosicionEnX()).thenReturn(cualquierDireccion);
+        Mockito.when(miNuevaUbicacion.darPosicionEnY()).thenReturn(cualquierDireccion*2);
+        soldado.moverUnidad(miNuevaUbicacion);
+        Ubicacion ubicacionModificada = soldado.getUbicacion();
+
+        assertEquals(cualquierDireccion,ubicacionModificada.darPosicionEnX());
+        assertEquals(cualquierDireccion*2,ubicacionModificada.darPosicionEnY());
+    }
 }
