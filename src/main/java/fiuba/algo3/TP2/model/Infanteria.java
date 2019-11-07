@@ -1,6 +1,6 @@
 package fiuba.algo3.TP2.model;
 
-public class Infanteria extends UnidadViva{
+public class Infanteria extends UnidadViva implements IAtacante{
     static final int COSTO = 1;
 
     public Infanteria(){
@@ -9,4 +9,8 @@ public class Infanteria extends UnidadViva{
         vida = VIDA_INICIAL;
     }
 
+    @Override
+    public void atacar(Unidad oponente) {
+        oponente.recibirDanio(10);
+    }
 }
