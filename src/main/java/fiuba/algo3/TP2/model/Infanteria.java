@@ -2,9 +2,9 @@ package fiuba.algo3.TP2.model;
 
 public class Infanteria extends Unidad{
     static final int COSTO = 1;
-    static final int VIDA_INICIAL = 100;
 
     public Infanteria(){
+        VIDA_INICIAL = 100;
         costo = COSTO;
         vida = VIDA_INICIAL;
     }

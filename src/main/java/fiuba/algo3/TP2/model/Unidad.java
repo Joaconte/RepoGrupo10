@@ -5,6 +5,7 @@ import fiuba.algo3.TP2.exception.UnidadEstaMuertaException;
 public abstract class Unidad {
     protected int costo;
     protected int vida;
+    protected int VIDA_INICIAL;
     protected Ubicacion ubicacion;
 
     public int getCosto(){
