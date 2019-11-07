@@ -7,6 +7,7 @@ public abstract class Unidad {
     protected int vida;
     protected int VIDA_INICIAL;
     protected Ubicacion ubicacion;
+    private int equipo;
 
     public int getCosto(){
         return costo;
@@ -25,6 +26,16 @@ public abstract class Unidad {
             throw new UnidadEstaMuertaException();
         }
         vida -= danio;
+    }
+
+    public void setEquipo(int numJugador){
+        equipo = numJugador;
+    }
+
+    public int getEquipo(){ return equipo;}
+
+    public boolean esEnemigo(Unidad otra){
+        return (this.getEquipo()!= otra.getEquipo());
     }
 }
 

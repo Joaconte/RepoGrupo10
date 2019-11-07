@@ -7,6 +7,7 @@ import org.mockito.Mockito;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class InfanteriaTest {
     @Test
@@ -43,7 +44,16 @@ public class InfanteriaTest {
     }
 
     @Test
-    public void test06JineteSeMueveCorrectamenteACualquierDireccionQueMePasen() {
+    public void test06InfanteriaDeDiferentesEquiposSonEnemigos() {
+        Infanteria soldado = new Infanteria();
+        soldado.setEquipo(1);
+        Infanteria otroSoldado = new Infanteria();
+        otroSoldado.setEquipo(2);
+        assertTrue(soldado.esEnemigo(otroSoldado));
+    }
+
+    @Test
+    public void test07JineteSeMueveCorrectamenteACualquierDireccionQueMePasen() {
         Infanteria soldado = new Infanteria();
         int cualquierDireccion = 999;
 
@@ -57,3 +67,4 @@ public class InfanteriaTest {
         assertEquals(cualquierDireccion*2,ubicacionModificada.darPosicionEnY());
     }
 }
+
