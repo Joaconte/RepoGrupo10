@@ -7,7 +7,7 @@ public abstract class Unidad {
     protected int vida;
     protected int VIDA_INICIAL;
     protected Ubicacion ubicacion;
-    private int equipo;
+    protected int equipo;
 
     public int getCosto(){
         return costo;
