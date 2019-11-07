@@ -12,4 +12,13 @@ public class Ubicacion {
 
     public int getPosicionX(){return posicionX; }
     public int getPosicionY(){return posicionY; }
+
+    public int darPosicionEnX (){
+        return posicionX;
+    }
+
+    public int darPosicionEnY (){
+        return posicionY;
+    }
+
 }

@@ -36,7 +36,7 @@ public class Partida{
         Unidad unidad = jugador.agregarYDevolverUnidad(i);
         while( unidad != null ){
 
-            tableroDePartida.agregarUnidad(unidad);
+            //tableroDePartida.agregarUnidad(unidad);
         }
 
     }
