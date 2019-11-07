@@ -2,6 +2,7 @@ package fiuba.algo3.TP2.model;
 
 public class Jinete extends UnidadViva implements IAtacanteMele,IAtacanteDistanciaMedia{
     static final int COSTO = 3;
+    static final int DANIO = 15;
 
     public Jinete(){
         VIDA_INICIAL = 100;
@@ -16,6 +17,6 @@ public class Jinete extends UnidadViva implements IAtacanteMele,IAtacanteDistanc
 
     @Override
     public void atacarADistanciaMedia(Unidad oponente) {
-        oponente.recibirDanio(15);
+        oponente.recibirDanio(DANIO);
     }
 }
