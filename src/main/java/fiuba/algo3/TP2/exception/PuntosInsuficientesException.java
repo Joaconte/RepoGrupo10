@@ -1,4 +1,4 @@
-package exception;
+package fiuba.algo3.TP2.exception;
 
 public class PuntosInsuficientesException extends Exception{
 
