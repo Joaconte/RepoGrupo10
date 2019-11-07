@@ -31,5 +31,11 @@ public abstract class Unidad {
     public void setEquipo(int numJugador){
         equipo = numJugador;
     }
+
+    public int getEquipo(){ return equipo;}
+
+    public boolean esEnemigo(Unidad otra){
+        return (this.getEquipo()!= otra.getEquipo());
+    }
 }
 

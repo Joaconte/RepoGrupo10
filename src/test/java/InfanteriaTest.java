@@ -5,6 +5,7 @@ import fiuba.algo3.TP2.exception.UnidadEstaMuertaException;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class InfanteriaTest {
     @Test
@@ -38,6 +39,15 @@ public class InfanteriaTest {
         Infanteria soldado = new Infanteria();
         soldado.recibirDanio(100);
         soldado.recibirDanio(1);
+    }
+
+    @Test
+    public void test05InfanteriaDeDiferentesEquiposSonEnemigos() {
+        Infanteria soldado = new Infanteria();
+        soldado.setEquipo(1);
+        Infanteria otroSoldado = new Infanteria();
+        otroSoldado.setEquipo(2);
+        assertTrue(soldado.esEnemigo(otroSoldado));
     }
 
 }
