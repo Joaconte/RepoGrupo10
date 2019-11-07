@@ -1,6 +1,7 @@
 package test;
 
 import fiuba.algo3.TP2.model.Infanteria;
+import fiuba.algo3.TP2.model.Ubicacion;
 import fiuba.algo3.TP2.exception.UnidadEstaMuertaException;
 import org.mockito.Mock;
 import org.mockito.Mockito;

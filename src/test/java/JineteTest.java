@@ -2,6 +2,7 @@ package test;
 
 import fiuba.algo3.TP2.model.Jinete;
 import fiuba.algo3.TP2.model.Unidad;
+import fiuba.algo3.TP2.model.Ubicacion;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.junit.Test;
@@ -15,6 +16,7 @@ public class JineteTest {
         assertEquals(3, jinete.getCosto());
     }
 
+    @Test
     public void test02JineteIniciaCon100PuntosDeVida() {
         Jinete jinete = new Jinete();
         assertEquals(100, jinete.getPuntosVida());

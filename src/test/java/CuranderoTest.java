@@ -15,9 +15,10 @@ public class CuranderoTest {
         assertEquals(2, unCuranderoPiola.getCosto());
     }
 
+    @Test
     public void test02JineteIniciaCon75PuntosDeVida() {
-        Jinete jinete = new Jinete();
-        assertEquals(75, jinete.getPuntosVida());
+        Curandero unCuranderoPiola = new Curandero();
+        assertEquals(75, unCuranderoPiola.getPuntosVida());
     }
 
     @Test
