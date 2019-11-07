@@ -1,6 +1,6 @@
 package fiuba.algo3.TP2.model;
 
-public class Catapulta extends UnidadViva {
+public class Catapulta extends Unidad {
     static final int COSTO = 5;
 
     public Catapulta(){
