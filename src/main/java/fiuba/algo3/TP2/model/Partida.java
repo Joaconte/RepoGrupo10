@@ -1,10 +1,5 @@
 package fiuba.algo3.TP2.model;
 
-import fiuba.algo3.TP2.model.FaseDePartida;
-import fiuba.algo3.TP2.model.FaseInicial;
-import fiuba.algo3.TP2.model.Unidad;
-import fiuba.algo3.TP2.model.Tablero;
-
 public class Partida{
     private FaseDePartida miFase = new FaseInicial();
     private Tablero tableroDePartida = new Tablero();
@@ -37,12 +32,14 @@ public class Partida{
     
     public void agregarUnidadesAJugador(Jugador jugador){
 
-        Unidad unidad = jugador.agregarYDevolverUnidad();
+        int i=3;
+        Unidad unidad = jugador.agregarYDevolverUnidad(i);
         while( unidad != null ){
 
             tableroDePartida.agregarUnidad(unidad);
         }
 
     }
+
 
 }

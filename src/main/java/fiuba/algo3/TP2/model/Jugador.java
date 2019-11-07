@@ -2,6 +2,7 @@ package fiuba.algo3.TP2.model;
 
 import fiuba.algo3.TP2.exception.JugadorSinPuntosException;
 import fiuba.algo3.TP2.exception.PuntosInsuficientesException;
+import fiuba.algo3.TP2.exception.UbicacionInvalidaException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,9 +44,9 @@ public class Jugador {
         }
     }
 
-    public Unidad agregarYDevolverUnidad(int i, Ubicacion ubicacion) {
+    public Unidad agregarYDevolverUnidad(int i) {
 
-        Unidad unidad = opcionesUnidades(i, ubicacion);
+        Unidad unidad = opcionesUnidades(i);
         int costo = unidad.getCosto();
         try { agregarUnidad(unidad);
 
@@ -109,7 +110,7 @@ public class Jugador {
     */
 
 
-    private Unidad opcionesUnidades(int i, Ubicacion ubicacion){
+    private Unidad opcionesUnidades(int i){
 
         switch (i){
             case 0:
@@ -126,5 +127,28 @@ public class Jugador {
                 System.out.println("Dato ingresado invalido");
         }
         return null;
+    }
+
+    public boolean ubicacionEsValida(Ubicacion ubicacion) throws UbicacionInvalidaException {
+
+        for (int i = 0; i < ejercito.size(); ++i) {
+            if(ejercito.get(i).getUbicacion() == ubicacion){
+                throw new UbicacionInvalidaException();
+            }
+        }
+        return true;
+    }
+
+    public boolean ubicacionValida(int x, int y) {
+
+        Ubicacion ubicacion = new Ubicacion(x,y);
+        boolean booleano = false;
+        try {
+            booleano = ubicacionEsValida(ubicacion);
+        } catch (UbicacionInvalidaException e) {
+            System.out.println(e);
+            booleano = false;
+        }
+        return booleano;
     }
 }
