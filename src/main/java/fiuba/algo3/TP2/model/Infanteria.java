@@ -1,6 +1,6 @@
 package fiuba.algo3.TP2.model;
 
-public class Infanteria extends UnidadViva implements IAtacante{
+public class Infanteria extends UnidadViva implements IAtacanteMele {
     static final int COSTO = 1;
 
     public Infanteria(){
