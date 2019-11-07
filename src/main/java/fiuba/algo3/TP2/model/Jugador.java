@@ -5,10 +5,7 @@ import fiuba.algo3.TP2.exception.PuntosInsuficientesException;
 
 import java.util.ArrayList;
 import java.util.List;
-import fiuba.algo3.TP2.model.Sector;
-import org.mockito.Mockito;
-import fiuba.algo3.TP2.model.Unidad;
-import fiuba.algo3.TP2.model.Ubicacion;
+
 
 
 public class Jugador {
@@ -35,11 +32,6 @@ public class Jugador {
         return puntos;
     }
     public List<Unidad> getEjercito(){ return ejercito;}
-    public Unidad getUltimaUnidadAgregada(){
-
-        int ultima = ejercito.size();
-        return ejercito.get(ultima);
-    }
 
     public void descontarPuntos( int costoUnidad) throws PuntosInsuficientesException {
 
@@ -51,9 +43,9 @@ public class Jugador {
         }
     }
 
-    public Unidad agregarYDevolverUnidad() {
+    public Unidad agregarYDevolverUnidad(int i, Ubicacion ubicacion) {
 
-        Unidad unidad = Mockito.mock(Unidad.class);
+        Unidad unidad = opcionesUnidades(i, ubicacion);
         int costo = unidad.getCosto();
         try { agregarUnidad(unidad);
 
@@ -88,7 +80,51 @@ public class Jugador {
                 ejercito.remove(i);
             }
         }
-        //validarTenenciaDeEjercito();
     }
 
+    public boolean tieneEjercito(){
+        if (ejercito.size() != 0 ){
+            return true;
+        }
+        return false;
+    }
+
+    /*
+    private Unidad menuUnidades() {
+
+        byte i = '1';
+        Scanner capt = new Scanner(System.in);
+        while (i != '0') {
+
+            System.out.println("Ingrese 0 para terminar la compra de unidades");
+            System.out.println("Ingrese 1 para seleccionar la unidad Infanteria");
+            System.out.println("Ingrese 2 para seleccionar la unidad Jinete");
+            System.out.println("Ingrese 3 para seleccionar la unidad Curandero");
+            System.out.println("Ingrese 4 para seleccionar la unidad Catapulta");
+            i = capt.nextByte();
+            Unidad unidad = opcionesUnidades(i);
+        }
+        return null;
+    }
+    */
+
+
+    private Unidad opcionesUnidades(int i, Ubicacion ubicacion){
+
+        switch (i){
+            case 0:
+                break;
+            case 1: //INFANTERIA
+                break;
+            case 2: //JINETE
+                break;
+            case 3: //CURANDERO
+                break;
+            case 4: //CATAPULTA
+                break;
+            default:
+                System.out.println("Dato ingresado invalido");
+        }
+        return null;
+    }
 }
