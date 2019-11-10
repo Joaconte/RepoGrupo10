@@ -2,12 +2,9 @@ package test;
 
 import fiuba.algo3.TP2.exception.CasillaNoTieneUnidadException;
 import fiuba.algo3.TP2.exception.CasillaTieneUnidadException;
-import fiuba.algo3.TP2.model.Tablero;
-import fiuba.algo3.TP2.model.Casilla;
+import fiuba.algo3.TP2.model.*;
 
 
-import fiuba.algo3.TP2.model.Ubicacion;
-import fiuba.algo3.TP2.model.Unidad;
 import org.mockito.Mock;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
@@ -41,14 +38,14 @@ public class TableroTest {
 
         Tablero tablero = new Tablero();
         tablero.crearTableroVacio();
-        Unidad unidadMock = Mockito.mock(Unidad.class);
+        Pieza unidadMock = Mockito.mock(Pieza.class);
         Ubicacion ubicacionMock = Mockito.mock(Ubicacion.class);
         Mockito.when(ubicacionMock.getPosicionX()).thenReturn(5);
         Mockito.when(ubicacionMock.getPosicionY()).thenReturn(10);
 
         try{ tablero.agregarUnidad(unidadMock,ubicacionMock);
         }catch(CasillaTieneUnidadException e){ }
-        Unidad unidadMock2 = Mockito.mock(Unidad.class);
+        Pieza unidadMock2 = Mockito.mock(Pieza.class);
 
         try{ unidadMock2 = (tablero.buscarCasilla(5,10)).getUnidad();
          }catch(CasillaNoTieneUnidadException e){ }
@@ -61,8 +58,8 @@ public class TableroTest {
 
         Tablero tablero = new Tablero();
         tablero.crearTableroVacio();
-        Unidad unidadMock = Mockito.mock(Unidad.class);
-        Unidad segundaUnidadMock = Mockito.mock(Unidad.class);
+        Pieza unidadMock = Mockito.mock(Pieza.class);
+        Pieza segundaUnidadMock = Mockito.mock(Pieza.class);
         Ubicacion ubicacionMock = Mockito.mock(Ubicacion.class);
         Mockito.when(ubicacionMock.getPosicionX()).thenReturn(5);
         Mockito.when(ubicacionMock.getPosicionY()).thenReturn(10);

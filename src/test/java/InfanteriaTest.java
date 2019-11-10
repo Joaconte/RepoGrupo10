@@ -20,21 +20,22 @@ public class InfanteriaTest {
     @Test
     public void test02InfanteriaTiene100DeVidaAlIniciar() {
         Infanteria soldado = new Infanteria();
-        assertEquals(100, soldado.getPuntosVida());
+        assertEquals(100, soldado.getPuntosVida(),0.05);
     }
 
     @Test
     public void test03InfanteriaRecibe10DeDanio_vida90() {
         Infanteria soldado = new Infanteria();
+        double vida = soldado.getPuntosVida();
         soldado.recibirDanio(10);
-        assertEquals(100-10, soldado.getPuntosVida());
+        assertEquals(vida-10, soldado.getPuntosVida(),0.05);
     }
 
     @Test
     public void test04InfanteriaRecibe100DeDanio_vida0() {
         Infanteria soldado = new Infanteria();
         soldado.recibirDanio(100);
-        assertEquals(100-100, soldado.getPuntosVida());
+        assertEquals(100-100, soldado.getPuntosVida(),0.05);
     }
 
     @Test(expected = UnidadEstaMuertaException.class)
@@ -44,7 +45,7 @@ public class InfanteriaTest {
         soldado.recibirDanio(1);
     }
 
-    @Test
+    /*@Test
     public void test06InfanteriaDeDiferentesEquiposSonEnemigos() {
         Infanteria soldado = new Infanteria();
         soldado.setEquipo(1);
@@ -66,6 +67,6 @@ public class InfanteriaTest {
 
         assertEquals(cualquierDireccion,ubicacionModificada.darPosicionEnX());
         assertEquals(cualquierDireccion*2,ubicacionModificada.darPosicionEnY());
-    }
+    }*/
 }
 

@@ -14,7 +14,7 @@ public class Jugador {
     private int puntos;
     private String nombre;
     private Sector sector;
-    private List<Unidad> ejercito = new ArrayList<Unidad>();
+    private List<Pieza> ejercito = new ArrayList<Pieza>();
 
     public Jugador(String nombre, Sector sector){
         this.nombre = nombre;
@@ -32,7 +32,7 @@ public class Jugador {
     public int getPuntos(){
         return puntos;
     }
-    public List<Unidad> getEjercito(){ return ejercito;}
+    public List<Pieza> getEjercito(){ return ejercito;}
 
     public void descontarPuntos( int costoUnidad) throws PuntosInsuficientesException {
 
@@ -44,9 +44,9 @@ public class Jugador {
         }
     }
 
-    public Unidad agregarYDevolverUnidad(int i) {
+    public Pieza agregarYDevolverUnidad(int i) {
 
-        Unidad unidad = opcionesUnidades(i);
+        Pieza unidad = opcionesUnidades(i);
         int costo = unidad.getCosto();
         try { agregarUnidad(unidad);
 
@@ -57,7 +57,7 @@ public class Jugador {
         return unidad;
     }
 
-    public void agregarUnidad(Unidad unidad) throws JugadorSinPuntosException{
+    public void agregarUnidad(Pieza unidad) throws JugadorSinPuntosException{
 
         if (puntos == 0) {
             throw new JugadorSinPuntosException();
@@ -110,7 +110,7 @@ public class Jugador {
     */
 
 
-    private Unidad opcionesUnidades(int i){
+    private Pieza opcionesUnidades(int i){
 
         switch (i){
             case 0:

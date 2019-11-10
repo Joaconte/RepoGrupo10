@@ -1,17 +1,20 @@
 package fiuba.algo3.TP2.model;
 
-public class Catapulta extends Unidad implements IAtacanteDistanciaLejana{
+public class Catapulta extends PiezaAtacante{
     static final int COSTO = 5;
-    static final int DANIO = 20;
+    static final int VIDA_MAXIMA = 50;
+    static final int DANIO_DISTANCIA = 20;
+    static final int DANIO_MELE = 0;
 
     public Catapulta(){
-        VIDA_INICIAL = 50;
-        costo = COSTO;
-        vida = VIDA_INICIAL;
+        super.setVida_Maxima(VIDA_MAXIMA);
+        super.setVida(VIDA_MAXIMA);
+        super.setCosto(COSTO);
+        super.enZonaAliada();
+        super.noPuedeCurarse();
+        super.setModoAtaqueADistancia();
+        super.setDanioMele(DANIO_MELE);
+        super.setDanioADistancia(DANIO_DISTANCIA);
     }
 
-    @Override
-    public void atacarDesdeLejos(Unidad oponente) {
-        oponente.recibirDanio(DANIO);
-    }
 }

@@ -22,7 +22,7 @@ public class Tablero {
     }
 
 
-    public void agregarUnidad(Unidad unidad, Ubicacion ubicacion) throws CasillaTieneUnidadException{
+    public void agregarUnidad(Pieza unidad, Ubicacion ubicacion) throws CasillaTieneUnidadException{
         int x = ubicacion.getPosicionX();
         int y = ubicacion.getPosicionY();
         Casilla casilla = casillas[x][y];

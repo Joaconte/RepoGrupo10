@@ -4,18 +4,18 @@ import fiuba.algo3.TP2.exception.CasillaTieneUnidadException;
 
 
 public  class  Casilla {
-    private Unidad unidad;
+    private Pieza unidad;
     public Casilla(){
         unidad = null;
     }
-    public Unidad getUnidad()throws CasillaNoTieneUnidadException{
+    public Pieza getUnidad()throws CasillaNoTieneUnidadException{
         if (estaVacia()) {
             throw new CasillaNoTieneUnidadException();
         }
         return unidad;
     }
 
-    public void setUnidad(Unidad unidad)throws CasillaTieneUnidadException {
+    public void setUnidad(Pieza unidad)throws CasillaTieneUnidadException {
         if(!estaVacia()) {
             throw new CasillaTieneUnidadException();
         }

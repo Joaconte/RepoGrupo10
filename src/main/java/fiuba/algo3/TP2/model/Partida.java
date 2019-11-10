@@ -33,7 +33,7 @@ public class Partida{
     public void agregarUnidadesAJugador(Jugador jugador){
 
         int i=3;
-        Unidad unidad = jugador.agregarYDevolverUnidad(i);
+        Pieza unidad = jugador.agregarYDevolverUnidad(i);
         while( unidad != null ){
 
             //tableroDePartida.agregarUnidad(unidad);

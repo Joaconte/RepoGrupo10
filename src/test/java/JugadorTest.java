@@ -58,7 +58,7 @@ public class JugadorTest {
 
         Sector sector = Mockito.mock( Sector.class );
         Jugador jugador = new Jugador("Jorge",sector );
-        Unidad unidadMock = Mockito.mock(Unidad.class);
+        Pieza unidadMock = Mockito.mock(Pieza.class);
         Mockito.when(unidadMock.getCosto()).thenReturn(4);
 
         try { jugador.descontarPuntos(20);
@@ -72,7 +72,7 @@ public class JugadorTest {
 
         Sector sector = Mockito.mock( Sector.class );
         Jugador jugador = new Jugador("Jorge",sector );
-        Unidad unidadMock = Mockito.mock(Unidad.class);
+        Pieza unidadMock = Mockito.mock(Pieza.class);
         Mockito.when(unidadMock.getCosto()).thenReturn(4);
 
         try { jugador.agregarUnidad(unidadMock);
@@ -86,7 +86,7 @@ public class JugadorTest {
 
         Sector sector = Mockito.mock( Sector.class );
         Jugador jugador = new Jugador("Jorge",sector );
-        Unidad unidadMock = Mockito.mock(Unidad.class);
+        Pieza unidadMock = Mockito.mock(Pieza.class);
         Mockito.when(unidadMock.getCosto()).thenReturn(4);
         try { jugador.agregarUnidad(unidadMock);
         } catch (JugadorSinPuntosException e) {   }
@@ -99,7 +99,7 @@ public class JugadorTest {
 
         Sector sector = Mockito.mock( Sector.class );
         Jugador jugador = new Jugador("Jorge",sector );
-        Unidad unidadMock = Mockito.mock(Unidad.class);
+        Pieza unidadMock = Mockito.mock(Pieza.class);
         Mockito.when(unidadMock.getCosto()).thenReturn(4);
 
         Ubicacion ubicacion = Mockito.mock(Ubicacion.class);
