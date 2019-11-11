@@ -76,4 +76,19 @@ public class CuranderoTest {
         curitas.curarAAliado(catapulta);
 
     }
+
+    @Test
+    public void test04CuranderoSanaHastaElMaximoAUnAliadoConDanioUno() {
+        Curandero unCuranderoPiola = new Curandero();
+        Curandero unCuranderoAliado = new Curandero();
+
+        unCuranderoPiola.setEquipo(1);
+        unCuranderoAliado.setEquipo(1);
+
+        unCuranderoAliado.recibirDanio(1);
+        try{
+            unCuranderoPiola.curarAAliado(unCuranderoAliado); }
+        catch(CurandoAEnemigoException | UnidadNoSePuedeCurar e) {}
+        assertEquals(75,unCuranderoAliado.getPuntosVida(),0.05);
+    }
 }

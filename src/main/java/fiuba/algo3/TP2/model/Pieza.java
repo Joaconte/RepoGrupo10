@@ -73,9 +73,10 @@ public abstract class Pieza {
 
     }
 
-    // ver q cure hasta MAX vida
+
     public void sanar(int puntos) throws UnidadNoSePuedeCurar {
         vida += sanacion.restaurarPuntosDeVida(puntos);
+        vida = Math.min(vida, VIDA_MAXIMA);
     }
 
    /* public void moverse(){
