@@ -1,7 +1,6 @@
 package test;
 
 import fiuba.algo3.TP2.model.*;
-import fiuba.algo3.TP2.model.Unidad;
 import fiuba.algo3.TP2.model.Ubicacion;
 import org.mockito.Mock;
 import org.mockito.Mockito;

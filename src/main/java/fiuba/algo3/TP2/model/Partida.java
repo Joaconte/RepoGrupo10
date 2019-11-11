@@ -7,7 +7,7 @@ public class Partida{
   //  private Jugador jugadorDerecho = new Jugador();
 
 
-    //Metodos de Fase
+    //---------------Metodos de Fase------------
     public void cambiarFaseDePartida(FaseDePartida miNuevaFase){
         this.miFase = miNuevaFase;
     }
@@ -28,17 +28,6 @@ public class Partida{
 
     public void agregarJugadores() {
         //¿Construir?
-    }
-    
-    public void agregarUnidadesAJugador(Jugador jugador){
-
-        int i=3;
-        Pieza unidad = jugador.agregarYDevolverUnidad(i);
-        while( unidad != null ){
-
-            //tableroDePartida.agregarUnidad(unidad);
-        }
-
     }
 
 
