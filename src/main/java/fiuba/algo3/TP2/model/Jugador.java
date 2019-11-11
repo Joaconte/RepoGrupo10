@@ -1,5 +1,7 @@
 package fiuba.algo3.TP2.model;
 
+import fiuba.algo3.TP2.exception.CostoNoValidoException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.lang.Exception;
@@ -7,23 +9,25 @@ import java.lang.Exception;
 public class Jugador {
 
     private EstadoPresupuestoDeEjercito presupuesto;
-    private String nombre;
+    private int numeroDeJugador;
     private Sector sector;
     private Ejercito ejercito;
+    private int valorEjercito;
 
     //---------Inicializacion---------//
 
-    public Jugador(String nombre, Sector sector){
-        this.presupuesto = new EstadoPresupuestoNoAgotado();
-        this.nombre = nombre;
+    public Jugador(int numeroDeJugador, Sector sector){
+        this.valorEjercito = 20;
+        this.presupuesto = new EstadoPresupuestoNoAgotado(valorEjercito);
+        this.numeroDeJugador = numeroDeJugador;
         this.sector = sector;
-        this.ejercito = new Ejercito (nombre);
+        this.ejercito = new Ejercito (numeroDeJugador);
     }
 
     //-----------GETTERS-----------//
 
-    public String getNombre(){
-        return nombre;
+    public int getNumeroDeJugador(){
+        return numeroDeJugador;
     }
     public Sector getSector(){
         return sector;
@@ -35,8 +39,11 @@ public class Jugador {
     //-----------Metodos Ejercito-------------//
 
     public void agregarUnidad(int costoUnidad){
-        this.presupuesto.agregarPiezas(this.ejercito, costoUnidad);
-        this.setearPresupuesto();
+        try {
+            this.presupuesto.agregarPiezas(this.ejercito, costoUnidad);
+        }
+        catch (CostoNoValidoException e){}
+        this.setEstadoPresupuesto(this.presupuesto);
     }
 
     public void quitarUnidad(int posicion){
@@ -45,7 +52,7 @@ public class Jugador {
 
     //------------Metodo Presupuesto------------//
 
-    public void setearPresupuesto(){
+    public void setEstadoPresupuesto(EstadoPresupuestoDeEjercito presupuesto){
         this.presupuesto = presupuesto.devolverEstadoDePresuesto();
     }
 

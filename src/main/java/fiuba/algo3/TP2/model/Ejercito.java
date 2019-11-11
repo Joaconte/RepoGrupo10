@@ -6,21 +6,23 @@ import java.util.List;
 public class Ejercito{
 
     private List<Pieza> ejercito = new ArrayList<Pieza>();
-    private String nombre;
+    private int numeroDeEjercito;
 
     //---------Inicializacion---------//
 
-    public Ejercito(String nombre) {
-        this.nombre = nombre;
+    public Ejercito(int numeroDeJugador) {
+        this.numeroDeEjercito =  numeroDeJugador;
     }
 
     //-----------GETTERS-----------//
 
-    public String getNombre(){ return nombre; };
+    public int getNumeroDeEjercito(){ return numeroDeEjercito; };
     public int getTamanio(){ return ejercito.size(); };
 
     //-----------Add-Remove-----------//
+
     public void agregarPieza (Pieza unidad) {
+        unidad.setEquipo(numeroDeEjercito);
         ejercito.add(unidad);
     }
     public void removerPieza (int ubicacionUnidad) {

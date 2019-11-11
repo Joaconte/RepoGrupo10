@@ -7,7 +7,6 @@ import fiuba.algo3.TP2.model.Curandero;
 import fiuba.algo3.TP2.exception.CurandoAEnemigoException;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertEquals;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
@@ -46,8 +45,8 @@ public class CuranderoTest {
         Curandero unCuranderoPiola = new Curandero();
         Curandero unCuranderoAliado = new Curandero();
 
-        unCuranderoPiola.setEquipo(2);
-        unCuranderoAliado.setEquipo(2);
+        unCuranderoPiola.setEquipo(1);
+        unCuranderoAliado.setEquipo(1);
 
         unCuranderoAliado.recibirDanio(30);
         try{

@@ -2,7 +2,7 @@ package test;
 
 import fiuba.algo3.TP2.exception.UbicacionInvalidaException;
 import fiuba.algo3.TP2.model.*;
-
+import fiuba.algo3.TP2.model.EstadoPresupuestoNoAgotado;
 import org.mockito.Mockito;
 import org.mockito.Mock;
 import org.junit.Test;
@@ -14,19 +14,19 @@ public class JugadorTest {
 
 
     @Test
-    public void test01SeAgregaNombreCorrectamente(){
+    public void test01SeAgregaNumeroDeJugadorCorrectamente(){
 
         Sector sectorMock = Mockito.mock( Sector.class );
-        Jugador jugador = new Jugador("Jorge",sectorMock );
+        Jugador jugador = new Jugador(1,sectorMock );
 
-        assertEquals("Jorge", jugador.getNombre() );
+        assertEquals(1, jugador.getNumeroDeJugador() );
     }
 
     @Test
     public void test02SeAgregaSectorCorrectamente(){
 
         Sector sector = new Sector(0, 9);
-        Jugador jugador = new Jugador("Jorge",sector );
+        Jugador jugador = new Jugador(1,sector );
 
         assertEquals( sector , jugador.getSector());
     }
@@ -36,63 +36,43 @@ public class JugadorTest {
     public void test03EjercitoAgrega5UnidadesCorrectamenteCuandoSeCompran(){
 
         Sector sector = Mockito.mock( Sector.class );
-        Jugador jugador = new Jugador("Jorge",sector );
-        jugador.agregarUnidad(4);
-        jugador.agregarUnidad(4);
-        jugador.agregarUnidad(4);
-        jugador.agregarUnidad(4);
+        Jugador jugador = new Jugador(1,sector );
+        jugador.agregarUnidad(1);
+        jugador.agregarUnidad(1);
+        jugador.agregarUnidad(1);
+        jugador.agregarUnidad(1);
         jugador.agregarUnidad(3);
         assertEquals( 5 , jugador.getTamanioDelEjercito() );
     }
 
     @Test
-    public void test04ConPresupuestoIgualAUnoNoPuedoComprarUnaUnidadDeValorTres() {
+    public void test04ConPresupuestoIgualAUnoNoPuedoComprarUnaUnidadDeValorCuatroOTresODos() {
 
         Sector sector = Mockito.mock( Sector.class );
-        Jugador jugador = new Jugador("Jorge",sector );
+        Jugador jugador = new Jugador(1,sector );
+        EstadoPresupuestoNoAgotado presupuestoEnUno =  new EstadoPresupuestoNoAgotado(1);
+        jugador.setEstadoPresupuesto(presupuestoEnUno);
 
-        jugador.agregarUnidad(4);
-        jugador.agregarUnidad(4);
-        jugador.agregarUnidad(4);
-        jugador.agregarUnidad(4);
+        jugador.agregarUnidad(5);
         jugador.agregarUnidad(3);
-        //Presupuesto = 19
-        jugador.agregarUnidad(3);
-
-        assertEquals( 5 , jugador.getTamanioDelEjercito());
-
+        jugador.agregarUnidad(2);
+        assertEquals( 0 , jugador.getTamanioDelEjercito());
     }
-
-/*      @Test
-    public void test04LeResto10PuntosAlJugador() {
-
-        Sector sector = Mockito.mock( Sector.class );
-        Jugador jugador = new Jugador("Jorge",sector );
-        try {
-            jugador.descontarPuntos(10);
-        } catch (PuntosInsuficientesException e) { }
-        assertEquals( (20-10) , jugador.getPuntos() );
-    }
-
- */
 
     @Test
     public void test05ConPresupuestoIgualACeroNoComproNadaMas() {
 
         Sector sector = Mockito.mock( Sector.class );
-        Jugador jugador = new Jugador("Jorge",sector );
+        Jugador jugador = new Jugador(1,sector );
+        EstadoPresupuestoNoAgotado presupuestoEnUno =  new EstadoPresupuestoNoAgotado(0);
+        jugador.setEstadoPresupuesto(presupuestoEnUno);
 
-        jugador.agregarUnidad(4);
-        jugador.agregarUnidad(4);
-        jugador.agregarUnidad(4);
-        jugador.agregarUnidad(4);
-        jugador.agregarUnidad(4);
-        //Presupuesto = 20
         jugador.agregarUnidad(1);
         jugador.agregarUnidad(2);
         jugador.agregarUnidad(3);
-        jugador.agregarUnidad(4);
-        assertEquals( 5 , jugador.getTamanioDelEjercito());
+        jugador.agregarUnidad(5);
+
+        assertEquals( 0 , jugador.getTamanioDelEjercito());
 
     }
 
@@ -100,7 +80,7 @@ public class JugadorTest {
     public void test06AgregoUnidadYLaBorroCorrectamente(){
 
         Sector sector = Mockito.mock( Sector.class );
-        Jugador jugador = new Jugador("Jorge",sector );
+        Jugador jugador = new Jugador(1,sector );
         jugador.agregarUnidad(3);
         jugador.quitarUnidad(0);
 
@@ -112,11 +92,11 @@ public class JugadorTest {
     public void test07AgregoCuatroUnidadesYLasSacoEnCualquierOrdenCorrectamente(){
 
         Sector sector = Mockito.mock( Sector.class );
-        Jugador jugador = new Jugador("Jorge",sector );
+        Jugador jugador = new Jugador(1,sector );
         jugador.agregarUnidad(3);
         jugador.agregarUnidad(1);
         jugador.agregarUnidad(2);
-        jugador.agregarUnidad(4);
+        jugador.agregarUnidad(5);
 
         jugador.quitarUnidad(3);
         jugador.quitarUnidad(2);
@@ -127,11 +107,24 @@ public class JugadorTest {
 
     }
 
+    @Test
+    public void test08CostoEquivocadoNoAgregaNada(){
+
+        Sector sector = Mockito.mock( Sector.class );
+        Jugador jugador = new Jugador(1,sector );
+        jugador.agregarUnidad(4);
+        jugador.agregarUnidad(10);
+
+        assertEquals( 0 , jugador.getTamanioDelEjercito() );
+
+    }
+
+
    /* @Test(expected = UbicacionInvalidaException.class)
     public void test09PosicionDeUnidadOcupadaExceptionThrown() throws UbicacionInvalidaException{
 
         Sector sector = Mockito.mock( Sector.class );
-        Jugador jugador = new Jugador("Jorge",sector );
+        Jugador jugador = new Jugador(1,sector );
         Unidad unidad = Mockito.mock(Unidad.class);
         Ubicacion ubicacion = Mockito.mock(Ubicacion.class);
         Unidad unidad2 = Mockito.mock(Unidad.class);
