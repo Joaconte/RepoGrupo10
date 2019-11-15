@@ -4,8 +4,11 @@ import jugador.Ejercito;
 import pieza.*;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
-import org.mockito.Mock;
 import org.mockito.Mockito;
+import pieza.tipos.Catapulta;
+import pieza.tipos.Curandero;
+import pieza.tipos.Infanteria;
+import pieza.tipos.Jinete;
 
 public class EjercitoTest {
 
@@ -20,41 +23,32 @@ public class EjercitoTest {
     public void test02SeAgregaUnaUnidadCorrectamente(){
 
         Ejercito ejercito = new Ejercito(1);
-        Pieza unaPieza = Mockito.mock( Pieza.class );
-        ejercito.agregarPieza(unaPieza);
+        Catapulta unaPieza = Mockito.mock( Catapulta.class );
+        ejercito.agregarCatapulta(unaPieza);
         assertEquals(1, ejercito.getTamanio() );
     }
 
 
     @Test
-    public void test03SeAgregaYRemueveUnaPiezaCorrectamente(){
+    public void test03SeAgregan10PiezasCorrectamente(){
 
         Ejercito ejercito = new Ejercito(1);
-        Pieza unaPieza = Mockito.mock( Pieza.class );
-        ejercito.agregarPieza(unaPieza);
-        ejercito.removerPieza(0);
-        assertEquals(0, ejercito.getTamanio() );
-    }
+        Catapulta unaPieza = Mockito.mock( Catapulta.class );
+        Jinete unaPieza2 = Mockito.mock( Jinete.class );
+        Curandero unaPieza3 = Mockito.mock( Curandero.class );
+        Infanteria unaPieza4 = Mockito.mock( Infanteria.class );
+        ejercito.agregarJinete(unaPieza2);
+        ejercito.agregarCurandero(unaPieza3);
+        ejercito.agregarCatapulta(unaPieza);
+        ejercito.agregarInfante(unaPieza4);
+        ejercito.agregarJinete(unaPieza2);
+        ejercito.agregarCurandero(unaPieza3);
+        ejercito.agregarCatapulta(unaPieza);
+        ejercito.agregarInfante(unaPieza4);
+        ejercito.agregarJinete(unaPieza2);
+        ejercito.agregarCurandero(unaPieza3);
 
-    @Test
-    public void test03SeAgregan10PiezasYRemuevenDosPiezasCorrectamente(){
-
-        Ejercito ejercito = new Ejercito(1);
-        Pieza unaPieza = Mockito.mock( Pieza.class );
-        ejercito.agregarPieza(unaPieza);
-        ejercito.agregarPieza(unaPieza);
-        ejercito.agregarPieza(unaPieza);
-        ejercito.agregarPieza(unaPieza);
-        ejercito.agregarPieza(unaPieza);
-        ejercito.agregarPieza(unaPieza);
-        ejercito.agregarPieza(unaPieza);
-        ejercito.agregarPieza(unaPieza);
-        ejercito.agregarPieza(unaPieza);
-        ejercito.agregarPieza(unaPieza);
-
-        ejercito.removerPieza(0);
-        ejercito.removerPieza(0);
-        assertEquals(8, ejercito.getTamanio() );
+        assertEquals(10, ejercito.getTamanio() );
     }
 
 }

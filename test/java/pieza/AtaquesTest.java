@@ -15,7 +15,7 @@ public class AtaquesTest {
         Infanteria oponente = new Infanteria();
         double vidaOponente;
         soldado.setEquipo(1);
-        oponente.setEquipo(2);
+        oponente.setEquipo(1);
         vidaOponente = oponente.getPuntosVida();
         soldado.atacar(oponente);
         assertEquals(vidaOponente-10, oponente.getPuntosVida(),0.05);
@@ -29,6 +29,7 @@ public class AtaquesTest {
         jinete.setEquipo(1);
         oponente.setEquipo(2);
         vidaOponente = oponente.getPuntosVida();
+        jinete.setModoAtaqueCuerpoCuerpo();
         jinete.atacar(oponente);
         assertEquals(vidaOponente-5, oponente.getPuntosVida(),0.05);
     }
@@ -41,7 +42,7 @@ public class AtaquesTest {
         jinete.setEquipo(1);
         oponente.setEquipo(2);
         vidaOponente = oponente.getPuntosVida();
-        jinete.setModoAtaqueADistancia();
+        jinete.setModoAtaqueMedio();
         jinete.atacar(oponente);
         assertEquals(vidaOponente-15, oponente.getPuntosVida(),0.05);
     }

@@ -75,38 +75,7 @@ public class JugadorTest {
     }
 
     @Test
-    public void test06AgregoUnidadYLaBorroCorrectamente(){
-
-        Sector sector = Mockito.mock( Sector.class );
-        Jugador jugador = new Jugador(1,sector );
-        jugador.agregarUnidad(3);
-        jugador.quitarUnidad(0);
-
-        assertEquals( 0 , jugador.getTamanioDelEjercito() );
-
-    }
-
-    @Test
-    public void test07AgregoCuatroUnidadesYLasSacoEnCualquierOrdenCorrectamente(){
-
-        Sector sector = Mockito.mock( Sector.class );
-        Jugador jugador = new Jugador(1,sector );
-        jugador.agregarUnidad(3);
-        jugador.agregarUnidad(1);
-        jugador.agregarUnidad(2);
-        jugador.agregarUnidad(5);
-
-        jugador.quitarUnidad(3);
-        jugador.quitarUnidad(2);
-        jugador.quitarUnidad(0);
-        jugador.quitarUnidad(0);
-
-        assertEquals( 0 , jugador.getTamanioDelEjercito() );
-
-    }
-
-    @Test
-    public void test08CostoEquivocadoNoAgregaNada(){
+    public void test06CostoEquivocadoNoAgregaNada(){
 
         Sector sector = Mockito.mock( Sector.class );
         Jugador jugador = new Jugador(1,sector );
