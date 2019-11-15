@@ -2,9 +2,11 @@ package pieza.ataque;
 
 import pieza.Pieza;
 
-public class AtaqueCuerpoACuerpo implements IModoAtaque {
+public class AtaqueMedio implements IModoAtaque {
+
     @Override
     public void atacar(PiezaAtacante miUnidad, Pieza otraUnidad) {
-        otraUnidad.recibirDanio(miUnidad.getDanioCuerpoCuerpo());
+        otraUnidad.recibirDanio(miUnidad.getDanioMedio());
     }
 }
+

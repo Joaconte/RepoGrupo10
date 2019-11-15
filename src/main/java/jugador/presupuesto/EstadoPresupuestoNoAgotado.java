@@ -8,23 +8,24 @@ public class EstadoPresupuestoNoAgotado implements EstadoPresupuestoDeEjercito{
     private int presupuesto;
     private FabricaDePiezas fabricaDePiezas = new FabricaDePiezas();
 
-
+    /*----Inicializador-----*/
     public EstadoPresupuestoNoAgotado(int presupuesto){
         this.presupuesto =presupuesto;
     }
 
-    public boolean elPresupuestoAguanta(int costoUnidad){
-        return (this.presupuesto >= costoUnidad);
+    /*----Metodos internos-----*/
+    private boolean costoEsValido(int costoUnidad){
+        return ((this.presupuesto >= costoUnidad) && costoUnidad > 0);
     }
-    public void setPresupuesto(int unValor){
+    private void setPresupuesto(int unValor){
         this.presupuesto = unValor;
     }
 
 
     @Override
-    public void agregarPiezas(Ejercito ejercito, int costoUnidad) throws CostoNoValidoException {
-        if (this.elPresupuestoAguanta(costoUnidad)) {
-                ejercito.agregarPieza(fabricaDePiezas.getPieza(costoUnidad));
+    public void agregarPiezas(Ejercito ejercito, int costoUnidad) {
+        if (this.costoEsValido(costoUnidad)) {
+            fabricaDePiezas.agregarPieza(ejercito,costoUnidad);
             this.setPresupuesto(this.presupuesto - costoUnidad);
         }
     }
@@ -35,7 +36,4 @@ public class EstadoPresupuestoNoAgotado implements EstadoPresupuestoDeEjercito{
             return new EstadoPresupuestoAgotado();}
         return this ;
     }
-
-
-
 }

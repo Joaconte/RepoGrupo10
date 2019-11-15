@@ -2,23 +2,28 @@ package pieza;
 
 public class Ubicacion {
 
-    private int posicionX;
-    private int posicionY;
+    private int posicionEnX;
+    private int posicionEnY;
 
-    public Ubicacion( int posicionX, int posicionY ){
-     this.posicionX = posicionX;
-     this.posicionY = posicionY;
+    public Ubicacion(int posicionEnX, int posicionEnY) {
+        this.posicionEnX = posicionEnX;
+        this.posicionEnY = posicionEnY;
     }
 
-    public int getPosicionX(){return posicionX; }
-    public int getPosicionY(){return posicionY; }
-
-    public int darPosicionEnX (){
-        return posicionX;
+    public int getPosicionEnX() {
+        return posicionEnX;
     }
 
-    public int darPosicionEnY (){
-        return posicionY;
+    public int getPosicionEnY() {
+        return posicionEnY;
+    }
+
+    public int getDistanciaAOtroPunto(Ubicacion otraUbicacion){
+        int otraPosEnY = otraUbicacion.getPosicionEnX();
+        int otraPosEnX = otraUbicacion.getPosicionEnX();
+        int posibleDistancia = Math.max (posicionEnX-otraPosEnX, otraPosEnX-posicionEnX);
+        int posibleDistancia2 = Math.max(posicionEnY-otraPosEnY, otraPosEnY-posicionEnY);
+        return Math.max(posibleDistancia, posibleDistancia2);
     }
 
 }

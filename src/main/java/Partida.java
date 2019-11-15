@@ -1,5 +1,6 @@
 import fase.*;
 import tablero.Tablero;
+import pieza.Pieza;
 
 public class Partida{
     private FaseDePartida miFase = new FaseInicial();
@@ -13,8 +14,8 @@ public class Partida{
         this.miFase = miNuevaFase;
     }
 
-    public void moverUnidadEnTablero(String unaPosicionInicial, String unaPosicionFinal){ //por ahora String esta puesta por poner algo.
-        miFase.moverUnidadEnTablero(unaPosicionInicial,unaPosicionFinal);
+    public void moverUnidadEnTablero(Pieza pieza, int unaPosicionInicial, int unaPosicionFinal){ //por ahora String esta puesta por poner algo.
+        miFase.moverUnidadEnTablero(pieza, unaPosicionInicial,unaPosicionFinal);
     }
 
     public void terminarMiTurno(){

@@ -1,5 +1,7 @@
 package jugador;
 
+import org.jetbrains.annotations.NotNull;
+import pieza.tipos.*;
 import pieza.Pieza;
 
 import java.util.ArrayList;
@@ -7,8 +9,12 @@ import java.util.List;
 
 public class Ejercito{
 
-    private List<Pieza> ejercito = new ArrayList<Pieza>();
+    private ArrayList<Curandero> curanderos = new ArrayList<Curandero>();
+    private ArrayList<Jinete> jinetes = new ArrayList<Jinete>();
+    private ArrayList<Catapulta> catapultas = new ArrayList<Catapulta>();
+    private ArrayList<Infanteria> infantes = new ArrayList<Infanteria>();
     private int numeroDeEjercito;
+
 
     //---------Inicializacion---------//
 
@@ -18,19 +24,34 @@ public class Ejercito{
 
     //-----------GETTERS-----------//
 
-    public int getNumeroDeEjercito(){ return numeroDeEjercito; };
-    public int getTamanio(){ return ejercito.size(); };
+    public int getNumeroDeEjercito(){ return numeroDeEjercito; }
+    public int getTamanio(){ return (curanderos.size()+jinetes.size()+catapultas.size()+infantes.size()); };
+    public int getCantidadCuranderos(){ return curanderos.size(); }
+    public int getCantidadInfantes(){ return infantes.size(); }
+    public int getCantidadCatapultas(){ return catapultas.size(); }
+    public int getCantidadJinetes(){ return jinetes.size(); }
 
     //-----------Add-Remove-----------//
 
-    public void agregarPieza (Pieza unidad) {
+    public void agregarCurandero (Curandero unidad) {
         unidad.setEquipo(numeroDeEjercito);
-        ejercito.add(unidad);
-    }
-    public void removerPieza (int ubicacionUnidad) {
-        ejercito.remove(ubicacionUnidad);
+        curanderos.add(unidad);
     }
 
+    public void agregarJinete (Jinete unidad) {
+        unidad.setEquipo(numeroDeEjercito);
+        jinetes.add(unidad);
+    }
+
+    public void agregarInfante (Infanteria unidad) {
+        unidad.setEquipo(numeroDeEjercito);
+        infantes.add(unidad);
+    }
+
+    public void agregarCatapulta (Catapulta unidad) {
+        unidad.setEquipo(numeroDeEjercito);
+        catapultas.add(unidad);
+    }
 }
 
 /*

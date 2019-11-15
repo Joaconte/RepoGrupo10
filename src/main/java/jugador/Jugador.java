@@ -1,6 +1,5 @@
 package jugador;
 
-import jugador.presupuesto.CostoNoValidoException;
 import jugador.presupuesto.EstadoPresupuestoDeEjercito;
 import jugador.presupuesto.EstadoPresupuestoNoAgotado;
 
@@ -10,13 +9,11 @@ public class Jugador {
     private int numeroDeJugador;
     private Sector sector;
     private Ejercito ejercito;
-    private int valorEjercito;
 
     //---------Inicializacion---------//
 
     public Jugador(int numeroDeJugador, Sector sector){
-        this.valorEjercito = 20;
-        this.presupuesto = new EstadoPresupuestoNoAgotado(valorEjercito);
+        this.presupuesto = new EstadoPresupuestoNoAgotado(20);
         this.numeroDeJugador = numeroDeJugador;
         this.sector = sector;
         this.ejercito = new Ejercito (numeroDeJugador);
@@ -34,25 +31,22 @@ public class Jugador {
         return this.ejercito.getTamanio();
     }
 
-    //-----------Metodos Ejercito-------------//
-
-    public void agregarUnidad(int costoUnidad){
-        try {
-            this.presupuesto.agregarPiezas(this.ejercito, costoUnidad);
-        }
-        catch (CostoNoValidoException e){}
-        this.setEstadoPresupuesto(this.presupuesto);
-    }
-
-    public void quitarUnidad(int posicion){
-        this.ejercito.removerPieza(posicion);
-    }
-
-    //------------Metodo Presupuesto------------//
-
+    //-----------SETTERS-------------//
     public void setEstadoPresupuesto(EstadoPresupuestoDeEjercito presupuesto){
         this.presupuesto = presupuesto.devolverEstadoDePresuesto();
     }
+
+    //-----------ADD - REMOVE-------------//
+
+    public void agregarUnidad(int costoUnidad){
+        this.presupuesto.agregarPiezas(this.ejercito, costoUnidad);
+        this.setEstadoPresupuesto(this.presupuesto);
+    }
+
+
+
+
+
 
 }
 
