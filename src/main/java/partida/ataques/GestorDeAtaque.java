@@ -30,7 +30,7 @@ public class GestorDeAtaque {
     public void atacar(Catapulta atacante, Pieza atacada, Jugador jugadorEnTurno) throws PiezaAtacadaEnRangoIncorrectoException{
         try{
             this.definirRango(atacante, atacada);
-            this.rangoDeAtaque.atacar(atacante,atacada);
+            this.rangoDeAtaque.atacar(atacante,atacada,jugadorEnTurno);
             this.setJugadorYaAtaco(true);}
         catch (RangoDeDistanciaInvalidoException e){}
     }
@@ -38,7 +38,7 @@ public class GestorDeAtaque {
     public void atacar(Infanteria atacante, Pieza atacada, Jugador jugadorEnTurno) throws PiezaAtacadaEnRangoIncorrectoException{
         try{
             this.definirRango(atacante, atacada);
-            this.rangoDeAtaque.atacar(atacante,atacada);
+            this.rangoDeAtaque.atacar(atacante,atacada,jugadorEnTurno);
             this.setJugadorYaAtaco(true);}
         catch (RangoDeDistanciaInvalidoException e){}
     }
@@ -46,7 +46,7 @@ public class GestorDeAtaque {
     public void atacar(Jinete atacante, Pieza atacada, Jugador jugadorEnTurno) throws PiezaAtacadaEnRangoIncorrectoException {
         try{
             this.definirRango(atacante, atacada);
-            this.rangoDeAtaque.atacar(atacante,atacada);
+            this.rangoDeAtaque.atacar(atacante,atacada,jugadorEnTurno);
             this.setJugadorYaAtaco(true);}
         catch (RangoDeDistanciaInvalidoException e){}
     }
