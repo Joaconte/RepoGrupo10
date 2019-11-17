@@ -6,7 +6,7 @@ import java.util.List;
 
 public class CasillaLibre implements EstadoCasilla {
 
-    boolean fueVisitada;
+    boolean fueVisitada=false;
 
     @Override
     public String getEstado() {
@@ -25,8 +25,18 @@ public class CasillaLibre implements EstadoCasilla {
 
     @Override
     public List<Pieza> getContenido(List<Pieza> lista){
-        return null;
+        fueVisitada=true;
+        return lista;
     }
 
+    @Override
+    public void resetFueRevisada() {
+        fueVisitada=false;
+    }
+
+    @Override
+    public boolean getFueRevisada() {
+        return fueVisitada;
+    }
 
 }

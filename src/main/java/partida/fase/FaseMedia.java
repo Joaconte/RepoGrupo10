@@ -1,4 +1,4 @@
-package fase;
+package partida.fase;
 
 import pieza.Pieza;
 

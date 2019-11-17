@@ -1,4 +1,5 @@
-import fase.*;
+package partida;
+import partida.fase.*;
 import tablero.Tablero;
 import pieza.Pieza;
 

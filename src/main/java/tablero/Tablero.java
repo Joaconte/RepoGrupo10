@@ -1,6 +1,7 @@
 package tablero;
 
 import pieza.Pieza;
+import pieza.Ubicacion;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,7 @@ public class Tablero {
     private static final int FILAS = 20;
     private static final int COLUMNAS = 20;
     private List<Columna> columnas = new ArrayList<Columna>();
+
 
 
     public Tablero(){
@@ -40,6 +42,16 @@ public class Tablero {
     public boolean soldadosEnAdyacencia(int numeroDeLaColumna, int numeroDeLaFila){
         //implementar
         return true;
+    }
+
+    public List<Pieza> getPiezasEnAdyacencia(List<Pieza> lista){
+        Pieza pieza = lista.get(0);
+        Ubicacion ubicacionPieza = pieza.getUbicacion();
+        int numeroColumna = ubicacionPieza.getPosicionEnX();
+        int numeroFila = ubicacionPieza.getPosicionEnY();
+        Casilla casilla = columnas.get(numeroColumna-1).getCasilla(numeroFila);
+        BuscadorDePiezasAdyacentes iterador= new BuscadorDePiezasAdyacentes(casilla,lista,columnas);
+        return iterador.realizarLaBusqueda();
     }
 
 }

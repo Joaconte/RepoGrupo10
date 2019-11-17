@@ -30,9 +30,18 @@ public class CasillaOcupada implements EstadoCasilla{
 
     @Override
     public List<Pieza> getContenido(List<Pieza> lista){
-        fueVisitada=true;
+        this.fueVisitada=true;
         return null;
     }
 
+    @Override
+    public void resetFueRevisada() {
+        fueVisitada=false;
+    }
+
+    @Override
+    public boolean getFueRevisada() {
+        return fueVisitada;
+    }
 }
 

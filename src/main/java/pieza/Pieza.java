@@ -8,7 +8,6 @@ public abstract class Pieza {
     private int COSTO;
     private int VIDA_MAXIMA;
     private double vida;
-
     protected Ubicacion ubicacion;
     protected int equipo;
 
@@ -21,7 +20,6 @@ public abstract class Pieza {
     public int getCosto() {
         return COSTO;
     }
-
     protected void setCosto(int costo){
         COSTO = costo;
     }
@@ -29,7 +27,6 @@ public abstract class Pieza {
     protected void setVida_Maxima(int vida){
         VIDA_MAXIMA = vida;
     }
-
     public void setVida(double vida){
         this.vida = vida;
     }
@@ -48,10 +45,10 @@ public abstract class Pieza {
     public Ubicacion getUbicacion(){
         return ubicacion;
     }
+
     public void setEquipo(int numJugador){
         equipo = numJugador;
     }
-
     public int getEquipo(){ return equipo;}
 
     public boolean esEnemigo(Pieza otra){
@@ -59,10 +56,10 @@ public abstract class Pieza {
     }
     //-------------------------------------------
     // METODOS
+
     public void enZonaEnemiga(){
         this.comoRecibeDanio = new DanioZonaEnemiga();
     }
-
     public void enZonaAliada(){
         this.comoRecibeDanio = new DanioZonaPropia();
     }
@@ -73,7 +70,6 @@ public abstract class Pieza {
         vida-=comoRecibeDanio.danio(danioBase);
 
     }
-
 
     public void sanar(int puntos) throws UnidadNoSePuedeCurar {
         vida += sanacion.restaurarPuntosDeVida(puntos);

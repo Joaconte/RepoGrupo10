@@ -9,9 +9,6 @@ public  class  Casilla {
 
     private EstadoCasilla estadoCasilla = new CasillaLibre();
 
-
-
-
     public String getEstado() {
         return estadoCasilla.getEstado();
     }
@@ -26,5 +23,8 @@ public  class  Casilla {
 
     public List<Pieza> getContenido(List<Pieza> lista) { return estadoCasilla.getContenido(lista); }
 
+    public boolean getFueRevisada() { return estadoCasilla.getFueRevisada();}
+
+    public void resetFueRevisada() {estadoCasilla.resetFueRevisada();}
 }
 

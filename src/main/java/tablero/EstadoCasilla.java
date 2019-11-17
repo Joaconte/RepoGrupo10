@@ -10,5 +10,6 @@ public interface EstadoCasilla {
     public EstadoCasilla ocuparCasilla(Pieza pieza);
     public EstadoCasilla desocuparCasilla();
     public List<Pieza> getContenido(List<Pieza> lista);
-
+    public void resetFueRevisada();
+    public boolean getFueRevisada();
 }
