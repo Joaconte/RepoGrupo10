@@ -6,7 +6,7 @@ public interface FaseDePartida{
 
     //Metodos abstractos implementados por las subclases
 
-    public void moverUnidadEnTablero(Pieza pieza, int numeroFila, int numeroColumna);
+    public void moverUnidadEnTablero(Pieza pieza, int posicionFila, int posicionColumna);
     public void terminarMiTurno();
     public String darNombreDeFase();
 

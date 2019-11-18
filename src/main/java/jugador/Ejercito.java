@@ -1,18 +1,15 @@
 package jugador;
 
-import org.jetbrains.annotations.NotNull;
 import pieza.tipos.*;
-import pieza.Pieza;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Ejercito{
 
     private ArrayList<Curandero> curanderos = new ArrayList<Curandero>();
     private ArrayList<Jinete> jinetes = new ArrayList<Jinete>();
     private ArrayList<Catapulta> catapultas = new ArrayList<Catapulta>();
-    private ArrayList<Infanteria> infantes = new ArrayList<Infanteria>();
+    private ArrayList<Infanteria> soldados = new ArrayList<Infanteria>();
     private int numeroDeEjercito;
 
 
@@ -25,9 +22,9 @@ public class Ejercito{
     //-----------GETTERS-----------//
 
     public int getNumeroDeEjercito(){ return numeroDeEjercito; }
-    public int getTamanio(){ return (curanderos.size()+jinetes.size()+catapultas.size()+infantes.size()); };
+    public int getTamanio(){ return (curanderos.size()+jinetes.size()+catapultas.size()+soldados.size()); };
     public int getCantidadCuranderos(){ return curanderos.size(); }
-    public int getCantidadInfantes(){ return infantes.size(); }
+    public int getCantidadInfantes(){ return soldados.size(); }
     public int getCantidadCatapultas(){ return catapultas.size(); }
     public int getCantidadJinetes(){ return jinetes.size(); }
 
@@ -45,7 +42,7 @@ public class Ejercito{
 
     public void agregarInfante (Infanteria unidad) {
         unidad.setEquipo(numeroDeEjercito);
-        infantes.add(unidad);
+        soldados.add(unidad);
     }
 
     public void agregarCatapulta (Catapulta unidad) {

@@ -1,10 +1,12 @@
 package fase;
 
+import pieza.Pieza;
+
 public class FaseFinal implements FaseDePartida{
 
     //Metodo que no introduce cambio.
     @Override
-    public void moverUnidadEnTablero(String unaPosicionInicial, String unaPosicionFinal){
+    public void moverUnidadEnTablero(Pieza pieza, int posicionFila, int posicionColumna){
         //Construir o no
     }
 
