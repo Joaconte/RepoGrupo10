@@ -9,7 +9,7 @@ public class Jinete extends PiezaAtacante {
     static final int DANIO_MEDIO = 15;
     static final int DANIO_DISTANCIA = 0;
 
-    public Jinete(){
+    public Jinete() {
         super.setVida_Maxima(VIDA_MAXIMA);
         super.setVida(VIDA_MAXIMA);
         super.setCosto(COSTO);
@@ -21,5 +21,4 @@ public class Jinete extends PiezaAtacante {
         super.setDanioMedio(DANIO_MEDIO);
         super.setDanioADistancia(DANIO_DISTANCIA);
     }
-;
 }

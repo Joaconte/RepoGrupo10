@@ -13,7 +13,6 @@ public class Columna {
     public Columna(int numeroColumna, int numeroCasillasPorColumna){
         this.numeroColumna = numeroColumna;
         this.numeroCasillasPorColumna = numeroCasillasPorColumna;
-
         for (int numeroDeCasilla=1; numeroDeCasilla<(numeroCasillasPorColumna+1); numeroDeCasilla++)
             columna.add(new Casilla());
     }
@@ -37,6 +36,9 @@ public class Columna {
         return unaCasilla.getEstado();
     }
 
+    public Casilla getCasilla(int numeroDeLaFila){
+        return columna.get(numeroDeLaFila-1);
+    }
 
 }
 

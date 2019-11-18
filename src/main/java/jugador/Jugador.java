@@ -12,10 +12,10 @@ public class Jugador {
 
     //---------Inicializacion---------//
 
-    public Jugador(int numeroDeJugador, Sector sector){
+    public Jugador(int numeroDeJugador){
         this.presupuesto = new EstadoPresupuestoNoAgotado(20);
         this.numeroDeJugador = numeroDeJugador;
-        this.sector = sector;
+        this.sector = new Sector(numeroDeJugador);
         this.ejercito = new Ejercito (numeroDeJugador);
     }
 

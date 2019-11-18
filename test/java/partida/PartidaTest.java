@@ -1,4 +1,6 @@
-import fase.FaseDePartida;
+package partida;
+
+import partida.fase.FaseDePartida;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.mockito.Mock;

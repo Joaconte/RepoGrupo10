@@ -2,11 +2,11 @@ package tablero;
 
 import pieza.Pieza;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class CasillaLibre implements EstadoCasilla {
 
-    boolean fueVisitada;
+    boolean fueVisitada=false;
 
     @Override
     public String getEstado() {
@@ -24,9 +24,18 @@ public class CasillaLibre implements EstadoCasilla {
     }
 
     @Override
-    public List<Pieza> getContenido(List<Pieza> lista){
+    public Pieza getContenido(){
         return null;
     }
 
+    @Override
+    public void setFueRevisada(boolean fueRevisada) {
+        this.fueVisitada=fueRevisada;
+    }
+
+    @Override
+    public boolean getFueRevisada() {
+        return fueVisitada;
+    }
 
 }

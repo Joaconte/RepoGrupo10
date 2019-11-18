@@ -1,6 +1,6 @@
-package fase;
+package  partida.fase;
 
-import fase.FaseMedia;
+import  partida.fase.FaseMedia;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 

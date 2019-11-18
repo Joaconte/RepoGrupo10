@@ -1,6 +1,6 @@
-package fase;
+package partida.fase;
 
-import fase.FaseInicial;
+import  partida.fase.FaseInicial;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 

@@ -2,13 +2,14 @@ package tablero;
 
 import pieza.Pieza;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public interface EstadoCasilla {
 
     public String getEstado();
     public EstadoCasilla ocuparCasilla(Pieza pieza);
     public EstadoCasilla desocuparCasilla();
-    public List<Pieza> getContenido(List<Pieza> lista);
-
+    public Pieza getContenido();
+    public void setFueRevisada(boolean fueRevisada);
+    public boolean getFueRevisada();
 }

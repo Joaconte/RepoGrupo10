@@ -13,8 +13,7 @@ public class JugadorTest {
     @Test
     public void test01SeAgregaNumeroDeJugadorCorrectamente(){
 
-        Sector sectorMock = Mockito.mock( Sector.class );
-        Jugador jugador = new Jugador(1,sectorMock );
+        Jugador jugador = new Jugador(1);
 
         assertEquals(1, jugador.getNumeroDeJugador() );
     }
@@ -22,18 +21,17 @@ public class JugadorTest {
     @Test
     public void test02SeAgregaSectorCorrectamente(){
 
-        Sector sector = new Sector(0, 9);
-        Jugador jugador = new Jugador(1,sector );
+        Jugador jugador = new Jugador(1 );
 
-        assertEquals( sector , jugador.getSector());
+        assertEquals( 1 , jugador.getSector().getPrimeraPos());
+        assertEquals( 10 , jugador.getSector().getUltimaPos());
     }
 
 
     @Test
     public void test03EjercitoAgrega5UnidadesCorrectamenteCuandoSeCompran(){
 
-        Sector sector = Mockito.mock( Sector.class );
-        Jugador jugador = new Jugador(1,sector );
+        Jugador jugador = new Jugador(1 );
         jugador.agregarUnidad(1);
         jugador.agregarUnidad(1);
         jugador.agregarUnidad(1);
@@ -45,8 +43,7 @@ public class JugadorTest {
     @Test
     public void test04ConPresupuestoIgualAUnoNoPuedoComprarUnaUnidadDeValorCuatroOTresODos() {
 
-        Sector sector = Mockito.mock( Sector.class );
-        Jugador jugador = new Jugador(1,sector );
+        Jugador jugador = new Jugador(1);
         EstadoPresupuestoNoAgotado presupuestoEnUno =  new EstadoPresupuestoNoAgotado(1);
         jugador.setEstadoPresupuesto(presupuestoEnUno);
 
@@ -59,8 +56,7 @@ public class JugadorTest {
     @Test
     public void test05ConPresupuestoIgualACeroNoComproNadaMas() {
 
-        Sector sector = Mockito.mock( Sector.class );
-        Jugador jugador = new Jugador(1,sector );
+        Jugador jugador = new Jugador(1);
         EstadoPresupuestoNoAgotado presupuestoEnUno =  new EstadoPresupuestoNoAgotado(0);
         jugador.setEstadoPresupuesto(presupuestoEnUno);
 
@@ -76,8 +72,7 @@ public class JugadorTest {
     @Test
     public void test06CostoEquivocadoNoAgregaNada(){
 
-        Sector sector = Mockito.mock( Sector.class );
-        Jugador jugador = new Jugador(1,sector );
+        Jugador jugador = new Jugador(1 );
         jugador.agregarUnidad(4);
         jugador.agregarUnidad(10);
 
