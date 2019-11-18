@@ -19,11 +19,11 @@ public class Ubicacion {
     }
 
     public int getDistanciaAOtroPunto(Ubicacion otraUbicacion){
-        int otraPosEnY = otraUbicacion.getPosicionEnY();
+        int otraPosEnY = otraUbicacion.getPosicionEnX();
         int otraPosEnX = otraUbicacion.getPosicionEnX();
-        int distanciaEnX = Math.max (posicionEnX-otraPosEnX, otraPosEnX-posicionEnX);
-        int distanciaEnY = Math.max (posicionEnY-otraPosEnY, otraPosEnY-posicionEnY);
-        return Math.max (distanciaEnX, distanciaEnY);
+        int posibleDistancia = Math.max (posicionEnX-otraPosEnX, otraPosEnX-posicionEnX);
+        int posibleDistancia2 = Math.max(posicionEnY-otraPosEnY, otraPosEnY-posicionEnY);
+        return Math.max(posibleDistancia, posibleDistancia2);
     }
 
 }
