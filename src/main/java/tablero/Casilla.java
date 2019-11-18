@@ -2,7 +2,7 @@ package tablero;
 
 import pieza.Pieza;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public  class  Casilla {
 
@@ -21,10 +21,10 @@ public  class  Casilla {
         this.estadoCasilla = estadoCasilla.desocuparCasilla();
     }
 
-    public List<Pieza> getContenido(List<Pieza> lista) { return estadoCasilla.getContenido(lista); }
+    public Pieza getContenido() { return estadoCasilla.getContenido(); }
 
     public boolean getFueRevisada() { return estadoCasilla.getFueRevisada();}
 
-    public void resetFueRevisada() {estadoCasilla.resetFueRevisada();}
+    public void setFueRevisada(boolean fueRevisada) {estadoCasilla.setFueRevisada(fueRevisada);}
 }
 

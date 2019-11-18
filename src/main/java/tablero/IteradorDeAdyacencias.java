@@ -44,7 +44,7 @@ public abstract class IteradorDeAdyacencias {
     }
 
     public Ubicacion getUbicacionAlSureste(){
-        Ubicacion ubicacion = new Ubicacion (posicionActualEnX+1,posicionActualEnY+1);
+        Ubicacion ubicacion = new Ubicacion (posicionActualEnX+1,posicionActualEnY-1);
         return ubicacion;
     }
 

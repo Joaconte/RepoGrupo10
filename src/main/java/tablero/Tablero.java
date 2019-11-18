@@ -44,14 +44,17 @@ public class Tablero {
         return true;
     }
 
-    public List<Pieza> getPiezasEnAdyacencia(List<Pieza> lista){
-        Pieza pieza = lista.get(0);
-        Ubicacion ubicacionPieza = pieza.getUbicacion();
-        int numeroColumna = ubicacionPieza.getPosicionEnX();
-        int numeroFila = ubicacionPieza.getPosicionEnY();
-        Casilla casilla = columnas.get(numeroColumna-1).getCasilla(numeroFila);
-        BuscadorDePiezasAdyacentes iterador= new BuscadorDePiezasAdyacentes(casilla,lista,columnas);
-        return iterador.realizarLaBusqueda();
+    public Casilla getCasilla(Ubicacion ubicacion){
+        int numeroColumna = ubicacion.getPosicionEnX();
+        int numeroFila = ubicacion.getPosicionEnY();
+        Columna unaColumna = columnas.get(numeroColumna-1);
+        return unaColumna.getCasilla(numeroFila);
+    }
+
+    public ArrayList<Casilla> getCasillasEnAdyacencia(Ubicacion ubicacionOcupada){
+        Casilla unaCasilla= getCasilla(ubicacionOcupada);
+        IteradorCasillasOcupadasAdyacentes iterador= new IteradorCasillasOcupadasAdyacentes();
+        return iterador.buscarCasillasOcupadasAdyacentes(ubicacionOcupada,columnas,unaCasilla);
     }
 
 }
