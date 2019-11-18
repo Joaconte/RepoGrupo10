@@ -8,7 +8,7 @@ public class PiezaAtacante extends Pieza {
 
     private IModoAtaque modoAtaque;
 
-    public void setDanioMele(int danio){
+    public void setDanioMelee(int danio){
         danioMele = danio;
     }
 
