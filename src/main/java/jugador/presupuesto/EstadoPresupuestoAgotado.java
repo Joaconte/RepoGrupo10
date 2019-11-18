@@ -6,7 +6,7 @@ public class EstadoPresupuestoAgotado implements EstadoPresupuestoDeEjercito{
 
 
     @Override
-    public void agregarPiezas(Ejercito ejercito, int costoUnidad) throws CostoNoValidoException {
+    public void agregarPiezas(Ejercito ejercito, int costoUnidad) {
     }
 
     @Override

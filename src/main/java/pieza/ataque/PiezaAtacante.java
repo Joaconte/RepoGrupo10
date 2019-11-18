@@ -16,7 +16,7 @@ public class PiezaAtacante extends Pieza {
         danioDistancia = danio;
     }
 
-    public int getDanioMele(){
+    public int getDanioMelee(){
         return danioMele;
     }
 

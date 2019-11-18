@@ -1,10 +1,12 @@
 package fase;
 
+import pieza.Pieza;
+
 public class FaseInicial implements FaseDePartida{
 
     //Metodo que permite intercambiar fichas en dos posiciones cualesquiera en el sector del jugador.
     @Override
-    public void moverUnidadEnTablero(String unaPosicionInicial, String unaPosicionFinal){
+    public void moverUnidadEnTablero(Pieza pieza, int posicionFila, int posicionColumna){
         //Construir
     }
 
@@ -20,5 +22,7 @@ public class FaseInicial implements FaseDePartida{
         return "Fase Inicial";
     }
 
+    public void colocarPieza (){
 
+    }
 }

@@ -1,52 +1,46 @@
 package tablero;
 
 import pieza.Pieza;
-import pieza.Ubicacion;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Tablero {
     private static final int FILAS = 20;
     private static final int COLUMNAS = 20;
-    private Casilla[][] casillas;
+    private List<Columna> columnas = new ArrayList<Columna>();
 
 
     public Tablero(){
-        this.casillas =  new Casilla[FILAS][COLUMNAS];
-    }
-    public void crearTableroVacio(){
-        for (int x=0; x<FILAS; x++) {
-            for(int y=0; y<COLUMNAS; y++) {
-                casillas[x][y] = new Casilla();
-            }
-        }
+        for (int numeroDeColumna=1; numeroDeColumna<(COLUMNAS+1); numeroDeColumna++)
+            columnas.add(new Columna(numeroDeColumna, FILAS));
     }
 
-
-    public void agregarUnidad(Pieza unidad, Ubicacion ubicacion) throws CasillaTieneUnidadException{
-        int x = ubicacion.getPosicionX();
-        int y = ubicacion.getPosicionY();
-        Casilla casilla = casillas[x][y];
-        casilla.setUnidad(unidad);
-
+    public void ocuparCasilla(Pieza pieza, int numeroDeColumna, int numeroDeFila){
+        Columna unaColumna = columnas.get(numeroDeColumna-1);
+        unaColumna.ocuparCasilla(pieza, numeroDeFila);
     }
 
-
-    public boolean tieneAlgunaCasillaOcupada(){
-        for (int x=0; x<FILAS; x++) {
-            for(int y=0; y<COLUMNAS; y++) {
-                if (!(casillas[x][y]).estaVacia()){
-                    return true;
-                }
-            }
-        }
-        return false;
+    public void desocuparCasilla(int numeroDeColumna, int numeroDeFila){
+        Columna unaColumna = columnas.get(numeroDeColumna-1);
+        unaColumna.desocuparCasilla(numeroDeFila);
     }
 
-    public boolean estaVacio(){return (!tieneAlgunaCasillaOcupada()); }
+    public int getTamanio(){
+        return FILAS * COLUMNAS; }
 
-    public int getTamanio(){return((casillas.length) * (casillas[0].length)); }
+    public int getCantidadColumnasCreadas(){
+        return columnas.size(); }
 
-    public Casilla buscarCasilla(int x, int y){
-        return casillas[x][y];
+    public String getEstadoCasilla(int numeroDeLaColumna, int numeroDeLaFila){
+        Columna unaColumna = columnas.get(numeroDeLaColumna-1);
+        return unaColumna.getEstadoCasillaDeLaFila(numeroDeLaFila);
     }
+
+    public boolean soldadosEnAdyacencia(int numeroDeLaColumna, int numeroDeLaFila){
+        //implementar
+        return true;
+    }
+
 }
 

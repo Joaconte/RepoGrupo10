@@ -1,10 +1,12 @@
 package fase;
 
+import pieza.Pieza;
+
 public interface FaseDePartida{
 
     //Metodos abstractos implementados por las subclases
 
-    public void moverUnidadEnTablero(String unaPosicionInicial, String unaPosicionFinal); //por ahora String esta puesta por poner algo.
+    public void moverUnidadEnTablero(Pieza pieza, int numeroFila, int numeroColumna);
     public void terminarMiTurno();
     public String darNombreDeFase();
 
