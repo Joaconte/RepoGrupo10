@@ -12,7 +12,6 @@ public class Tablero {
     private List<Columna> columnas = new ArrayList<Columna>();
 
 
-
     public Tablero(){
         for (int numeroDeColumna=1; numeroDeColumna<(COLUMNAS+1); numeroDeColumna++)
             columnas.add(new Columna(numeroDeColumna, FILAS));
@@ -39,21 +38,20 @@ public class Tablero {
         return unaColumna.getEstadoCasillaDeLaFila(numeroDeLaFila);
     }
 
-    public boolean soldadosEnAdyacencia(int numeroDeLaColumna, int numeroDeLaFila){
-        //implementar
-        return true;
+    public Casilla getCasilla(Ubicacion ubicacion){
+        return columnas.get(ubicacion.getPosicionEnX()-1).getCasilla(ubicacion.getPosicionEnY());
     }
 
-    public Casilla getCasilla(Ubicacion ubicacion){
-        int numeroColumna = ubicacion.getPosicionEnX();
-        int numeroFila = ubicacion.getPosicionEnY();
-        Columna unaColumna = columnas.get(numeroColumna-1);
-        return unaColumna.getCasilla(numeroFila);
+    public ArrayList<Casilla> getCasillasEnAdyacenciaCercana(Ubicacion  ubicacionOcupada){
+        Casilla unaCasilla= getCasilla(ubicacionOcupada);
+        iteradorDeCasillasAdyacentes iterador= new iteradorDeCasillasAdyacentes();
+        ArrayList<Casilla> casillas = iterador.buscarCasillasOcupadasEnDistanciaCorta(ubicacionOcupada, columnas, unaCasilla);
+        return casillas;
     }
 
     public ArrayList<Casilla> getCasillasEnAdyacencia(Ubicacion ubicacionOcupada){
         Casilla unaCasilla= getCasilla(ubicacionOcupada);
-        IteradorCasillasOcupadasAdyacentes iterador= new IteradorCasillasOcupadasAdyacentes();
+        iteradorDeCasillasAdyacentes iterador= new iteradorDeCasillasAdyacentes();
         return iterador.buscarCasillasOcupadasAdyacentes(ubicacionOcupada,columnas,unaCasilla);
     }
 

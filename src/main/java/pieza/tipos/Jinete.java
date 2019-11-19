@@ -27,3 +27,4 @@ public class Jinete extends PiezaAtacante {
     public void estaAsediado(boolean estaReforzado, boolean estaAsediado)
     {this.estaAsediado= (!estaReforzado && estaAsediado);}
 }
+

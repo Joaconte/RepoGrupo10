@@ -12,22 +12,22 @@ public class RangoCorto implements RangoDeAtaque{
 
 
     @Override
-    public void atacar(Catapulta atacante, Pieza atacada, Jugador jugadorEnTurno) throws PiezaAtacadaEnRangoIncorrectoException {
+    public void atacar(Catapulta atacante, Pieza atacada) throws PiezaAtacadaEnRangoIncorrectoException {
         throw new PiezaAtacadaEnRangoIncorrectoException();
     }
 
     @Override
-    public void atacar(Infanteria atacante, Pieza atacada, Jugador jugadorEnTurno) throws PiezaAtacadaEnRangoIncorrectoException {
-
+    public void atacar(Infanteria atacante, Pieza atacada) throws PiezaAtacadaEnRangoIncorrectoException {
+        atacante.setModoAtaqueCuerpoCuerpo();
+        atacante.atacar(atacada);
     }
 
     @Override
-    public void atacar(Jinete atacante, Pieza atacada, Jugador jugadorEnTurno) throws PiezaAtacadaEnRangoIncorrectoException {
-
+    public void atacar(Jinete atacante, Pieza atacada) throws PiezaAtacadaEnRangoIncorrectoException,JineteNoAsediadoException {
+        if (!atacante.estaAsediado){ throw new JineteNoAsediadoException();}
+        atacante.setModoAtaqueCuerpoCuerpo();
+        atacante.atacar(atacada);
     }
 
-    @Override
-    public void setDanio(Pieza atacante, Pieza atacada, Jugador jugadorEnTurno) {
 
-    }
 }
