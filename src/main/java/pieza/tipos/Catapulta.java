@@ -19,6 +19,7 @@ public class Catapulta extends PiezaAtacante {
         super.setDanioCuerpoCuerpo(DANIO_CUERPO);
         super.setDanioMedio(DANIO_MEDIO);
         super.setDanioADistancia(DANIO_DISTANCIA);
+        super.noPuedeMoverse();
     }
 
 }

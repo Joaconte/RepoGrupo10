@@ -15,6 +15,7 @@ public class Curandero extends Pieza {
         super.setCosto(COSTO);
         super.enZonaAliada();
         super.puedeCurarse();
+        super.puedeMoverse();
 
     }
 
