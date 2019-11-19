@@ -8,6 +8,7 @@ public class Jinete extends PiezaAtacante {
     static final int DANIO_CUERPO = 5;
     static final int DANIO_MEDIO = 15;
     static final int DANIO_DISTANCIA = 0;
+    public boolean estaAsediado;
 
     public Jinete() {
         super.setVida_Maxima(VIDA_MAXIMA);
@@ -21,4 +22,8 @@ public class Jinete extends PiezaAtacante {
         super.setDanioMedio(DANIO_MEDIO);
         super.setDanioADistancia(DANIO_DISTANCIA);
     }
+
+    public void estaAsediado(boolean estaReforzado, boolean estaAsediado)
+    {this.estaAsediado= (!estaReforzado && estaAsediado);}
 }
+
