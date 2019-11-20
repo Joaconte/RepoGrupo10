@@ -80,7 +80,7 @@ public class TableroTest {
         tablero.ocuparCasilla(pieza7, 6,7);
         tablero.ocuparCasilla(pieza8, 8,8);
 
-        assertEquals(6,tablero.getCasillasEnAdyacencia(pieza.getUbicacion()).size());
+        assertEquals(6,tablero.getPiezasEnAdyacencia(pieza.getUbicacion()).size());
     }
 
     @Test
@@ -113,7 +113,8 @@ public class TableroTest {
         tablero.ocuparCasilla(pieza7, 3,1);
         tablero.ocuparCasilla(pieza8, 2,1);
 
-        assertEquals(8,tablero.getCasillasEnAdyacencia(pieza.getUbicacion()).size());
+        assertEquals(8,tablero.getPiezasEnAdyacencia(pieza.getUbicacion()).size());
     }
+
 }
 

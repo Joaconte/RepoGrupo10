@@ -6,7 +6,6 @@ import partida.ataques.PiezaAtacadaEnRangoIncorrectoException;
 
 import partida.fase.*;
 import pieza.tipos.*;
-import tablero.Casilla;
 import tablero.Tablero;
 import pieza.Pieza;
 import jugador.Jugador;
@@ -45,9 +44,9 @@ public class Partida{
     void atacar(Catapulta atacante, Pieza atacada) throws PiezaAtacadaEnRangoIncorrectoException,PiezaAliadaNoAtacableException {
         if(!atacante.esEnemigo(atacada)){ throw new PiezaAliadaNoAtacableException();}
 
-        ArrayList<Casilla> atacadas = tableroDePartida.getCasillasEnAdyacencia(atacada.getUbicacion());
+        ArrayList<Pieza> atacadas = tableroDePartida.getPiezasEnAdyacencia(atacada.getUbicacion());
         for(int i=0; i< atacadas.size(); i++){
-            atacada=atacadas.get(i).getContenido();
+            atacada=atacadas.get(i);
             miFase.atacar(atacante, atacada, jugadorEnTurno);
         }
     };
@@ -61,11 +60,11 @@ public class Partida{
     void atacar(Jinete atacante, Pieza atacada) throws PiezaAtacadaEnRangoIncorrectoException,JineteAsediadoException, JineteNoAsediadoException,PiezaAliadaNoAtacableException{
         if(!atacante.esEnemigo(atacada)){ throw new PiezaAliadaNoAtacableException();}
 
-        ArrayList<Casilla> piezasQueRodean = tableroDePartida.getCasillasEnAdyacencia(atacante.getUbicacion());
+        ArrayList<Pieza> piezasQueRodean = tableroDePartida.getPiezasEnAdyacencia(atacante.getUbicacion());
         boolean conRefuerzo = false;
         boolean conAsedio = false;
         for(int i=0; i< piezasQueRodean.size(); i++){
-            Pieza pieza=piezasQueRodean.get(i).getContenido();
+            Pieza pieza=piezasQueRodean.get(i);
             if (pieza.getCosto()==1 && !atacante.esEnemigo(pieza)) conRefuerzo = true;
             if (atacante.esEnemigo(pieza)) conAsedio = true;
         }

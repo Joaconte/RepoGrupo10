@@ -53,7 +53,20 @@ public class Tablero {
         Casilla unaCasilla= getCasilla(ubicacionOcupada);
         iteradorDeCasillasAdyacentes iterador= new iteradorDeCasillasAdyacentes();
         return iterador.buscarCasillasOcupadasAdyacentes(ubicacionOcupada,columnas,unaCasilla);
+
+    }
+
+    public ArrayList<Pieza> getPiezasEnAdyacencia(Ubicacion ubicacionOcupada){
+
+        ArrayList<Casilla> casillasAdyacentes = getCasillasEnAdyacencia(ubicacionOcupada);
+        ArrayList<Pieza> piezasAdyacentes = new ArrayList<Pieza>();
+
+        for (int i = 0; i < casillasAdyacentes.size() ; i++){
+            piezasAdyacentes.add( casillasAdyacentes.get(i).getContenido());
+        }
+        return piezasAdyacentes;
     }
 
 }
+
 
