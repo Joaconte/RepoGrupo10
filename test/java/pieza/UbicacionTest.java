@@ -21,4 +21,13 @@ public class UbicacionTest {
         assertEquals(4,  ubicacion2.getDistanciaAOtroPunto(ubicacion1) );
     }
 
+    @Test
+    public void test03SeCalculaCorrectamenteLaDistanciaEntre2UbicacionesConIgualPosicionEnX() {
+        Ubicacion ubicacion1 = new Ubicacion(1, 2);
+        Ubicacion ubicacion2 = new Ubicacion(1, 3);
+
+        assertEquals(1,  ubicacion1.getDistanciaAOtroPunto(ubicacion2) );
+        assertEquals(1,  ubicacion2.getDistanciaAOtroPunto(ubicacion1) );
+    }
+
 }

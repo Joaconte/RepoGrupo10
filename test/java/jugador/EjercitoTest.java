@@ -23,32 +23,26 @@ public class EjercitoTest {
     public void test02SeAgregaUnaUnidadCorrectamente(){
 
         Ejercito ejercito = new Ejercito(1);
-        Catapulta unaPieza = Mockito.mock( Catapulta.class );
-        ejercito.agregarCatapulta(unaPieza);
+        Pieza unaPieza = Mockito.mock( Catapulta.class );
+        ejercito.agregarPieza(unaPieza);
         assertEquals(1, ejercito.getTamanio() );
     }
 
 
     @Test
-    public void test03SeAgregan10PiezasCorrectamente(){
+    public void test03SeAgregan4PiezasCorrectamente(){
 
         Ejercito ejercito = new Ejercito(1);
-        Catapulta unaPieza = Mockito.mock( Catapulta.class );
-        Jinete unaPieza2 = Mockito.mock( Jinete.class );
-        Curandero unaPieza3 = Mockito.mock( Curandero.class );
-        Infanteria unaPieza4 = Mockito.mock( Infanteria.class );
-        ejercito.agregarJinete(unaPieza2);
-        ejercito.agregarCurandero(unaPieza3);
-        ejercito.agregarCatapulta(unaPieza);
-        ejercito.agregarInfante(unaPieza4);
-        ejercito.agregarJinete(unaPieza2);
-        ejercito.agregarCurandero(unaPieza3);
-        ejercito.agregarCatapulta(unaPieza);
-        ejercito.agregarInfante(unaPieza4);
-        ejercito.agregarJinete(unaPieza2);
-        ejercito.agregarCurandero(unaPieza3);
+        Pieza unaPieza = Mockito.mock( Catapulta.class );
+        Pieza unaPieza2 = Mockito.mock( Jinete.class );
+        Pieza unaPieza3 = Mockito.mock( Curandero.class );
+        Pieza unaPieza4 = Mockito.mock( Infanteria.class );
 
-        assertEquals(10, ejercito.getTamanio() );
+        ejercito.agregarPieza(unaPieza);
+        ejercito.agregarPieza(unaPieza2);
+        ejercito.agregarPieza(unaPieza3);
+        ejercito.agregarPieza(unaPieza4);
+
+        assertEquals(4, ejercito.getTamanio() );
     }
-
 }

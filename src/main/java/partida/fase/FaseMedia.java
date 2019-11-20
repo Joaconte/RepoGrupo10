@@ -6,6 +6,7 @@ import partida.ataques.JineteAsediadoException;
 import partida.ataques.JineteNoAsediadoException;
 import partida.ataques.PiezaAtacadaEnRangoIncorrectoException;
 import pieza.Pieza;
+import pieza.ataque.PiezaAtacante;
 import pieza.tipos.*;
 
 public class FaseMedia implements FaseDePartida{
@@ -32,7 +33,7 @@ public class FaseMedia implements FaseDePartida{
 
     @Override
     public void atacar(Infanteria atacante, Pieza atacada) throws PiezaAtacadaEnRangoIncorrectoException {
-        //gestorDeAtaque.atacar(atacante,atacada);
+        gestorDeAtaque.atacar(atacante,atacada);
     }
 
     @Override

@@ -11,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import pieza.Ubicacion;
 import pieza.tipos.*;
+import tablero.Tablero;
 
 public class PartidaTest {
 
@@ -39,11 +40,7 @@ public class PartidaTest {
         atacante.setUbicacion(new Ubicacion(1,1));
         Jinete atacado = new Jinete();
         atacado.setEquipo(2);
-       atacante.setUbicacion(new Ubicacion(1,9));
-
-        Jugador jugadorEnTurno = new Jugador(1);
-        miPartida.setJugadorEnTurno(jugadorEnTurno);
-
+        atacado.setUbicacion(new Ubicacion(1,9));
 
         double vidaAtacadoAntesDelAtaque = atacado.getPuntosVida();
         miPartida.atacar(atacante,atacado);
@@ -52,8 +49,10 @@ public class PartidaTest {
         assertEquals(vidaAtacadoAntesDelAtaque, vidaAtacadoLuegoDelAtaque, 0);
     }
 
+
+
     @Test
-    public void test04PartidaEnFaseMediaSiDejaAtacar() throws PiezaAliadaNoAtacableException, JugadorNoPuedeException, JineteAsediadoException, JineteNoAsediadoException, PiezaAtacadaEnRangoIncorrectoException {
+    public void test04PartidaEnFaseMediaSiDejaAtacar() throws PiezaAliadaNoAtacableException, JugadorNoPuedeException, PiezaAtacadaEnRangoIncorrectoException {
         Partida miPartida = new Partida ();
 
         Infanteria atacante = new Infanteria();
@@ -61,18 +60,18 @@ public class PartidaTest {
         atacante.setUbicacion(new Ubicacion(1,1));
         Jinete atacado = new Jinete();
         atacado.setEquipo(2);
-        atacante.setUbicacion(new Ubicacion(1,2));
+        atacado.setUbicacion(new Ubicacion(1,2));
 
-        Jugador jugadorEnTurno = new Jugador(1);
+        miPartida.colocarUnaFichaEnElTablero(atacante, 1,1 );
+        miPartida.colocarUnaFichaEnElTablero(atacado,1,2);
 
-        miPartida.setJugadorEnTurno(jugadorEnTurno);
-        miPartida.cambiarFaseDePartida(new FaseMedia());
+        miPartida.cambiarAFaseMedia();
 
         double vidaAtacadoAntesDelAtaque = atacado.getPuntosVida();
         miPartida.atacar(atacante,atacado);
         double vidaAtacadoLuegoDelAtaque = atacado.getPuntosVida();
 
-        assertEquals(vidaAtacadoAntesDelAtaque-10, vidaAtacadoLuegoDelAtaque, 0);
+        assertEquals(vidaAtacadoAntesDelAtaque-10, vidaAtacadoLuegoDelAtaque, 05);
     }
 
 }
