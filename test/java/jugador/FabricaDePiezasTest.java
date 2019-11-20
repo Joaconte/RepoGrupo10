@@ -1,7 +1,9 @@
 package jugador;
 
 import org.junit.Test;
-import pieza.tipos.*;
+import pieza.Pieza;
+
+import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
@@ -13,7 +15,8 @@ public class FabricaDePiezasTest {
         FabricaDePiezas fabrica = new FabricaDePiezas();
         Ejercito ejercito = new Ejercito(1);
         fabrica.agregarPieza(ejercito,1);
-        assertEquals(1,ejercito.getCantidadInfantes());
+        ArrayList<Pieza> piezas = ejercito.getPiezas();
+        assertEquals(1, piezas.get(0).getCosto());
     }
 
     @Test
@@ -21,7 +24,8 @@ public class FabricaDePiezasTest {
         FabricaDePiezas fabrica = new FabricaDePiezas();
         Ejercito ejercito = new Ejercito(1);
         fabrica.agregarPieza(ejercito, 2);
-        assertEquals(1, ejercito.getCantidadCuranderos());
+        ArrayList<Pieza> piezas = ejercito.getPiezas();
+        assertEquals(2, piezas.get(0).getCosto());
     }
 
     @Test
@@ -29,7 +33,8 @@ public class FabricaDePiezasTest {
         FabricaDePiezas fabrica = new FabricaDePiezas();
         Ejercito ejercito = new Ejercito(1);
         fabrica.agregarPieza(ejercito,3);
-        assertEquals(1,ejercito.getCantidadJinetes());
+        ArrayList<Pieza> piezas = ejercito.getPiezas();
+        assertEquals(3, piezas.get(0).getCosto());
     }
 
     @Test
@@ -37,7 +42,8 @@ public class FabricaDePiezasTest {
         FabricaDePiezas fabrica = new FabricaDePiezas();
         Ejercito ejercito = new Ejercito(1);
         fabrica.agregarPieza(ejercito,5);
-        assertEquals(1,ejercito.getCantidadCatapultas());
+        ArrayList<Pieza> piezas = ejercito.getPiezas();
+        assertEquals(5, piezas.get(0).getCosto());
     }
 
     @Test

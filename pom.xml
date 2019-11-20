@@ -77,12 +77,6 @@
             <version>11</version>
             <type>pom</type>
         </dependency>
-        <dependency>
-            <groupId>org.jetbrains</groupId>
-            <artifactId>annotations</artifactId>
-            <version>RELEASE</version>
-            <scope>compile</scope>
-        </dependency>
     </dependencies>
 
     <build>
@@ -151,12 +145,12 @@
                     <artifactId>cobertura-maven-plugin</artifactId>
                     <version>2.7</version>
                     <configuration>
-                       <formats>
-                         <format>html</format>
-                         <format>xml</format>
-                      </formats>
-                      <check />
-                   </configuration>
+                        <formats>
+                            <format>html</format>
+                            <format>xml</format>
+                        </formats>
+                        <check />
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
