@@ -1,13 +1,26 @@
 package partida;
+
+import partida.ataques.JineteAsediadoException;
+import partida.ataques.JineteNoAsediadoException;
+import partida.ataques.PiezaAtacadaEnRangoIncorrectoException;
+
 import partida.fase.*;
+import pieza.tipos.*;
+import tablero.Casilla;
 import tablero.Tablero;
 import pieza.Pieza;
+import jugador.Jugador;
+
+import java.util.ArrayList;
+
 
 public class Partida{
+
     private FaseDePartida miFase = new FaseInicial();
     private Tablero tableroDePartida = new Tablero();
-   // private Jugador jugadorIzquierdo = new Jugador(); //¿Los guardamos asi?
-  //  private Jugador jugadorDerecho = new Jugador();
+    private Jugador jugadorEnTurno;
+    private Jugador jugadorUno = new Jugador(1); //¿Los guardamos asi?
+    private Jugador jugadorDos = new Jugador(2);
 
 
     //---------------Metodos de Fase------------
@@ -27,7 +40,40 @@ public class Partida{
         return miFase.darNombreDeFase();
     }
 
-    //Metodos para Jugadores
+    //---------------Metodos de Ataque------------
+
+    void atacar(Catapulta atacante, Pieza atacada) throws PiezaAtacadaEnRangoIncorrectoException,PiezaAliadaNoAtacableException {
+        if(!atacante.esEnemigo(atacada)){ throw new PiezaAliadaNoAtacableException();}
+
+        ArrayList<Casilla> atacadas = tableroDePartida.getCasillasEnAdyacencia(atacada.getUbicacion());
+        for(int i=0; i< atacadas.size(); i++){
+            atacada=atacadas.get(i).getContenido();
+            miFase.atacar(atacante, atacada, jugadorEnTurno);
+        }
+    };
+
+    void atacar(Infanteria atacante, Pieza atacada) throws PiezaAtacadaEnRangoIncorrectoException,PiezaAliadaNoAtacableException{
+        if(!atacante.esEnemigo(atacada)){ throw new PiezaAliadaNoAtacableException();}
+
+        miFase.atacar(atacante, atacada, jugadorEnTurno);
+    };
+
+    void atacar(Jinete atacante, Pieza atacada) throws PiezaAtacadaEnRangoIncorrectoException,JineteAsediadoException, JineteNoAsediadoException,PiezaAliadaNoAtacableException{
+        if(!atacante.esEnemigo(atacada)){ throw new PiezaAliadaNoAtacableException();}
+
+        ArrayList<Casilla> piezasQueRodean = tableroDePartida.getCasillasEnAdyacencia(atacante.getUbicacion());
+        boolean conRefuerzo = false;
+        boolean conAsedio = false;
+        for(int i=0; i< piezasQueRodean.size(); i++){
+            Pieza pieza=piezasQueRodean.get(i).getContenido();
+            if (pieza.getCosto()==1 && !atacante.esEnemigo(pieza)) conRefuerzo = true;
+            if (atacante.esEnemigo(pieza)) conAsedio = true;
+        }
+        atacante.estaAsediado(conRefuerzo,conAsedio);
+        miFase.atacar(atacante, atacada, jugadorEnTurno);
+    };
+
+    //---------------Metodos de Jugadores------------
 
     public void agregarJugadores() {
         //¿Construir?

@@ -27,26 +27,26 @@ public class GestorDeAtaque {
    /*------------Ataques -------------*/
 
 
-    public void atacar(Catapulta atacante, Pieza atacada, Jugador jugadorEnTurno) throws PiezaAtacadaEnRangoIncorrectoException{
+    public void atacar(Catapulta atacante, Pieza atacada) throws PiezaAtacadaEnRangoIncorrectoException{
         try{
             this.definirRango(atacante, atacada);
-            this.rangoDeAtaque.atacar(atacante,atacada,jugadorEnTurno);
+            this.rangoDeAtaque.atacar(atacante,atacada);
             this.setJugadorYaAtaco(true);}
         catch (RangoDeDistanciaInvalidoException e){}
     }
 
-    public void atacar(Infanteria atacante, Pieza atacada, Jugador jugadorEnTurno) throws PiezaAtacadaEnRangoIncorrectoException{
+    public void atacar(Infanteria atacante, Pieza atacada) throws PiezaAtacadaEnRangoIncorrectoException{
         try{
             this.definirRango(atacante, atacada);
-            this.rangoDeAtaque.atacar(atacante,atacada,jugadorEnTurno);
+            this.rangoDeAtaque.atacar(atacante,atacada);
             this.setJugadorYaAtaco(true);}
         catch (RangoDeDistanciaInvalidoException e){}
     }
 
-    public void atacar(Jinete atacante, Pieza atacada, Jugador jugadorEnTurno) throws PiezaAtacadaEnRangoIncorrectoException {
+    public void atacar(Jinete atacante, Pieza atacada) throws PiezaAtacadaEnRangoIncorrectoException,JineteAsediadoException,JineteNoAsediadoException {
         try{
             this.definirRango(atacante, atacada);
-            this.rangoDeAtaque.atacar(atacante,atacada,jugadorEnTurno);
+            this.rangoDeAtaque.atacar(atacante,atacada);
             this.setJugadorYaAtaco(true);}
         catch (RangoDeDistanciaInvalidoException e){}
     }

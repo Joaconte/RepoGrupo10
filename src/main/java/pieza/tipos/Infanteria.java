@@ -19,6 +19,7 @@ public class Infanteria extends PiezaAtacante {
         super.setDanioCuerpoCuerpo(DANIO_CUERPO);
         super.setDanioMedio(DANIO_MEDIO);
         super.setDanioADistancia(DANIO_DISTANCIA);
+        super.puedeMoverse();
     }
 
 }

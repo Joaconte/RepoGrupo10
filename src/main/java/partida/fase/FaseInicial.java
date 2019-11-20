@@ -1,6 +1,13 @@
 package partida.fase;
 
+import jugador.Jugador;
+import partida.ataques.JineteAsediadoException;
+import partida.ataques.JineteNoAsediadoException;
+import partida.ataques.PiezaAtacadaEnRangoIncorrectoException;
 import pieza.Pieza;
+import pieza.tipos.Catapulta;
+import pieza.tipos.Infanteria;
+import pieza.tipos.Jinete;
 
 public class FaseInicial implements FaseDePartida{
 
@@ -20,6 +27,22 @@ public class FaseInicial implements FaseDePartida{
     @Override
     public String darNombreDeFase(){
         return "Fase Inicial";
+    }
+
+
+    @Override
+    public void atacar(Infanteria atacante, Pieza atacada, Jugador jugadorEnTurno) throws PiezaAtacadaEnRangoIncorrectoException {
+        //La nada misma
+    }
+
+    @Override
+    public void atacar(Catapulta atacante, Pieza atacada, Jugador jugadorEnTurno) throws PiezaAtacadaEnRangoIncorrectoException {
+        //La nada misma
+    }
+
+    @Override
+    public void atacar(Jinete atacante, Pieza atacada, Jugador jugadorEnTurno) throws PiezaAtacadaEnRangoIncorrectoException, JineteAsediadoException, JineteNoAsediadoException {
+        //La nada misma
     }
 
     public void colocarPieza (){

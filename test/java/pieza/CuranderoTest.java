@@ -3,6 +3,7 @@ package pieza;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
+import pieza.movimiento.NoSePuedeMoverException;
 import pieza.sanacion.CurandoAEnemigoException;
 import pieza.sanacion.UnidadNoSePuedeCurar;
 import pieza.tipos.Catapulta;
@@ -88,5 +89,15 @@ public class CuranderoTest {
             unCuranderoPiola.curarAAliado(unCuranderoAliado); }
         catch(CurandoAEnemigoException | UnidadNoSePuedeCurar e) {}
         assertEquals(75,unCuranderoAliado.getPuntosVida(),0.05);
+    }
+
+    @Test
+    public void test05CuranderoEstaEn1x2y_seMueveA1x1y() throws NoSePuedeMoverException {
+        Curandero curandero = new Curandero();
+        Ubicacion ubicacion = new Ubicacion(1,2);
+        curandero.setUbicacion(ubicacion);
+        curandero.moverArriba();
+        assertEquals(1, curandero.getUbicacion().getPosicionEnX());
+        assertEquals(1, curandero.getUbicacion().getPosicionEnY());
     }
 }

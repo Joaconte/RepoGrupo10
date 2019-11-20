@@ -1,6 +1,9 @@
 package pieza;
 
 import pieza.movimiento.IModoMovimiento;
+import pieza.movimiento.NoSePuedeMoverException;
+import pieza.movimiento.SeMueveEnTodasDirecciones;
+import pieza.movimiento.SinMovimientos;
 import pieza.recibirDanio.*;
 import pieza.sanacion.*;
 
@@ -40,12 +43,15 @@ public abstract class Pieza {
     public void noPuedeCurarse(){
         sanacion = new SinSanacion();
     }
-
+    public void puedeMoverse() { movimiento = new SeMueveEnTodasDirecciones(); }
+    public void noPuedeMoverse() { movimiento = new SinMovimientos(); }
     //---------------------------
     public Ubicacion getUbicacion(){
         return ubicacion;
     }
-
+    public void setUbicacion(Ubicacion ubicacion){
+        this.ubicacion = ubicacion;
+    }
     public void setEquipo(int numJugador){
         equipo = numJugador;
     }
@@ -79,6 +85,9 @@ public abstract class Pieza {
    /* public void moverse(){
         movimiento.moverse();
     }*/
-
+    public void moverArriba() throws NoSePuedeMoverException {
+        Ubicacion nueva = movimiento.arriba(this.getUbicacion());
+        this.setUbicacion(nueva);
+    }
 }
 
