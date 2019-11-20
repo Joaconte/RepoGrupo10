@@ -13,11 +13,11 @@ public interface FaseDePartida{
 
     //Metodos abstractos implementados por las subclases
 
-    public void moverUnidadEnTablero(Pieza pieza, int numeroFila, int numeroColumna);
-    public void terminarMiTurno();
-    public String darNombreDeFase();
-    void atacar(Infanteria atacante, Pieza atacada, Jugador jugadorEnTurno) throws PiezaAtacadaEnRangoIncorrectoException;
-    void atacar(Catapulta atacante, Pieza atacada, Jugador jugadorEnTurno) throws PiezaAtacadaEnRangoIncorrectoException;
-    void atacar(Jinete atacante, Pieza atacada, Jugador jugadorEnTurno) throws PiezaAtacadaEnRangoIncorrectoException, JineteAsediadoException, JineteNoAsediadoException;
+    void moverUnidadEnTablero(Pieza pieza, int numeroFila, int numeroColumna);
+    void terminarMiTurno();
+    String darNombreDeFase();
+    void atacar(Infanteria atacante, Pieza atacada) throws PiezaAtacadaEnRangoIncorrectoException;
+    void atacar(Catapulta atacante, Pieza atacada) throws PiezaAtacadaEnRangoIncorrectoException;
+    void atacar(Jinete atacante, Pieza atacada) throws PiezaAtacadaEnRangoIncorrectoException, JineteAsediadoException, JineteNoAsediadoException;
 
     }

@@ -1,9 +1,6 @@
 package partida.ataques;
 
-import jugador.Jugador;
 import pieza.Pieza;
-import pieza.ataque.*;
-import pieza.recibirDanio.*;
 import pieza.tipos.Catapulta;
 import pieza.tipos.Infanteria;
 import pieza.tipos.Jinete;
@@ -24,7 +21,7 @@ public class RangoCorto implements RangoDeAtaque{
 
     @Override
     public void atacar(Jinete atacante, Pieza atacada) throws PiezaAtacadaEnRangoIncorrectoException,JineteNoAsediadoException {
-        if (!atacante.estaAsediado){ throw new JineteNoAsediadoException();}
+        if (!atacante.esAsediado()){ throw new JineteNoAsediadoException();}
         atacante.setModoAtaqueCuerpoCuerpo();
         atacante.atacar(atacada);
     }

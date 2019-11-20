@@ -44,14 +44,14 @@ public class Tablero {
 
     public ArrayList<Casilla> getCasillasEnAdyacenciaCercana(Ubicacion  ubicacionOcupada){
         Casilla unaCasilla= getCasilla(ubicacionOcupada);
-        iteradorDeCasillasAdyacentes iterador= new iteradorDeCasillasAdyacentes();
+        BuscadorCasillasAdyacentes iterador= new BuscadorCasillasAdyacentes();
         ArrayList<Casilla> casillas = iterador.buscarCasillasOcupadasEnDistanciaCorta(ubicacionOcupada, columnas, unaCasilla);
         return casillas;
     }
 
     public ArrayList<Casilla> getCasillasEnAdyacencia(Ubicacion ubicacionOcupada){
         Casilla unaCasilla= getCasilla(ubicacionOcupada);
-        iteradorDeCasillasAdyacentes iterador= new iteradorDeCasillasAdyacentes();
+        BuscadorCasillasAdyacentes iterador= new BuscadorCasillasAdyacentes();
         return iterador.buscarCasillasOcupadasAdyacentes(ubicacionOcupada,columnas,unaCasilla);
     }
 

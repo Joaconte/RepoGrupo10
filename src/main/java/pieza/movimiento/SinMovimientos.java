@@ -27,4 +27,24 @@ public class SinMovimientos implements IModoMovimiento {
     public Ubicacion izquierda(Ubicacion actual) throws NoSePuedeMoverException {
         throw new NoSePuedeMoverException();
     }
+
+    @Override
+    public Ubicacion arribaIzquierda(Ubicacion actual) throws NoSePuedeMoverException {
+        throw new NoSePuedeMoverException();
+    }
+
+    @Override
+    public Ubicacion abajoIzquierda(Ubicacion actual) throws NoSePuedeMoverException {
+        throw new NoSePuedeMoverException();
+    }
+
+    @Override
+    public Ubicacion arribaDerecha(Ubicacion actual) throws NoSePuedeMoverException {
+        throw new NoSePuedeMoverException();
+    }
+
+    @Override
+    public Ubicacion abajoDerecha(Ubicacion actual) throws NoSePuedeMoverException {
+        throw new NoSePuedeMoverException();
+    }
 }
