@@ -2,6 +2,7 @@ package tablero;
 
 import pieza.Pieza;
 import pieza.Ubicacion;
+import tablero.casilla.Casilla;
 
 import java.util.ArrayList;
 import java.util.List;

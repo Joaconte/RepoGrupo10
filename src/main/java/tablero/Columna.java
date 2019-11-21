@@ -1,6 +1,7 @@
 package tablero;
 
 import pieza.Pieza;
+import tablero.casilla.Casilla;
 
 import java.util.ArrayList;
 import java.util.List;

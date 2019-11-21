@@ -2,6 +2,7 @@ package tablero;
 
 import pieza.Ubicacion;
 import pieza.movimiento.SeMueveEnTodasDirecciones;
+import tablero.casilla.Casilla;
 
 import java.util.ArrayList;
 import java.util.List;

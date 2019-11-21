@@ -1,8 +1,6 @@
-package tablero;
+package tablero.casilla;
 
 import pieza.Pieza;
-
-import java.util.ArrayList;
 
 public class CasillaLibre implements EstadoCasilla {
 
