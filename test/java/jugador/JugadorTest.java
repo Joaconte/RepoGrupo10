@@ -4,8 +4,11 @@ import jugador.*;
 import jugador.presupuesto.EstadoPresupuestoNoAgotado;
 import org.mockito.Mockito;
 import org.junit.Test;
+import pieza.Ubicacion;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 
 public class JugadorTest {
@@ -55,7 +58,7 @@ public class JugadorTest {
     }
 
     @Test
-    public void test05ConPresupuestoIgualACeroNoComproNadaMas() {
+    public void test05JugadorConPresupuestoIgualACeroNoCompraNadaMas() {
 
         Jugador jugador = new Jugador(1);
         EstadoPresupuestoNoAgotado presupuestoEnUno =  new EstadoPresupuestoNoAgotado(0);
@@ -71,13 +74,20 @@ public class JugadorTest {
     }
 
     @Test
-    public void test06CostoEquivocadoNoAgregaNada(){
+    public void test06JugadorCompraConCostoEquivocadoEntoncesNoAgregaNadaASuEjercito(){
 
         Jugador jugador = new Jugador(1 );
         jugador.agregarUnidad(4);
         jugador.agregarUnidad(10);
 
         assertEquals( 0 , jugador.getTamanioDelEjercito() );
+
+    }
+
+    @Test
+    public void test07JugadorConsultaASectorPorUnaPosicionYLeRetornaRespuestaCorrectamente(){
+        Jugador jugador = new Jugador(1 );
+        assertTrue(jugador.estaEnElSector(new Ubicacion(1,1 )));
 
     }
 

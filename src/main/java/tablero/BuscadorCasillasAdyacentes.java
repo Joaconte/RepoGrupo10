@@ -1,21 +1,25 @@
 package tablero;
 
 import pieza.Ubicacion;
+import pieza.movimiento.SeMueveEnTodasDirecciones;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class iteradorDeCasillasAdyacentes extends IteradorDe8Direcciones {
+public class BuscadorCasillasAdyacentes extends SeMueveEnTodasDirecciones {
 
     private ArrayList<Casilla> listadoDeCasillaOcupadas;
+    protected ArrayList<Ubicacion> siguientesUbicaciones = new ArrayList<>();
+    protected int cantidadColumnas =20;
+    protected int cantidadFilas = 20;
 
 
      /*----------Inicializadores-----------*/
 
-    public iteradorDeCasillasAdyacentes(){
+    public BuscadorCasillasAdyacentes(){
         this.listadoDeCasillaOcupadas = new ArrayList<>();
     }
-    public iteradorDeCasillasAdyacentes(int cantidadColumnas,int cantidadFilas){
+    public BuscadorCasillasAdyacentes(int cantidadColumnas, int cantidadFilas){
         this.listadoDeCasillaOcupadas = new ArrayList<>();
         this.cantidadColumnas = cantidadColumnas;
         this.cantidadFilas = cantidadFilas;
@@ -55,7 +59,6 @@ public class iteradorDeCasillasAdyacentes extends IteradorDe8Direcciones {
         return listadoDeCasillaOcupadas;
     }
 
-
     /*---------------Buscar adayacentes ocupadas sin limite---------------*/
 
     public ArrayList<Casilla> buscarCasillasOcupadasAdyacentes(Ubicacion ubicacion, List<Columna> columnas, Casilla casilla){
@@ -65,7 +68,6 @@ public class iteradorDeCasillasAdyacentes extends IteradorDe8Direcciones {
         return resultado;
     }
 
-
     public ArrayList<Casilla> buscarOcupadasYAdyacentes(Ubicacion ubicacion, List<Columna> columnas, Casilla casillaActual){
         casillaActual.setFueRevisada(true);
         this.registrarSiguientesUbicaciones(ubicacion);
@@ -74,7 +76,7 @@ public class iteradorDeCasillasAdyacentes extends IteradorDe8Direcciones {
             Ubicacion ubicacionSiguiente = siguientesUbicaciones.get(i);
             Casilla casillaSiguiente = getCasillaMedianteUbicacion(ubicacionSiguiente,columnas);
              if (estaOcupadaLaCasilla(casillaSiguiente) && !fueVisitada(casillaSiguiente)){
-                iteradorDeCasillasAdyacentes iterador = new iteradorDeCasillasAdyacentes(cantidadColumnas,cantidadFilas);
+                BuscadorCasillasAdyacentes iterador = new BuscadorCasillasAdyacentes(cantidadColumnas,cantidadFilas);
                 listadoDeCasillaOcupadas.addAll(iterador.buscarOcupadasYAdyacentes(ubicacionSiguiente,columnas,casillaSiguiente));
             }
         }
@@ -82,7 +84,32 @@ public class iteradorDeCasillasAdyacentes extends IteradorDe8Direcciones {
         return  listadoDeCasillaOcupadas;
     }
 
+    /*-----------------Direcciones--------------------*/
 
+    public void registrarSiguientesUbicaciones(Ubicacion ubicacion) {
+
+        siguientesUbicaciones.add(abajo(ubicacion));
+        siguientesUbicaciones.add(arriba(ubicacion));
+        siguientesUbicaciones.add(derecha(ubicacion));
+        siguientesUbicaciones.add(izquierda(ubicacion));
+        siguientesUbicaciones.add(arribaDerecha(ubicacion));
+        siguientesUbicaciones.add(arribaIzquierda(ubicacion));
+        siguientesUbicaciones.add(abajoDerecha(ubicacion));
+        siguientesUbicaciones.add(abajoIzquierda(ubicacion));
+
+        for (int i=this.siguientesUbicaciones.size()-1; i>-1; i--){
+            Ubicacion ubicacionSiguiente = (this.siguientesUbicaciones.get(i));
+            if (!esValidaLaUbicacion(ubicacionSiguiente)){this.siguientesUbicaciones.remove(i);}
+        }
+    }
+
+    public boolean esValidaLaUbicacion(Ubicacion ubicacion){
+        boolean esCorrectaPosicionEnX = (ubicacion.getPosicionEnX()>(0) && ubicacion.getPosicionEnX()< cantidadColumnas +1);
+        boolean esCorrectaPosicionEnY = (ubicacion.getPosicionEnY()>(0) && ubicacion.getPosicionEnY()< cantidadFilas +1);
+        return (esCorrectaPosicionEnX && esCorrectaPosicionEnY);
+    }
+
+    public  ArrayList<Ubicacion> getSiguientesUbicaciones(){ return this.siguientesUbicaciones;}
 
     /*-----------------Obtencion-Casillas--------------*/
 

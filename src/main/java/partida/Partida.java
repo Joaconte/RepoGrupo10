@@ -6,6 +6,7 @@ import partida.ataques.JineteNoAsediadoException;
 import partida.ataques.PiezaAtacadaEnRangoIncorrectoException;
 
 import partida.fase.*;
+import pieza.Ubicacion;
 import pieza.tipos.*;
 import tablero.Tablero;
 import pieza.Pieza;
@@ -64,8 +65,10 @@ public class Partida {
     }
 
     void atacar(Catapulta atacante, Pieza atacada) throws JugadorNoPuedeException,PiezaAtacadaEnRangoIncorrectoException,PiezaAliadaNoAtacableException {
+
         if(!atacante.esEnemigo(atacada)){ throw new PiezaAliadaNoAtacableException();}
-        ArrayList<Pieza> atacadas = tableroDePartida.getPiezasEnAdyacencia(atacada.getUbicacion());
+        validarUnAtaque(atacante, atacada);
+        ArrayList<Pieza> atacadas = tableroDePartida.getCasillasEnAdyacenciaCercana(atacada.getUbicacion());
         for(int i=0; i< atacadas.size(); i++){
             atacada=atacadas.get(i);
             setDanioPorAtaque(atacante, atacada);
@@ -74,7 +77,9 @@ public class Partida {
     };
 
     void atacar(Infanteria atacante, Pieza atacada) throws JugadorNoPuedeException,PiezaAtacadaEnRangoIncorrectoException,PiezaAliadaNoAtacableException{
+
         if(!atacante.esEnemigo(atacada)){ throw new PiezaAliadaNoAtacableException();}
+        validarUnAtaque(atacante, atacada);
         setDanioPorAtaque(atacante, atacada);
         miFase.atacar(atacante, atacada);
     };
@@ -95,9 +100,10 @@ public class Partida {
     }
 
     void pedirAJineteQueActualiceSuEstado(Jinete unJinete){
-        unJinete.setearEstados();
-        ArrayList<Pieza> piezasQueRodean = tableroDePartida.getPiezasEnAdyacencia(unJinete.getUbicacion());
-        for(int i=0; i< piezasQueRodean.size(); i++){ unJinete.analizarCercanias(piezasQueRodean.get(i));}
+        ArrayList<Pieza> piezasQueRodean = tableroDePartida.getCasillasEnAdyacenciaCercana(unJinete.getUbicacion());
+        for(int i=0; i< piezasQueRodean.size(); i++){
+            unJinete.analizarCercanias(piezasQueRodean.get(i));
+        }
         unJinete.confirmarModo();
     }
 
@@ -122,7 +128,7 @@ public class Partida {
         //¿Construir?
     }
 
-    //---------------Metodos Para testear un par de cosas (Modificar cuando se defina)------------
+   //---------------Metodos Para testear un par de cosas (Modificar cuando se defina)------------
 
     public void colocarUnaFichaEnElTablero(Pieza pieza, int posColumna, int posFila){
         tableroDePartida.ocuparCasilla(pieza, posColumna, posFila);
@@ -130,4 +136,7 @@ public class Partida {
     public void cambiarAFaseMedia (){
         miFase=new FaseMedia();
     }
+
 }
+
+

@@ -2,6 +2,7 @@ package jugador;
 
 import jugador.presupuesto.EstadoPresupuestoDeEjercito;
 import jugador.presupuesto.EstadoPresupuestoNoAgotado;
+import pieza.Ubicacion;
 
 public class Jugador {
 
@@ -43,8 +44,14 @@ public class Jugador {
         this.setEstadoPresupuesto(this.presupuesto);
     }
 
-}
+    //----------Sector--------------//
 
+    public boolean estaEnElSector(Ubicacion ubicacion){
+        return sector.esDelSector(ubicacion.getPosicionEnX());
+    }
+
+
+}
 
     /*    public void quitarUnidad(Ubicacion ubicacion) {
         for (int i = 0; i < ejercito.size(); ++i) {

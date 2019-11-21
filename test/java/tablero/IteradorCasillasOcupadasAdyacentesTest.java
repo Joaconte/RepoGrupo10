@@ -21,7 +21,7 @@ public class IteradorCasillasOcupadasAdyacentesTest {
         ArrayList<Columna> listadoDeUnaColumna = new ArrayList<Columna>();
         listadoDeUnaColumna.add(unaColumna);
 
-        iteradorDeCasillasAdyacentes iterador = new iteradorDeCasillasAdyacentes(1,3);
+        BuscadorCasillasAdyacentes iterador = new BuscadorCasillasAdyacentes(1,3);
 
         Casilla casillaEncontrada = iterador.getCasillaMedianteUbicacion(ubicacionOcupada,listadoDeUnaColumna);
 
@@ -36,7 +36,7 @@ public class IteradorCasillasOcupadasAdyacentesTest {
         ArrayList<Columna> listadoDeUnaColumna = new ArrayList<Columna>();
         listadoDeUnaColumna.add(unaColumna);
 
-        iteradorDeCasillasAdyacentes iterador = new iteradorDeCasillasAdyacentes(1,20);
+        BuscadorCasillasAdyacentes iterador = new BuscadorCasillasAdyacentes(1,20);
         iterador.registrarSiguientesUbicaciones(new Ubicacion(1,1));
 
         assertEquals(1,iterador.getSiguientesUbicaciones().size());
@@ -51,7 +51,7 @@ public class IteradorCasillasOcupadasAdyacentesTest {
         listadoDeUnaColumna.add(unaColumna);
         listadoDeUnaColumna.add(otraColumna);
 
-        iteradorDeCasillasAdyacentes iterador = new iteradorDeCasillasAdyacentes(2,20);
+        BuscadorCasillasAdyacentes iterador = new BuscadorCasillasAdyacentes(2,20);
         iterador.registrarSiguientesUbicaciones(new Ubicacion(1,1));
 
         assertEquals(3,iterador.getSiguientesUbicaciones().size());
@@ -68,7 +68,7 @@ public class IteradorCasillasOcupadasAdyacentesTest {
         listadoDeUnaColumna.add(otraColumna);
         listadoDeUnaColumna.add(otraColumna2);
 
-        iteradorDeCasillasAdyacentes iterador = new iteradorDeCasillasAdyacentes(3,3);
+        BuscadorCasillasAdyacentes iterador = new BuscadorCasillasAdyacentes(3,3);
 
         iterador.registrarSiguientesUbicaciones(new Ubicacion(2,2));
         assertEquals(8,iterador.getSiguientesUbicaciones().size());
@@ -85,7 +85,7 @@ public class IteradorCasillasOcupadasAdyacentesTest {
         Casilla casillaOcupada = unaColumna.getCasilla(1);
         Ubicacion ubicacionOcupada = new Ubicacion(1,1);
 
-        iteradorDeCasillasAdyacentes iterador = new iteradorDeCasillasAdyacentes(1,3);
+        BuscadorCasillasAdyacentes iterador = new BuscadorCasillasAdyacentes(1,3);
 
         ArrayList<Casilla> resultado = iterador.buscarCasillasOcupadasAdyacentes(ubicacionOcupada,listadoDeUnaColumna,casillaOcupada);
 
@@ -106,7 +106,7 @@ public class IteradorCasillasOcupadasAdyacentesTest {
         Casilla casillaOcupada = unaColumna.getCasilla(2);
         Ubicacion ubicacionOcupada = new Ubicacion(1,2);
 
-        iteradorDeCasillasAdyacentes iterador = new iteradorDeCasillasAdyacentes(1,3);
+        BuscadorCasillasAdyacentes iterador = new BuscadorCasillasAdyacentes(1,3);
 
         ArrayList<Casilla> resultado = iterador.buscarCasillasOcupadasAdyacentes(ubicacionOcupada,listadoDeUnaColumna,casillaOcupada);
 
@@ -126,7 +126,7 @@ public class IteradorCasillasOcupadasAdyacentesTest {
         Casilla casillaOcupada = unaColumna.getCasilla(2);
         listadoDeUnaColumna.add(unaColumna);
 
-        iteradorDeCasillasAdyacentes iterador = new iteradorDeCasillasAdyacentes(1,3);
+        BuscadorCasillasAdyacentes iterador = new BuscadorCasillasAdyacentes(1,3);
         ArrayList<Casilla> resultado = iterador.buscarCasillasOcupadasAdyacentes(ubicacionOcupada,listadoDeUnaColumna,casillaOcupada);
 
         assertEquals(false,unaColumna.getCasilla(1).getFueRevisada());
@@ -149,7 +149,7 @@ public class IteradorCasillasOcupadasAdyacentesTest {
         Casilla casillaOcupada = unaColumna.getCasilla(5);
         listadoDeUnaColumna.add(unaColumna);
 
-        iteradorDeCasillasAdyacentes iterador = new iteradorDeCasillasAdyacentes(1,10);
+        BuscadorCasillasAdyacentes iterador = new BuscadorCasillasAdyacentes(1,10);
         ArrayList<Casilla> resultado = iterador.buscarCasillasOcupadasEnDistanciaCorta(ubicacionOcupada,listadoDeUnaColumna,casillaOcupada);
 
         assertEquals(2,resultado.size());

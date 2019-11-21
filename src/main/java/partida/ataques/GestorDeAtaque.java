@@ -40,7 +40,7 @@ public class GestorDeAtaque {
             this.definirRango(atacante, atacada);
             this.rangoDeAtaque.atacar(atacante,atacada);
             this.setJugadorYaAtaco(true);}
-        catch (RangoDeDistanciaInvalidoException e){}
+        catch (RangoDeDistanciaInvalidoException e){ }
     }
 
     public void atacar(Jinete atacante, Pieza atacada) throws PiezaAtacadaEnRangoIncorrectoException,JineteAsediadoException,JineteNoAsediadoException {

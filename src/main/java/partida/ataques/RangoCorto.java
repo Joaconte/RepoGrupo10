@@ -24,6 +24,7 @@ public class RangoCorto implements RangoDeAtaque{
         if (!atacante.esAsediado()){ throw new JineteNoAsediadoException();}
         atacante.setModoAtaqueCuerpoCuerpo();
         atacante.atacar(atacada);
+        atacante.setearEstados();
     }
 
 

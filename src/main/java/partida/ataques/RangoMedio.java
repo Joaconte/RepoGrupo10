@@ -23,6 +23,7 @@ public class RangoMedio implements RangoDeAtaque{
         if (atacante.esAsediado()){ throw new JineteAsediadoException();}
         atacante.setModoAtaqueMedio();
         atacante.atacar(atacada);
+        atacante.setearEstados();
     }
 
 }

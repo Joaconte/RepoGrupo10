@@ -55,15 +55,10 @@ public class TableroTest {
         Jinete pieza = Mockito.mock(Jinete.class);
         Mockito.when(pieza.getUbicacion()).thenReturn(new Ubicacion(1,1));
         Jinete pieza2 = Mockito.mock(Jinete.class);
-        Mockito.when(pieza2.getUbicacion()).thenReturn(new Ubicacion(1,2));
         Jinete pieza3 = Mockito.mock(Jinete.class);
-        Mockito.when(pieza3.getUbicacion()).thenReturn(new Ubicacion(3,2));
         Jinete pieza4 = Mockito.mock(Jinete.class);
-        Mockito.when(pieza4.getUbicacion()).thenReturn(new Ubicacion(2,1));
         Jinete pieza5 = Mockito.mock(Jinete.class);
-        Mockito.when(pieza5.getUbicacion()).thenReturn(new Ubicacion(3,3));
         Jinete pieza6 = Mockito.mock(Jinete.class);
-        Mockito.when(pieza6.getUbicacion()).thenReturn(new Ubicacion(4,4));
 
         tablero.ocuparCasilla(pieza, 1,1);
         tablero.ocuparCasilla(pieza2, 1,2);
@@ -73,9 +68,8 @@ public class TableroTest {
         tablero.ocuparCasilla(pieza6, 4,4);
 
         Jinete pieza7 = Mockito.mock(Jinete.class);
-        Mockito.when(pieza7.getUbicacion()).thenReturn(new Ubicacion(6,7));
         Jinete pieza8 = Mockito.mock(Jinete.class);
-        Mockito.when(pieza8.getUbicacion()).thenReturn(new Ubicacion(8,8));
+
         tablero.ocuparCasilla(pieza7, 6,7);
         tablero.ocuparCasilla(pieza8, 8,8);
 
@@ -89,19 +83,12 @@ public class TableroTest {
         Jinete pieza = Mockito.mock(Jinete.class);
         Mockito.when(pieza.getUbicacion()).thenReturn(new Ubicacion(1,1));
         Jinete pieza2 = Mockito.mock(Jinete.class);
-        Mockito.when(pieza2.getUbicacion()).thenReturn(new Ubicacion(1,2));
         Jinete pieza3 = Mockito.mock(Jinete.class);
-        Mockito.when(pieza3.getUbicacion()).thenReturn(new Ubicacion(1,3));
         Jinete pieza4 = Mockito.mock(Jinete.class);
-        Mockito.when(pieza4.getUbicacion()).thenReturn(new Ubicacion(2,3));
         Jinete pieza5 = Mockito.mock(Jinete.class);
-        Mockito.when(pieza5.getUbicacion()).thenReturn(new Ubicacion(3,3));
         Jinete pieza6 = Mockito.mock(Jinete.class);
-        Mockito.when(pieza6.getUbicacion()).thenReturn(new Ubicacion(3,2));
         Jinete pieza7 = Mockito.mock(Jinete.class);
-        Mockito.when(pieza7.getUbicacion()).thenReturn(new Ubicacion(3,1));
         Jinete pieza8 = Mockito.mock(Jinete.class);
-        Mockito.when(pieza8.getUbicacion()).thenReturn(new Ubicacion(2,1));
 
         tablero.ocuparCasilla(pieza, 1,1);
         tablero.ocuparCasilla(pieza2, 1,2);
