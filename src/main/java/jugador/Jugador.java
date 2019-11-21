@@ -59,9 +59,7 @@ public class Jugador {
         pieza.setUbicacion(ubicacionNueva);
     }
 
-
 }
-
 
     /*    public void quitarUnidad(Ubicacion ubicacion) {
         for (int i = 0; i < ejercito.size(); ++i) {

@@ -1,4 +1,4 @@
-package tablero;
+package tablero.casilla;
 
 public class CasillaNoTieneUnidadException extends Exception {
 

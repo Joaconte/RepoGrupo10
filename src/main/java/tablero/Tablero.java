@@ -2,6 +2,7 @@ package tablero;
 
 import pieza.Pieza;
 import pieza.Ubicacion;
+import tablero.casilla.Casilla;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +50,12 @@ public class Tablero {
         return buscarPiezasEnCasillas(casillasAdyacentes);
     }
 
+
+    public ArrayList<Casilla> getCasillasLibresEnAdyacencia(Ubicacion ubicacionOcupada) {
+        GestorDeMovimientos gestorDeMovimientos = new GestorDeMovimientos();
+        return gestorDeMovimientos.buscarCasillasLibresAdyacentes(ubicacionOcupada, columnas);
+    }
+
     public ArrayList<Pieza> getPiezasEnAdyacencia(Ubicacion ubicacionOcupada){
         Casilla unaCasilla= getCasilla(ubicacionOcupada);
         BuscadorCasillasAdyacentes iterador= new BuscadorCasillasAdyacentes();
@@ -59,6 +66,7 @@ public class Tablero {
     }
 
     public ArrayList<Pieza> buscarPiezasEnCasillas(ArrayList<Casilla> lista){
+
         ArrayList<Pieza> piezasAdyacentes = new ArrayList<Pieza>();
         for (int i = 0; i < lista.size() ; i++){
             piezasAdyacentes.add( lista.get(i).getContenido());

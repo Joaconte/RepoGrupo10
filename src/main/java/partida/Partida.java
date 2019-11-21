@@ -9,10 +9,10 @@ import partida.ataques.PiezaAtacadaEnRangoIncorrectoException;
 import partida.fase.*;
 import pieza.Ubicacion;
 import pieza.tipos.*;
-import tablero.CasillaTieneUnidadException;
 import tablero.Tablero;
 import pieza.Pieza;
 import jugador.Jugador;
+import tablero.casilla.CasillaTieneUnidadException;
 
 import java.util.ArrayList;
 
@@ -25,8 +25,36 @@ public class Partida {
     private Jugador jugadorUno = new Jugador(1); //¿Los guardamos asi?
     private Jugador jugadorDos = new Jugador(2);
 
+    //-----------GETTERS-----------//
+    public Jugador getJugadorUno(){
+        return jugadorUno;
+    }
 
-    //---------------Metodos de Fase------------
+    public Jugador getJugadorDos(){
+        return jugadorDos;
+    }
+
+    public Jugador getJugadorEnTurno(){
+        return jugadorEnTurno;
+    }
+
+
+    //-----------SETTERS-----------//
+
+    public void setJugadorUno(Jugador jugador){
+        jugadorUno = jugador;
+    }
+
+    public void setJugadorDos(Jugador jugador){
+        jugadorDos = jugador;
+    }
+
+    //---------------Metodos de Fase------------//
+
+    public void cambiarFaseDePartida(FaseDePartida miNuevaFase){
+        this.miFase = miNuevaFase;
+    }
+
     void comprarUnaTropa(int costo){
         miFase.comprarUnaTropa(costo, jugadorEnTurno);
     }
@@ -37,13 +65,9 @@ public class Partida {
         tableroDePartida.ocuparCasilla(pieza, posicionX, posicionY);
     }
 
-
-    public void cambiarFaseDePartida(FaseDePartida miNuevaFase){
-        this.miFase = miNuevaFase;
-    }
-
-    public void moverUnidadEnTablero(Pieza pieza, int unaPosicionInicial, int unaPosicionFinal){ //por ahora String esta puesta por poner algo.
+    public void moverUnidadEnTablero(Pieza pieza, int unaPosicionInicial, int unaPosicionFinal){
         miFase.moverUnidadEnTablero(pieza, unaPosicionInicial,unaPosicionFinal);
+        moverUnidadEnTablero(pieza, unaPosicionInicial,unaPosicionFinal);
     }
 
     public void terminarMiTurno(){
@@ -55,16 +79,20 @@ public class Partida {
     }
 
     void atacar(Catapulta atacante, Pieza atacada) throws JugadorNoPuedeException,PiezaAtacadaEnRangoIncorrectoException,PiezaAliadaNoAtacableException {
+
+        if(!atacante.esEnemigo(atacada)){ throw new PiezaAliadaNoAtacableException();}
         validarUnAtaque(atacante, atacada);
         ArrayList<Pieza> atacadas = tableroDePartida.getPiezasEnAdyacencia(atacada.getUbicacion());
         for(int i=0; i< atacadas.size(); i++){
             atacada=atacadas.get(i);
             setDanioPorAtaque(atacante, atacada);
-            miFase.atacar(atacante, atacada);
+            miFase.atacar(atacante, atacada); //Preguntar
         }
-    };
+    }
 
     void atacar(Infanteria atacante, Pieza atacada) throws JugadorNoPuedeException,PiezaAtacadaEnRangoIncorrectoException,PiezaAliadaNoAtacableException{
+
+        if(!atacante.esEnemigo(atacada)){ throw new PiezaAliadaNoAtacableException();}
         validarUnAtaque(atacante, atacada);
         setDanioPorAtaque(atacante, atacada);
         miFase.atacar(atacante, atacada);
@@ -101,7 +129,7 @@ public class Partida {
     public void setDanioPorAtaque(Pieza atacante, Pieza atacada) {
         //Version para nada definitiva.
         atacada.enZonaAliada();
-        Sector sector = this.jugadorEnTurno.getSector(); //por nullPointer Preguntar en clase.
+        Sector sector = jugadorEnTurno.getSector(); //por nullPointer Preguntar en clase.
         boolean estaEnElSector = sector.esDelSector(atacada.getUbicacion().getPosicionEnX());
         boolean sonEnemigas = atacada.esEnemigo(atacante); //Esto evita que catapulta penalice a aliados en su daño colateral.
         if (estaEnElSector && sonEnemigas){ atacada.enZonaEnemiga();}
@@ -121,4 +149,7 @@ public class Partida {
 
 
 
+
 }
+
+

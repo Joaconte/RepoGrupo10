@@ -2,6 +2,7 @@ package tablero;
 
 import pieza.Ubicacion;
 import pieza.movimiento.SeMueveEnTodasDirecciones;
+import tablero.casilla.Casilla;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +60,6 @@ public class BuscadorCasillasAdyacentes extends SeMueveEnTodasDirecciones {
         return listadoDeCasillaOcupadas;
     }
 
-
     /*---------------Buscar adayacentes ocupadas sin limite---------------*/
 
     public ArrayList<Casilla> buscarCasillasOcupadasAdyacentes(Ubicacion ubicacion, List<Columna> columnas, Casilla casilla){
@@ -84,7 +84,6 @@ public class BuscadorCasillasAdyacentes extends SeMueveEnTodasDirecciones {
         listadoDeCasillaOcupadas.add(casillaActual);;
         return  listadoDeCasillaOcupadas;
     }
-
 
     /*-----------------Direcciones--------------------*/
 
@@ -124,6 +123,7 @@ public class BuscadorCasillasAdyacentes extends SeMueveEnTodasDirecciones {
     public boolean estaOcupadaLaCasilla(Casilla casilla){
         return (casilla.getEstado() == "Ocupada");
     }
+
 
     public boolean fueVisitada(Casilla casilla){
         return casilla.getFueRevisada();

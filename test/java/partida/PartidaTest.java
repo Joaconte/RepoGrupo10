@@ -12,7 +12,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import pieza.Ubicacion;
 import pieza.tipos.*;
-import tablero.CasillaTieneUnidadException;
+import tablero.casilla.CasillaTieneUnidadException;
 
 public class PartidaTest {
 
@@ -31,9 +31,29 @@ public class PartidaTest {
         miPartida.cambiarFaseDePartida(miNuevaFase);
         assertEquals("Otra fase cualquiera", miPartida.darNombreDeFase());
     }
+    @Test
+    public void test03PartidaAgregaJugadoresCorrectamente(){
+        Partida partida = new Partida();
+        Jugador jugador1 = new Jugador(1);
+        Jugador jugador2 = new Jugador(2);
+        partida.setJugadorUno(jugador1);
+        partida.setJugadorDos(jugador2);
+
+        assertEquals(1, partida.getJugadorUno().getNumeroDeJugador());
+        assertEquals(2, partida.getJugadorDos().getNumeroDeJugador());
+    }
 
     @Test
-    public void test03PartidaEnFaseInicialNoHaceNadaAlAtacarConCualquierTropa() throws PiezaAliadaNoAtacableException, JugadorNoPuedeException, JineteAsediadoException, JineteNoAsediadoException, PiezaAtacadaEnRangoIncorrectoException, CasillaTieneUnidadException, PiezaFueraDeSectorException {
+    public void test04PartidaAgregaJugadorEnTurnoCorrectamente(){
+        Partida partida = new Partida();
+        Jugador jugador = new Jugador(1);
+        partida.setJugadorEnTurno(jugador);
+
+        assertEquals(1, partida.getJugadorEnTurno().getNumeroDeJugador());
+    }
+
+    @Test
+    public void test05PartidaEnFaseInicialNoHaceNadaAlAtacarConCualquierTropa() throws PiezaAliadaNoAtacableException, JugadorNoPuedeException, JineteAsediadoException, JineteNoAsediadoException, PiezaAtacadaEnRangoIncorrectoException, CasillaTieneUnidadException, PiezaFueraDeSectorException {
         Partida miPartida = new Partida();
 
         //-------Ubicacion de fichas--------------
@@ -83,7 +103,7 @@ public class PartidaTest {
 
 
     @Test
-    public void test04PartidaEnFaseMediaDejaAInfanteAtacarAEnemigoEnCampoPropioCorrectamente() throws PiezaAliadaNoAtacableException, JugadorNoPuedeException, PiezaAtacadaEnRangoIncorrectoException, CasillaTieneUnidadException, PiezaFueraDeSectorException {
+    public void test06PartidaEnFaseMediaDejaAInfanteAtacarAEnemigoEnCampoPropioCorrectamente() throws PiezaAliadaNoAtacableException, JugadorNoPuedeException, PiezaAtacadaEnRangoIncorrectoException, CasillaTieneUnidadException, PiezaFueraDeSectorException {
         Partida miPartida = new Partida();
 
         //-------Ubicacion de fichas--------------
@@ -115,7 +135,7 @@ public class PartidaTest {
     }
 
     @Test
-    public void test05PartidaEnFaseMediaDejaAInfanteAtacarAEnemigoEnCampoDeEnemigoCorrectamente() throws PiezaAliadaNoAtacableException, JugadorNoPuedeException, PiezaAtacadaEnRangoIncorrectoException, CasillaTieneUnidadException, PiezaFueraDeSectorException {
+    public void test07PartidaEnFaseMediaDejaAInfanteAtacarAEnemigoEnCampoDeEnemigoCorrectamente() throws PiezaAliadaNoAtacableException, JugadorNoPuedeException, PiezaAtacadaEnRangoIncorrectoException, CasillaTieneUnidadException, PiezaFueraDeSectorException, CasillaTieneUnidadException {
         Partida miPartida = new Partida();
 
         //-------Ubicacion de fichas--------------
@@ -135,7 +155,7 @@ public class PartidaTest {
 
 
         //-------Ataque--------------
-        miPartida.cambiarFaseDePartida(new FaseMedia());;
+        miPartida.cambiarFaseDePartida(new FaseMedia());
         double vidaAtacadoAntesDelAtaque = atacado.getPuntosVida();
         miPartida.atacar(atacante, atacado);
         double vidaAtacadoLuegoDelAtaque = atacado.getPuntosVida();
@@ -144,44 +164,42 @@ public class PartidaTest {
     }
 
     @Test
-    public void test06PartidaEnFaseMediaDejaAtacarACatapultaAPiezasEnCampoDeEnemigosCorrectamente() throws PiezaAliadaNoAtacableException, JugadorNoPuedeException, PiezaAtacadaEnRangoIncorrectoException, CasillaTieneUnidadException, PiezaFueraDeSectorException {
+    public void test08PartidaEnFaseMediaDejaAtacarACatapultaAPiezasEnCampoDeEnemigosCorrectamente() throws PiezaAliadaNoAtacableException, JugadorNoPuedeException, PiezaAtacadaEnRangoIncorrectoException, CasillaTieneUnidadException, PiezaFueraDeSectorException {
         Partida miPartida = new Partida();
         miPartida.cambiarFaseDePartida(new FaseMedia());
 
         //-------Ubicacion de fichas--------------
+        miPartida.setJugadorEnTurno(new Jugador(2));
 
         Catapulta atacante = new Catapulta();
         atacante.setEquipo(2);
         atacante.setUbicacion(new Ubicacion(18, 18));
-
-        Jinete atacado = new Jinete();
-        atacado.setEquipo(1);
-        atacado.setUbicacion(new Ubicacion(1, 2));
-
-        Jinete atacadoDeRebote1 = new Jinete();
-        atacadoDeRebote1.setEquipo(1);
-        atacadoDeRebote1.setUbicacion(new Ubicacion(2, 2));
+        miPartida.agregarNuevaUbicacionAFicha(atacante, 18, 18);
 
         Jinete atacadoDeRebote2 = new Jinete();
         atacadoDeRebote2.setEquipo(2);
         atacadoDeRebote2.setUbicacion(new Ubicacion(3, 3));
+        miPartida.agregarNuevaUbicacionAFicha(atacadoDeRebote2, 3, 3);
 
         Jinete noAtacado = new Jinete();
         noAtacado.setEquipo(2);
         noAtacado.setUbicacion(new Ubicacion(5, 6));
-
-        miPartida.setJugadorEnTurno(new Jugador(1));
-        miPartida.agregarNuevaUbicacionAFicha(atacado, 1, 2);
-        miPartida.agregarNuevaUbicacionAFicha(atacadoDeRebote1, 2, 2);
-
-        miPartida.setJugadorEnTurno(new Jugador(2));
-
-        miPartida.agregarNuevaUbicacionAFicha(atacante, 18, 18);
-        miPartida.agregarNuevaUbicacionAFicha(atacadoDeRebote2, 3, 3);
         miPartida.agregarNuevaUbicacionAFicha(noAtacado, 5, 6);
 
-        //-------Ataque--------------
+        miPartida.setJugadorEnTurno(new Jugador(1));
 
+        Jinete atacado = new Jinete();
+        atacado.setEquipo(1);
+        atacado.setUbicacion(new Ubicacion(3, 2));
+        miPartida.agregarNuevaUbicacionAFicha(atacado, 3, 2);
+
+        Jinete atacadoDeRebote1 = new Jinete();
+        atacadoDeRebote1.setEquipo(1);
+        atacadoDeRebote1.setUbicacion(new Ubicacion(2, 2));
+        miPartida.agregarNuevaUbicacionAFicha(atacadoDeRebote1, 2, 2);
+
+        //-------Ataque--------------
+        miPartida.setJugadorEnTurno(new Jugador(2));
         double vidaJinetesAntesDelAtaque = atacado.getPuntosVida();
         miPartida.atacar(atacante, atacado);
 
@@ -192,7 +210,7 @@ public class PartidaTest {
     }
 
     @Test
-    public void test07PartidaEnFaseMediaDejaAtacarAJineteAPiezaEnRangoCortoCuandoEstaAsediado() throws PiezaAliadaNoAtacableException, JugadorNoPuedeException, PiezaAtacadaEnRangoIncorrectoException, JineteAsediadoException, JineteNoAsediadoException, CasillaTieneUnidadException, PiezaFueraDeSectorException {
+    public void test09PartidaEnFaseMediaDejaAtacarAJineteAPiezaEnRangoCortoCuandoEstaAsediado() throws PiezaAliadaNoAtacableException, JugadorNoPuedeException, PiezaAtacadaEnRangoIncorrectoException, JineteAsediadoException, JineteNoAsediadoException, CasillaTieneUnidadException, PiezaFueraDeSectorException {
         Partida miPartida = new Partida ();
         miPartida.cambiarFaseDePartida(new FaseMedia());
 
@@ -221,7 +239,7 @@ public class PartidaTest {
     }
 
     @Test (expected = JineteAsediadoException.class)
-    public void test08PartidaEnFaseMediaNoDejaAtacarAJineteEnDistanciaMediaPorqueEstaAsediado() throws PiezaAliadaNoAtacableException, JugadorNoPuedeException, PiezaAtacadaEnRangoIncorrectoException, JineteAsediadoException, JineteNoAsediadoException, CasillaTieneUnidadException, PiezaFueraDeSectorException {
+    public void test10PartidaEnFaseMediaNoDejaAtacarAJineteEnDistanciaMediaPorqueEstaAsediado() throws PiezaAliadaNoAtacableException, JugadorNoPuedeException, PiezaAtacadaEnRangoIncorrectoException, JineteAsediadoException, JineteNoAsediadoException, CasillaTieneUnidadException, PiezaFueraDeSectorException {
         Partida miPartida = new Partida ();
         miPartida.cambiarFaseDePartida(new FaseMedia());
         //-------Ubicacion de fichas--------------

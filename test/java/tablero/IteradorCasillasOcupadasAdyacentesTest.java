@@ -4,9 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import org.junit.Test;
 
-import org.mockito.Mockito;
 import pieza.Ubicacion;
 import pieza.tipos.Jinete;
+import tablero.casilla.Casilla;
 
 import java.util.ArrayList;
 

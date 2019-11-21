@@ -55,4 +55,3 @@ public class Jinete extends PiezaAtacante {
         return estaAsediado;
     }
 }
-

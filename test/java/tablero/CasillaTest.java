@@ -2,10 +2,7 @@ package tablero;
 import org.junit.Test;
 import org.mockito.Mockito;
 import pieza.Pieza;
-import tablero.Casilla;
-
-import java.util.ArrayList;
-import java.util.List;
+import tablero.casilla.Casilla;
 
 import static org.junit.Assert.assertEquals;
 
