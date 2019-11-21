@@ -20,7 +20,7 @@ public class RangoMedio implements RangoDeAtaque{
 
     @Override
     public void atacar(Jinete atacante, Pieza atacada) throws PiezaAtacadaEnRangoIncorrectoException,JineteAsediadoException {
-        if (atacante.esAsediado()){ throw new JineteAsediadoException();}
+        if (!atacante.esAsediado()){ throw new JineteAsediadoException();}
         atacante.setModoAtaqueMedio();
         atacante.atacar(atacada);
     }

@@ -42,27 +42,26 @@ public class Tablero {
         return columnas.get(ubicacion.getPosicionEnX()-1).getCasilla(ubicacion.getPosicionEnY());
     }
 
-    public ArrayList<Casilla> getCasillasEnAdyacenciaCercana(Ubicacion  ubicacionOcupada){
+    public ArrayList<Pieza> getCasillasEnAdyacenciaCercana(Ubicacion  ubicacionOcupada){
         Casilla unaCasilla= getCasilla(ubicacionOcupada);
         BuscadorCasillasAdyacentes iterador= new BuscadorCasillasAdyacentes();
-        ArrayList<Casilla> casillas = iterador.buscarCasillasOcupadasEnDistanciaCorta(ubicacionOcupada, columnas, unaCasilla);
-        return casillas;
-    }
-
-    public ArrayList<Casilla> getCasillasEnAdyacencia(Ubicacion ubicacionOcupada){
-        Casilla unaCasilla= getCasilla(ubicacionOcupada);
-        BuscadorCasillasAdyacentes iterador= new BuscadorCasillasAdyacentes();
-        return iterador.buscarCasillasOcupadasAdyacentes(ubicacionOcupada,columnas,unaCasilla);
-
+        ArrayList<Casilla> casillasAdyacentes = iterador.buscarCasillasOcupadasEnDistanciaCorta(ubicacionOcupada, columnas, unaCasilla);
+        return buscarPiezasEnCasillas(casillasAdyacentes);
     }
 
     public ArrayList<Pieza> getPiezasEnAdyacencia(Ubicacion ubicacionOcupada){
+        Casilla unaCasilla= getCasilla(ubicacionOcupada);
+        BuscadorCasillasAdyacentes iterador= new BuscadorCasillasAdyacentes();
+        ArrayList<Casilla>casillasAdyacentes =iterador.buscarCasillasOcupadasAdyacentes(ubicacionOcupada,columnas,unaCasilla);
 
-        ArrayList<Casilla> casillasAdyacentes = getCasillasEnAdyacencia(ubicacionOcupada);
+        return buscarPiezasEnCasillas(casillasAdyacentes);
+
+    }
+
+    public ArrayList<Pieza> buscarPiezasEnCasillas(ArrayList<Casilla> lista){
         ArrayList<Pieza> piezasAdyacentes = new ArrayList<Pieza>();
-
-        for (int i = 0; i < casillasAdyacentes.size() ; i++){
-            piezasAdyacentes.add( casillasAdyacentes.get(i).getContenido());
+        for (int i = 0; i < lista.size() ; i++){
+            piezasAdyacentes.add( lista.get(i).getContenido());
         }
         return piezasAdyacentes;
     }

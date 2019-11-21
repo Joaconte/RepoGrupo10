@@ -29,11 +29,12 @@ public class Jinete extends PiezaAtacante {
 
     public void analizarCercanias(Pieza piezaQueAsedia){
         this.cantidadEnemigosCerca += Boolean.compare(this.esEnemigo(piezaQueAsedia),true);
-        this.cantidadAliadosCerca = Boolean.compare((!this.esEnemigo(piezaQueAsedia) && piezaQueAsedia.getCosto()==1),true);
+        this.cantidadAliadosCerca += Boolean.compare((!this.esEnemigo(piezaQueAsedia) && piezaQueAsedia.getCosto()==1),true);
     }
 
     public void confirmarModo(){
         super.setModoAtaqueMedio();
+        estaAsediado=false;
         if (cantidadEnemigosCerca >0 && cantidadAliadosCerca == 0){
             super.setModoAtaqueCuerpoCuerpo();
             estaAsediado=true;
@@ -47,6 +48,7 @@ public class Jinete extends PiezaAtacante {
     }
 
     public boolean esAsediado(){
+        confirmarModo();
         return estaAsediado;
     }
 }

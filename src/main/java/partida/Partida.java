@@ -74,8 +74,10 @@ public class Partida {
 
     void pedirAJineteQueActualiceSuEstado(Jinete unJinete){
         unJinete.setearEstados();
-        ArrayList<Pieza> piezasQueRodean = tableroDePartida.getPiezasEnAdyacencia(unJinete.getUbicacion());
-        for(int i=0; i< piezasQueRodean.size(); i++){ unJinete.analizarCercanias(piezasQueRodean.get(i));}
+        ArrayList<Pieza> piezasQueRodean = tableroDePartida.getCasillasEnAdyacenciaCercana(unJinete.getUbicacion());
+        for(int i=0; i< piezasQueRodean.size(); i++){
+            unJinete.analizarCercanias(piezasQueRodean.get(i));
+        }
         unJinete.confirmarModo();
     }
 
