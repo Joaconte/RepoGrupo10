@@ -27,16 +27,19 @@ public class Jinete extends PiezaAtacante {
         super.puedeMoverse();
     }
 
-    public void analizarCercanias(Pieza piezaQueAsedia){
-        this.cantidadEnemigosCerca += Boolean.compare(this.esEnemigo(piezaQueAsedia),true);
-        this.cantidadAliadosCerca += Boolean.compare((!this.esEnemigo(piezaQueAsedia) && piezaQueAsedia.getCosto()==1),true);
+    public void analizarCercanias(Pieza piezaQueAsedia) {
+        if (piezaQueAsedia.getEquipo() == this.getEquipo() && piezaQueAsedia.getCosto() == 1) {
+            this.cantidadAliadosCerca += 1;
+        } else if (piezaQueAsedia.getEquipo() != this.getEquipo()) {
+            this.cantidadEnemigosCerca += 1;
+        }
+
     }
 
+
     public void confirmarModo(){
-        super.setModoAtaqueMedio();
         estaAsediado=false;
         if (cantidadEnemigosCerca >0 && cantidadAliadosCerca == 0){
-            super.setModoAtaqueCuerpoCuerpo();
             estaAsediado=true;
         }
     }

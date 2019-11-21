@@ -42,7 +42,7 @@ public class Partida {
     }
 
     void atacar(Catapulta atacante, Pieza atacada) throws JugadorNoPuedeException,PiezaAtacadaEnRangoIncorrectoException,PiezaAliadaNoAtacableException {
-        if(!atacante.esEnemigo(atacada)){ throw new PiezaAliadaNoAtacableException();}
+        validarUnAtaque(atacante, atacada);
         ArrayList<Pieza> atacadas = tableroDePartida.getPiezasEnAdyacencia(atacada.getUbicacion());
         for(int i=0; i< atacadas.size(); i++){
             atacada=atacadas.get(i);
@@ -52,7 +52,7 @@ public class Partida {
     };
 
     void atacar(Infanteria atacante, Pieza atacada) throws JugadorNoPuedeException,PiezaAtacadaEnRangoIncorrectoException,PiezaAliadaNoAtacableException{
-        if(!atacante.esEnemigo(atacada)){ throw new PiezaAliadaNoAtacableException();}
+        validarUnAtaque(atacante, atacada);
         setDanioPorAtaque(atacante, atacada);
         miFase.atacar(atacante, atacada);
     };
@@ -73,7 +73,6 @@ public class Partida {
     }
 
     void pedirAJineteQueActualiceSuEstado(Jinete unJinete){
-        unJinete.setearEstados();
         ArrayList<Pieza> piezasQueRodean = tableroDePartida.getCasillasEnAdyacenciaCercana(unJinete.getUbicacion());
         for(int i=0; i< piezasQueRodean.size(); i++){
             unJinete.analizarCercanias(piezasQueRodean.get(i));

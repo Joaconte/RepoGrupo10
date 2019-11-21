@@ -21,9 +21,10 @@ public class RangoCorto implements RangoDeAtaque{
 
     @Override
     public void atacar(Jinete atacante, Pieza atacada) throws PiezaAtacadaEnRangoIncorrectoException,JineteNoAsediadoException {
-        if (atacante.esAsediado()){ throw new JineteNoAsediadoException();}
+        if (!atacante.esAsediado()){ throw new JineteNoAsediadoException();}
         atacante.setModoAtaqueCuerpoCuerpo();
         atacante.atacar(atacada);
+        atacante.setearEstados();
     }
 
 

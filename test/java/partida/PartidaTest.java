@@ -100,7 +100,7 @@ public class PartidaTest {
         miPartida.atacar(atacante, atacado);
         double vidaAtacadoLuegoDelAtaque = atacado.getPuntosVida();
 
-        assertEquals(vidaAtacadoAntesDelAtaque - 10, vidaAtacadoLuegoDelAtaque, 5);
+        assertEquals(vidaAtacadoAntesDelAtaque - 10, vidaAtacadoLuegoDelAtaque, 0.5);
     }
 
     @Test
@@ -108,10 +108,10 @@ public class PartidaTest {
         Partida miPartida = new Partida();
 
         Infanteria atacante = new Infanteria();
-        atacante.setEquipo(1);
+        atacante.setEquipo(2);
         atacante.setUbicacion(new Ubicacion(1, 1));
         Jinete atacado = new Jinete();
-        atacado.setEquipo(2);
+        atacado.setEquipo(1);
         atacado.setUbicacion(new Ubicacion(1, 2));
 
         miPartida.setJugadorEnTurno(new Jugador(2));
@@ -168,7 +168,7 @@ public class PartidaTest {
 
         assertEquals(vidaJinetesAntesDelAtaque - 20, atacado.getPuntosVida(), 0);
         assertEquals(vidaJinetesAntesDelAtaque - 20, atacadoDeRebote1.getPuntosVida(), 0);
-        assertEquals(vidaJinetesAntesDelAtaque - 20, atacadoDeRebote2.getPuntosVida(), 10);
+        assertEquals(vidaJinetesAntesDelAtaque - 20, atacadoDeRebote2.getPuntosVida(), 1);
         assertEquals(vidaJinetesAntesDelAtaque, noAtacado.getPuntosVida(), 0);
     }
 
@@ -185,15 +185,18 @@ public class PartidaTest {
         atacado.setUbicacion(new Ubicacion(2, 2));
 
         miPartida.setJugadorEnTurno(new Jugador(1));
+
         miPartida.colocarUnaFichaEnElTablero(atacante, 1, 2);
+
         miPartida.colocarUnaFichaEnElTablero(atacado, 2, 2);
 
 
         miPartida.cambiarAFaseMedia();
         double vidaJinetesAntesDelAtaque = atacado.getPuntosVida();
+
         miPartida.atacar(atacante, atacado);
 
-        assertEquals(vidaJinetesAntesDelAtaque - 5, atacado.getPuntosVida(), 25);
+        assertEquals(vidaJinetesAntesDelAtaque - 5, atacado.getPuntosVida(), 0.25);
 
     }
 
@@ -204,25 +207,22 @@ public class PartidaTest {
         Jinete atacante = new Jinete();
         atacante.setEquipo(1);
         atacante.setUbicacion(new Ubicacion(1, 2));
+        miPartida.colocarUnaFichaEnElTablero(atacante, 1, 2);
 
         Jinete atacado = new Jinete();
         atacado.setEquipo(2);
         atacado.setUbicacion(new Ubicacion(5, 6));
+        miPartida.colocarUnaFichaEnElTablero(atacado, 5, 6);
 
         Jinete estorbo = new Jinete();
-        atacado.setEquipo(2);
-        atacado.setUbicacion(new Ubicacion(5, 6));
-
-        miPartida.setJugadorEnTurno(new Jugador(1));
-        miPartida.colocarUnaFichaEnElTablero(atacante, 1, 2);
+        estorbo.setEquipo(2);
+        estorbo.setUbicacion(new Ubicacion(2, 2));
         miPartida.colocarUnaFichaEnElTablero(estorbo, 2, 2);
-        miPartida.colocarUnaFichaEnElTablero(estorbo, 5, 6);
+
+        miPartida.setJugadorEnTurno(new Jugador(1));;
 
         miPartida.cambiarAFaseMedia();
-        double vidaJinetesAntesDelAtaque = atacado.getPuntosVida();
         miPartida.atacar(atacante, atacado);
-
-
     }
 
 }

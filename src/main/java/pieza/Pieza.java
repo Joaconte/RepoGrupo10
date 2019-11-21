@@ -58,7 +58,7 @@ public abstract class Pieza {
     public int getEquipo(){ return equipo;}
 
     public boolean esEnemigo(Pieza otra){
-        return (this.getEquipo()!= otra.getEquipo());
+        return (this.getEquipo() != otra.getEquipo());
     }
     //-------------------------------------------
     // METODOS
