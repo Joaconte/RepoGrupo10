@@ -1,5 +1,6 @@
 package pieza.tipos;
 
+import pieza.Pieza;
 import pieza.ataque.PiezaAtacante;
 
 public class Jinete extends PiezaAtacante {
@@ -8,7 +9,9 @@ public class Jinete extends PiezaAtacante {
     static final int DANIO_CUERPO = 5;
     static final int DANIO_MEDIO = 15;
     static final int DANIO_DISTANCIA = 0;
-    public boolean estaAsediado;
+    private int cantidadEnemigosCerca = 0;
+    private int cantidadAliadosCerca = 0;
+    private boolean estaAsediado=false;
 
     public Jinete() {
         super.setVida_Maxima(VIDA_MAXIMA);
@@ -24,7 +27,27 @@ public class Jinete extends PiezaAtacante {
         super.puedeMoverse();
     }
 
-    public void estaAsediado(boolean estaReforzado, boolean estaAsediado)
-    {this.estaAsediado= (!estaReforzado && estaAsediado);}
+    public void analizarCercanias(Pieza piezaQueAsedia){
+        this.cantidadEnemigosCerca += Boolean.compare(this.esEnemigo(piezaQueAsedia),true);
+        this.cantidadAliadosCerca = Boolean.compare((!this.esEnemigo(piezaQueAsedia) && piezaQueAsedia.getCosto()==1),true);
+    }
+
+    public void confirmarModo(){
+        super.setModoAtaqueMedio();
+        if (cantidadEnemigosCerca >0 && cantidadAliadosCerca == 0){
+            super.setModoAtaqueCuerpoCuerpo();
+            estaAsediado=true;
+        }
+    }
+
+    public void setearEstados(){
+        this.cantidadAliadosCerca = 0;
+        this.cantidadEnemigosCerca = 0;
+        this.estaAsediado = false;
+    }
+
+    public boolean esAsediado(){
+        return estaAsediado;
+    }
 }
 

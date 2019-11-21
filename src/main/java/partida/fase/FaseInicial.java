@@ -31,21 +31,19 @@ public class FaseInicial implements FaseDePartida{
 
 
     @Override
-    public void atacar(Infanteria atacante, Pieza atacada, Jugador jugadorEnTurno) throws PiezaAtacadaEnRangoIncorrectoException {
-        //La nada misma
+    public void atacar(Infanteria atacante, Pieza atacada) throws PiezaAtacadaEnRangoIncorrectoException {
+        String texto = "La nada misma";
     }
 
     @Override
-    public void atacar(Catapulta atacante, Pieza atacada, Jugador jugadorEnTurno) throws PiezaAtacadaEnRangoIncorrectoException {
-        //La nada misma
+    public void atacar(Catapulta atacante, Pieza atacada) throws PiezaAtacadaEnRangoIncorrectoException {
+        String texto = "La nada misma";
     }
 
     @Override
-    public void atacar(Jinete atacante, Pieza atacada, Jugador jugadorEnTurno) throws PiezaAtacadaEnRangoIncorrectoException, JineteAsediadoException, JineteNoAsediadoException {
-        //La nada misma
+    public void atacar(Jinete atacante, Pieza atacada) throws PiezaAtacadaEnRangoIncorrectoException, JineteAsediadoException, JineteNoAsediadoException {
+        String texto = "La nada misma";
     }
 
-    public void colocarPieza (){
 
-    }
 }

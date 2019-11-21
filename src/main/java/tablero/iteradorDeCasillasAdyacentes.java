@@ -65,6 +65,7 @@ public class iteradorDeCasillasAdyacentes extends IteradorDe8Direcciones {
         return resultado;
     }
 
+
     public ArrayList<Casilla> buscarOcupadasYAdyacentes(Ubicacion ubicacion, List<Columna> columnas, Casilla casillaActual){
         casillaActual.setFueRevisada(true);
         this.registrarSiguientesUbicaciones(ubicacion);
@@ -82,6 +83,7 @@ public class iteradorDeCasillasAdyacentes extends IteradorDe8Direcciones {
     }
 
 
+
     /*-----------------Obtencion-Casillas--------------*/
 
     public Casilla getCasillaMedianteUbicacion(Ubicacion ubicacion, List<Columna> columnas) {
@@ -93,6 +95,7 @@ public class iteradorDeCasillasAdyacentes extends IteradorDe8Direcciones {
     public boolean estaOcupadaLaCasilla(Casilla casilla){
         return (casilla.getEstado() == "Ocupada");
     }
+
 
     public boolean fueVisitada(Casilla casilla){
         return casilla.getFueRevisada();

@@ -70,6 +70,8 @@ public abstract class Pieza {
         this.comoRecibeDanio = new DanioZonaPropia();
     }
 
+
+
     // ver q no deje en negativos--- exceptions
     public void recibirDanio(double danioBase) throws UnidadEstaMuertaException {
         if (vida<=0) throw new UnidadEstaMuertaException();

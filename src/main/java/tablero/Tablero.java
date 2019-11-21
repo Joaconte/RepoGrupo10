@@ -49,16 +49,21 @@ public class Tablero {
         return casillas;
     }
 
-    public ArrayList<Casilla> getCasillasEnAdyacencia(Ubicacion ubicacionOcupada){
+    public ArrayList<Casilla> getCasillasOcupadasEnAdyacencia(Ubicacion ubicacionOcupada){
         Casilla unaCasilla= getCasilla(ubicacionOcupada);
         iteradorDeCasillasAdyacentes iterador= new iteradorDeCasillasAdyacentes();
         return iterador.buscarCasillasOcupadasAdyacentes(ubicacionOcupada,columnas,unaCasilla);
 
     }
 
+    public ArrayList<Casilla> getCasillasLibresEnAdyacencia(Ubicacion ubicacionOcupada) {
+        GestorDeMovimientos gestorDeMovimientos = new GestorDeMovimientos();
+        return gestorDeMovimientos.buscarCasillasLibresAdyacentes(ubicacionOcupada, columnas);
+    }
+
     public ArrayList<Pieza> getPiezasEnAdyacencia(Ubicacion ubicacionOcupada){
 
-        ArrayList<Casilla> casillasAdyacentes = getCasillasEnAdyacencia(ubicacionOcupada);
+        ArrayList<Casilla> casillasAdyacentes = getCasillasOcupadasEnAdyacencia(ubicacionOcupada);
         ArrayList<Pieza> piezasAdyacentes = new ArrayList<Pieza>();
 
         for (int i = 0; i < casillasAdyacentes.size() ; i++){

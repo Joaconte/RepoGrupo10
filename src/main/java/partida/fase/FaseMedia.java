@@ -1,15 +1,17 @@
 package partida.fase;
 
 import jugador.Jugador;
+import partida.ataques.GestorDeAtaque;
 import partida.ataques.JineteAsediadoException;
 import partida.ataques.JineteNoAsediadoException;
 import partida.ataques.PiezaAtacadaEnRangoIncorrectoException;
 import pieza.Pieza;
-import pieza.tipos.Catapulta;
-import pieza.tipos.Infanteria;
-import pieza.tipos.Jinete;
+import pieza.ataque.PiezaAtacante;
+import pieza.tipos.*;
 
 public class FaseMedia implements FaseDePartida{
+
+    private GestorDeAtaque gestorDeAtaque = new GestorDeAtaque();
 
     //Metodo que permite que una ficha se ubique en una casilla adyacente vacia, del tablero.
     @Override
@@ -30,26 +32,19 @@ public class FaseMedia implements FaseDePartida{
     }
 
     @Override
-    public void atacar(Infanteria atacante, Pieza atacada, Jugador jugadorEnTurno) throws PiezaAtacadaEnRangoIncorrectoException {
-
+    public void atacar(Infanteria atacante, Pieza atacada) throws PiezaAtacadaEnRangoIncorrectoException {
+        gestorDeAtaque.atacar(atacante,atacada);
     }
 
     @Override
-    public void atacar(Catapulta atacante, Pieza atacada, Jugador jugadorEnTurno) throws PiezaAtacadaEnRangoIncorrectoException {
-
+    public void atacar(Catapulta atacante, Pieza atacada) throws PiezaAtacadaEnRangoIncorrectoException {
+        gestorDeAtaque.atacar(atacante,atacada);
     }
 
     @Override
-    public void atacar(Jinete atacante, Pieza atacada, Jugador jugadorEnTurno) throws PiezaAtacadaEnRangoIncorrectoException, JineteAsediadoException, JineteNoAsediadoException {
-
+    public void atacar(Jinete atacante, Pieza atacada) throws PiezaAtacadaEnRangoIncorrectoException, JineteAsediadoException, JineteNoAsediadoException {
+        gestorDeAtaque.atacar(atacante,atacada);
     }
 
 
-    public void setDanio(Pieza atacante, Pieza atacada, Jugador jugadorEnTurno) {
-        int columnaEnDondeEstaLaPiezaAtacada = atacada.getUbicacion().getPosicionEnX();
-        boolean sonEnemigas = atacada.esEnemigo(atacante);
-        boolean estaEnElSectorDelJugadorAtacante = jugadorEnTurno.getSector().esDelSector(columnaEnDondeEstaLaPiezaAtacada);
-        if (estaEnElSectorDelJugadorAtacante && sonEnemigas){ atacada.enZonaEnemiga();}
-        else {atacada.enZonaAliada();}
-    }
 }

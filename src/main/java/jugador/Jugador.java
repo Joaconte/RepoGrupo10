@@ -43,11 +43,6 @@ public class Jugador {
         this.setEstadoPresupuesto(this.presupuesto);
     }
 
-
-
-
-
-
 }
 
 

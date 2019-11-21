@@ -12,4 +12,12 @@ public interface IModoMovimiento {
     Ubicacion derecha(Ubicacion actual) throws NoSePuedeMoverException;
 
     Ubicacion izquierda(Ubicacion actual) throws NoSePuedeMoverException;
+
+    Ubicacion arribaIzquierda(Ubicacion actual) throws NoSePuedeMoverException;
+
+    Ubicacion abajoIzquierda(Ubicacion actual) throws NoSePuedeMoverException;
+
+    Ubicacion arribaDerecha(Ubicacion actual) throws NoSePuedeMoverException;
+
+    Ubicacion abajoDerecha(Ubicacion actual) throws NoSePuedeMoverException;
 }

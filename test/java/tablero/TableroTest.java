@@ -47,9 +47,8 @@ public class TableroTest {
         assertEquals("Libre",tablero.getEstadoCasilla(1, 1));
     }
 
-
     @Test
-    public void test06TableroEncuentra6AdyacenciasAPosicionDadaEIgnoraLasPosicionesANoAdyacentes(){
+    public void test06TableroEncuentra6PiezasAdyacenctesAPosicionDadaEIgnoraLasPosicionesANoAdyacentes(){
 
         Tablero tablero = new Tablero();
 
@@ -115,6 +114,35 @@ public class TableroTest {
 
         assertEquals(8,tablero.getPiezasEnAdyacencia(pieza.getUbicacion()).size());
     }
+
+    @Test
+    public void test08TableroEncuentra8CasillerosAdyacenctesVacios(){
+
+        Tablero tablero = new Tablero();
+
+        Jinete pieza = Mockito.mock(Jinete.class);
+        Mockito.when(pieza.getUbicacion()).thenReturn(new Ubicacion(2,2));
+
+        tablero.ocuparCasilla(pieza, 2,2);
+
+        assertEquals(8, tablero.getCasillasLibresEnAdyacencia( pieza.getUbicacion() ).size() );
+    }
+
+    @Test
+    public void test09TableroEncuentra5CasillerosAdyacenctesVaciosNoHayProblemaEnBordes(){
+
+        Tablero tablero = new Tablero();
+
+        Ubicacion ubicacion = new Ubicacion(2,1);
+        Jinete pieza = Mockito.mock(Jinete.class);
+        Mockito.when(pieza.getUbicacion()).thenReturn( ubicacion );
+
+        tablero.ocuparCasilla(pieza, 2, 1);
+
+        assertEquals(5, tablero.getCasillasLibresEnAdyacencia( pieza.getUbicacion() ).size() );
+    }
+    //PROBLEMA EN LA PRIMERA COLUMNA (ENCUENTRA UNA CASILLA EXTRA)
+
 
 }
 

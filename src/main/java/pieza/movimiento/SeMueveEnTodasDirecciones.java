@@ -30,5 +30,23 @@ public class SeMueveEnTodasDirecciones implements IModoMovimiento {
         return new Ubicacion (actual.getPosicionEnX()-1, actual.getPosicionEnY());
     }
 
+    @Override
+    public Ubicacion arribaIzquierda(Ubicacion actual) {
+        return new Ubicacion (actual.getPosicionEnX()-1, actual.getPosicionEnY()-1);
+    }
 
+    @Override
+    public Ubicacion abajoIzquierda(Ubicacion actual) {
+        return new Ubicacion (actual.getPosicionEnX()-1, actual.getPosicionEnY()+1);
+    }
+
+    @Override
+    public Ubicacion arribaDerecha(Ubicacion actual) {
+        return new Ubicacion (actual.getPosicionEnX()+1, actual.getPosicionEnY()-1);
+    }
+
+    @Override
+    public Ubicacion abajoDerecha(Ubicacion actual) {
+        return new Ubicacion (actual.getPosicionEnX()+1, actual.getPosicionEnY()+1);
+    }
 }
