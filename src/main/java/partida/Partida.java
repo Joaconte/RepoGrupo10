@@ -1,5 +1,6 @@
 package partida;
 
+import jugador.PiezaFueraDeSectorException;
 import jugador.Sector;
 import partida.ataques.JineteAsediadoException;
 import partida.ataques.JineteNoAsediadoException;
@@ -8,6 +9,7 @@ import partida.ataques.PiezaAtacadaEnRangoIncorrectoException;
 import partida.fase.*;
 import pieza.Ubicacion;
 import pieza.tipos.*;
+import tablero.CasillaTieneUnidadException;
 import tablero.Tablero;
 import pieza.Pieza;
 import jugador.Jugador;
@@ -25,6 +27,17 @@ public class Partida {
 
 
     //---------------Metodos de Fase------------
+    void comprarUnaTropa(int costo){
+        miFase.comprarUnaTropa(costo, jugadorEnTurno);
+    }
+
+    public void agregarNuevaUbicacionAFicha(Pieza pieza, int posicionX, int posicionY) throws CasillaTieneUnidadException, JugadorNoPuedeException, PiezaFueraDeSectorException {
+        validarUnMovimiento(pieza, posicionX, posicionY);
+        miFase.agregarNuevaUbicacionAFicha(jugadorEnTurno, pieza, posicionX, posicionY);
+        tableroDePartida.ocuparCasilla(pieza, posicionX, posicionY);
+    }
+
+
     public void cambiarFaseDePartida(FaseDePartida miNuevaFase){
         this.miFase = miNuevaFase;
     }
@@ -72,6 +85,11 @@ public class Partida {
         if(atacante.getEquipo() != jugadorEnTurno.getNumeroDeJugador()){ throw new JugadorNoPuedeException();}
     }
 
+    void validarUnMovimiento(Pieza pieza, int posicionX, int posicionY)throws CasillaTieneUnidadException,JugadorNoPuedeException{
+        if(tableroDePartida.getEstadoCasilla(posicionX, posicionY)=="Ocupada"){ throw new CasillaTieneUnidadException();}
+        if(pieza.getEquipo() != jugadorEnTurno.getNumeroDeJugador()) { throw new JugadorNoPuedeException();}
+        }
+
     void pedirAJineteQueActualiceSuEstado(Jinete unJinete){
         ArrayList<Pieza> piezasQueRodean = tableroDePartida.getCasillasEnAdyacenciaCercana(unJinete.getUbicacion());
         for(int i=0; i< piezasQueRodean.size(); i++){
@@ -101,12 +119,6 @@ public class Partida {
         //¿Construir?
     }
 
-   //---------------Metodos Para testear un par de cosas (Modificar cuando se defina)------------
 
-    public void colocarUnaFichaEnElTablero(Pieza pieza, int posColumna, int posFila){
-        tableroDePartida.ocuparCasilla(pieza, posColumna, posFila);
-    }
-    public void cambiarAFaseMedia (){
-        miFase=new FaseMedia();
-    }
+
 }

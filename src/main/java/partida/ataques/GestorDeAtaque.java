@@ -15,7 +15,7 @@ public class GestorDeAtaque {
     int distanciaCercanaMaxima = 2;
     int distanciaMaxima = 20;
 
-    /*------------Setters-------------*/
+    /*------------Setters y Getters-------------*/
 
     public void setJugadorYaAtaco(boolean jugadorYaAtaco) {
         this.jugadorYaAtaco = jugadorYaAtaco;
@@ -23,6 +23,7 @@ public class GestorDeAtaque {
     public void setRangoDeAtaque(RangoDeAtaque rangoDeAtaque) {
         this.rangoDeAtaque = rangoDeAtaque;
     }
+    public boolean jugadorYaAtaco(){return jugadorYaAtaco;}
 
    /*------------Ataques -------------*/
 

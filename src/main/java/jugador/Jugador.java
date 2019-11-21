@@ -2,6 +2,7 @@ package jugador;
 
 import jugador.presupuesto.EstadoPresupuestoDeEjercito;
 import jugador.presupuesto.EstadoPresupuestoNoAgotado;
+import pieza.Pieza;
 import pieza.Ubicacion;
 
 public class Jugador {
@@ -50,7 +51,13 @@ public class Jugador {
         return sector.esDelSector(ubicacion.getPosicionEnX());
     }
 
+    //----------Agrega Ubicacion A Unidad--------------//
 
+    public void agregarUbicacionAPieza(Pieza pieza, int posicionX, int posicionY) throws PiezaFueraDeSectorException {
+        Ubicacion ubicacionNueva = new Ubicacion(posicionX, posicionY);
+        if (!estaEnElSector(ubicacionNueva )){ throw new PiezaFueraDeSectorException();}
+        pieza.setUbicacion(ubicacionNueva);
+    }
 
 
 }
