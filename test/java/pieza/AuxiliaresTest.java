@@ -219,7 +219,7 @@ public class AuxiliaresTest {
     }
 
     @Test
-    public void test15FormanBatallonDevuelveFalseSi3InfanteriaEstanContiguasSonAliadosPeroNoSonEstanContiguos() {
+    public void test15FormanBatallonDevuelveFalseSi3InfanteriaSonAliadosPeroNoSonEstanContiguos() {
         Auxiliares aux = new Auxiliares();
         Infanteria soldado1 = new Infanteria();
         soldado1.setUbicacion(new Ubicacion(1,1));
