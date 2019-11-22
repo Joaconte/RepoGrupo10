@@ -1,5 +1,6 @@
 package jugador;
 
+import jugador.presupuesto.CostoNoValidoException;
 import pieza.tipos.*;
 
 public class FabricaDePiezas{
