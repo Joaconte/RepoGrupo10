@@ -8,13 +8,14 @@ import pieza.tipos.Jinete;
 
 import static org.junit.Assert.assertEquals;
 
+// se puede mover a cada clase respectiva
 public class AtaquesTest {
     @Test
     public void test01InfanteriaAtacaOponenteYLeResta10Puntos() {
         Infanteria soldado = new Infanteria();
         Infanteria oponente = new Infanteria();
         double vidaOponente;
-        soldado.setEquipo(1);
+        soldado.setEquipo(1); // mismo equipo. Hace daño a aliados?
         oponente.setEquipo(1);
         vidaOponente = oponente.getPuntosVida();
         soldado.atacar(oponente);

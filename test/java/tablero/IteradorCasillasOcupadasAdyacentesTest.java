@@ -10,6 +10,7 @@ import tablero.casilla.Casilla;
 
 import java.util.ArrayList;
 
+// no tiene el mismo nombre que la clase
 public class IteradorCasillasOcupadasAdyacentesTest {
 
     @Test
