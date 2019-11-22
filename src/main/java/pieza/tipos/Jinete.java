@@ -1,57 +1,43 @@
 package pieza.tipos;
 
 import pieza.Pieza;
+import pieza.ataque.AtaqueVariable;
 import pieza.ataque.PiezaAtacante;
+import pieza.movimiento.IModoMovimiento;
+import pieza.movimiento.SeMueveEnTodasDirecciones;
+import pieza.sanacion.IModoSanacion;
+import pieza.sanacion.SanacionNormal;
+
+import java.util.ArrayList;
 
 public class Jinete extends PiezaAtacante {
     static final int COSTO = 3;
     static final int VIDA_MAXIMA = 100;
     static final int DANIO_CUERPO = 5;
-    static final int DANIO_MEDIO = 15;
+    static final int DANIO_MEDIO =0;
     static final int DANIO_DISTANCIA = 0;
-    private int cantidadEnemigosCerca = 0;
-    private int cantidadAliadosCerca = 0;
-    private boolean estaAsediado=false;
+    static final IModoMovimiento MOVIMIENTO = new SeMueveEnTodasDirecciones();
+    static final IModoSanacion MODO_CURACION = new SanacionNormal();
 
-    public Jinete() {
-        super.setVida_Maxima(VIDA_MAXIMA);
-        super.setVida(VIDA_MAXIMA);
-        super.setCosto(COSTO);
-        super.enZonaAliada();
-        super.puedeCurarse();
-        super.setModoAtaqueCuerpoCuerpo();
-        super.setModoAtaqueMedio();
-        super.setDanioCuerpoCuerpo(DANIO_CUERPO);
-        super.setDanioMedio(DANIO_MEDIO);
-        super.setDanioADistancia(DANIO_DISTANCIA);
-        super.puedeMoverse();
+    public Jinete(int equipo) {
+        super(COSTO, VIDA_MAXIMA, VIDA_MAXIMA, equipo, MOVIMIENTO,  MODO_CURACION, new AtaqueVariable(),DANIO_CUERPO, DANIO_MEDIO,DANIO_DISTANCIA);
     }
 
-    public void analizarCercanias(Pieza piezaQueAsedia) {
-        if (piezaQueAsedia.getEquipo() == this.getEquipo() && piezaQueAsedia.getCosto() == 1) {
-            this.cantidadAliadosCerca += 1;
-        } else if (piezaQueAsedia.getEquipo() != this.getEquipo()) {
-            this.cantidadEnemigosCerca += 1;
-        }
+
+    public void atacar(Pieza atacada, Tablero tablero) {
+
 
     }
 
 
-    public void confirmarModo(){
-        estaAsediado=false;
-        if (cantidadEnemigosCerca >0 && cantidadAliadosCerca == 0){
-            estaAsediado=true;
+    public void obtenerModoDeAtaque(ArrayList<Pieza> piezas) {
+        boolean estaAsediado=false;
+        if (piezas.size()!=0){estaAsediado=true;}
+        for (int i=0; i <piezas.size(); i++ ){
+            if ((!this.esEnemigo(piezas.get(i))) && piezas.get(i).getCosto() == 1){ estaAsediado=false; }
         }
     }
 
-    public void setearEstados(){
-        this.cantidadAliadosCerca = 0;
-        this.cantidadEnemigosCerca = 0;
-        this.estaAsediado = false;
-    }
 
-    public boolean esAsediado(){
-        confirmarModo();
-        return estaAsediado;
-    }
+
 }

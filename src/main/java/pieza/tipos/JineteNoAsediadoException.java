@@ -1,4 +1,4 @@
-package partida.ataques;
+package pieza.tipos;
 
 public class JineteNoAsediadoException extends Exception {
         public JineteNoAsediadoException() {

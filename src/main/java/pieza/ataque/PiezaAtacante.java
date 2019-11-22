@@ -1,51 +1,39 @@
 package pieza.ataque;
 
 import pieza.Pieza;
+import pieza.UnidadEstaMuertaException;
+import pieza.movimiento.IModoMovimiento;
+import pieza.sanacion.IModoSanacion;
 
 public class PiezaAtacante extends Pieza {
     private int danioCuerpoCuerpo;
-    private int danioMedio;
     private int danioDistancia;
+    private int danioMedio;
 
     private IModoAtaque modoAtaque;
 
-    public void setDanioCuerpoCuerpo(int danio){
-        danioCuerpoCuerpo = danio;
+    public PiezaAtacante(int costo, int vidaMaxima, double vida, int equipo, IModoMovimiento movimiento, IModoSanacion modoSanacion,IModoAtaque modoAtaque, int danioCuerpo, int danioDistancia, int danioMedio) {
+        super(costo, vidaMaxima, vida, equipo, movimiento, modoSanacion);
+        this.modoAtaque= modoAtaque;
+        this.danioCuerpoCuerpo = danioCuerpo;
+        this.danioDistancia = danioDistancia;
+        this.danioMedio = danioMedio;
     }
 
-    public void setDanioMedio(int danio){
-        danioMedio = danio;
-    }
-
-    public void setDanioADistancia(int danio){
-        danioDistancia = danio;
-    }
 
     public int getDanioCuerpoCuerpo(){
         return danioCuerpoCuerpo;
-    }
-
-    public int getDanioMedio(){
-        return danioMedio;
     }
 
     public int getDanioDistancia(){
         return danioDistancia;
     }
 
-    public void setModoAtaqueCuerpoCuerpo(){
-        modoAtaque = new AtaqueCuerpoACuerpo();
+    public int getDanioMedio(){
+        return danioMedio;
     }
 
-    public void setModoAtaqueMedio(){
-        modoAtaque = new AtaqueMedio();
-    }
-
-    public void setModoAtaqueADistancia(){
-        modoAtaque = new AtaqueADistancia();
-    }
-
-    public void atacar(Pieza oponente){
-        modoAtaque.atacar(this,oponente);
+    public void atacar(Pieza oponente) throws UnidadEstaMuertaException {
+        modoAtaque.atacar(this,oponente,this.ubicacion.getDistanciaAOtroPunto(oponente.getUbicacion()));
     }
 }

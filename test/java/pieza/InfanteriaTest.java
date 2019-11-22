@@ -1,6 +1,5 @@
 package pieza;
 
-import pieza.*;
 import org.junit.Test;
 import pieza.tipos.Infanteria;
 

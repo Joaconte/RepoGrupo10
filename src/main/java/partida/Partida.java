@@ -2,12 +2,9 @@ package partida;
 
 import jugador.PiezaFueraDeSectorException;
 import jugador.Sector;
-import partida.ataques.JineteAsediadoException;
-import partida.ataques.JineteNoAsediadoException;
-import partida.ataques.PiezaAtacadaEnRangoIncorrectoException;
+import pieza.tipos.JineteNoAsediadoException;
 
 import partida.fase.*;
-import pieza.Ubicacion;
 import pieza.tipos.*;
 import tablero.Tablero;
 import pieza.Pieza;
@@ -26,6 +23,7 @@ public class Partida {
     private Jugador jugadorDos = new Jugador(2);
 
     //-----------GETTERS-----------//
+
     public Jugador getJugadorUno(){
         return jugadorUno;
     }
@@ -55,9 +53,6 @@ public class Partida {
         this.miFase = miNuevaFase;
     }
 
-    void comprarUnaTropa(int costo){
-        miFase.comprarUnaTropa(costo, jugadorEnTurno);
-    }
 
     public void agregarNuevaUbicacionAFicha(Pieza pieza, int posicionX, int posicionY) throws CasillaTieneUnidadException, JugadorNoPuedeException, PiezaFueraDeSectorException {
         validarUnMovimiento(pieza, posicionX, posicionY);
@@ -78,32 +73,10 @@ public class Partida {
         return miFase.darNombreDeFase();
     }
 
-    void atacar(Catapulta atacante, Pieza atacada) throws JugadorNoPuedeException,PiezaAtacadaEnRangoIncorrectoException,PiezaAliadaNoAtacableException {
-
-        if(!atacante.esEnemigo(atacada)){ throw new PiezaAliadaNoAtacableException();}
+    void atacar(Pieza atacante, Pieza atacada) throws JugadorNoPuedeException,PiezaAliadaNoAtacableException {
         validarUnAtaque(atacante, atacada);
-        ArrayList<Pieza> atacadas = tableroDePartida.getPiezasEnAdyacencia(atacada.getUbicacion());
-        for(int i=0; i< atacadas.size(); i++){
-            atacada=atacadas.get(i);
-            setDanioPorAtaque(atacante, atacada);
-            miFase.atacar(atacante, atacada); //Preguntar
-        }
+        miFase.atacar(atacada, atacante, tablero);
     }
-
-    void atacar(Infanteria atacante, Pieza atacada) throws JugadorNoPuedeException,PiezaAtacadaEnRangoIncorrectoException,PiezaAliadaNoAtacableException{
-
-        if(!atacante.esEnemigo(atacada)){ throw new PiezaAliadaNoAtacableException();}
-        validarUnAtaque(atacante, atacada);
-        setDanioPorAtaque(atacante, atacada);
-        miFase.atacar(atacante, atacada);
-    };
-
-    void atacar(Jinete atacante, Pieza atacada) throws JugadorNoPuedeException,PiezaAtacadaEnRangoIncorrectoException,JineteAsediadoException,JineteNoAsediadoException,PiezaAliadaNoAtacableException{
-        validarUnAtaque(atacante, atacada);
-        pedirAJineteQueActualiceSuEstado(atacante);
-        setDanioPorAtaque(atacante, atacada);
-        miFase.atacar(atacante, atacada);
-    };
 
 
     //---------------Validaciones-Actualizaciones-----------
@@ -117,14 +90,6 @@ public class Partida {
         if(tableroDePartida.getEstadoCasilla(posicionX, posicionY)=="Ocupada"){ throw new CasillaTieneUnidadException();}
         if(pieza.getEquipo() != jugadorEnTurno.getNumeroDeJugador()) { throw new JugadorNoPuedeException();}
         }
-
-    void pedirAJineteQueActualiceSuEstado(Jinete unJinete){
-        ArrayList<Pieza> piezasQueRodean = tableroDePartida.getCasillasEnAdyacenciaCercana(unJinete.getUbicacion());
-        for(int i=0; i< piezasQueRodean.size(); i++){
-            unJinete.analizarCercanias(piezasQueRodean.get(i));
-        }
-        unJinete.confirmarModo();
-    }
 
     public void setDanioPorAtaque(Pieza atacante, Pieza atacada) {
         //Version para nada definitiva.

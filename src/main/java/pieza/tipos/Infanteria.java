@@ -1,6 +1,13 @@
 package pieza.tipos;
 
+import pieza.Pieza;
+import pieza.ataque.AtaqueCuerpoACuerpo;
+import pieza.ataque.IModoAtaque;
 import pieza.ataque.PiezaAtacante;
+import pieza.movimiento.IModoMovimiento;
+import pieza.movimiento.SeMueveEnTodasDirecciones;
+import pieza.sanacion.IModoSanacion;
+import pieza.sanacion.SanacionNormal;
 
 public class Infanteria extends PiezaAtacante {
     static final int COSTO = 1;
@@ -8,18 +15,14 @@ public class Infanteria extends PiezaAtacante {
     static final int DANIO_CUERPO = 10;
     static final int DANIO_MEDIO = 0;
     static final int DANIO_DISTANCIA = 0;
+    static final IModoMovimiento MOVIMIENTO = new SeMueveEnTodasDirecciones();
+    static final IModoAtaque ATAQUE = new AtaqueCuerpoACuerpo();
+    static final IModoSanacion MODO_CURACION = new SanacionNormal();
 
-    public Infanteria(){
-        super.setVida_Maxima(VIDA_MAXIMA);
-        super.setVida(VIDA_MAXIMA);
-        super.setCosto(COSTO);
-        super.enZonaAliada();
-        super.puedeCurarse();
-        super.setModoAtaqueCuerpoCuerpo();
-        super.setDanioCuerpoCuerpo(DANIO_CUERPO);
-        super.setDanioMedio(DANIO_MEDIO);
-        super.setDanioADistancia(DANIO_DISTANCIA);
-        super.puedeMoverse();
+    public Infanteria(int equipo){
+        super(COSTO, VIDA_MAXIMA, VIDA_MAXIMA, equipo, MOVIMIENTO, MODO_CURACION, ATAQUE, DANIO_CUERPO, DANIO_MEDIO, DANIO_DISTANCIA);
+
     }
+
 
 }

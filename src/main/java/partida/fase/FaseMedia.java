@@ -1,12 +1,10 @@
 package partida.fase;
 
 import jugador.Jugador;
-import partida.ataques.GestorDeAtaque;
-import partida.ataques.JineteAsediadoException;
-import partida.ataques.JineteNoAsediadoException;
-import partida.ataques.PiezaAtacadaEnRangoIncorrectoException;
+import pieza.tipos.JineteNoAsediadoException;
 import pieza.Pieza;
 import pieza.tipos.*;
+import tablero.Tablero;
 
 public class FaseMedia implements FaseDePartida{
 
@@ -35,25 +33,13 @@ public class FaseMedia implements FaseDePartida{
 
     //Ataques o cura
     @Override
-    public void atacar(Infanteria atacante, Pieza atacada) throws PiezaAtacadaEnRangoIncorrectoException {
-        gestorDeAtaque.atacar(atacante,atacada);
+    public void atacar(Pieza atacante, Pieza atacada, Tablero tablero) {
+        atacante.atacar(atacada,tablero);
     }
 
-    @Override
-    public void atacar(Catapulta atacante, Pieza atacada) throws PiezaAtacadaEnRangoIncorrectoException {
-        gestorDeAtaque.atacar(atacante,atacada);
-    }
 
-    @Override
-    public void atacar(Jinete atacante, Pieza atacada) throws PiezaAtacadaEnRangoIncorrectoException, JineteAsediadoException, JineteNoAsediadoException {
-        gestorDeAtaque.atacar(atacante,atacada);
-    }
 
     //Colocacion y movimiento
-    @Override
-    public void comprarUnaTropa(int costo, Jugador jugadorEnTurno) {
-        //fase ortiva.
-    }
 
     @Override
     public void agregarNuevaUbicacionAFicha(Jugador jugadorEnTurno, Pieza pieza, int posicionX, int posicionY) {

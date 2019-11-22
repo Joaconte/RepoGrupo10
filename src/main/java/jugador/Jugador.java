@@ -7,7 +7,7 @@ import pieza.Ubicacion;
 
 public class Jugador {
 
-    private EstadoPresupuestoDeEjercito presupuesto;
+
     private int numeroDeJugador;
     private Sector sector;
     private Ejercito ejercito;
@@ -15,7 +15,7 @@ public class Jugador {
     //---------Inicializacion---------//
 
     public Jugador(int numeroDeJugador){
-        this.presupuesto = new EstadoPresupuestoNoAgotado(20);
+
         this.numeroDeJugador = numeroDeJugador;
         this.sector = new Sector(numeroDeJugador);
         this.ejercito = new Ejercito (numeroDeJugador);
@@ -34,28 +34,14 @@ public class Jugador {
     }
 
     //-----------SETTERS-------------//
-    public void setEstadoPresupuesto(EstadoPresupuestoDeEjercito presupuesto){
-        this.presupuesto = presupuesto.devolverEstadoDePresuesto();
-    }
 
-    //-----------ADD - REMOVE-------------//
 
-    public void agregarUnidad(int costoUnidad){
-        this.presupuesto.agregarPiezas(this.ejercito, costoUnidad);
-        this.setEstadoPresupuesto(this.presupuesto);
-    }
-
-    //----------Sector--------------//
-
-    public boolean estaEnElSector(Ubicacion ubicacion){
-        return sector.esDelSector(ubicacion.getPosicionEnX());
-    }
 
     //----------Agrega Ubicacion A Unidad--------------//
 
     public void agregarUbicacionAPieza(Pieza pieza, int posicionX, int posicionY) throws PiezaFueraDeSectorException {
         Ubicacion ubicacionNueva = new Ubicacion(posicionX, posicionY);
-        if (!estaEnElSector(ubicacionNueva )){ throw new PiezaFueraDeSectorException();}
+        if (!sector.esDelSector(posicionX)){ throw new PiezaFueraDeSectorException();}
         pieza.setUbicacion(ubicacionNueva);
     }
 

@@ -1,7 +1,8 @@
 package pieza.ataque;
 
 import pieza.Pieza;
+import pieza.UnidadEstaMuertaException;
 
 public interface IModoAtaque {
-    public void atacar(PiezaAtacante miUnidad, Pieza victima);
+    void atacar(PiezaAtacante miUnidad, Pieza victima, int distancia) throws UnidadEstaMuertaException;
 }

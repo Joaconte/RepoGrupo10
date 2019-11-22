@@ -2,13 +2,12 @@ package partida.fase;
 
 import jugador.Jugador;
 import jugador.PiezaFueraDeSectorException;
-import partida.ataques.JineteAsediadoException;
-import partida.ataques.JineteNoAsediadoException;
-import partida.ataques.PiezaAtacadaEnRangoIncorrectoException;
+import pieza.tipos.JineteNoAsediadoException;
 import pieza.Pieza;
 import pieza.tipos.Catapulta;
 import pieza.tipos.Infanteria;
 import pieza.tipos.Jinete;
+import tablero.Tablero;
 
 public class FaseInicial implements FaseDePartida{
 
@@ -32,25 +31,13 @@ public class FaseInicial implements FaseDePartida{
 
     //Ataques y curacion
     @Override
-    public void atacar(Infanteria atacante, Pieza atacada) throws PiezaAtacadaEnRangoIncorrectoException {
+    public void atacar(Pieza atacante, Pieza atacada, Tablero tablero) {
         String texto = "La nada misma";
     }
 
-    @Override
-    public void atacar(Catapulta atacante, Pieza atacada) throws PiezaAtacadaEnRangoIncorrectoException {
-        String texto = "La nada misma";
-    }
 
-    @Override
-    public void atacar(Jinete atacante, Pieza atacada) throws PiezaAtacadaEnRangoIncorrectoException, JineteAsediadoException, JineteNoAsediadoException {
-        String texto = "La nada misma";
-    }
 
     //Colocacion y movimiento
-    @Override
-    public void comprarUnaTropa(int costo, Jugador jugadorEnTurno) {
-        jugadorEnTurno.agregarUnidad(costo);
-    }
 
     @Override
     public void agregarNuevaUbicacionAFicha(Jugador jugadorEnTurno, Pieza pieza, int posicionX, int posicionY) throws PiezaFueraDeSectorException {
