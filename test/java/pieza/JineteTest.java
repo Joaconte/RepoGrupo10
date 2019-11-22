@@ -41,7 +41,7 @@ public class JineteTest {
         Catapulta oponente = new Catapulta();
         double vida= oponente.getPuntosVida();
         jinete.setModoAtaqueMedio();
-        jinete.atacar(oponente);
+        jinete.ejecutarUnModoDeAtaque(oponente);
         assertEquals(vida-15,oponente.getPuntosVida(),0.05);
     }
 
@@ -51,7 +51,7 @@ public class JineteTest {
         Catapulta oponente = new Catapulta();
         double vida= oponente.getPuntosVida();
         jinete.setModoAtaqueCuerpoCuerpo();
-        jinete.atacar(oponente);
+        jinete.ejecutarUnModoDeAtaque(oponente);
         assertEquals(vida-5,oponente.getPuntosVida(),0.05);
     }
 
@@ -61,17 +61,17 @@ public class JineteTest {
         Catapulta oponente = new Catapulta();
         double vida= oponente.getPuntosVida();
         jinete.setModoAtaqueCuerpoCuerpo();
-        jinete.atacar(oponente);
+        jinete.ejecutarUnModoDeAtaque(oponente);
         assertEquals(vida-5,oponente.getPuntosVida(),0.05);
 
         vida -= 5;
         jinete.setModoAtaqueMedio();
-        jinete.atacar(oponente);
+        jinete.ejecutarUnModoDeAtaque(oponente);
         assertEquals(vida-15,oponente.getPuntosVida(),0.05);
 
         vida-=15;
         jinete.setModoAtaqueCuerpoCuerpo();
-        jinete.atacar(oponente);
+        jinete.ejecutarUnModoDeAtaque(oponente);
         assertEquals(vida-5,oponente.getPuntosVida(),0.05);
     }
 

@@ -4,6 +4,7 @@ import pieza.Pieza;
 import pieza.UnidadEstaMuertaException;
 import pieza.movimiento.IModoMovimiento;
 import pieza.sanacion.IModoSanacion;
+import tablero.Tablero;
 
 public class PiezaAtacante extends Pieza {
     private int danioCuerpoCuerpo;
@@ -33,7 +34,10 @@ public class PiezaAtacante extends Pieza {
         return danioMedio;
     }
 
-    public void atacar(Pieza oponente) throws UnidadEstaMuertaException {
-        modoAtaque.atacar(this,oponente,this.ubicacion.getDistanciaAOtroPunto(oponente.getUbicacion()));
+    public void atacar(Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
+    }
+
+    public void ejecutarUnModoDeAtaque(Pieza oponente) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException {
+        modoAtaque.atacar(this, oponente ,this.ubicacion.getDistanciaAOtroPunto(oponente.getUbicacion()));
     }
 }

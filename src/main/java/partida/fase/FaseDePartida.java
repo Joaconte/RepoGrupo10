@@ -2,11 +2,10 @@ package partida.fase;
 
 import jugador.Jugador;
 import jugador.PiezaFueraDeSectorException;
-import pieza.tipos.JineteNoAsediadoException;
+import pieza.UnidadEstaMuertaException;
+import pieza.ataque.DistanciaDeAtaqueInvalidaException;
+import pieza.ataque.PiezaAtacante;
 import pieza.Pieza;
-import pieza.tipos.Catapulta;
-import pieza.tipos.Infanteria;
-import pieza.tipos.Jinete;
 import tablero.Tablero;
 
 public interface FaseDePartida{
@@ -19,7 +18,7 @@ public interface FaseDePartida{
 
     String darNombreDeFase();
 
-    void atacar(Pieza atacante, Pieza atacada, Tablero tablero);
+    void atacar(PiezaAtacante atacante, Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException;
 
     void agregarNuevaUbicacionAFicha(Jugador jugadorEnTurno, Pieza pieza, int posicionX, int posicionY) throws PiezaFueraDeSectorException;
 

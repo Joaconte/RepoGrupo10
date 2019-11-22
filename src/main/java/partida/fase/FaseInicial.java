@@ -2,11 +2,8 @@ package partida.fase;
 
 import jugador.Jugador;
 import jugador.PiezaFueraDeSectorException;
-import pieza.tipos.JineteNoAsediadoException;
+import pieza.ataque.PiezaAtacante;
 import pieza.Pieza;
-import pieza.tipos.Catapulta;
-import pieza.tipos.Infanteria;
-import pieza.tipos.Jinete;
 import tablero.Tablero;
 
 public class FaseInicial implements FaseDePartida{
@@ -31,7 +28,7 @@ public class FaseInicial implements FaseDePartida{
 
     //Ataques y curacion
     @Override
-    public void atacar(Pieza atacante, Pieza atacada, Tablero tablero) {
+    public void atacar(PiezaAtacante atacante, Pieza atacada, Tablero tablero) {
         String texto = "La nada misma";
     }
 

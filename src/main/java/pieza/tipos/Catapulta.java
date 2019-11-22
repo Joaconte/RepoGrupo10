@@ -1,13 +1,14 @@
 package pieza.tipos;
 
-import pieza.ataque.AtaqueADistancia;
-import pieza.ataque.IModoAtaque;
-import pieza.ataque.PiezaAtacante;
+import pieza.Pieza;
+import pieza.UnidadEstaMuertaException;
+import pieza.ataque.*;
 import pieza.movimiento.IModoMovimiento;
 import pieza.movimiento.SinMovimientos;
 
 import pieza.sanacion.IModoSanacion;
 import pieza.sanacion.SinSanacion;
+import tablero.Tablero;
 
 public class Catapulta extends PiezaAtacante {
     static final int COSTO = 5;
@@ -24,4 +25,9 @@ public class Catapulta extends PiezaAtacante {
         super(COSTO, VIDA_MAXIMA, VIDA_MAXIMA, equipo, MOVIMIENTO, MODO_CURACION,  ATAQUE, DANIO_CUERPO, DANIO_MEDIO, DANIO_DISTANCIA);
     }
 
+    @Override
+    public void atacar(Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
+        if(!this.esEnemigo(atacada)){ throw new PiezaAliadaNoAtacableException();}
+        super.ejecutarUnModoDeAtaque(atacada);
+    }
 }

@@ -18,7 +18,7 @@ public class AtaquesTest {
         soldado.setEquipo(1); // mismo equipo. Hace daño a aliados?
         oponente.setEquipo(1);
         vidaOponente = oponente.getPuntosVida();
-        soldado.atacar(oponente);
+        soldado.ejecutarUnModoDeAtaque(oponente);
         assertEquals(vidaOponente-10, oponente.getPuntosVida(),0.05);
     }
 
@@ -31,7 +31,7 @@ public class AtaquesTest {
         oponente.setEquipo(2);
         vidaOponente = oponente.getPuntosVida();
         jinete.setModoAtaqueCuerpoCuerpo();
-        jinete.atacar(oponente);
+        jinete.ejecutarUnModoDeAtaque(oponente);
         assertEquals(vidaOponente-5, oponente.getPuntosVida(),0.05);
     }
 
@@ -44,7 +44,7 @@ public class AtaquesTest {
         oponente.setEquipo(2);
         vidaOponente = oponente.getPuntosVida();
         jinete.setModoAtaqueMedio();
-        jinete.atacar(oponente);
+        jinete.ejecutarUnModoDeAtaque(oponente);
         assertEquals(vidaOponente-15, oponente.getPuntosVida(),0.05);
     }
 
@@ -56,7 +56,7 @@ public class AtaquesTest {
         catapulta.setEquipo(1);
         oponente.setEquipo(2);
         vidaOponente = oponente.getPuntosVida();
-        catapulta.atacar(oponente);
+        catapulta.ejecutarUnModoDeAtaque(oponente);
         assertEquals(vidaOponente-20, oponente.getPuntosVida(),0.05);
     }
 }

@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import pieza.ataque.PiezaAliadaNoAtacableException;
 
 public class PartidaTest {
 

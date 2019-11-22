@@ -24,7 +24,7 @@ public class EstadoPresupuestoNoAgotadoTest {
     public void test03PresupuestoSeAgotaYSaleDelEstadoNoAgotadoCorrectamente() {
         EstadoPresupuestoNoAgotado estado = new EstadoPresupuestoNoAgotado(3);
         Ejercito ejercito = new Ejercito(1);
-        estado.agregarPiezas(ejercito, 3);
+        estado.comprarPieza(ejercito, 3);
         assertNotSame(estado, estado.devolverEstadoDePresuesto());
     }
 
@@ -32,7 +32,7 @@ public class EstadoPresupuestoNoAgotadoTest {
     public void test04NoPuedoAgregarUnaFichaDeValor5EntoncesNoSeGastaElPresupuestoDeValor3YNoCambiaDeEstado() {
         EstadoPresupuestoNoAgotado estadoNoAgotado = new EstadoPresupuestoNoAgotado(3);
         Ejercito ejercito = new Ejercito(1);
-        estadoNoAgotado.agregarPiezas(ejercito, 5);
+        estadoNoAgotado.comprarPieza(ejercito, 5);
         assertEquals(estadoNoAgotado, estadoNoAgotado.devolverEstadoDePresuesto());
     }
 
@@ -40,7 +40,7 @@ public class EstadoPresupuestoNoAgotadoTest {
     public void test05PidoUnaPiezaDeCostoInvalidoYNoHaceNada(){
         EstadoPresupuestoNoAgotado estado = new EstadoPresupuestoNoAgotado(10);
         Ejercito ejercito = new Ejercito(1);
-        estado.agregarPiezas(ejercito, 10);
+        estado.comprarPieza(ejercito, 10);
         assertEquals(0, ejercito.getTamanio());
     }
 

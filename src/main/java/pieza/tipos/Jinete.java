@@ -2,15 +2,12 @@ package pieza.tipos;
 
 import pieza.Pieza;
 import pieza.UnidadEstaMuertaException;
-import pieza.ataque.AtaqueVariable;
-import pieza.ataque.PiezaAtacante;
+import pieza.ataque.*;
 import pieza.movimiento.IModoMovimiento;
 import pieza.movimiento.SeMueveEnTodasDirecciones;
 import pieza.sanacion.IModoSanacion;
 import pieza.sanacion.SanacionNormal;
 import tablero.Tablero;
-
-import java.util.ArrayList;
 
 public class Jinete extends PiezaAtacante {
     static final int COSTO = 3;
@@ -20,24 +17,33 @@ public class Jinete extends PiezaAtacante {
     static final int DANIO_DISTANCIA = 0;
     static final IModoMovimiento MOVIMIENTO = new SeMueveEnTodasDirecciones();
     static final IModoSanacion MODO_CURACION = new SanacionNormal();
+    static final IModoAtaque MODO_ATAQUE = new AtaqueVariable();
 
     public Jinete(int equipo) {
-        super(COSTO, VIDA_MAXIMA, VIDA_MAXIMA, equipo, MOVIMIENTO,  MODO_CURACION, new AtaqueVariable(),DANIO_CUERPO, DANIO_MEDIO,DANIO_DISTANCIA);
+        super(COSTO, VIDA_MAXIMA, VIDA_MAXIMA, equipo, MOVIMIENTO,  MODO_CURACION, MODO_ATAQUE,DANIO_CUERPO, DANIO_MEDIO,DANIO_DISTANCIA);
     }
 
 
-    public void atacar(Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException {
-        super.atacar(atacada);
+    @Override
+    public void atacar(Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
+        if(!this.esEnemigo(atacada)){ throw new PiezaAliadaNoAtacableException();}
+        obtenerModoDeAtaque(tablero);
+        super.ejecutarUnModoDeAtaque(atacada);
     }
 
 
     public void obtenerModoDeAtaque(Tablero tablero) {
         boolean estaAsediado=false;
-        ArrayList<Pieza> = tablero.getPiezasEntreRangos()
-        if (piezas.size()!=0){estaAsediado=true;}
-        for (int i=0; i <piezas.size(); i++ ){
-            if ((!this.esEnemigo(piezas.get(i))) && piezas.get(i).getCosto() == 1){ estaAsediado=false; }
+        Object[] piezas = tablero.getPiezasAdyacentes(this.ubicacion);
+        if (piezas.length!=0){estaAsediado=true;}
+
+        for (int i=0; i <piezas.length; i++ ){
+            Pieza pieza = (Pieza) piezas[i];
+            if ((!this.esEnemigo(pieza)) && pieza.getCosto() == 1){ estaAsediado=false; }
         }
+
+        if (estaAsediado){ MODO_ATAQUE.setModoAtaque(new AtaqueCuerpoACuerpo()); }
+        else {MODO_ATAQUE.setModoAtaque(new AtaqueMedio());}
     }
 
 

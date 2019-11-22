@@ -1,7 +1,7 @@
 package jugador.presupuesto;
 
-import jugador.Ejercito;
 import jugador.FabricaDePiezas;
+import pieza.Pieza;
 
 public class EstadoPresupuestoNoAgotado implements EstadoPresupuestoDeEjercito{
 
@@ -9,25 +9,24 @@ public class EstadoPresupuestoNoAgotado implements EstadoPresupuestoDeEjercito{
     private FabricaDePiezas fabricaDePiezas = new FabricaDePiezas();
 
     /*----Inicializador-----*/
+
     public EstadoPresupuestoNoAgotado(int presupuesto){
         this.presupuesto =presupuesto;
     }
 
     /*----Metodos internos-----*/
-    private boolean costoEsValido(int costoUnidad){
-        return ((this.presupuesto >= costoUnidad) && costoUnidad > 0);
-    }
+
     private void setPresupuesto(int unValor){
         this.presupuesto = unValor;
     }
 
 
     @Override
-    public void agregarPiezas(Ejercito ejercito, int costoUnidad) {
-        if (this.costoEsValido(costoUnidad)) {
-            fabricaDePiezas.agregarPieza(ejercito,costoUnidad);
-            this.setPresupuesto(this.presupuesto - costoUnidad);
-        }
+    public Pieza comprarPieza(int ejercito, String nombreUnidad) throws CompraInvalidaException {
+        Pieza pieza = fabricaDePiezas.crearPieza(ejercito,nombreUnidad);
+        if (presupuesto-pieza.getCosto()<0){throw new CompraInvalidaException();}
+        this.setPresupuesto(this.presupuesto - pieza.getCosto());
+        return pieza;
     }
 
     @Override

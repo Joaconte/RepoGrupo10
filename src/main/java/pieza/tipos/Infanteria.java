@@ -2,9 +2,7 @@ package pieza.tipos;
 
 import pieza.Pieza;
 import pieza.UnidadEstaMuertaException;
-import pieza.ataque.AtaqueCuerpoACuerpo;
-import pieza.ataque.IModoAtaque;
-import pieza.ataque.PiezaAtacante;
+import pieza.ataque.*;
 import pieza.movimiento.IModoMovimiento;
 import pieza.movimiento.SeMueveEnTodasDirecciones;
 import pieza.sanacion.IModoSanacion;
@@ -26,7 +24,9 @@ public class Infanteria extends PiezaAtacante {
 
     }
 
-    public void atacar(Pieza oponente, Tablero tablero) throws UnidadEstaMuertaException {
-        super.atacar(oponente);
+    @Override
+    public void atacar(Pieza oponente, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
+        if(!this.esEnemigo(oponente)){ throw new PiezaAliadaNoAtacableException();}
+        super.ejecutarUnModoDeAtaque(oponente);
     }
 }

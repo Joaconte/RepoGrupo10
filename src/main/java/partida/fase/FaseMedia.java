@@ -1,14 +1,14 @@
 package partida.fase;
 
 import jugador.Jugador;
-import pieza.tipos.JineteNoAsediadoException;
+import pieza.UnidadEstaMuertaException;
+import pieza.ataque.DistanciaDeAtaqueInvalidaException;
+import pieza.ataque.PiezaAtacante;
 import pieza.Pieza;
-import pieza.tipos.*;
 import tablero.Tablero;
 
 public class FaseMedia implements FaseDePartida{
 
-    private GestorDeAtaque gestorDeAtaque = new GestorDeAtaque();
     private boolean jugadorYaAtacoOCuro = false;
     private boolean jugadorYaMovio = false;
     private boolean jugadorPasoTurno =false;
@@ -33,11 +33,9 @@ public class FaseMedia implements FaseDePartida{
 
     //Ataques o cura
     @Override
-    public void atacar(Pieza atacante, Pieza atacada, Tablero tablero) {
+    public void atacar(PiezaAtacante atacante, Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException {
         atacante.atacar(atacada,tablero);
     }
-
-
 
     //Colocacion y movimiento
 

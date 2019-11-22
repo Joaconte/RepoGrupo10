@@ -1,12 +1,12 @@
 package jugador.presupuesto;
 
-import jugador.Ejercito;
+import pieza.Pieza;
 
 public interface EstadoPresupuestoDeEjercito {
 
     //Metodos abstractos implementados por las subclases
 
-    public void agregarPiezas(Ejercito ejercito, int costoUnidad);
-    public EstadoPresupuestoDeEjercito devolverEstadoDePresuesto();
+    Pieza comprarPieza(int ejercito, String nombreUnidad) throws PresupuestoAgotadoException, CompraInvalidaException;
+    EstadoPresupuestoDeEjercito devolverEstadoDePresuesto();
 
 }

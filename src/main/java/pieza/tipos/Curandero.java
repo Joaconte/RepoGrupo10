@@ -21,7 +21,7 @@ public class Curandero extends Pieza {
     }
 
     public void curarAAliado(Pieza unaUndidadCurable) throws CurandoAEnemigoException, UnidadNoSePuedeCurar {
-        if ( this.equipo != unaUndidadCurable.getEquipo()) {
+        if ( super.getEquipo() != unaUndidadCurable.getEquipo()) {
             throw new CurandoAEnemigoException();
         }
         unaUndidadCurable.sanar(PUNTOS_DE_CURACION);

@@ -11,11 +11,11 @@ public abstract class Pieza {
     protected Ubicacion ubicacion;
     private int equipo;
     // strategy pattern
-    private IModoMovimiento movimiento;
-    private IModoRecibirDanio comoRecibeDanio; // como recibe danio
-    private IModoSanacion sanacion;
+    private IModoMovimiento modoMovimiento;
+    private IModoRecibirDanio modoRecibirDanio; 
+    private IModoSanacion modoSanacion;
 
-    public Pieza(int costo, int vidaMaxima, double vida,  int equipo, IModoMovimiento movimiento,IModoSanacion modoSanacion) {
+    public Pieza(int costo, int vidaMaxima, double vida, int equipo, IModoMovimiento modoMovimiento, IModoSanacion modoSanacion) {
     }
 
 
@@ -44,21 +44,21 @@ public abstract class Pieza {
     // METODOS
 
     public void enZonaEnemiga(){
-        this.comoRecibeDanio = new DanioZonaEnemiga();
+        this.modoRecibirDanio = new DanioZonaEnemiga();
     }
     public void enZonaAliada(){
-        this.comoRecibeDanio = new DanioZonaPropia();
+        this.modoRecibirDanio = new DanioZonaPropia();
     }
 
     // ver q no deje en negativos--- exceptions
     public void recibirDanio(double danioBase) throws UnidadEstaMuertaException {
         if (vida<=0) throw new UnidadEstaMuertaException();
-        vida-=comoRecibeDanio.danio(danioBase);
+        vida-= modoRecibirDanio.danio(danioBase);
 
     }
 
     public void sanar(int puntos) throws UnidadNoSePuedeCurar {
-        vida += sanacion.restaurarPuntosDeVida(puntos);
+        vida += modoSanacion.restaurarPuntosDeVida(puntos);
         vida = Math.min(vida, VIDA_MAXIMA);
     }
 
@@ -68,7 +68,8 @@ public abstract class Pieza {
     }
     */
     public void moverArriba() throws NoSePuedeMoverException {
-        Ubicacion nueva = movimiento.arriba(this.getUbicacion());
+        Ubicacion nueva = modoMovimiento.arriba(this.getUbicacion());
         this.setUbicacion(nueva);
     }
+    ;
 }

@@ -8,7 +8,7 @@ public class AtaqueVariable implements IModoAtaque {
     private IModoAtaque modoAtaque;
 
     @Override
-    public void atacar(PiezaAtacante miUnidad, Pieza victima, int distancia) throws UnidadEstaMuertaException {
+    public void atacar(PiezaAtacante miUnidad, Pieza victima, int distancia) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException {
         modoAtaque.atacar(miUnidad,victima,distancia);
     }
 

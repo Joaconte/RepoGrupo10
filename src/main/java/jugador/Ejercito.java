@@ -2,7 +2,6 @@ package jugador;
 
 import jugador.presupuesto.*;
 import pieza.Pieza;
-import pieza.Ubicacion;
 
 import java.util.ArrayList;
 
@@ -35,11 +34,10 @@ public class Ejercito{
 
     //-----------Add-Remove-----------//
 
-    public void comprarPieza (String unidadNombre) {
-        piezas.add(presupuesto.agregarPiezas(numeroDeEjercito, unidadNombre);
+    public void comprarPieza (String unidadNombre) throws PresupuestoAgotadoException, CompraInvalidaException {
+        piezas.add(presupuesto.comprarPieza(numeroDeEjercito, unidadNombre));
         this.setEstadoPresupuesto(this.presupuesto);
     }
-
 
 
 }

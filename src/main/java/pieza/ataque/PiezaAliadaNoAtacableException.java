@@ -1,4 +1,4 @@
-package partida;
+package pieza.ataque;
 
 public class PiezaAliadaNoAtacableException extends Exception {
     public PiezaAliadaNoAtacableException() {

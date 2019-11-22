@@ -1,17 +1,15 @@
 package partida;
 
-import jugador.PiezaFueraDeSectorException;
 import jugador.Sector;
-import pieza.tipos.JineteNoAsediadoException;
+import pieza.UnidadEstaMuertaException;
+import pieza.ataque.DistanciaDeAtaqueInvalidaException;
+import pieza.ataque.PiezaAliadaNoAtacableException;
+import pieza.ataque.PiezaAtacante;
 
 import partida.fase.*;
-import pieza.tipos.*;
 import tablero.Tablero;
 import pieza.Pieza;
 import jugador.Jugador;
-import tablero.casilla.CasillaTieneUnidadException;
-
-import java.util.ArrayList;
 
 
 public class Partida {
@@ -54,12 +52,6 @@ public class Partida {
     }
 
 
-    public void agregarNuevaUbicacionAFicha(Pieza pieza, int posicionX, int posicionY) throws CasillaTieneUnidadException, JugadorNoPuedeException, PiezaFueraDeSectorException {
-        validarUnMovimiento(pieza, posicionX, posicionY);
-        miFase.agregarNuevaUbicacionAFicha(jugadorEnTurno, pieza, posicionX, posicionY);
-        tableroDePartida.ocuparCasilla(pieza, posicionX, posicionY);
-    }
-
     public void moverUnidadEnTablero(Pieza pieza, int unaPosicionInicial, int unaPosicionFinal){
         miFase.moverUnidadEnTablero(pieza, unaPosicionInicial,unaPosicionFinal);
         moverUnidadEnTablero(pieza, unaPosicionInicial,unaPosicionFinal);
@@ -73,9 +65,8 @@ public class Partida {
         return miFase.darNombreDeFase();
     }
 
-    void atacar(Pieza atacante, Pieza atacada) throws JugadorNoPuedeException,PiezaAliadaNoAtacableException {
-        validarUnAtaque(atacante, atacada);
-        miFase.atacar(atacada, atacante, tablero);
+    void atacar(PiezaAtacante atacante, Pieza atacada) throws JugadorNoPuedeException, PiezaAliadaNoAtacableException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException {
+        miFase.atacar(atacante, atacada, tableroDePartida);
     }
 
 
@@ -83,14 +74,9 @@ public class Partida {
     //---------------Validaciones-Actualizaciones-----------
 
     void validarUnAtaque(Pieza atacante, Pieza atacada)throws PiezaAliadaNoAtacableException,JugadorNoPuedeException{
-        if(!atacante.esEnemigo(atacada)){ throw new PiezaAliadaNoAtacableException();}
         if(atacante.getEquipo() != jugadorEnTurno.getNumeroDeJugador()){ throw new JugadorNoPuedeException();}
     }
 
-    void validarUnMovimiento(Pieza pieza, int posicionX, int posicionY)throws CasillaTieneUnidadException,JugadorNoPuedeException{
-        if(tableroDePartida.casillaEstaOcupada(posicionX, posicionY)== true ){ throw new CasillaTieneUnidadException();}
-        if(pieza.getEquipo() != jugadorEnTurno.getNumeroDeJugador()) { throw new JugadorNoPuedeException();}
-        }
 
 
     public void setDanioPorAtaque(Pieza atacante, Pieza atacada) {
