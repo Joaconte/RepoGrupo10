@@ -44,15 +44,6 @@ public class Tablero {
         return unaColumna.casillaDeLaFilaEstaOcupada(numeroDeLaFila);
     }
 
-    // debería ser privado
-    public ArrayList<Pieza> buscarPiezasEnCasillas(ArrayList<Casilla> lista){
-
-        ArrayList<Pieza> piezasAdyacentes = new ArrayList<Pieza>();
-        for (int i = 0; i < lista.size() ; i++){
-            piezasAdyacentes.add( lista.get(i).getContenido());
-        }
-        return piezasAdyacentes;
-    }
 
     /* POR SI LAS DUDAS
     private ArrayList<Casilla> getCasillasPorRango(Ubicacion ubicacion, int rango){
@@ -136,6 +127,11 @@ public class Tablero {
         }
 
         return listadoDeCasillas;
+    }
+
+    public Object[] getPiezasAdyacentes(Ubicacion ubicacion){
+
+        return getPiezasEntreRangos(ubicacion, 1, 1);
     }
 
     public Object[] getPiezasEntreRangos(Ubicacion ubicacion, int rangoInicial, int rangoFinal) {
