@@ -14,7 +14,7 @@ public class Batallon {
         soldados.add(segundoSoldado);
         soldados.add(tercerSoldado);
     }
-    
+
     /*
     public void moverBatallon(Ubicacion ubicacionActual, Ubicacion miNuevaUbicacion){
 

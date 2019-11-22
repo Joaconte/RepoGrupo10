@@ -79,6 +79,7 @@ public class Partida {
     }
 
 
+
     //---------------Validaciones-Actualizaciones-----------
 
     void validarUnAtaque(Pieza atacante, Pieza atacada)throws PiezaAliadaNoAtacableException,JugadorNoPuedeException{
@@ -87,9 +88,10 @@ public class Partida {
     }
 
     void validarUnMovimiento(Pieza pieza, int posicionX, int posicionY)throws CasillaTieneUnidadException,JugadorNoPuedeException{
-        if(tableroDePartida.getEstadoCasilla(posicionX, posicionY)=="Ocupada"){ throw new CasillaTieneUnidadException();}
+        if(tableroDePartida.casillaEstaOcupada(posicionX, posicionY)== true ){ throw new CasillaTieneUnidadException();}
         if(pieza.getEquipo() != jugadorEnTurno.getNumeroDeJugador()) { throw new JugadorNoPuedeException();}
         }
+
 
     public void setDanioPorAtaque(Pieza atacante, Pieza atacada) {
         //Version para nada definitiva.

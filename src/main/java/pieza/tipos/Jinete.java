@@ -1,12 +1,14 @@
 package pieza.tipos;
 
 import pieza.Pieza;
+import pieza.UnidadEstaMuertaException;
 import pieza.ataque.AtaqueVariable;
 import pieza.ataque.PiezaAtacante;
 import pieza.movimiento.IModoMovimiento;
 import pieza.movimiento.SeMueveEnTodasDirecciones;
 import pieza.sanacion.IModoSanacion;
 import pieza.sanacion.SanacionNormal;
+import tablero.Tablero;
 
 import java.util.ArrayList;
 
@@ -24,14 +26,14 @@ public class Jinete extends PiezaAtacante {
     }
 
 
-    public void atacar(Pieza atacada, Tablero tablero) {
-
-
+    public void atacar(Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException {
+        super.atacar(atacada);
     }
 
 
-    public void obtenerModoDeAtaque(ArrayList<Pieza> piezas) {
+    public void obtenerModoDeAtaque(Tablero tablero) {
         boolean estaAsediado=false;
+        ArrayList<Pieza> = tablero.getPiezasEntreRangos()
         if (piezas.size()!=0){estaAsediado=true;}
         for (int i=0; i <piezas.size(); i++ ){
             if ((!this.esEnemigo(piezas.get(i))) && piezas.get(i).getCosto() == 1){ estaAsediado=false; }

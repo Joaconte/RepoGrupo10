@@ -7,8 +7,8 @@ public  class  Casilla {
 
     private EstadoCasilla estadoCasilla = new CasillaLibre();
 
-    public String getEstado() {
-        return estadoCasilla.getEstado();
+    public boolean estaOcupada() {
+        return estadoCasilla.estaOcupada();
     }
 
     public void ocuparCasilla(Pieza pieza){

@@ -12,8 +12,8 @@ public class CasillaOcupada implements EstadoCasilla{
     }
 
     @Override
-    public String getEstado() {
-        return "Ocupada";
+    public boolean estaOcupada() {
+        return true;
     }
 
     @Override

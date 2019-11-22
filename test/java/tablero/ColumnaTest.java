@@ -17,7 +17,7 @@ public class ColumnaTest {
     public void test02ElEstadoDeLasCasillasDeUnaColumnaNuevaEsLibre(){
         Columna columna = new Columna(1,20);
         for (int numeroCasilla=1; numeroCasilla <  21; numeroCasilla++)
-            assertEquals("Libre",columna.getEstadoCasillaDeLaFila(numeroCasilla));
+            assertEquals("Libre",columna.casillaDeLaFilaEstaOcupada(numeroCasilla));
     }
 
     @Test
@@ -25,7 +25,7 @@ public class ColumnaTest {
         Columna columna = new Columna(1,20);
         Pieza pieza = Mockito.mock(Pieza.class);
         columna.ocuparCasilla(pieza, 1);
-        assertEquals("Ocupada",columna.getEstadoCasillaDeLaFila(1));
+        assertEquals("Ocupada",columna.casillaDeLaFilaEstaOcupada(1));
     }
 
     @Test
@@ -34,7 +34,7 @@ public class ColumnaTest {
         Pieza pieza = Mockito.mock(Pieza.class);
         columna.ocuparCasilla(pieza, 1);
         columna.desocuparCasilla(1);
-        assertEquals("Libre",columna.getEstadoCasillaDeLaFila(1));
+        assertEquals("Libre",columna.casillaDeLaFilaEstaOcupada(1));
     }
 
     @Test
@@ -42,7 +42,7 @@ public class ColumnaTest {
         Columna columna = new Columna(1,20);
         Pieza pieza = Mockito.mock(Pieza.class);
         columna.ocuparCasilla(pieza, 1);
-        assertEquals("Libre",columna.getEstadoCasillaDeLaFila(2));
+        assertEquals("Libre",columna.casillaDeLaFilaEstaOcupada(2));
     }
 
     @Test
@@ -52,6 +52,6 @@ public class ColumnaTest {
         columna.ocuparCasilla(pieza, 1);
         columna.ocuparCasilla(pieza, 2);
         columna.desocuparCasilla(1);
-        assertEquals("Ocupada",columna.getEstadoCasillaDeLaFila(2));
+        assertEquals("Ocupada",columna.casillaDeLaFilaEstaOcupada(2));
     }
 }

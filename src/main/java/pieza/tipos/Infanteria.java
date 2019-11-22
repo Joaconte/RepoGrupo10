@@ -1,6 +1,7 @@
 package pieza.tipos;
 
 import pieza.Pieza;
+import pieza.UnidadEstaMuertaException;
 import pieza.ataque.AtaqueCuerpoACuerpo;
 import pieza.ataque.IModoAtaque;
 import pieza.ataque.PiezaAtacante;
@@ -8,6 +9,7 @@ import pieza.movimiento.IModoMovimiento;
 import pieza.movimiento.SeMueveEnTodasDirecciones;
 import pieza.sanacion.IModoSanacion;
 import pieza.sanacion.SanacionNormal;
+import tablero.Tablero;
 
 public class Infanteria extends PiezaAtacante {
     static final int COSTO = 1;
@@ -24,5 +26,7 @@ public class Infanteria extends PiezaAtacante {
 
     }
 
-
+    public void atacar(Pieza oponente, Tablero tablero) throws UnidadEstaMuertaException {
+        super.atacar(oponente);
+    }
 }
