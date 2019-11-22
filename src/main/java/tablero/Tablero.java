@@ -5,6 +5,7 @@ import pieza.Ubicacion;
 import tablero.casilla.Casilla;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Tablero {
@@ -23,22 +24,27 @@ public class Tablero {
         unaColumna.ocuparCasilla(pieza, numeroDeFila);
     }
 
+    // se usa solo en pruebas
     public void desocuparCasilla(int numeroDeColumna, int numeroDeFila){
         Columna unaColumna = columnas.get(numeroDeColumna-1);
         unaColumna.desocuparCasilla(numeroDeFila);
     }
 
     public int getTamanio(){
-        return FILAS * COLUMNAS; }
+        return FILAS * COLUMNAS;
+    }
 
     public int getCantidadColumnasCreadas(){
-        return columnas.size(); }
+        return columnas.size();
+    }
 
+    // solo se usa en las pruebas, además devuelve string cuando la consulta puede ser booleana
     public String getEstadoCasilla(int numeroDeLaColumna, int numeroDeLaFila){
         Columna unaColumna = columnas.get(numeroDeLaColumna-1);
         return unaColumna.getEstadoCasillaDeLaFila(numeroDeLaFila);
     }
 
+    // no se usa desde afuera, debería ser privado
     public Casilla getCasilla(Ubicacion ubicacion){
         return columnas.get(ubicacion.getPosicionEnX()-1).getCasilla(ubicacion.getPosicionEnY());
     }
@@ -50,7 +56,7 @@ public class Tablero {
         return buscarPiezasEnCasillas(casillasAdyacentes);
     }
 
-
+    // faltan pruebas
     public ArrayList<Casilla> getCasillasLibresEnAdyacencia(Ubicacion ubicacionOcupada) {
         GestorDeMovimientos gestorDeMovimientos = new GestorDeMovimientos();
         return gestorDeMovimientos.buscarCasillasLibresAdyacentes(ubicacionOcupada, columnas);
@@ -65,6 +71,17 @@ public class Tablero {
 
     }
 
+//    public List<Pieza> piezasEnTornoAPosicion(Ubicacion ubicacion) {
+//        this.casillasAdyascentesA(ubicacion).stream()
+//                .filter(c -> c.getEstado().equals("Libre"))
+//                .map(c -> c.getContenido())
+//                .toArray();
+//    }
+//    private List<Casilla> casillasAdyascentesA(Ubicacion ubicacion) {
+//        return Collections.emptyList();
+//    }
+
+    // debería ser privado
     public ArrayList<Pieza> buscarPiezasEnCasillas(ArrayList<Casilla> lista){
 
         ArrayList<Pieza> piezasAdyacentes = new ArrayList<Pieza>();

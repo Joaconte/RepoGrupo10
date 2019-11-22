@@ -4,6 +4,7 @@ import pieza.Pieza;
 
 public class CasillaLibre implements EstadoCasilla {
 
+    // repetido en CasillaOcupada y CasillaLibre. Ajeno a las responsabilidades de CAsilla
     boolean fueVisitada=false;
 
     @Override

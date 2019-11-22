@@ -7,7 +7,7 @@ import tablero.casilla.Casilla;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BuscadorCasillasAdyacentes extends SeMueveEnTodasDirecciones {
+public class BuscadorCasillasAdyacentes {
 
     private ArrayList<Casilla> listadoDeCasillaOcupadas;
     protected ArrayList<Ubicacion> siguientesUbicaciones = new ArrayList<>();

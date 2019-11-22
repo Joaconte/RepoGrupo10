@@ -6,13 +6,14 @@ import tablero.casilla.Casilla;
 import java.util.ArrayList;
 import java.util.List;
 
+// revisar el nombre. No es representativo de lo que hace
+// no tiene estado. No será que las responsabilidades tienen que estar en otro objeto? Tal vez Tablero
 public class GestorDeMovimientos {
 
     public ArrayList<Casilla> buscarCasillasLibresAdyacentes(Ubicacion ubicacion, List<Columna> columnas){
         ArrayList<Casilla> resultado = buscarLibresYAdyacentes(ubicacion, columnas);
         return resultado;
     }
-
 
     public ArrayList<Casilla> buscarLibresYAdyacentes(Ubicacion ubicacion, List<Columna> columnas){
         ArrayList<Casilla> listadoDeCasillasLibres = new ArrayList<Casilla>();
@@ -58,6 +59,6 @@ public class GestorDeMovimientos {
     }
 
     public boolean estaLibreLaCasilla(Casilla casilla){
-        return (casilla.getEstado() == "Libre");
+        return (casilla.getEstado().equals("Libre"));
     }
 }
