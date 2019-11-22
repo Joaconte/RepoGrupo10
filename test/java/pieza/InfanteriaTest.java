@@ -9,34 +9,37 @@ import static org.junit.Assert.assertTrue;
 public class InfanteriaTest {
     @Test
     public void test01InfanteriaTieneCosto1() {
-        Infanteria soldado = new Infanteria();
+        Infanteria soldado = new Infanteria(1);
         assertEquals(1, soldado.getCosto());
     }
 
     @Test
     public void test02InfanteriaTiene100DeVidaAlIniciar() {
-        Infanteria soldado = new Infanteria();
+        Infanteria soldado = new Infanteria(1);
         assertEquals(100, soldado.getPuntosVida(),0.05);
     }
 
     @Test
-    public void test03InfanteriaRecibe10DeDanio_vida90() {
-        Infanteria soldado = new Infanteria();
+    public void test03InfanteriaRecibe10DeDanio_vida90() throws UnidadEstaMuertaException {
+        Infanteria soldado = new Infanteria(1);
         double vida = soldado.getPuntosVida();
+        soldado.enZonaAliada();
         soldado.recibirDanio(10);
         assertEquals(vida-10, soldado.getPuntosVida(),0.05);
     }
 
     @Test
-    public void test04InfanteriaRecibe100DeDanio_vida0() {
-        Infanteria soldado = new Infanteria();
+    public void test04InfanteriaRecibe100DeDanio_vida0() throws UnidadEstaMuertaException {
+        Infanteria soldado = new Infanteria(1);
+        soldado.enZonaAliada();
         soldado.recibirDanio(100);
         assertEquals(100-100, soldado.getPuntosVida(),0.05);
     }
 
     @Test(expected = UnidadEstaMuertaException.class)
-    public void test05InfanteriaRecibe101DeDanio_ExceptionUnidadMuerta() {
-        Infanteria soldado = new Infanteria();
+    public void test05InfanteriaRecibe101DeDanio_ExceptionUnidadMuerta() throws UnidadEstaMuertaException {
+        Infanteria soldado = new Infanteria(2);
+        soldado.enZonaAliada();
         soldado.recibirDanio(100);
         soldado.recibirDanio(1);
     }

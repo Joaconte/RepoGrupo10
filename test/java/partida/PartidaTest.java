@@ -97,8 +97,10 @@ public class PartidaTest {
         double vidaAtacadoLuegoDelAtaque3 = atacado.getPuntosVida();
         assertEquals(vidaAtacadoAntesDelAtaque, vidaAtacadoLuegoDelAtaque3, 0);
 
-         */
+
     }
+    */
+     /*
 
 
     @Test

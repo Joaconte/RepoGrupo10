@@ -11,14 +11,12 @@ public class Ejercito{
     private int numeroDeEjercito;
     private EstadoPresupuestoDeEjercito presupuesto;
 
-    public Ejercito (){
-        this.presupuesto = new EstadoPresupuestoNoAgotado(20);
-    }
 
     //---------Inicializacion---------//
 
     public Ejercito(int numeroDeJugador) {
         this.numeroDeEjercito =  numeroDeJugador;
+        this.presupuesto = new EstadoPresupuestoNoAgotado(20);
     }
 
     //-----------GETTERS Y SETTERS-----------//

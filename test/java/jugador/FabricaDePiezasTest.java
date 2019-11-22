@@ -1,7 +1,12 @@
 package jugador;
 
+import jugador.presupuesto.CompraInvalidaException;
 import org.junit.Test;
 import pieza.Pieza;
+import pieza.tipos.Catapulta;
+import pieza.tipos.Curandero;
+import pieza.tipos.Infanteria;
+import pieza.tipos.Jinete;
 
 import java.util.ArrayList;
 
@@ -11,47 +16,33 @@ import static org.junit.Assert.assertEquals;
 
 public class FabricaDePiezasTest {
     @Test
-    public void test01PidoUnaPiezaDeCostoUnoYMeDanPiezaDeInfanteria() {
+    public void test01PidoUnaPiezaInfanteriaYMeDanPiezaDeInfanteria() throws CompraInvalidaException {
         FabricaDePiezas fabrica = new FabricaDePiezas();
-        Ejercito ejercito = new Ejercito(1);
-        fabrica.agregarPieza(ejercito,1);
-        ArrayList<Pieza> piezas = ejercito.getPiezas();
-        assertEquals(1, piezas.get(0).getCosto());
+        assertEquals(Infanteria.class, fabrica.crearPieza(1,"Infanteria").getClass());
     }
 
     @Test
-    public void test02PidoUnaPiezaDeCostoDosYMeDanPiezaCurandero() {
+    public void test02PidoUnaPiezaCuranderoYMeDanPiezaCurandero() throws CompraInvalidaException {
         FabricaDePiezas fabrica = new FabricaDePiezas();
-        Ejercito ejercito = new Ejercito(1);
-        fabrica.agregarPieza(ejercito, 2);
-        ArrayList<Pieza> piezas = ejercito.getPiezas();
-        assertEquals(2, piezas.get(0).getCosto());
+        assertEquals(Curandero.class, fabrica.crearPieza(1,"Curandero").getClass());
     }
 
     @Test
-    public void test03PidoUnaPiezaDeCostoTresYMeDanPiezaJinete() {
+    public void test03PidoUnaPiezaJineteYMeDanPiezaJinete() throws CompraInvalidaException {
         FabricaDePiezas fabrica = new FabricaDePiezas();
-        Ejercito ejercito = new Ejercito(1);
-        fabrica.agregarPieza(ejercito,3);
-        ArrayList<Pieza> piezas = ejercito.getPiezas();
-        assertEquals(3, piezas.get(0).getCosto());
+        assertEquals(Jinete.class, fabrica.crearPieza(1,"Jinete").getClass());
     }
 
     @Test
-    public void test04PidoUnaPiezaDeCostoCincoYMeDanPiezaCatapulta() {
+    public void test04PidoUnaPiezaDeCatapultaYMeDanPiezaCatapulta() throws CompraInvalidaException {
         FabricaDePiezas fabrica = new FabricaDePiezas();
-        Ejercito ejercito = new Ejercito(1);
-        fabrica.agregarPieza(ejercito,5);
-        ArrayList<Pieza> piezas = ejercito.getPiezas();
-        assertEquals(5, piezas.get(0).getCosto());
+        assertEquals(Catapulta.class, fabrica.crearPieza(1,"Catapulta").getClass());
     }
 
-    @Test
-    public void test05PidoUnaPiezaDeCostoInvalidoNoMeAgregan(){
+    @Test(expected = CompraInvalidaException.class)
+    public void test05PidoUnaPiezaInvalidaYMeDanException() throws CompraInvalidaException {
         FabricaDePiezas fabrica = new FabricaDePiezas();
-        Ejercito ejercito = new Ejercito(1);
-        fabrica.agregarPieza(ejercito,9);
-        assertEquals(0,ejercito.getTamanio());
+        fabrica.crearPieza(1,"JineteCuranderoConCatapultaArrojaInfantesEnAmarillo");
     }
 
 }

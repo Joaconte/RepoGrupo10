@@ -1,5 +1,6 @@
 package jugador;
 
+import jugador.presupuesto.CompraInvalidaException;
 import jugador.presupuesto.EstadoPresupuestoNoAgotado;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -21,27 +22,16 @@ public class EstadoPresupuestoNoAgotadoTest {
     }
 
     @Test
-    public void test03PresupuestoSeAgotaYSaleDelEstadoNoAgotadoCorrectamente() {
+    public void test03PresupuestoSeAgotaYSaleDelEstadoNoAgotadoCorrectamente() throws CompraInvalidaException {
         EstadoPresupuestoNoAgotado estado = new EstadoPresupuestoNoAgotado(3);
-        Ejercito ejercito = new Ejercito(1);
-        estado.comprarPieza(ejercito, 3);
+        estado.comprarPieza(1, "Jinete");
         assertNotSame(estado, estado.devolverEstadoDePresuesto());
     }
 
-    @Test
-    public void test04NoPuedoAgregarUnaFichaDeValor5EntoncesNoSeGastaElPresupuestoDeValor3YNoCambiaDeEstado() {
+    @Test (expected = CompraInvalidaException.class)
+    public void test04NoPuedoDarUnaFichaDeValor5Teniendo3DePresupuesto() throws CompraInvalidaException {
         EstadoPresupuestoNoAgotado estadoNoAgotado = new EstadoPresupuestoNoAgotado(3);
-        Ejercito ejercito = new Ejercito(1);
-        estadoNoAgotado.comprarPieza(ejercito, 5);
-        assertEquals(estadoNoAgotado, estadoNoAgotado.devolverEstadoDePresuesto());
-    }
-
-    @Test
-    public void test05PidoUnaPiezaDeCostoInvalidoYNoHaceNada(){
-        EstadoPresupuestoNoAgotado estado = new EstadoPresupuestoNoAgotado(10);
-        Ejercito ejercito = new Ejercito(1);
-        estado.comprarPieza(ejercito, 10);
-        assertEquals(0, ejercito.getTamanio());
+        estadoNoAgotado.comprarPieza(1, "Catapulta");
     }
 
 }

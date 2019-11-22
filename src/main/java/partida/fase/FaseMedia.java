@@ -3,6 +3,7 @@ package partida.fase;
 import jugador.Jugador;
 import pieza.UnidadEstaMuertaException;
 import pieza.ataque.DistanciaDeAtaqueInvalidaException;
+import pieza.ataque.PiezaAliadaNoAtacableException;
 import pieza.ataque.PiezaAtacante;
 import pieza.Pieza;
 import tablero.Tablero;
@@ -33,7 +34,7 @@ public class FaseMedia implements FaseDePartida{
 
     //Ataques o cura
     @Override
-    public void atacar(PiezaAtacante atacante, Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException {
+    public void atacar(PiezaAtacante atacante, Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
         atacante.atacar(atacada,tablero);
     }
 

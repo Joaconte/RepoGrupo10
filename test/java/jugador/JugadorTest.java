@@ -32,64 +32,6 @@ public class JugadorTest {
     }
 
 
-    @Test
-    public void test03EjercitoAgrega5UnidadesCorrectamenteCuandoSeCompran(){
-
-        Jugador jugador = new Jugador(1 );
-        jugador.agregarUnidad(1);
-        jugador.agregarUnidad(1);
-        jugador.agregarUnidad(1);
-        jugador.agregarUnidad(1);
-        jugador.agregarUnidad(3);
-        assertEquals( 5 , jugador.getTamanioDelEjercito() );
-    }
-
-    @Test
-    public void test04ConPresupuestoIgualAUnoNoPuedoComprarUnaUnidadDeValorCuatroOTresODos() {
-
-        Jugador jugador = new Jugador(1);
-        EstadoPresupuestoNoAgotado presupuestoEnUno =  new EstadoPresupuestoNoAgotado(1);
-        jugador.setEstadoPresupuesto(presupuestoEnUno);
-
-        jugador.agregarUnidad(5);
-        jugador.agregarUnidad(3);
-        jugador.agregarUnidad(2);
-        assertEquals( 0 , jugador.getTamanioDelEjercito());
-    }
-
-    @Test
-    public void test05JugadorConPresupuestoIgualACeroNoCompraNadaMas() {
-
-        Jugador jugador = new Jugador(1);
-        EstadoPresupuestoNoAgotado presupuestoEnUno =  new EstadoPresupuestoNoAgotado(0);
-        jugador.setEstadoPresupuesto(presupuestoEnUno);
-
-        jugador.agregarUnidad(1);
-        jugador.agregarUnidad(2);
-        jugador.agregarUnidad(3);
-        jugador.agregarUnidad(5);
-
-        assertEquals( 0 , jugador.getTamanioDelEjercito());
-
-    }
-
-    @Test
-    public void test06JugadorCompraConCostoEquivocadoEntoncesNoAgregaNadaASuEjercito(){
-
-        Jugador jugador = new Jugador(1 );
-        jugador.agregarUnidad(4);
-        jugador.agregarUnidad(10);
-
-        assertEquals( 0 , jugador.getTamanioDelEjercito() );
-
-    }
-
-    @Test
-    public void test07JugadorConsultaASectorPorUnaPosicionYLeRetornaRespuestaCorrectamente(){
-        Jugador jugador = new Jugador(1 );
-        assertTrue(jugador.estaEnElSector(new Ubicacion(1,1 )));
-
-    }
 
 
    /* @Test(expected = UbicacionInvalidaException.class)

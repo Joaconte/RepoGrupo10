@@ -13,7 +13,7 @@ public class PiezaAtacante extends Pieza {
 
     private IModoAtaque modoAtaque;
 
-    public PiezaAtacante(int costo, int vidaMaxima, double vida, int equipo, IModoMovimiento movimiento, IModoSanacion modoSanacion,IModoAtaque modoAtaque, int danioCuerpo, int danioDistancia, int danioMedio) {
+    public PiezaAtacante(int costo, int vidaMaxima, double vida, int equipo, IModoMovimiento movimiento, IModoSanacion modoSanacion,IModoAtaque modoAtaque, int danioCuerpo, int danioMedio, int danioDistancia) {
         super(costo, vidaMaxima, vida, equipo, movimiento, modoSanacion);
         this.modoAtaque= modoAtaque;
         this.danioCuerpoCuerpo = danioCuerpo;

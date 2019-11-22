@@ -12,10 +12,17 @@ public abstract class Pieza {
     private int equipo;
     // strategy pattern
     private IModoMovimiento modoMovimiento;
-    private IModoRecibirDanio modoRecibirDanio; 
+    private IModoRecibirDanio modoRecibirDanio;
     private IModoSanacion modoSanacion;
 
     public Pieza(int costo, int vidaMaxima, double vida, int equipo, IModoMovimiento modoMovimiento, IModoSanacion modoSanacion) {
+    this.COSTO=costo;
+    this.VIDA_MAXIMA=vidaMaxima;
+    this.vida=vida;
+    this.equipo=equipo;
+    this.modoMovimiento=modoMovimiento;
+    this.modoSanacion=modoSanacion;
+    this.modoRecibirDanio= new DanioZonaPropia();
     }
 
 

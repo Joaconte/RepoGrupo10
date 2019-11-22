@@ -9,11 +9,14 @@ import pieza.sanacion.IModoSanacion;
 import pieza.sanacion.SanacionNormal;
 import tablero.Tablero;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Jinete extends PiezaAtacante {
     static final int COSTO = 3;
     static final int VIDA_MAXIMA = 100;
     static final int DANIO_CUERPO = 5;
-    static final int DANIO_MEDIO =0;
+    static final int DANIO_MEDIO =15;
     static final int DANIO_DISTANCIA = 0;
     static final IModoMovimiento MOVIMIENTO = new SeMueveEnTodasDirecciones();
     static final IModoSanacion MODO_CURACION = new SanacionNormal();
@@ -34,18 +37,24 @@ public class Jinete extends PiezaAtacante {
 
     public void obtenerModoDeAtaque(Tablero tablero) {
         boolean estaAsediado=false;
-        Object[] piezas = tablero.getPiezasAdyacentes(this.ubicacion);
-        if (piezas.length!=0){estaAsediado=true;}
+        List<Pieza> piezas = tablero.getPiezasAdyacentes(this.ubicacion);
 
-        for (int i=0; i <piezas.length; i++ ){
-            Pieza pieza = (Pieza) piezas[i];
+        if (piezas.size()!=0){estaAsediado=true;}
+        for (int i=0; i <piezas.size(); i++ ){
+            Pieza pieza = (Pieza) piezas.get(i);
             if ((!this.esEnemigo(pieza)) && pieza.getCosto() == 1){ estaAsediado=false; }
         }
-
-        if (estaAsediado){ MODO_ATAQUE.setModoAtaque(new AtaqueCuerpoACuerpo()); }
-        else {MODO_ATAQUE.setModoAtaque(new AtaqueMedio());}
+        if (estaAsediado){  setModoCuerpoCuerpo(); }
+        else {setModoMedio();}
     }
 
+    public void setModoMedio(){
+        MODO_ATAQUE.setModoAtaque(new AtaqueMedio());
+    }
+
+    public void setModoCuerpoCuerpo(){
+        MODO_ATAQUE.setModoAtaque(new AtaqueCuerpoACuerpo());
+    }
 
 
 }

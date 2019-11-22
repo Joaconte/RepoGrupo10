@@ -2,18 +2,15 @@ package pieza.tipos;
 
 import pieza.movimiento.IModoMovimiento;
 import pieza.movimiento.SeMueveEnTodasDirecciones;
-import pieza.sanacion.CurandoAEnemigoException;
+import pieza.sanacion.*;
 import pieza.Pieza;
-import pieza.sanacion.IModoSanacion;
-import pieza.sanacion.SinSanacion;
-import pieza.sanacion.UnidadNoSePuedeCurar;
 
 public class Curandero extends Pieza {
     static final int COSTO = 2;
     static final int VIDA_MAXIMA = 75;
     static final int PUNTOS_DE_CURACION = 15;
     static final IModoMovimiento MOVIMIENTO = new SeMueveEnTodasDirecciones();
-    static final IModoSanacion MODO_CURACION = new SinSanacion();
+    static final IModoSanacion MODO_CURACION = new SanacionNormal();
 
 
     public Curandero(int equipo){

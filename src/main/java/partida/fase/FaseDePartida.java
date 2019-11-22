@@ -4,6 +4,7 @@ import jugador.Jugador;
 import jugador.PiezaFueraDeSectorException;
 import pieza.UnidadEstaMuertaException;
 import pieza.ataque.DistanciaDeAtaqueInvalidaException;
+import pieza.ataque.PiezaAliadaNoAtacableException;
 import pieza.ataque.PiezaAtacante;
 import pieza.Pieza;
 import tablero.Tablero;
@@ -18,7 +19,7 @@ public interface FaseDePartida{
 
     String darNombreDeFase();
 
-    void atacar(PiezaAtacante atacante, Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException;
+    void atacar(PiezaAtacante atacante, Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException;
 
     void agregarNuevaUbicacionAFicha(Jugador jugadorEnTurno, Pieza pieza, int posicionX, int posicionY) throws PiezaFueraDeSectorException;
 

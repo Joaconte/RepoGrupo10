@@ -45,42 +45,47 @@ public class Partida {
         jugadorDos = jugador;
     }
 
-    //---------------Metodos de Fase------------//
-
-    public void cambiarFaseDePartida(FaseDePartida miNuevaFase){
-        this.miFase = miNuevaFase;
-    }
+    //---------------Acciones de Turno------------//
 
 
+    /*
+    //Esta de mas?
     public void moverUnidadEnTablero(Pieza pieza, int unaPosicionInicial, int unaPosicionFinal){
         miFase.moverUnidadEnTablero(pieza, unaPosicionInicial,unaPosicionFinal);
         moverUnidadEnTablero(pieza, unaPosicionInicial,unaPosicionFinal);
+    }*/
+
+
+    void atacar(PiezaAtacante atacante, Pieza atacada) throws JugadorNoPuedeException, PiezaAliadaNoAtacableException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException {
+        validarJugadorTurno(atacante);
+        miFase.atacar(atacante, atacada, tableroDePartida);
     }
 
     public void terminarMiTurno(){
         miFase.terminarMiTurno();
     }
 
+    //---------------Metodos de Fase------------//
+
+    public void cambiarFaseDePartida(FaseDePartida miNuevaFase){
+        this.miFase = miNuevaFase;
+    }
+
     public String darNombreDeFase(){
         return miFase.darNombreDeFase();
     }
 
-    void atacar(PiezaAtacante atacante, Pieza atacada) throws JugadorNoPuedeException, PiezaAliadaNoAtacableException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException {
-        miFase.atacar(atacante, atacada, tableroDePartida);
-    }
-
-
 
     //---------------Validaciones-Actualizaciones-----------
 
-    void validarUnAtaque(Pieza atacante, Pieza atacada)throws PiezaAliadaNoAtacableException,JugadorNoPuedeException{
-        if(atacante.getEquipo() != jugadorEnTurno.getNumeroDeJugador()){ throw new JugadorNoPuedeException();}
+    void validarJugadorTurno(Pieza piezaEnAccion)throws JugadorNoPuedeException{
+        if(piezaEnAccion.getEquipo() != jugadorEnTurno.getNumeroDeJugador()){ throw new JugadorNoPuedeException();}
     }
 
 
-
+/*  //Llevar a cada Pieza.
     public void setDanioPorAtaque(Pieza atacante, Pieza atacada) {
-        //Version para nada definitiva.
+
         atacada.enZonaAliada();
         Sector sector = jugadorEnTurno.getSector(); //por nullPointer Preguntar en clase.
         boolean estaEnElSector = sector.esDelSector(atacada.getUbicacion().getPosicionEnX());
@@ -88,7 +93,7 @@ public class Partida {
         if (estaEnElSector && sonEnemigas){ atacada.enZonaEnemiga();}
         if (!estaEnElSector && !sonEnemigas){ atacada.enZonaEnemiga();}
     }
-
+*/
 
     //---------------Metodos de Jugadores------------
 

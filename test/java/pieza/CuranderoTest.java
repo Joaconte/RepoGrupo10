@@ -13,13 +13,13 @@ public class CuranderoTest {
 
     @Test
     public void test01CuranderoTieneCosto2() {
-        Curandero unCuranderoPiola = new Curandero();
+        Curandero unCuranderoPiola = new Curandero(1);
         assertEquals(2, unCuranderoPiola.getCosto());
     }
 
     @Test
     public void test02CurandetoIniciaCon75PuntosDeVida() {
-        Curandero unCuranderoPiola = new Curandero();
+        Curandero unCuranderoPiola = new Curandero(1);
         assertEquals(75, unCuranderoPiola.getPuntosVida(),0.05);
     }
 
@@ -40,27 +40,21 @@ public class CuranderoTest {
     }*/
 
     @Test
-    public void test04CuranderoPiolaSanaEn15PuntosACuranderoAliandoDe45Puntos() {
-        Curandero unCuranderoPiola = new Curandero();
-        Curandero unCuranderoAliado = new Curandero();
-
-        unCuranderoPiola.setEquipo(1);
-        unCuranderoAliado.setEquipo(1);
+    public void test04CuranderoPiolaSanaEn15PuntosACuranderoAliandoDe45Puntos() throws UnidadEstaMuertaException, UnidadNoSePuedeCurar, CurandoAEnemigoException {
+        Curandero unCuranderoPiola = new Curandero(1);
+        Curandero unCuranderoAliado = new Curandero(1);
 
         unCuranderoAliado.recibirDanio(30);
-        try{
-        unCuranderoPiola.curarAAliado(unCuranderoAliado); }
-        catch(CurandoAEnemigoException | UnidadNoSePuedeCurar e) {}
-        assertEquals(60,unCuranderoAliado.getPuntosVida(),0.05);
+        unCuranderoPiola.curarAAliado(unCuranderoAliado);
+
+        assertEquals(60,unCuranderoAliado.getPuntosVida(),0);
     }
 
     @Test (expected = CurandoAEnemigoException.class)
-    public void test05CuranderoPiolaNoCuraAEnemigos() throws CurandoAEnemigoException, UnidadNoSePuedeCurar {
-        Curandero unCuranderoPiola = new Curandero();
-        Curandero unCuranderoAliado = new Curandero();
+    public void test05CuranderoPiolaNoCuraAEnemigos() throws CurandoAEnemigoException, UnidadNoSePuedeCurar, UnidadEstaMuertaException {
+        Curandero unCuranderoPiola = new Curandero(1);
+        Curandero unCuranderoAliado = new Curandero(2);
 
-        unCuranderoPiola.setEquipo(2);
-        unCuranderoAliado.setEquipo(1);
 
         unCuranderoAliado.recibirDanio(30);
         unCuranderoPiola.curarAAliado(unCuranderoAliado);
@@ -68,32 +62,28 @@ public class CuranderoTest {
 
     @Test(expected = UnidadNoSePuedeCurar.class)
     public void test06CuranderoNoPuedeCurarCatapultas() throws UnidadNoSePuedeCurar, CurandoAEnemigoException {
-        Curandero curitas = new Curandero();
-        Catapulta catapulta = new Catapulta();
-        curitas.setEquipo(1);
-        catapulta.setEquipo(1);
+        Curandero curitas = new Curandero(1);
+        Catapulta catapulta = new Catapulta(1);
         curitas.curarAAliado(catapulta);
 
     }
 
     @Test
-    public void test04CuranderoSanaHastaElMaximoAUnAliadoConDanioUno() {
-        Curandero unCuranderoPiola = new Curandero();
-        Curandero unCuranderoAliado = new Curandero();
+    public void test07CuranderoSanaHastaElMaximoAUnAliadoConDanioUno() throws UnidadEstaMuertaException {
+        Curandero unCuranderoPiola = new Curandero(1);
+        Curandero unCuranderoAliado = new Curandero(1);
 
-        unCuranderoPiola.setEquipo(1);
-        unCuranderoAliado.setEquipo(1);
 
         unCuranderoAliado.recibirDanio(1);
         try{
             unCuranderoPiola.curarAAliado(unCuranderoAliado); }
         catch(CurandoAEnemigoException | UnidadNoSePuedeCurar e) {}
-        assertEquals(75,unCuranderoAliado.getPuntosVida(),0.05);
+        assertEquals(75,unCuranderoAliado.getPuntosVida(),0);
     }
 
     @Test
-    public void test05CuranderoEstaEn1x2y_seMueveA1x1y() throws NoSePuedeMoverException {
-        Curandero curandero = new Curandero();
+    public void test08CuranderoEstaEn1x2y_seMueveA1x1y() throws NoSePuedeMoverException {
+        Curandero curandero = new Curandero(1);
         Ubicacion ubicacion = new Ubicacion(1,2);
         curandero.setUbicacion(ubicacion);
         curandero.moverArriba();
