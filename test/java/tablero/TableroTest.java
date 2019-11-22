@@ -69,7 +69,7 @@ public class TableroTest {
         tablero.ocuparCasilla(pieza, 6,7);
         tablero.ocuparCasilla(pieza, 8,8);
 
-        assertEquals(6,tablero.getPiezasEntreRangos(pieza.getUbicacion(), 1 ,1).length);
+        assertEquals(6,tablero.getPiezasAdyacentes(pieza.getUbicacion()).length);
     }
 
     @Test
@@ -89,11 +89,26 @@ public class TableroTest {
         tablero.ocuparCasilla(pieza, 0,0);
         tablero.ocuparCasilla(pieza, 2,2);
 
-        assertEquals(8,tablero.getPiezasEntreRangos(pieza.getUbicacion(), 1,1).length);
+        assertEquals(8,tablero.getPiezasAdyacentes(pieza.getUbicacion()).length);
     }
 
     @Test
-    public void test08TableroEncuentra8CasillerosAdyacenctesVacios(){
+    public void test08TableroEncuentra2PiezasAdyacentesNoHayProblemaEnEsquinas(){
+        Tablero tablero = new Tablero();
+
+        Jinete pieza = Mockito.mock(Jinete.class);
+        Mockito.when(pieza.getUbicacion()).thenReturn(new Ubicacion(1,1));
+
+        tablero.ocuparCasilla(pieza, 0,0);
+        tablero.ocuparCasilla(pieza, 1,1);
+        tablero.ocuparCasilla(pieza, 0,1);
+
+        assertEquals(2,tablero.getPiezasAdyacentes(pieza.getUbicacion()).length);
+    }
+
+
+    @Test
+    public void test09TableroEncuentra8CasillerosAdyacenctesVacios(){
 
         Tablero tablero = new Tablero();
 
@@ -107,7 +122,7 @@ public class TableroTest {
     }
 
     @Test
-    public void test09TableroEncuentra3CasillerosAdyacenctesVaciosNoHayProblemaEnEsquina(){
+    public void test10TableroEncuentra3CasillerosAdyacenctesVaciosNoHayProblemaEnEsquinas(){
 
         Tablero tablero = new Tablero();
 
