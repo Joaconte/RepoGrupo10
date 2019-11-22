@@ -8,8 +8,8 @@ public class CasillaLibre implements EstadoCasilla {
     boolean fueVisitada=false;
 
     @Override
-    public String getEstado() {
-        return "Libre";
+    public boolean estaOcupada() {
+        return false;
     }
 
     @Override

@@ -14,10 +14,12 @@ public abstract class Pieza {
     protected Ubicacion ubicacion;
     protected int equipo;
 
+    /*
     public Pieza(int costo, int vidaMaxima, double vida, Ubicacion ubicacion, int equipo, IModoMovimiento movimiento) {
         this.COSTO = costo;
         this.movimiento = movimiento;
     }
+    */
 
     // strategy pattern
     private IModoMovimiento movimiento;
@@ -91,8 +93,9 @@ public abstract class Pieza {
     public void moverse(){
         movimiento.moverse();
     }
+    */
     public void moverArriba() throws NoSePuedeMoverException {
         Ubicacion nueva = movimiento.arriba(this.getUbicacion());
         this.setUbicacion(nueva);
-    }*/
+    }
 }

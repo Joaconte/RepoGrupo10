@@ -77,12 +77,12 @@ public class Partida {
     public String darNombreDeFase(){
         return miFase.darNombreDeFase();
     }
-
+    /*
     void atacar(Catapulta atacante, Pieza atacada) throws JugadorNoPuedeException,PiezaAtacadaEnRangoIncorrectoException,PiezaAliadaNoAtacableException {
 
         if(!atacante.esEnemigo(atacada)){ throw new PiezaAliadaNoAtacableException();}
         validarUnAtaque(atacante, atacada);
-        ArrayList<Pieza> atacadas = tableroDePartida.getPiezasEnAdyacencia(atacada.getUbicacion());
+        //ArrayList<Pieza> atacadas = tableroDePartida.getPiezasEnAdyacencia(atacada.getUbicacion());
         for(int i=0; i< atacadas.size(); i++){
             atacada=atacadas.get(i);
             setDanioPorAtaque(atacante, atacada);
@@ -104,6 +104,7 @@ public class Partida {
         setDanioPorAtaque(atacante, atacada);
         miFase.atacar(atacante, atacada);
     };
+     */
 
 
     //---------------Validaciones-Actualizaciones-----------
@@ -114,17 +115,18 @@ public class Partida {
     }
 
     void validarUnMovimiento(Pieza pieza, int posicionX, int posicionY)throws CasillaTieneUnidadException,JugadorNoPuedeException{
-        if(tableroDePartida.getEstadoCasilla(posicionX, posicionY)=="Ocupada"){ throw new CasillaTieneUnidadException();}
+        if(tableroDePartida.casillaEstaOcupada(posicionX, posicionY)== true ){ throw new CasillaTieneUnidadException();}
         if(pieza.getEquipo() != jugadorEnTurno.getNumeroDeJugador()) { throw new JugadorNoPuedeException();}
         }
-
+        /*
     void pedirAJineteQueActualiceSuEstado(Jinete unJinete){
-        ArrayList<Pieza> piezasQueRodean = tableroDePartida.getCasillasEnAdyacenciaCercana(unJinete.getUbicacion());
+        //ArrayList<Pieza> piezasQueRodean = tableroDePartida.getCasillasEnAdyacenciaCercana(unJinete.getUbicacion());
         for(int i=0; i< piezasQueRodean.size(); i++){
             unJinete.analizarCercanias(piezasQueRodean.get(i));
         }
         unJinete.confirmarModo();
     }
+    */
 
     public void setDanioPorAtaque(Pieza atacante, Pieza atacada) {
         //Version para nada definitiva.

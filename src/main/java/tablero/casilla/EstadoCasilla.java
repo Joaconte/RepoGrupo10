@@ -4,7 +4,7 @@ import pieza.Pieza;
 
 public interface EstadoCasilla {
 
-    public String getEstado();
+    public boolean estaOcupada();
     public EstadoCasilla ocuparCasilla(Pieza pieza);
     public EstadoCasilla desocuparCasilla();
     public Pieza getContenido();

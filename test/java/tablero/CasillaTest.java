@@ -11,7 +11,7 @@ public class CasillaTest {
     @Test
     public void test01CasillaSeCreaVacia() {
         Casilla casilla = new Casilla();
-        assertEquals("Libre", casilla.getEstado());
+        assertEquals(false, casilla.estaOcupada());
     }
 
     @Test
@@ -19,7 +19,7 @@ public class CasillaTest {
         Casilla casilla = new Casilla();
         Pieza pieza = Mockito.mock(Pieza.class);
         casilla.ocuparCasilla(pieza);
-        assertEquals("Ocupada", casilla.getEstado());
+        assertEquals(true, casilla.estaOcupada());
     }
 
 

@@ -14,17 +14,17 @@ public class Columna {
     public Columna(int numeroColumna, int numeroCasillasPorColumna){
         this.numeroColumna = numeroColumna;
         this.numeroCasillasPorColumna = numeroCasillasPorColumna;
-        for (int numeroDeCasilla=1; numeroDeCasilla<(numeroCasillasPorColumna+1); numeroDeCasilla++)
+        for (int numeroDeCasilla=0; numeroDeCasilla<(numeroCasillasPorColumna); numeroDeCasilla++)
             columna.add(new Casilla());
     }
 
     public void ocuparCasilla(Pieza pieza, int posicionEnLaColumna) {
-        Casilla unaCasilla = columna.get(posicionEnLaColumna-1);
+        Casilla unaCasilla = columna.get(posicionEnLaColumna);
         unaCasilla.ocuparCasilla(pieza);
     }
 
     public void desocuparCasilla(int posicionEnLaColumna) {
-        Casilla unaCasilla = columna.get(posicionEnLaColumna-1);
+        Casilla unaCasilla = columna.get(posicionEnLaColumna);
         unaCasilla.desocuparCasilla();
     }
 
@@ -32,13 +32,13 @@ public class Columna {
         return columna.size();
     }
 
-    public String getEstadoCasillaDeLaFila(int numeroDeLaFila) {
-        Casilla unaCasilla=columna.get(numeroDeLaFila-1);
-        return unaCasilla.getEstado();
+    public boolean casillaDeLaFilaEstaOcupada(int numeroDeLaFila) {
+        Casilla unaCasilla = columna.get(numeroDeLaFila);
+        return unaCasilla.estaOcupada();
     }
 
     public Casilla getCasilla(int numeroDeLaFila){
-        return columna.get(numeroDeLaFila-1);
+        return columna.get(numeroDeLaFila);
     }
 
 }

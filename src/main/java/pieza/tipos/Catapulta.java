@@ -10,7 +10,7 @@ public class Catapulta extends PiezaAtacante {
     static final int DANIO_CUERPO = 0;
 
     public Catapulta(){
-        super(COST, VIDA_MAXIMA, DANIO_)
+        //super(COST, VIDA_MAXIMA, DANIO_)
         super.setVida_Maxima(VIDA_MAXIMA);
         super.setVida(VIDA_MAXIMA);
         super.setCosto(COSTO);
