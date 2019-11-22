@@ -14,9 +14,14 @@ public abstract class Pieza {
     protected Ubicacion ubicacion;
     protected int equipo;
 
+    public Pieza(int costo, int vidaMaxima, double vida, Ubicacion ubicacion, int equipo, IModoMovimiento movimiento) {
+        this.COSTO = costo;
+        this.movimiento = movimiento;
+    }
+
     // strategy pattern
     private IModoMovimiento movimiento;
-    private IModoRecibirDanio comoRecibeDanio;
+    private IModoRecibirDanio comoRecibeDanio; // como recibe danio
     private IModoSanacion sanacion;
 
     // SETTER GETTER
@@ -70,8 +75,6 @@ public abstract class Pieza {
         this.comoRecibeDanio = new DanioZonaPropia();
     }
 
-
-
     // ver q no deje en negativos--- exceptions
     public void recibirDanio(double danioBase) throws UnidadEstaMuertaException {
         if (vida<=0) throw new UnidadEstaMuertaException();
@@ -84,12 +87,12 @@ public abstract class Pieza {
         vida = Math.min(vida, VIDA_MAXIMA);
     }
 
-   /* public void moverse(){
+    /*
+    public void moverse(){
         movimiento.moverse();
-    }*/
+    }
     public void moverArriba() throws NoSePuedeMoverException {
         Ubicacion nueva = movimiento.arriba(this.getUbicacion());
         this.setUbicacion(nueva);
-    }
+    }*/
 }
-
