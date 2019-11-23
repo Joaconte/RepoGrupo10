@@ -14,7 +14,7 @@ import org.mockito.Mock;
 public class InfanteriaTest {
 
     @Test
-    public void test00InfanteriaDelEjercito2SeCreaCorrectamente() {
+    public void test00InfanteriaDelEjercito2DevuelveElNumeroDeEjercitoCorrectamente() {
         Infanteria soldado = new Infanteria(2,19,19);
         assertEquals(2, soldado.getEquipo());
     }

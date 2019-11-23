@@ -21,11 +21,15 @@ public class Curandero extends Pieza {
         super(COSTO, VIDA_MAXIMA, equipo, MOVIMIENTO, MODO_CURACION, posX, posY);
     }
 
-    public void curarAAliado(Pieza unaUndidadCurable) throws CurandoAEnemigoException, UnidadNoSePuedeCurar {
-        if ( super.getEquipo() != unaUndidadCurable.getEquipo()) {
-            throw new CurandoAEnemigoException();
-        }
+    public void curarAAliado(Pieza unaUndidadCurable) throws CurandoAEnemigoException, UnidadNoSePuedeCurar, CurandoCuraADistanciaCortaException {
+
+        if ( super.getEquipo() != unaUndidadCurable.getEquipo()) { throw new CurandoAEnemigoException(); }
+
+        int distanciaAAliado= this.ubicacion.getDistanciaAOtroPunto(unaUndidadCurable.getUbicacion());
+        if ( distanciaAAliado>2 || distanciaAAliado < 0 ) { throw new CurandoCuraADistanciaCortaException(); }
+
         unaUndidadCurable.sanar(PUNTOS_DE_CURACION);
+
         }
 
     @Override

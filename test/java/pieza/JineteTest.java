@@ -15,7 +15,7 @@ import java.util.*;
 public class JineteTest {
 
     @Test
-    public void test00JineteSeCreaConEquipo1() {
+    public void test00JineteSeCreaConEquipo1Correctamente() {
         Jinete jinete = new Jinete(1,5,5);
         assertEquals(1, jinete.getEquipo());
     }
