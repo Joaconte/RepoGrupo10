@@ -15,66 +15,52 @@ import java.util.*;
 public class JineteTest {
 
     @Test
+    public void test00JineteSeCreaConEquipo1() {
+        Jinete jinete = new Jinete(1,5,5);
+        assertEquals(1, jinete.getEquipo());
+    }
+
+    @Test
     public void test01JineteTieneCosto3() {
-        Jinete jinete = new Jinete(1);
+        Jinete jinete = new Jinete(1,5,5);
         assertEquals(3, jinete.getCosto());
     }
 
     @Test
     public void test02JineteIniciaCon100PuntosDeVida() {
-        Jinete jinete = new Jinete(1);
+        Jinete jinete = new Jinete(1,1,1);
         assertEquals(100, jinete.getPuntosVida(),0);
     }
 
     @Test
-    public void test03JineteAtacaADistanciaAEnemigoYSaca15PuntosDeVida() throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
+    public void test03JineteAtacaADistancia5AEnemigoYSaca15PuntosDeVida() throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
 
-        //----------Jinete atacante se prepara --------
-        Jinete jinete = new Jinete(1);
-        Ubicacion ubicacionJinete = Mockito.mock(Ubicacion.class);
-        jinete.setUbicacion(ubicacionJinete);
+        Jinete jineteAtacante = new Jinete(1,1,1);  //----------Jinete atacante
+        Jinete oponente = new Jinete(2,6,6);  //----------Enemigo atacado Media distancia
+        double vidaAntesDelAtaque= oponente.getPuntosVida();
 
-        //----------Jinete atacado se prepara --------
-        Jinete oponente = new Jinete(2);
-        Ubicacion ubicacionJineteAtacado = Mockito.mock(Ubicacion.class);
-        oponente.setUbicacion(ubicacionJineteAtacado);
-        double vida= oponente.getPuntosVida();
-
-        //----------Metodos Probados Tablero/Ubicacion ------
+        //----------Metodos Probados Tablero/Ubicacion
         Tablero tablero = Mockito.mock(Tablero.class);
-        List<Pieza> lista = Mockito.mock(ArrayList.class);
-        Mockito.when(lista.size()).thenReturn(0);
-        Mockito.when(tablero.getPiezasAdyacentes(ubicacionJinete)).thenReturn(lista);
-        Mockito.when(ubicacionJinete.getDistanciaAOtroPunto(ubicacionJineteAtacado)).thenReturn(5);
+        List<Pieza> lista = new ArrayList<>();
+        Mockito.when(tablero.getPiezasAdyacentes(jineteAtacante.getUbicacion())).thenReturn(lista);
 
         //----------Ataque ------------------
-        jinete.atacar(oponente,tablero);
-        assertEquals(vida-15,oponente.getPuntosVida(),0);
+        jineteAtacante.atacar(oponente,tablero);
+        assertEquals(vidaAntesDelAtaque-15,oponente.getPuntosVida(),0);
     }
 
     @Test (expected = DistanciaDeAtaqueInvalidaException.class)
-    public void test04JineteNoAtacaADistanciaAEnemigoPorqueEstaAsediadoYNoTieneRefuerzos() throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
+    public void test04JineteNoAtacaADistancia3AEnemigoPorqueEstaAsediadoYNoTieneRefuerzos() throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
 
-        //----------Jinete atacante se prepara --------
-        Jinete jinete = new Jinete(1);
-        Ubicacion ubicacionJinete = Mockito.mock(Ubicacion.class);
-        jinete.setUbicacion(ubicacionJinete);
-
-        //----------Jinete blanco Fallido se prepara -------
-        Jinete oponente = new Jinete(2);
-        Ubicacion ubicacionJineteAtacado = Mockito.mock(Ubicacion.class);
-        oponente.setUbicacion(ubicacionJineteAtacado);
-
-        //----------Jinete a corta distancia se prepara -------
-        Jinete jineteAcosador = new Jinete(2);
+        Jinete jinete = new Jinete(1,1,1); //----------Jinete atacante
+        Jinete oponente = new Jinete(2,4,4); //-----Blanco enemigo media distancia
+        Jinete jineteAcosador = new Jinete(2,1,2);//-----Enemigo asediador
 
         //----------Metodos Probados Tablero/Ubicacion -------
         Tablero tablero = Mockito.mock(Tablero.class);
-        List<Pieza> lista = Mockito.mock(ArrayList.class);
-        Mockito.when(lista.size()).thenReturn(1);
-        Mockito.when(lista.get(0)).thenReturn(jineteAcosador);
-        Mockito.when(tablero.getPiezasAdyacentes(ubicacionJinete)).thenReturn(lista);
-        Mockito.when(ubicacionJinete.getDistanciaAOtroPunto(ubicacionJineteAtacado)).thenReturn(5);
+        List<Pieza> lista = new ArrayList<>();
+        lista.add(jineteAcosador);
+        Mockito.when(tablero.getPiezasAdyacentes(jinete.getUbicacion())).thenReturn(lista);
 
         //----------Ataque -----------------
         jinete.atacar(oponente,tablero);
@@ -83,31 +69,19 @@ public class JineteTest {
     @Test
     public void test05JineteAtacaAEnemigoACortaDistanciaEstandoCuebierto() throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
 
-        //----------Jinete atacante se prepara -------
-        Jinete jinete = new Jinete(1);
-        Ubicacion ubicacionJinete = Mockito.mock(Ubicacion.class);
-        jinete.setUbicacion(ubicacionJinete);
-
-        //----------Jinete a corta distancia se prepara -------
-        Jinete oponenteCercano = new Jinete(2);
-        Ubicacion ubicacionJineteAcosador = Mockito.mock(Ubicacion.class);
-        oponenteCercano.setUbicacion(ubicacionJineteAcosador);
+        Jinete jinete = new Jinete(1,9,9); //----------Jinete atacante
+        Jinete oponenteCercano = new Jinete(2,9,8); //----------Enemigo atacado que asedia
         double vida = oponenteCercano.getPuntosVida();
-
-        //----------Infante Aliado se prepara -------
-        Infanteria infanteAliado = Mockito.mock(Infanteria.class);
+        Infanteria infanteAliado = Mockito.mock(Infanteria.class);  //----------Infante Aliado Mock
         Mockito.when(infanteAliado.esEnemigo(jinete)).thenReturn(false);
-
+        Mockito.when(infanteAliado.getNombre()).thenReturn("Infanteria");
 
         //----------Metodos Probados Tablero/Ubicacion ------
         Tablero tablero = Mockito.mock(Tablero.class);
-        List<Pieza> lista = Mockito.mock(ArrayList.class);
-        Mockito.when(lista.size()).thenReturn(2);
-        Mockito.when(lista.get(0)).thenReturn(oponenteCercano);
-        Mockito.when(lista.get(1)).thenReturn(infanteAliado);
-        Mockito.when(tablero.getPiezasAdyacentes(ubicacionJinete)).thenReturn(lista);
-        Mockito.when(infanteAliado.getNombre()).thenReturn("Infanteria");
-        Mockito.when(ubicacionJinete.getDistanciaAOtroPunto(ubicacionJineteAcosador)).thenReturn(2);
+        List<Pieza> lista = new ArrayList<>();
+        lista.add(infanteAliado);
+        lista.add(oponenteCercano);
+        Mockito.when(tablero.getPiezasAdyacentes(jinete.getUbicacion())).thenReturn(lista);
 
         //----------Ataque ------------------
         jinete.atacar(oponenteCercano,tablero);
@@ -116,126 +90,74 @@ public class JineteTest {
 
     @Test
     public void test06JineteAtacaACortaDistanciaAEnemigoQueLoAsediaSinEstarCuebierto() throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
-        //----------Jinete atacante se prepara -------
-        Jinete jinete = new Jinete(1);
-        Ubicacion ubicacionJinete = Mockito.mock(Ubicacion.class);
-        jinete.setUbicacion(ubicacionJinete);
 
-        //----------Jinete acosador se prepara ------
-        Jinete oponenteCercano = new Jinete(2);
-        Ubicacion ubicacionJineteAcosador = Mockito.mock(Ubicacion.class);
-        oponenteCercano.setUbicacion(ubicacionJineteAcosador);
-        double vida = oponenteCercano.getPuntosVida();
+        Jinete jinete = new Jinete(1,6,6); //----------Jinete atacante
+        Jinete oponenteCercano = new Jinete(2,8,7); //------Enemigo atacado que asedia
+        double vidaAntesDelAtaque = oponenteCercano.getPuntosVida();
 
         //----------Metodos Probados Tablero/Ubicacion ------
         Tablero tablero = Mockito.mock(Tablero.class);
-        List<Pieza> lista = Mockito.mock(ArrayList.class);
-        Mockito.when(lista.size()).thenReturn(1);
-        Mockito.when(lista.get(0)).thenReturn(oponenteCercano);
-        Mockito.when(tablero.getPiezasAdyacentes(ubicacionJinete)).thenReturn(lista);
-        Mockito.when(ubicacionJinete.getDistanciaAOtroPunto(ubicacionJineteAcosador)).thenReturn(2);
+        List<Pieza> lista =  new ArrayList<>();
+        lista.add(oponenteCercano);
+        Mockito.when(tablero.getPiezasAdyacentes(jinete.getUbicacion())).thenReturn(lista);
 
         //----------Ataque ------------------
         jinete.atacar(oponenteCercano,tablero);
-        assertEquals(vida-5,oponenteCercano.getPuntosVida(),0);
+        assertEquals(vidaAntesDelAtaque-5,oponenteCercano.getPuntosVida(),0);
     }
 
     @Test(expected= DistanciaDeAtaqueInvalidaException.class)
     public void test07JineteNoAtacaAEnemigoAMediaDistanciaPorqueUnidadDistintaAInfanteEsUnicoRefuerzoYEstaSiendoAsediado() throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
 
-        //----------Jinete atacante se prepara --------
-        Jinete jinete = new Jinete(1);
-        Ubicacion ubicacionJinete = Mockito.mock(Ubicacion.class);
-        jinete.setUbicacion(ubicacionJinete);
-
-        //----------Jinete blanco fallido se prepara --------
-        Jinete jineteADistancia = new Jinete(2);
-        Ubicacion ubicacionJineteADistancia = Mockito.mock(Ubicacion.class);
-        jineteADistancia.setUbicacion(ubicacionJineteADistancia);
-
-        //----------Jinete a Corta Distancia se prepara --------
-        Jinete jineteAcosador = new Jinete(2);
-
-        //----------Jinete Aliado fallido se prepara --------
-        Jinete jineteAliado = Mockito.mock(Jinete.class);
-        Mockito.when(jineteAliado.esEnemigo(jinete)).thenReturn(false);
-
+        Jinete jinete = new Jinete(1,1,1); //----------Jinete atacante
+        Jinete jineteADistancia = new Jinete(2,5,4);  //----Enemigo Blanco fallido medio-lejano
+        Jinete jineteAcosador = new Jinete(2,2,2);  //--------Enemigo Asediador
+        Jinete jineteAliado = new Jinete (1,2,1); //---- Aliado jinete cercano
 
         //----------Metodos Probados Tablero/Ubicacion --------
         Tablero tablero = Mockito.mock(Tablero.class);
-        List<Pieza> lista = Mockito.mock(ArrayList.class);
-        Mockito.when(lista.size()).thenReturn(2);
-        Mockito.when(lista.get(0)).thenReturn(jineteAcosador);
-        Mockito.when(lista.get(1)).thenReturn(jineteAliado);
-        Mockito.when(tablero.getPiezasAdyacentes(ubicacionJinete)).thenReturn(lista);
-        Mockito.when(jineteAliado.getNombre()).thenReturn("Jinete");
-
-        Mockito.when(ubicacionJinete.getDistanciaAOtroPunto(ubicacionJineteADistancia)).thenReturn(5);
+        List<Pieza> lista = new ArrayList<>();
+        lista.add(jineteAliado);
+        lista.add(jineteAcosador);
+        Mockito.when(tablero.getPiezasAdyacentes(jinete.getUbicacion())).thenReturn(lista);
 
         //----------Ataque ------------------
         jinete.atacar(jineteADistancia,tablero);
-
     }
 
     @Test
     public void test08JineteAtacaEnDistanciaMediaSiendoAsediadoYConRefuerzoCorrecto() throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
 
-        //----------Jinete atacante se prepara --------
-        Jinete jinete = new Jinete(1);
-        Ubicacion ubicacionJinete = Mockito.mock(Ubicacion.class);
-        jinete.setUbicacion(ubicacionJinete);
-
-        //----------Jinete blanco certero --------
-        Jinete jineteADistancia = new Jinete(2);
-        Ubicacion ubicacionJineteADistancia = Mockito.mock(Ubicacion.class);
-        jineteADistancia.setUbicacion(ubicacionJineteADistancia);
-        double vida = jineteADistancia.getPuntosVida();
-
-        //----------Jinete acosador se prepara --------
-        Jinete jineteAcosador = new Jinete(2);
-
-        //----------Infante Aliado se prepara --------
-        Infanteria infanteAliado = Mockito.mock(Infanteria.class);
+        Jinete jinete = new Jinete(1, 1, 1); //----------Jinete atacante
+        Jinete jineteADistancia = new Jinete(2, 5,5 ); //---Enemigo atacado a media distancia
+        double vidaAntesDelAtaque = jineteADistancia.getPuntosVida();
+        Jinete jineteAcosador = new Jinete(2,2,2 ); //-----Enemigo a corta distancia
+        Infanteria infanteAliado = Mockito.mock(Infanteria.class); //---Infante Aliado a corta distancia
         Mockito.when(infanteAliado.esEnemigo(jinete)).thenReturn(false);
-
+        Mockito.when(infanteAliado.getNombre()).thenReturn("Infanteria");
 
         //----------Metodos Probados Tablero/Ubicacion --------
         Tablero tablero = Mockito.mock(Tablero.class);
-        List<Pieza> lista = Mockito.mock(ArrayList.class);
-        Mockito.when(lista.size()).thenReturn(2);
-        Mockito.when(lista.get(0)).thenReturn(jineteAcosador);
-        Mockito.when(lista.get(1)).thenReturn(infanteAliado);
-        Mockito.when(tablero.getPiezasAdyacentes(ubicacionJinete)).thenReturn(lista);
-        Mockito.when(infanteAliado.getNombre()).thenReturn("Infanteria");
-
-        Mockito.when(ubicacionJinete.getDistanciaAOtroPunto(ubicacionJineteADistancia)).thenReturn(5);
+        List<Pieza> lista = new ArrayList<>();
+        lista.add(jineteAcosador);
+        lista.add(infanteAliado);
+        Mockito.when(tablero.getPiezasAdyacentes(jinete.getUbicacion())).thenReturn(lista);
 
         //----------Ataque ------------------
         jinete.atacar(jineteADistancia,tablero);
-        assertEquals(vida-15,jineteADistancia.getPuntosVida(),0);
+        assertEquals(vidaAntesDelAtaque-15,jineteADistancia.getPuntosVida(),0);
     }
 
     @Test (expected = PiezaAliadaNoAtacableException.class)
     public void test09JineteNoAtacaAliados() throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
 
-        //----------Jinete atacante se prepara --------
-        Jinete jinete = new Jinete(1);
-        Ubicacion ubicacionJinete = Mockito.mock(Ubicacion.class);
-        jinete.setUbicacion(ubicacionJinete);
-
-
-        //----------Infante Aliado fallido se prepara --------
-        Jinete aliado = Mockito.mock(Jinete.class);
-        Ubicacion ubicacionAliado = Mockito.mock(Ubicacion.class);
-        aliado.setUbicacion(ubicacionAliado);
-        Mockito.when(aliado.getEquipo()).thenReturn(1);
-
+        Jinete jinete = new Jinete(1, 1,1 ); //---Atacante
+        Jinete aliado = new Jinete(1, 2,1 ); //---Atacado aliado
 
         //----------Metodos Probados Tablero/Ubicacion --------
         Tablero tablero = Mockito.mock(Tablero.class);
-        List<Pieza> lista = Mockito.mock(ArrayList.class);
-        Mockito.when(lista.size()).thenReturn(0);
-        Mockito.when(tablero.getPiezasAdyacentes(ubicacionJinete)).thenReturn(lista);
+        List<Pieza> lista = new ArrayList<>();
+        Mockito.when(tablero.getPiezasAdyacentes(jinete.getUbicacion())).thenReturn(lista);
 
         //----------Ataque ------------------
         jinete.atacar(aliado,tablero);
