@@ -20,7 +20,7 @@ public class Infanteria extends PiezaAtacante {
     static final IModoSanacion MODO_CURACION = new SanacionNormal();
 
     public Infanteria(int equipo){
-        super(COSTO, VIDA_MAXIMA, VIDA_MAXIMA, equipo, MOVIMIENTO, MODO_CURACION, ATAQUE, DANIO_CUERPO, DANIO_MEDIO, DANIO_DISTANCIA);
+        super(COSTO, VIDA_MAXIMA, equipo, MOVIMIENTO, MODO_CURACION, ATAQUE, DANIO_CUERPO, DANIO_MEDIO, DANIO_DISTANCIA);
 
     }
 

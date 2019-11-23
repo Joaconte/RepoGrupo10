@@ -14,7 +14,7 @@ public class Curandero extends Pieza {
 
 
     public Curandero(int equipo){
-        super(COSTO, VIDA_MAXIMA, VIDA_MAXIMA, equipo, MOVIMIENTO, MODO_CURACION);
+        super(COSTO, VIDA_MAXIMA, equipo, MOVIMIENTO, MODO_CURACION);
     }
 
     public void curarAAliado(Pieza unaUndidadCurable) throws CurandoAEnemigoException, UnidadNoSePuedeCurar {

@@ -5,26 +5,38 @@ import pieza.recibirDanio.*;
 import pieza.sanacion.*;
 
 public abstract class Pieza {
-    private int COSTO;
-    private int VIDA_MAXIMA;
+    private int costo;
+    private int vida_maxima;
     private double vida;
     protected Ubicacion ubicacion;
     private int equipo;
     // strategy pattern
     private IModoMovimiento modoMovimiento;
-    private IModoRecibirDanio modoRecibirDanio;
+    private ICalculadorDeDanio danioARecibir;
     private IModoSanacion modoSanacion;
 
-    public Pieza(int costo, int vidaMaxima, double vida, int equipo, IModoMovimiento modoMovimiento, IModoSanacion modoSanacion) {
-    this.COSTO=costo;
-    this.VIDA_MAXIMA=vidaMaxima;
-    this.vida=vida;
-    this.equipo=equipo;
-    this.modoMovimiento=modoMovimiento;
-    this.modoSanacion=modoSanacion;
-    this.modoRecibirDanio= new DanioZonaPropia();
+    // Constructores
+    public Pieza(int costo, int vidaMaxima, int equipo, IModoMovimiento modoMovimiento, IModoSanacion modoSanacion) {
+    this.costo = costo;
+    this.vida_maxima = vidaMaxima;
+    this.vida = vidaMaxima;
+    this.equipo = equipo;
+    this.modoMovimiento = modoMovimiento;
+    this.modoSanacion = modoSanacion;
+    this.danioARecibir = new DanioZonaPropia();
     }
 
+    public Pieza(int costo, int vidaMaxima, int equipo, IModoMovimiento modoMovimiento, IModoSanacion modoSanacion, int posX, int posY) {
+        this.costo = costo;
+        this.vida_maxima = vidaMaxima;
+        this.vida = vidaMaxima;
+        this.equipo = equipo;
+        this.modoMovimiento = modoMovimiento;
+        this.modoSanacion = modoSanacion;
+        // verificar si esta en su zona consultando a tablero?
+        this.ubicacion = new Ubicacion(posX, posY);
+        this.danioARecibir = new DanioZonaPropia();
+    }
 
     // SETTER GETTER
 
@@ -43,7 +55,7 @@ public abstract class Pieza {
     }
 
     public int getEquipo(){ return equipo;}
-    public int getCosto(){ return COSTO;}
+    public int getCosto(){ return costo;}
     public boolean esEnemigo(Pieza otra){
         return (this.getEquipo() != otra.getEquipo());
     }
@@ -51,22 +63,22 @@ public abstract class Pieza {
     // METODOS
 
     public void enZonaEnemiga(){
-        this.modoRecibirDanio = new DanioZonaEnemiga();
+        this.danioARecibir = new DanioZonaEnemiga();
     }
     public void enZonaAliada(){
-        this.modoRecibirDanio = new DanioZonaPropia();
+        this.danioARecibir = new DanioZonaPropia();
     }
 
     // ver q no deje en negativos--- exceptions
     public void recibirDanio(double danioBase) throws UnidadEstaMuertaException {
         if (vida<=0) throw new UnidadEstaMuertaException();
-        vida-= modoRecibirDanio.danio(danioBase);
+        vida-= danioARecibir.danio(danioBase);
 
     }
 
     public void sanar(int puntos) throws UnidadNoSePuedeCurar {
         vida += modoSanacion.restaurarPuntosDeVida(puntos);
-        vida = Math.min(vida, VIDA_MAXIMA);
+        vida = Math.min(vida, vida_maxima);
     }
 
     /*

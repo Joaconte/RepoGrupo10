@@ -23,7 +23,7 @@ public class Jinete extends PiezaAtacante {
     static final IModoAtaque ATAQUE = new AtaqueVariable();
 
     public Jinete(int equipo) {
-        super(COSTO, VIDA_MAXIMA, VIDA_MAXIMA, equipo, MOVIMIENTO,  MODO_CURACION, ATAQUE,DANIO_CUERPO, DANIO_MEDIO,DANIO_DISTANCIA);
+        super(COSTO, VIDA_MAXIMA, equipo, MOVIMIENTO,  MODO_CURACION, ATAQUE,DANIO_CUERPO, DANIO_MEDIO,DANIO_DISTANCIA);
     }
 
 

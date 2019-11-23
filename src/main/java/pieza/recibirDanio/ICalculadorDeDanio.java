@@ -1,5 +1,5 @@
 package pieza.recibirDanio;
 
-public interface IModoRecibirDanio {
+public interface ICalculadorDeDanio {
     public double danio(double danioBase);
 }
