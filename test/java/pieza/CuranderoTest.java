@@ -2,6 +2,8 @@ package pieza;
 
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+import org.mockito.Mockito;
+import org.mockito.Mock;
 
 import pieza.movimiento.NoSePuedeMoverException;
 import pieza.sanacion.CurandoAEnemigoException;
@@ -23,24 +25,9 @@ public class CuranderoTest {
         assertEquals(75, unCuranderoPiola.getPuntosVida(),0.05);
     }
 
-    /*@Test
-    public void test03CuranderoSeMueveCorrectamenteACualquierDireccionQueMePasen() {
-        Curandero unCuranderoPiola = new Curandero();
-        int cualquierDireccion = 999;
-
-        Ubicacion miNuevaUbicacion = Mockito.mock(Ubicacion.class);
-        Mockito.when(miNuevaUbicacion.darPosicionEnX()).thenReturn(cualquierDireccion);
-        Mockito.when(miNuevaUbicacion.darPosicionEnY()).thenReturn(cualquierDireccion*2);
-
-        unCuranderoPiola.moverUnidad(miNuevaUbicacion);
-        Ubicacion ubicacionModificada = unCuranderoPiola.getUbicacion();
-
-        assertEquals(cualquierDireccion,ubicacionModificada.darPosicionEnX());
-        assertEquals(cualquierDireccion*2,ubicacionModificada.darPosicionEnY());
-    }*/
 
     @Test
-    public void test04CuranderoPiolaSanaEn15PuntosACuranderoAliandoDe45Puntos() throws UnidadEstaMuertaException, UnidadNoSePuedeCurar, CurandoAEnemigoException {
+    public void test03CuranderoPiolaSanaEn15PuntosACuranderoAliandoDe45Puntos() throws UnidadEstaMuertaException, UnidadNoSePuedeCurar, CurandoAEnemigoException {
         Curandero unCuranderoPiola = new Curandero(1);
         Curandero unCuranderoAliado = new Curandero(1);
 
@@ -51,7 +38,7 @@ public class CuranderoTest {
     }
 
     @Test (expected = CurandoAEnemigoException.class)
-    public void test05CuranderoPiolaNoCuraAEnemigos() throws CurandoAEnemigoException, UnidadNoSePuedeCurar, UnidadEstaMuertaException {
+    public void test04CuranderoPiolaNoCuraAEnemigos() throws CurandoAEnemigoException, UnidadNoSePuedeCurar, UnidadEstaMuertaException {
         Curandero unCuranderoPiola = new Curandero(1);
         Curandero unCuranderoAliado = new Curandero(2);
 
@@ -61,7 +48,7 @@ public class CuranderoTest {
     }
 
     @Test(expected = UnidadNoSePuedeCurar.class)
-    public void test06CuranderoNoPuedeCurarCatapultas() throws UnidadNoSePuedeCurar, CurandoAEnemigoException {
+    public void test05CuranderoNoPuedeCurarCatapultas() throws UnidadNoSePuedeCurar, CurandoAEnemigoException {
         Curandero curitas = new Curandero(1);
         Catapulta catapulta = new Catapulta(1);
         curitas.curarAAliado(catapulta);
@@ -69,7 +56,7 @@ public class CuranderoTest {
     }
 
     @Test
-    public void test07CuranderoSanaHastaElMaximoAUnAliadoConDanioUno() throws UnidadEstaMuertaException {
+    public void test06CuranderoSanaHastaElMaximoAUnAliadoConDanioUno() throws UnidadEstaMuertaException {
         Curandero unCuranderoPiola = new Curandero(1);
         Curandero unCuranderoAliado = new Curandero(1);
 
@@ -82,12 +69,17 @@ public class CuranderoTest {
     }
 
     @Test
-    public void test08CuranderoEstaEn1x2y_seMueveA1x1y() throws NoSePuedeMoverException {
+    public void test07CuranderoSePueceMoverCorrectamenteHaciaArriba() throws NoSePuedeMoverException {
         Curandero curandero = new Curandero(1);
-        Ubicacion ubicacion = new Ubicacion(1,2);
+        Ubicacion ubicacion = Mockito.mock(Ubicacion.class);
+        Mockito.when(ubicacion.getPosicionEnY()).thenReturn(2);
+        Mockito.when(ubicacion.getPosicionEnX()).thenReturn(1);
+
         curandero.setUbicacion(ubicacion);
         curandero.moverArriba();
+
         assertEquals(1, curandero.getUbicacion().getPosicionEnX());
         assertEquals(1, curandero.getUbicacion().getPosicionEnY());
+        //¿Mas Direcciones en Test De Movimientos?
     }
 }
