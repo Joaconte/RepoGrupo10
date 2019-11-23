@@ -24,4 +24,8 @@ public class Curandero extends Pieza {
         unaUndidadCurable.sanar(PUNTOS_DE_CURACION);
         }
 
+    @Override
+    public String getNombre() {
+        return "Curandero";
+    }
 }

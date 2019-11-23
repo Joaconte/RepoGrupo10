@@ -78,5 +78,6 @@ public abstract class Pieza {
         Ubicacion nueva = modoMovimiento.arriba(this.getUbicacion());
         this.setUbicacion(nueva);
     }
-    ;
+
+    public abstract String getNombre();
 }

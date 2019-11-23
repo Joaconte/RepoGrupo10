@@ -98,7 +98,6 @@ public class InfanteriaTest {
     }
 
 
-
     @Test (expected= DistanciaDeAtaqueInvalidaException.class)
     public void test09InfanteriaDeDistintosEquiposNoSeAtacanEnDistanciaSuperiorA2Casillas() throws PiezaAliadaNoAtacableException, DistanciaDeAtaqueInvalidaException, UnidadEstaMuertaException {
 

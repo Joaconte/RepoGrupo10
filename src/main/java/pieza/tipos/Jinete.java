@@ -30,31 +30,29 @@ public class Jinete extends PiezaAtacante {
     @Override
     public void atacar(Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
         if(!this.esEnemigo(atacada)){ throw new PiezaAliadaNoAtacableException();}
-        obtenerModoDeAtaque(tablero);
+        obtenerModoDeAtaque(tablero, atacada);
         ATAQUE.atacar(this, atacada ,this.ubicacion.getDistanciaAOtroPunto(atacada.getUbicacion()));
     }
 
+    @Override
+    public String getNombre(){ return "Jinete";}
 
-    public void obtenerModoDeAtaque(Tablero tablero) {
-        boolean estaAsediado=false;
+
+    public void obtenerModoDeAtaque(Tablero tablero, Pieza atacada) {
         List<Pieza> piezas = tablero.getPiezasAdyacentes(this.ubicacion);
-
-        if (piezas.size()!=0){estaAsediado=true;}
+        int aliados=0;
+        int enemigos=0;
         for (int i=0; i <piezas.size(); i++ ){
-            Pieza pieza = (Pieza) piezas.get(i);
-            if ((!this.esEnemigo(pieza)) && pieza.getCosto() == 1){ estaAsediado=false; }
+            Pieza pieza = piezas.get(i);
+            if ((!pieza.esEnemigo(this)) && (pieza.getNombre() == "Infanteria")){ aliados++;}
+            if (pieza.esEnemigo(this)) { enemigos++;}
         }
-        if (estaAsediado){  setModoCuerpoCuerpo(); }
-        else {setModoMedio();}
+        setModo(aliados, enemigos, this.ubicacion.getDistanciaAOtroPunto(atacada.getUbicacion()));
     }
 
-    public void setModoMedio(){
-        ATAQUE.setModoAtaque(new AtaqueMedio());
+    public void setModo(int aliados, int enemigos, int distancia){
+        if ((aliados>0 && distancia>2) || enemigos==0){  ATAQUE.setModoAtaque(new AtaqueMedio()); }
+        else {ATAQUE.setModoAtaque(new AtaqueCuerpoACuerpo());}
     }
-
-    public void setModoCuerpoCuerpo(){
-        ATAQUE.setModoAtaque(new AtaqueCuerpoACuerpo());
-    }
-
 
 }

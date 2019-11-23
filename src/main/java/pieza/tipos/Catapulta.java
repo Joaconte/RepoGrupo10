@@ -30,4 +30,9 @@ public class Catapulta extends PiezaAtacante {
         if(!this.esEnemigo(atacada)){ throw new PiezaAliadaNoAtacableException();}
         ATAQUE.atacar(this, atacada ,this.ubicacion.getDistanciaAOtroPunto(atacada.getUbicacion()));
     }
+
+    @Override
+    public String getNombre() {
+        return "Catapulta";
+    }
 }

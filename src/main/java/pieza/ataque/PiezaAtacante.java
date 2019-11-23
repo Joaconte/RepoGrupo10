@@ -6,7 +6,7 @@ import pieza.movimiento.IModoMovimiento;
 import pieza.sanacion.IModoSanacion;
 import tablero.Tablero;
 
-public class PiezaAtacante extends Pieza {
+public abstract class PiezaAtacante extends Pieza {
     private int danioCuerpoCuerpo;
     private int danioDistancia;
     private int danioMedio;
@@ -37,4 +37,6 @@ public class PiezaAtacante extends Pieza {
     public void atacar(Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
     }
 
+    @Override
+    public abstract String getNombre();
 }
