@@ -28,6 +28,6 @@ public class Catapulta extends PiezaAtacante {
     @Override
     public void atacar(Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
         if(!this.esEnemigo(atacada)){ throw new PiezaAliadaNoAtacableException();}
-        super.ejecutarUnModoDeAtaque(atacada);
+        ATAQUE.atacar(this, atacada ,this.ubicacion.getDistanciaAOtroPunto(atacada.getUbicacion()));
     }
 }

@@ -34,13 +34,13 @@ public class JineteTest {
 
         assertEquals(cualquierDireccion,ubicacionModificada.darPosicionEnX());
         assertEquals(cualquierDireccion*2,ubicacionModificada.darPosicionEnY());
-    }*/
+    }
 
     @Test
     public void test04JineteAtacaADistanciaYSaca15PuntosDeVida() throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException {
         Jinete jinete = new Jinete(1);
         jinete.setUbicacion(new Ubicacion (1,1));
-        Catapulta oponente = new Catapulta(2);
+        Jinete oponente = new Jinete(2);
         oponente.setUbicacion(new Ubicacion (4,4));
         oponente.enZonaAliada();
         double vida= oponente.getPuntosVida();
@@ -53,7 +53,7 @@ public class JineteTest {
     public void test05JineteAtacaCuerpoACuerpoYSaca5PuntosDeVida() throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException {
         Jinete jinete = new Jinete(1);
         jinete.setUbicacion(new Ubicacion (1,1));
-        Catapulta oponente = new Catapulta(2);
+        Jinete oponente = new Jinete(2);
         oponente.setUbicacion(new Ubicacion (2,1));
         oponente.enZonaAliada();
         double vida= oponente.getPuntosVida();
@@ -67,7 +67,7 @@ public class JineteTest {
 
         Jinete jinete = new Jinete(1);
         jinete.setUbicacion(new Ubicacion (1,1));
-        Catapulta oponente = new Catapulta(2);
+        Jinete oponente = new Jinete(2);
         oponente.setUbicacion(new Ubicacion (2,2));
 
         double vida= oponente.getPuntosVida();
@@ -87,7 +87,7 @@ public class JineteTest {
         oponente.setUbicacion(new Ubicacion (2,1));
         jinete.ejecutarUnModoDeAtaque(oponente);
         assertEquals(vida-5-15-5,oponente.getPuntosVida(),0.0);
-    }
+    }*/
 
 
 }

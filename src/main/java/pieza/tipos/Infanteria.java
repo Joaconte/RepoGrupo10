@@ -27,6 +27,6 @@ public class Infanteria extends PiezaAtacante {
     @Override
     public void atacar(Pieza oponente, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
         if(!this.esEnemigo(oponente)){ throw new PiezaAliadaNoAtacableException();}
-        super.ejecutarUnModoDeAtaque(oponente);
+        ATAQUE.atacar(this, oponente ,this.ubicacion.getDistanciaAOtroPunto(oponente.getUbicacion()));
     }
 }

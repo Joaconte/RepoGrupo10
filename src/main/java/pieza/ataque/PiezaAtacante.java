@@ -37,7 +37,4 @@ public class PiezaAtacante extends Pieza {
     public void atacar(Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
     }
 
-    public void ejecutarUnModoDeAtaque(Pieza oponente) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException {
-        modoAtaque.atacar(this, oponente ,this.ubicacion.getDistanciaAOtroPunto(oponente.getUbicacion()));
-    }
 }

@@ -20,10 +20,10 @@ public class Jinete extends PiezaAtacante {
     static final int DANIO_DISTANCIA = 0;
     static final IModoMovimiento MOVIMIENTO = new SeMueveEnTodasDirecciones();
     static final IModoSanacion MODO_CURACION = new SanacionNormal();
-    static final IModoAtaque MODO_ATAQUE = new AtaqueVariable();
+    static final IModoAtaque ATAQUE = new AtaqueVariable();
 
     public Jinete(int equipo) {
-        super(COSTO, VIDA_MAXIMA, VIDA_MAXIMA, equipo, MOVIMIENTO,  MODO_CURACION, MODO_ATAQUE,DANIO_CUERPO, DANIO_MEDIO,DANIO_DISTANCIA);
+        super(COSTO, VIDA_MAXIMA, VIDA_MAXIMA, equipo, MOVIMIENTO,  MODO_CURACION, ATAQUE,DANIO_CUERPO, DANIO_MEDIO,DANIO_DISTANCIA);
     }
 
 
@@ -31,7 +31,7 @@ public class Jinete extends PiezaAtacante {
     public void atacar(Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
         if(!this.esEnemigo(atacada)){ throw new PiezaAliadaNoAtacableException();}
         obtenerModoDeAtaque(tablero);
-        super.ejecutarUnModoDeAtaque(atacada);
+        ATAQUE.atacar(this, atacada ,this.ubicacion.getDistanciaAOtroPunto(atacada.getUbicacion()));
     }
 
 
@@ -49,11 +49,11 @@ public class Jinete extends PiezaAtacante {
     }
 
     public void setModoMedio(){
-        MODO_ATAQUE.setModoAtaque(new AtaqueMedio());
+        ATAQUE.setModoAtaque(new AtaqueMedio());
     }
 
     public void setModoCuerpoCuerpo(){
-        MODO_ATAQUE.setModoAtaque(new AtaqueCuerpoACuerpo());
+        ATAQUE.setModoAtaque(new AtaqueCuerpoACuerpo());
     }
 
 
