@@ -1,6 +1,9 @@
 package pieza;
 
 import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import org.mockito.Mockito;
+import org.mockito.Mock;
 import pieza.movimiento.NoSePuedeMoverException;
 import pieza.tipos.Catapulta;
 
@@ -22,7 +25,9 @@ public class CatapultaTest {
     @Test(expected = NoSePuedeMoverException.class)
     public void test03CatapultaNoSePuedeMoverArriba() throws NoSePuedeMoverException {
         Catapulta catapulta = new Catapulta(1);
-        Ubicacion ubicacion = new Ubicacion(1,1);
+        Ubicacion ubicacion = Mockito.mock(Ubicacion.class);
+        Mockito.when(ubicacion.getPosicionEnY()).thenReturn(1);
+        Mockito.when(ubicacion.getPosicionEnX()).thenReturn(1);
         catapulta.setUbicacion(ubicacion);
         catapulta.moverArriba();
         assertEquals(1,catapulta.getUbicacion().getPosicionEnX());
