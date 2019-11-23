@@ -24,6 +24,11 @@ public class Infanteria extends PiezaAtacante {
 
     }
 
+    public Infanteria(int equipo,int posX, int posY){
+        super(COSTO, VIDA_MAXIMA, equipo, MOVIMIENTO, MODO_CURACION, ATAQUE, DANIO_CUERPO, DANIO_MEDIO, DANIO_DISTANCIA, posX, posY);
+
+    }
+
     @Override
     public String getNombre(){ return "Infanteria";}
 
