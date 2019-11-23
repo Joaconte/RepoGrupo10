@@ -22,13 +22,11 @@ public class Jinete extends PiezaAtacante {
     static final IModoSanacion MODO_CURACION = new SanacionNormal();
     static final IModoAtaque ATAQUE = new AtaqueVariable();
 
-    public Jinete(int equipo) {
-        super(COSTO, VIDA_MAXIMA, equipo, MOVIMIENTO,  MODO_CURACION, ATAQUE,DANIO_CUERPO, DANIO_MEDIO,DANIO_DISTANCIA);
-    }
 
     public Jinete(int equipo, int posX, int posY){
         super(COSTO, VIDA_MAXIMA, equipo, MOVIMIENTO,  MODO_CURACION, ATAQUE,DANIO_CUERPO, DANIO_MEDIO,DANIO_DISTANCIA, posX, posY);
     }
+
 
     @Override
     public void atacar(Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {

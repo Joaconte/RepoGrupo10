@@ -32,8 +32,8 @@ public class Ejercito{
 
     //-----------Add-Remove-----------//
 
-    public void comprarPieza (String unidadNombre) throws PresupuestoAgotadoException, CompraInvalidaException {
-        piezas.add(presupuesto.comprarPieza(numeroDeEjercito, unidadNombre));
+    public void comprarPieza (String unidadNombre, int posX, int posY) throws PresupuestoAgotadoException, CompraInvalidaException {
+        piezas.add(presupuesto.comprarPieza(numeroDeEjercito, unidadNombre, posX, posY));
         this.setEstadoPresupuesto(this.presupuesto);
     }
 

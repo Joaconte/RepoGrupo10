@@ -12,19 +12,12 @@ public abstract class PiezaAtacante extends Pieza {
     private int danioMedio;
 
     private IModoAtaque modoAtaque;
-
-    public PiezaAtacante(int costo, int vidaMaxima, int equipo, IModoMovimiento movimiento, IModoSanacion modoSanacion,IModoAtaque modoAtaque, int danioCuerpo, int danioMedio, int danioDistanciaLejana) {
-        super(costo, vidaMaxima, equipo, movimiento, modoSanacion);
+    public PiezaAtacante(int costo, int vidaMaxima, int equipo, IModoMovimiento movimiento, IModoSanacion modoSanacion, IModoAtaque modoAtaque, int danioCuerpo, int danioMedio, int danioDistanciaLejana, int posX, int posY) {
+        super(costo, vidaMaxima, equipo, movimiento, modoSanacion,posX,posY);
         this.modoAtaque= modoAtaque;
         this.danioCuerpoCuerpo = danioCuerpo;
         this.danioDistanciaLejana = danioDistanciaLejana;
         this.danioMedio = danioMedio;
-    }
-
-    public PiezaAtacante(int costo, int vidaMaxima, int equipo, IModoMovimiento movimiento, IModoSanacion modoSanacion, IModoAtaque modoAtaque, int danioCuerpo, int danioMedio, int danioDistanciaLejana, int posX, int posY) {
-        super(costo, vidaMaxima, equipo, movimiento, modoSanacion,posX,posY);
-        this.modoAtaque= modoAtaque;
-        this.setDanioCuerpo_Distancia_Media(danioCuerpo,danioMedio, danioDistanciaLejana);
     }
 
     public int getDanioCuerpoCuerpo(){
@@ -40,13 +33,11 @@ public abstract class PiezaAtacante extends Pieza {
     }
 
     private void setDanioCuerpo_Distancia_Media(int danioCuerpo, int danioMedio, int danioLejano){
-        this.danioCuerpoCuerpo = danioCuerpo;
-        this.danioDistanciaLejana = danioLejano;
-        this.danioMedio = danioMedio;
-    }
-    public void atacar(Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
+
     }
 
+
+    public abstract void atacar(Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException;
     @Override
     public abstract String getNombre();
 }

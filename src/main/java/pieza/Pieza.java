@@ -16,16 +16,6 @@ public abstract class Pieza {
     private IModoSanacion modoSanacion;
 
     // Constructores
-    public Pieza(int costo, int vidaMaxima, int equipo, IModoMovimiento modoMovimiento, IModoSanacion modoSanacion) {
-    this.costo = costo;
-    this.vida_maxima = vidaMaxima;
-    this.vida = vidaMaxima;
-    this.equipo = equipo;
-    this.modoMovimiento = modoMovimiento;
-    this.modoSanacion = modoSanacion;
-    this.danioARecibir = new DanioZonaPropia();
-    }
-
     public Pieza(int costo, int vidaMaxima, int equipo, IModoMovimiento modoMovimiento, IModoSanacion modoSanacion, int posX, int posY) {
         this.costo = costo;
         this.vida_maxima = vidaMaxima;

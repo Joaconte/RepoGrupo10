@@ -22,8 +22,8 @@ public class EstadoPresupuestoNoAgotado implements EstadoPresupuestoDeEjercito{
 
 
     @Override
-    public Pieza comprarPieza(int ejercito, String nombreUnidad) throws CompraInvalidaException {
-        Pieza pieza = fabricaDePiezas.crearPieza(ejercito,nombreUnidad);
+    public Pieza comprarPieza(int ejercito, String nombreUnidad, int posX, int posY) throws CompraInvalidaException {
+        Pieza pieza = fabricaDePiezas.crearPieza(ejercito,nombreUnidad,posX,posY);
         if (presupuesto-pieza.getCosto()<0){throw new CompraInvalidaException();}
         this.setPresupuesto(this.presupuesto - pieza.getCosto());
         return pieza;

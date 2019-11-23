@@ -24,14 +24,14 @@ public class EstadoPresupuestoNoAgotadoTest {
     @Test
     public void test03PresupuestoSeAgotaYSaleDelEstadoNoAgotadoCorrectamente() throws CompraInvalidaException {
         EstadoPresupuestoNoAgotado estado = new EstadoPresupuestoNoAgotado(3);
-        estado.comprarPieza(1, "Jinete");
+        estado.comprarPieza(1, "Jinete",1,1);
         assertNotSame(estado, estado.devolverEstadoDePresuesto());
     }
 
     @Test (expected = CompraInvalidaException.class)
     public void test04NoPuedoDarUnaFichaDeValor5Teniendo3DePresupuesto() throws CompraInvalidaException {
         EstadoPresupuestoNoAgotado estadoNoAgotado = new EstadoPresupuestoNoAgotado(3);
-        estadoNoAgotado.comprarPieza(1, "Catapulta");
+        estadoNoAgotado.comprarPieza(1, "Catapulta",1,1);
     }
 
 }
