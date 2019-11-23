@@ -122,20 +122,5 @@ public class InfanteriaTest {
 
 
 
-    /*
-    @Test
-    public void test07InfanteriaSeMueveCorrectamenteACualquierDireccionQueMePasen() {
-        Infanteria soldado = new Infanteria();
-        int cualquierDireccion = 999;
-
-        Ubicacion miNuevaUbicacion = Mockito.mock(Ubicacion.class);
-        Mockito.when(miNuevaUbicacion.darPosicionEnX()).thenReturn(cualquierDireccion);
-        Mockito.when(miNuevaUbicacion.darPosicionEnY()).thenReturn(cualquierDireccion*2);
-        soldado.moverUnidad(miNuevaUbicacion);
-        Ubicacion ubicacionModificada = soldado.getUbicacion();
-
-        assertEquals(cualquierDireccion,ubicacionModificada.darPosicionEnX());
-        assertEquals(cualquierDireccion*2,ubicacionModificada.darPosicionEnY());
-    }*/
 }
 

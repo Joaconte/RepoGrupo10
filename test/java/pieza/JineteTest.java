@@ -7,10 +7,13 @@ import pieza.tipos.Jinete;
 
 
 import static org.junit.Assert.assertEquals;
+import org.mockito.Mockito;
+import org.mockito.Mock;
 
 public class JineteTest {
+
     @Test
-    public void test01JineteTieneCosto1() {
+    public void test01JineteTieneCosto3() {
         Jinete jinete = new Jinete(1);
         assertEquals(3, jinete.getCosto());
     }
