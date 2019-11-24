@@ -30,7 +30,7 @@ public class Catapulta extends PiezaAtacante {
     @Override
     public void atacar(Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
         if(!this.esEnemigo(atacada)){ throw new PiezaAliadaNoAtacableException();}
-        ATAQUE.atacar(this, atacada ,this.ubicacion.getDistanciaAOtroPunto(atacada.getUbicacion()));
+        ATAQUE.ataqueMasivo(this, atacada, tablero.getPiezasAdycentesInfinitas(atacada.getUbicacion()),this.ubicacion.getDistanciaAOtroPunto(atacada.getUbicacion()));
     }
 
     @Override
@@ -39,8 +39,8 @@ public class Catapulta extends PiezaAtacante {
     }
 
     @Override
-    public void evaluarZonaDeDanio(Sector sector){};
+    public void evaluarZonaDeDanio(Sector sector){}
 
     @Override
-    public void setUbicacion(Ubicacion ubicacion){ }
+    public void setUbicacion(Ubicacion ubicacion){}
 }

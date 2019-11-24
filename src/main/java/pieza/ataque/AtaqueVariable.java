@@ -15,7 +15,7 @@ public class AtaqueVariable implements IModoAtaque {
     }
 
     @Override
-    public void atacar(PiezaAtacante miUnidad, List<Pieza> piezas, int distancia) throws DistanciaDeAtaqueInvalidaException, UnidadEstaMuertaException {
+    public void ataqueMasivo(PiezaAtacante miUnidad, Pieza victima, List<Pieza> piezas, int distancia) throws DistanciaDeAtaqueInvalidaException, UnidadEstaMuertaException {
     }
 
     @Override

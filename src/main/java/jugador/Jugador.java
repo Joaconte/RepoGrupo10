@@ -1,9 +1,9 @@
 package jugador;
 
-import jugador.presupuesto.EstadoPresupuestoDeEjercito;
-import jugador.presupuesto.EstadoPresupuestoNoAgotado;
+import jugador.presupuesto.CompraInvalidaException;
+import jugador.presupuesto.PresupuestoAgotadoException;
 import pieza.Pieza;
-import pieza.Ubicacion;
+import tablero.Tablero;
 
 public class Jugador {
 
@@ -39,10 +39,11 @@ public class Jugador {
 
     //----------Agrega Ubicacion A Unidad--------------//
 
-    public void comprarFicha(Pieza pieza, int posicionX, int posicionY) throws PiezaFueraDeSectorException {
-        Ubicacion ubicacionNueva = new Ubicacion(posicionX, posicionY);
+    public void crearNuevaUnidad(Tablero tablero, String nombreUnidad, int posicionX, int posicionY) throws PiezaFueraDeSectorException, UbicacionInvalidaException, PresupuestoAgotadoException, CompraInvalidaException {
         if (!sector.esDelSector(posicionX)){ throw new PiezaFueraDeSectorException();}
-        pieza.setUbicacion(ubicacionNueva);
+        if (tablero.casillaEstaOcupada(posicionX,posicionY)){ throw new UbicacionInvalidaException();}
+        Pieza pieza = ejercito.obtenerNuevaPieza(nombreUnidad,posicionX,posicionY);
+        tablero.ocuparCasilla(pieza, posicionX, posicionY);
     }
 
 }

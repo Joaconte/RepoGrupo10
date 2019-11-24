@@ -56,7 +56,7 @@ public abstract class Pieza {
     public void evaluarZonaDeDanio(Sector sector) {
         if (sector.esDelSector(ubicacion.getPosicionEnX())) { this.danioARecibir = new DanioZonaEnemiga(); }
         else this.danioARecibir = new DanioZonaPropia();
-    }
+    } //Variara dependiendo de donde lo recibe. Incluso puede hacer un new Sector (equipo) y ya esta
 
     public void recibirDanio(double danioBase) throws UnidadEstaMuertaException {
         if (vida<=0) throw new UnidadEstaMuertaException();

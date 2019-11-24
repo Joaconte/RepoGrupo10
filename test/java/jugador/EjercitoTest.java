@@ -20,7 +20,7 @@ public class EjercitoTest {
     public void test02SeAgregaUnaUnidadCorrectamente() throws PresupuestoAgotadoException, CompraInvalidaException {
 
         Ejercito ejercito = new Ejercito(1);
-        ejercito.comprarPieza("Jinete",1,1);
+        ejercito.obtenerNuevaPieza("Jinete",1,1);
         assertEquals(1, ejercito.getTamanio() );
     }
 
@@ -30,10 +30,10 @@ public class EjercitoTest {
 
         Ejercito ejercito = new Ejercito(1);
 
-        ejercito.comprarPieza("Jinete",1,1);
-        ejercito.comprarPieza("Infanteria",2,1);
-        ejercito.comprarPieza("Curandero",3,1);
-        ejercito.comprarPieza("Catapulta",4,1);
+        ejercito.obtenerNuevaPieza("Jinete",1,1);
+        ejercito.obtenerNuevaPieza("Infanteria",2,1);
+        ejercito.obtenerNuevaPieza("Curandero",3,1);
+        ejercito.obtenerNuevaPieza("Catapulta",4,1);
 
         assertEquals(4, ejercito.getTamanio() );
     }

@@ -2,7 +2,6 @@ package jugador;
 
 import jugador.presupuesto.*;
 import pieza.Pieza;
-
 import java.util.ArrayList;
 
 public class Ejercito{
@@ -32,41 +31,15 @@ public class Ejercito{
 
     //-----------Add-Remove-----------//
 
-    public void comprarPieza (String unidadNombre, int posX, int posY) throws PresupuestoAgotadoException, CompraInvalidaException {
-        piezas.add(presupuesto.comprarPieza(numeroDeEjercito, unidadNombre, posX, posY));
+    public Pieza obtenerNuevaPieza(String unidadNombre, int posX, int posY) throws PresupuestoAgotadoException, CompraInvalidaException {
+        Pieza piezaComprada = presupuesto.comprarPieza(numeroDeEjercito, unidadNombre, posX, posY);
+        piezas.add(piezaComprada);
         this.setEstadoPresupuesto(this.presupuesto);
+        return piezaComprada;
     }
 
 
 }
-
-/*
-    public boolean ubicacionEsValida(Ubicacion ubicacion) throws UbicacionInvalidaException {
-
-        for (int i = 0; i < ejercito.size(); ++i) {
-            if(ejercito.get(i).getUbicacion() == ubicacion){
-                throw new UbicacionInvalidaException();
-            }
-        }
-        return true;
-    }
-
-    public boolean ubicacionValida(int x, int y) {
-
-        Ubicacion ubicacion = new Ubicacion(x,y);
-        boolean booleano = false;
-        try {
-            booleano = ubicacionEsValida(ubicacion);
-        } catch (UbicacionInvalidaException e) {
-            System.out.println(e);
-            booleano = false;
-        }
-        return booleano;
-    }
-}
-
-
-     */
 
 
 

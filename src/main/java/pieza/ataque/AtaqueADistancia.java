@@ -17,10 +17,13 @@ public class AtaqueADistancia implements IModoAtaque {
     }
 
     @Override
-    public void atacar(PiezaAtacante miUnidad, List<Pieza> piezas, int distancia) throws DistanciaDeAtaqueInvalidaException, UnidadEstaMuertaException {
-        if (distancia < 6 || distancia > 20){throw new DistanciaDeAtaqueInvalidaException();}
+    public void ataqueMasivo(PiezaAtacante miUnidad, Pieza victima, List<Pieza> piezas, int distancia) throws DistanciaDeAtaqueInvalidaException, UnidadEstaMuertaException {
+        double daniaAReplicar = victima.getPuntosVida(); //Cuestiones de enunciado.
+        atacar(miUnidad, victima, distancia);
+        piezas.remove(0);
+        daniaAReplicar = daniaAReplicar - victima.getPuntosVida();
         for (int i=0; i<piezas.size(); i++){
-            piezas.get(i).recibirDanio(miUnidad.getDanioDistanciaLejana());
+            piezas.get(i).recibirDanio(daniaAReplicar);
         }
     }
 }

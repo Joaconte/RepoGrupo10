@@ -9,7 +9,6 @@ import pieza.sanacion.IModoSanacion;
 import pieza.sanacion.SanacionNormal;
 import tablero.Tablero;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Jinete extends PiezaAtacante {
@@ -46,7 +45,7 @@ public class Jinete extends PiezaAtacante {
         for (int i=0; i <piezas.size(); i++ ){
             Pieza pieza = piezas.get(i);
             if ((!pieza.esEnemigo(this)) && (pieza.getNombre() == "Infanteria")){ aliados++;}
-            if (pieza.esEnemigo(this)) { enemigos++;}
+            else if (pieza.esEnemigo(this)) { enemigos++;}
         }
         setModo(aliados, enemigos, this.ubicacion.getDistanciaAOtroPunto(atacada.getUbicacion()));
     }

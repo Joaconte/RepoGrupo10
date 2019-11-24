@@ -5,7 +5,6 @@ import pieza.Pieza;
 public class CasillaOcupada implements EstadoCasilla{
 
     private Pieza pieza;
-    boolean fueVisitada=false;
 
     public CasillaOcupada(Pieza pieza){
         this.pieza= pieza;
@@ -31,14 +30,5 @@ public class CasillaOcupada implements EstadoCasilla{
         return pieza;
     }
 
-    @Override
-    public void setFueRevisada(boolean fueRevisada) {
-        fueVisitada=fueRevisada;
-    }
-
-    @Override
-    public boolean getFueRevisada() {
-        return fueVisitada;
-    }
 }
 

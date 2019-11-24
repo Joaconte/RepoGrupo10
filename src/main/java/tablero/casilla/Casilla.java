@@ -21,8 +21,5 @@ public  class  Casilla {
 
     public Pieza getContenido() { return estadoCasilla.getContenido(); }
 
-    public boolean getFueRevisada() { return estadoCasilla.getFueRevisada();}
-
-    public void setFueRevisada(boolean fueRevisada) {estadoCasilla.setFueRevisada(fueRevisada);}
 }
 
