@@ -27,8 +27,8 @@ public class JugadorTest {
 
         Jugador jugador = new Jugador(1 );
 
-        assertEquals( 1 , jugador.getSector().getPrimeraPos());
-        assertEquals( 10 , jugador.getSector().getUltimaPos());
+        assertEquals( 0 , jugador.getSector().getPrimeraPos());
+        assertEquals( 9 , jugador.getSector().getUltimaPos());
     }
 
 

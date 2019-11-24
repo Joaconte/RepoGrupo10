@@ -40,7 +40,7 @@ public class UbicacionTest {
     }
 
     @Test
-    public void test04SeCalculaCorrectamenteLaDistanciaMedia() {
+    public void test05SeCalculaCorrectamenteLaDistanciaMedia() {
         Ubicacion ubicacion1 = new Ubicacion(1, 2);
         Ubicacion ubicacion2 = new Ubicacion(5, 6);
 

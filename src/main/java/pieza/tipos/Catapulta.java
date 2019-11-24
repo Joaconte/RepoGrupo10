@@ -1,6 +1,8 @@
 package pieza.tipos;
 
+import jugador.Sector;
 import pieza.Pieza;
+import pieza.Ubicacion;
 import pieza.UnidadEstaMuertaException;
 import pieza.ataque.*;
 import pieza.movimiento.IModoMovimiento;
@@ -23,7 +25,6 @@ public class Catapulta extends PiezaAtacante {
 
     public Catapulta(int equipo, int posX, int posY){
         super(COSTO,VIDA_MAXIMA,equipo, MOVIMIENTO, MODO_CURACION, ATAQUE,DANIO_CUERPO, DANIO_MEDIO, DANIO_DISTANCIA, posX, posY);
-
     }
 
     @Override
@@ -36,4 +37,10 @@ public class Catapulta extends PiezaAtacante {
     public String getNombre() {
         return "Catapulta";
     }
+
+    @Override
+    public void evaluarZonaDeDanio(Sector sector){};
+
+    @Override
+    public void setUbicacion(Ubicacion ubicacion){ }
 }

@@ -36,8 +36,8 @@ public abstract class PiezaAtacante extends Pieza {
 
     }
 
-
     public abstract void atacar(Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException;
+
     @Override
     public abstract String getNombre();
 }

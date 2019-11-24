@@ -34,12 +34,4 @@ public class FaseInicial implements FaseDePartida{
 
 
 
-    //Colocacion y movimiento
-
-    @Override
-    public void agregarNuevaUbicacionAFicha(Jugador jugadorEnTurno, Pieza pieza, int posicionX, int posicionY) throws PiezaFueraDeSectorException {
-        jugadorEnTurno.agregarUbicacionAPieza(pieza, posicionX, posicionY);
-    }
-
-
 }

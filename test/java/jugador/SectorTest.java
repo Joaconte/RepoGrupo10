@@ -16,8 +16,8 @@ public class SectorTest {
 
         Sector sector = new Sector(1 );
 
-        assertEquals(1, sector.getPrimeraPos());
-        assertEquals(10, sector.getUltimaPos());
+        assertEquals(0, sector.getPrimeraPos());
+        assertEquals(9, sector.getUltimaPos());
     }
 
     @Test
@@ -25,8 +25,8 @@ public class SectorTest {
 
         Sector sector = new Sector(2 );
 
-        assertEquals(11, sector.getPrimeraPos());
-        assertEquals(20, sector.getUltimaPos());
+        assertEquals(10, sector.getPrimeraPos());
+        assertEquals(19, sector.getUltimaPos());
     }
 
     @Test

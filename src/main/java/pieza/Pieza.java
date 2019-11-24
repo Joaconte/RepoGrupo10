@@ -1,5 +1,6 @@
 package pieza;
 
+import jugador.Sector;
 import pieza.movimiento.*;
 import pieza.recibirDanio.*;
 import pieza.sanacion.*;
@@ -52,18 +53,15 @@ public abstract class Pieza {
 
     // METODOS
 
-    public void enZonaEnemiga(){
-        this.danioARecibir = new DanioZonaEnemiga();
-    }
-    public void enZonaAliada(){
-        this.danioARecibir = new DanioZonaPropia();
+    public void evaluarZonaDeDanio(Sector sector) {
+        if (sector.esDelSector(ubicacion.getPosicionEnX())) { this.danioARecibir = new DanioZonaEnemiga(); }
+        else this.danioARecibir = new DanioZonaPropia();
     }
 
-    // ver q no deje en negativos--- exceptions
     public void recibirDanio(double danioBase) throws UnidadEstaMuertaException {
         if (vida<=0) throw new UnidadEstaMuertaException();
         vida-= danioARecibir.danio(danioBase);
-
+        vida = Math.max(vida, 0);
     }
 
     public void sanar(int puntos) throws UnidadNoSePuedeCurar {
@@ -76,6 +74,7 @@ public abstract class Pieza {
         movimiento.moverse();
     }
     */
+
     public void moverArriba() throws NoSePuedeMoverException {
         Ubicacion nueva = modoMovimiento.arriba(this.getUbicacion());
         this.setUbicacion(nueva);

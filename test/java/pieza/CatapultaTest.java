@@ -34,4 +34,15 @@ public class CatapultaTest {
         Catapulta catapulta = new Catapulta(1,1,1);;
         catapulta.moverArriba();
     }
+
+    @Test
+    public void test03CatapultaNoSeteaUbicacion() throws NoSePuedeMoverException {
+        Catapulta catapulta = new Catapulta(1,1,1);
+
+        Ubicacion ubicacion= Mockito.mock(Ubicacion.class);
+        Mockito.when(ubicacion.getPosicionEnX()).thenReturn(2);
+        Mockito.when(ubicacion.getPosicionEnY()).thenReturn(2);
+        catapulta.setUbicacion(ubicacion);
+        assertEquals(1,catapulta.getUbicacion().getPosicionEnY());
+    }
 }

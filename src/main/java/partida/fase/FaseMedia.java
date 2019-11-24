@@ -38,12 +38,6 @@ public class FaseMedia implements FaseDePartida{
         atacante.atacar(atacada,tablero);
     }
 
-    //Colocacion y movimiento
-
-    @Override
-    public void agregarNuevaUbicacionAFicha(Jugador jugadorEnTurno, Pieza pieza, int posicionX, int posicionY) {
-        //fase ortiva.
-    }
 
 
 }

@@ -39,7 +39,7 @@ public class Jugador {
 
     //----------Agrega Ubicacion A Unidad--------------//
 
-    public void agregarUbicacionAPieza(Pieza pieza, int posicionX, int posicionY) throws PiezaFueraDeSectorException {
+    public void comprarFicha(Pieza pieza, int posicionX, int posicionY) throws PiezaFueraDeSectorException {
         Ubicacion ubicacionNueva = new Ubicacion(posicionX, posicionY);
         if (!sector.esDelSector(posicionX)){ throw new PiezaFueraDeSectorException();}
         pieza.setUbicacion(ubicacionNueva);

@@ -2,27 +2,27 @@ package jugador;
 
 public class Sector {
 
-    private int columnaEnQueIniciaElSector;
-    private int columnaEnQueTerminaElSector;
+    private int primeraColumna;
+    private int ultimaColumna;
     private int numeroDeSector;
     private int columnasTotalesEnElSector = 10;
 
     public Sector(int numeroJugador){
         this.numeroDeSector=numeroJugador;
-        this.columnaEnQueTerminaElSector = numeroJugador * columnasTotalesEnElSector; //conteo de jugador inicia en 1
-        this.columnaEnQueIniciaElSector = columnaEnQueTerminaElSector - (columnasTotalesEnElSector-1);
+        this.primeraColumna= (numeroJugador - 1 ) * columnasTotalesEnElSector; //Se admite posicion 0.
+        this.ultimaColumna= (numeroJugador * columnasTotalesEnElSector) - 1; //Se baja uno porque existe columna 0
     }
 
     //-----------GETTERS-----------//
     public int getPrimeraPos() {
-        return columnaEnQueIniciaElSector;
+        return primeraColumna;
     }
     public int getUltimaPos() {
-        return columnaEnQueTerminaElSector;
+        return ultimaColumna;
     }
 
     public boolean esDelSector(int numColumna){
-        return (columnaEnQueIniciaElSector<=numColumna && numColumna<=columnaEnQueTerminaElSector);
+        return (primeraColumna<=numColumna && numColumna<=ultimaColumna);
     }
 }
 
