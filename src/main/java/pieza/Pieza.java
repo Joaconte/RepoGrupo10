@@ -85,15 +85,15 @@ public abstract class Pieza {
         Ubicacion anterior = this.getUbicacion();
         int nuevoX = anterior.getPosicionEnX()+ direccion.getDesplazamientoEnX();
         int nuevoY = anterior.getPosicionEnY() + direccion.getDesplazamientoEnY();
+        /* ver q la ubicacion sea valida, que no se salga de los parametros del tablero */
 
         if ( !tablero.casillaEstaOcupada(nuevoX, nuevoY)){
             this.setUbicacion(new Ubicacion(nuevoX, nuevoY));
             tablero.ocuparCasilla(this,nuevoX, nuevoY);
             tablero.desocuparCasilla(anterior.getPosicionEnX(), anterior.getPosicionEnY());
-        } else {
+        } else{
             throw new NoSePuedeMoverException();
         }
-
     }
 
     public abstract String getNombre();
