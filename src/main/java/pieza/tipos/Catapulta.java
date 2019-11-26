@@ -5,7 +5,9 @@ import pieza.Pieza;
 import pieza.Ubicacion;
 import pieza.UnidadEstaMuertaException;
 import pieza.ataque.*;
+import pieza.movimiento.Direccion;
 import pieza.movimiento.IModoMovimiento;
+import pieza.movimiento.NoSePuedeMoverException;
 import pieza.movimiento.SinMovimientos;
 
 import pieza.sanacion.IModoSanacion;
@@ -43,4 +45,10 @@ public class Catapulta extends PiezaAtacante {
 
     @Override
     public void setUbicacion(Ubicacion ubicacion){}
+
+    @Override
+    public void mover(Tablero tablero, Direccion direccion) throws NoSePuedeMoverException {
+        throw new NoSePuedeMoverException();
+
+    }
 }

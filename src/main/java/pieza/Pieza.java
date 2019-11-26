@@ -4,6 +4,7 @@ import jugador.Sector;
 import pieza.movimiento.*;
 import pieza.recibirDanio.*;
 import pieza.sanacion.*;
+import tablero.Tablero;
 
 public abstract class Pieza {
     private int costo;
@@ -78,6 +79,21 @@ public abstract class Pieza {
     public void moverArriba() throws NoSePuedeMoverException {
         Ubicacion nueva = modoMovimiento.arriba(this.getUbicacion());
         this.setUbicacion(nueva);
+    }
+
+    public void mover(Tablero tablero, Direccion direccion) throws NoSePuedeMoverException {
+        Ubicacion anterior = this.getUbicacion();
+        int nuevoX = anterior.getPosicionEnX()+ direccion.getDesplazamientoEnX();
+        int nuevoY = anterior.getPosicionEnY() + direccion.getDesplazamientoEnY();
+
+        if ( !tablero.casillaEstaOcupada(nuevoX, nuevoY)){
+            this.setUbicacion(new Ubicacion(nuevoX, nuevoY));
+            tablero.ocuparCasilla(this,nuevoX, nuevoY);
+            tablero.desocuparCasilla(anterior.getPosicionEnX(), anterior.getPosicionEnY());
+        } else {
+            throw new NoSePuedeMoverException();
+        }
+
     }
 
     public abstract String getNombre();
