@@ -2,10 +2,7 @@ package modelo.jugador;
 
 import modelo.jugador.presupuesto.CompraInvalidaException;
 import modelo.pieza.Pieza;
-import modelo.pieza.tipos.Catapulta;
-import modelo.pieza.tipos.Curandero;
-import modelo.pieza.tipos.Infanteria;
-import modelo.pieza.tipos.Jinete;
+import modelo.pieza.tipos.*;
 
 public class FabricaDePiezas{
 

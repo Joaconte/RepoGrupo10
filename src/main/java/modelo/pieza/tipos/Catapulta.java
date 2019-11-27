@@ -2,13 +2,13 @@ package modelo.pieza.tipos;
 
 import modelo.pieza.Pieza;
 import modelo.pieza.Ubicacion;
+import modelo.jugador.Sector;
 import modelo.pieza.UnidadEstaMuertaException;
+import modelo.pieza.ataque.*;
 import modelo.pieza.movimiento.Direccion;
+import modelo.pieza.movimiento.IModoMovimiento;
 import modelo.pieza.movimiento.NoSePuedeMoverException;
 import modelo.pieza.movimiento.SinMovimientos;
-import modelo.jugador.Sector;
-import modelo.pieza.ataque.*;
-import modelo.pieza.movimiento.IModoMovimiento;
 
 import modelo.pieza.sanacion.IModoSanacion;
 import modelo.pieza.sanacion.SinSanacion;

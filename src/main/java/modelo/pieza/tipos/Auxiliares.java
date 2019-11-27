@@ -2,6 +2,8 @@ package modelo.pieza.tipos;
 
 import modelo.pieza.Pieza;
 
+import java.util.ArrayList;
+
 public class Auxiliares {
     public boolean son3Aliados(Pieza p1, Pieza p2, Pieza p3){
         return ((!p1.esEnemigo(p2))&(!p1.esEnemigo(p3))&(!p2.esEnemigo(p3)));

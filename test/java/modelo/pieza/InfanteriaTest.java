@@ -1,9 +1,9 @@
 package modelo.pieza;
 
+import modelo.pieza.tipos.Infanteria;
 import org.junit.Test;
 import modelo.pieza.ataque.DistanciaDeAtaqueInvalidaException;
 import modelo.pieza.ataque.PiezaAliadaNoAtacableException;
-import modelo.pieza.tipos.Infanteria;
 import modelo.tablero.Tablero;
 
 import static org.junit.Assert.assertEquals;

@@ -1,9 +1,9 @@
 package modelo.pieza;
 
+import modelo.pieza.tipos.Infanteria;
 import org.junit.Test;
 import modelo.pieza.tipos.Auxiliares;
 import modelo.pieza.tipos.Curandero;
-import modelo.pieza.tipos.Infanteria;
 
 import static org.junit.Assert.*;
 

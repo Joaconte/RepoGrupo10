@@ -1,10 +1,12 @@
 package modelo.pieza.tipos;
 
-import modelo.pieza.ataque.PiezaAliadaNoAtacableException;
+import modelo.pieza.movimiento.*;
 import modelo.pieza.Pieza;
+import modelo.pieza.Ubicacion;
 import modelo.pieza.UnidadEstaMuertaException;
 import modelo.pieza.ataque.DistanciaDeAtaqueInvalidaException;
-import modelo.pieza.movimiento.*;
+import modelo.pieza.ataque.PiezaAliadaNoAtacableException;
+import modelo.pieza.ataque.PiezaAtacante;
 import modelo.tablero.Tablero;
 
 import java.util.ArrayList;
