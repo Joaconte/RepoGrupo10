@@ -17,6 +17,7 @@ public class BotonAgregarJugadorEventHandler implements EventHandler<ActionEvent
     private Label labelDos;
     private Juego juego;
     private VBox vbox;
+    private boolean primeraVez=true;
 
     public BotonAgregarJugadorEventHandler(TextField textoUno, TextField textoDos, Label etiquetaUno, Label etiquetaDos, Juego juego, VBox vbox) {
         textFieldUno = textoUno ;
@@ -45,8 +46,10 @@ public class BotonAgregarJugadorEventHandler implements EventHandler<ActionEvent
             this.labelDos.setTextFill(Color.web("#336600"));
             juego.agregarJugadores(jugadorUno, jugadorDos);
 
-            vbox.getChildren().add(new BotonIniciarPartida(juego));
-
+            if (primeraVez){
+                vbox.getChildren().add(new BotonIniciarPartida(juego, vbox));
+                primeraVez = false;
+            }
         }
     }
 }
