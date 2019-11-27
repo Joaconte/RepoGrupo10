@@ -4,8 +4,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import modelo.Juego;
+import vista.BotonIniciarPartida;
 
 public class BotonAgregarJugadorEventHandler implements EventHandler<ActionEvent> {
 
@@ -14,13 +16,15 @@ public class BotonAgregarJugadorEventHandler implements EventHandler<ActionEvent
     private Label labelUno;
     private Label labelDos;
     private Juego juego;
+    private VBox vbox;
 
-    public BotonAgregarJugadorEventHandler(TextField textoUno, TextField textoDos, Label etiquetaUno, Label etiquetaDos, Juego juego) {
+    public BotonAgregarJugadorEventHandler(TextField textoUno, TextField textoDos, Label etiquetaUno, Label etiquetaDos, Juego juego, VBox vbox) {
         textFieldUno = textoUno ;
         textFieldDos = textoDos;
         labelUno = etiquetaUno;
         labelDos = etiquetaDos;
         this.juego = juego;
+        this.vbox = vbox;
     }
 
     @Override
@@ -40,6 +44,9 @@ public class BotonAgregarJugadorEventHandler implements EventHandler<ActionEvent
             this.labelDos.setText("El jugador "+ jugadorDos + " tambien se agrego correctamente.");
             this.labelDos.setTextFill(Color.web("#336600"));
             juego.agregarJugadores(jugadorUno, jugadorDos);
+
+            vbox.getChildren().add(new BotonIniciarPartida(juego));
+
         }
     }
 }

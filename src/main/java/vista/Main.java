@@ -30,8 +30,8 @@ public class Main extends Application {
         vbox.setPadding(new Insets(20));
 
         CamposDeTexto camposDeTexto = new CamposDeTexto();
-        BotonAgregarJugadores botonAgregarJugadores = new BotonAgregarJugadores(camposDeTexto , juego );
-        ContenedorBotones contenedorBotones = new ContenedorBotones(camposDeTexto, juego );
+        BotonAgregarJugadores botonAgregarJugadores = new BotonAgregarJugadores(camposDeTexto , juego, vbox );
+        ContenedorBotones contenedorBotones = new ContenedorBotones(camposDeTexto, juego, vbox );
 
         vbox.getChildren().add(camposDeTexto.textoUno);
         vbox.getChildren().add(camposDeTexto.textoDos);

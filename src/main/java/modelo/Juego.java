@@ -15,6 +15,8 @@ public class Juego {
         partida.agregarJugadores( nombreJugadorUno, nombreJugadorDos );
     }
 
-    public String getNombreJugadorUno (){ return partida.getJugadorUno().getNombre(); }
+    public void arrancarPartida(){
+
+    }
 
 }
