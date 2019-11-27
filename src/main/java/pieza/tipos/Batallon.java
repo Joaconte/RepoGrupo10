@@ -40,7 +40,11 @@ public class Batallon {
     }*/
 
     /* Acá quiero ignorar si una pieza no se pudo mover */
-    public void mover(Tablero tablero, Direccion direccion) {
+    public void mover(Tablero tablero, Direccion direccion) throws BatallonDisueltoException {
+        if (!this.siguenContiguos()){
+            throw new BatallonDisueltoException();
+        }
+
         boolean recorrerDesc = (direccion.getClass() == Derecha.class)||(direccion.getClass() == Abajo.class)||
                 (direccion.getClass() == AbajoDerecha.class)||(direccion.getClass() == AbajoIzquierda.class);
 
@@ -55,5 +59,31 @@ public class Batallon {
             } catch (Exception ignore) { }
         }
         /* ACA SE DISUELVE EL GRUPO DE SOLDADOS ? */
+    }
+
+    public ArrayList<Infanteria> getSoldados() {
+        return soldados;
+    }
+
+    private boolean siguenContiguos(){
+        ArrayList<Infanteria> soldados = this.getSoldados();
+        if (soldados.size()==3) {
+            int distanciaP1aP2 = soldados.get(0).getUbicacion().getDistanciaAOtroPunto(soldados.get(1).getUbicacion());
+            int distanciaP1aP3 = soldados.get(0).getUbicacion().getDistanciaAOtroPunto(soldados.get(2).getUbicacion());
+            int distanciaP2aP3 = soldados.get(1).getUbicacion().getDistanciaAOtroPunto(soldados.get(2).getUbicacion());
+            int distanciaTotal = distanciaP1aP2 + distanciaP1aP3 + distanciaP2aP3;
+            return (distanciaTotal <= 4);
+        } else {
+            return false;
+        }
+    }
+
+    public boolean disolverBatallon(){
+        if (this.siguenContiguos()){
+            return false;
+        } else {
+            soldados.clear();
+            return true;
+        }
     }
 }

@@ -89,6 +89,7 @@ public abstract class Pieza {
 
         if ( !tablero.casillaEstaOcupada(nuevoX, nuevoY)){
             this.setUbicacion(new Ubicacion(nuevoX, nuevoY));
+            //this.evaluarZonaDeDanio(sector);
             tablero.ocuparCasilla(this,nuevoX, nuevoY);
             tablero.desocuparCasilla(anterior.getPosicionEnX(), anterior.getPosicionEnY());
         } else{

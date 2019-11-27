@@ -3,6 +3,8 @@ package pieza.tipos;
 import pieza.Pieza;
 import pieza.tipos.Infanteria;
 
+import java.util.ArrayList;
+
 public class Auxiliares {
     public boolean son3Aliados(Pieza p1, Pieza p2, Pieza p3){
         return ((!p1.esEnemigo(p2))&(!p1.esEnemigo(p3))&(!p2.esEnemigo(p3)));
@@ -19,6 +21,7 @@ public class Auxiliares {
         int distanciaTotal = distanciaP1aP2+distanciaP1aP3+distanciaP2aP3;
         return (distanciaTotal<=4);
     }
+
     public boolean sonAliadosDeInfanteria(Pieza p1, Pieza p2, Pieza p3){
         return ((son3Aliados(p1,p2,p3))&(los3SonDeInfanteria(p1,p2,p3)));
     }

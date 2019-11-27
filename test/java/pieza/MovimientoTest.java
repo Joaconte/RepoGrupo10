@@ -52,7 +52,7 @@ public class MovimientoTest {
 
     /* ----------------- BATALLON ----------------*/
     @Test
-    public void testBatallonEstaEnLaFila2_SeMueveParaAbajoYQuedanTodosEnLaFila3() throws NoSePuedeMoverException {
+    public void testBatallonEstaEnLaFila2_SeMueveParaAbajoYQuedanTodosEnLaFila3() throws NoSePuedeMoverException, BatallonDisueltoException {
         Tablero tablero = new Tablero();
         Infanteria soldado1 = new Infanteria(1,1,2);
         tablero.ocuparCasilla(soldado1,1,2);
@@ -74,7 +74,7 @@ public class MovimientoTest {
     }
 
     @Test
-    public void testBatallonEstaEnLaFila2_SeMueveParaArribaQuedandoTodosEnLaFila1() throws NoSePuedeMoverException {
+    public void testBatallonEstaEnLaFila2_SeMueveParaArribaQuedandoTodosEnLaFila1() throws NoSePuedeMoverException, BatallonDisueltoException {
         Tablero tablero = new Tablero();
         Infanteria soldado1 = new Infanteria(1,1,2);
         tablero.ocuparCasilla(soldado1,1,2);
@@ -96,7 +96,7 @@ public class MovimientoTest {
     }
 
     @Test
-    public void testBatallonEstaEnLaFila2_SeMuevenParaDerechaYTodosSeDesplazan1ALaDerecha() throws NoSePuedeMoverException {
+    public void testBatallonEstaEnLaFila2_SeMuevenParaDerechaYTodosSeDesplazan1ALaDerecha() throws NoSePuedeMoverException, BatallonDisueltoException {
         Tablero tablero = new Tablero();
         Infanteria soldado1 = new Infanteria(1,1,2);
         tablero.ocuparCasilla(soldado1,1,2);
@@ -117,7 +117,7 @@ public class MovimientoTest {
     }
 
     @Test
-    public void testBatallonEstaEnLaFila2_SeMuevenParaIzquierdaYTodosRestan1EnX() throws NoSePuedeMoverException {
+    public void testBatallonEstaEnLaFila2_SeMuevenParaIzquierdaYTodosRestan1EnX() throws NoSePuedeMoverException, BatallonDisueltoException {
         Tablero tablero = new Tablero();
         Infanteria soldado1 = new Infanteria(1,1,2);
         tablero.ocuparCasilla(soldado1,1,2);
@@ -138,7 +138,7 @@ public class MovimientoTest {
     }
 
     @Test
-    public void testBatallonEstaEnLaColumna2_SeMueveParaIzquierdaQuedandoTodosEnLaColumna() throws NoSePuedeMoverException {
+    public void testBatallonEstaEnLaColumna2_SeMueveParaIzquierdaQuedandoTodosEnLaColumna() throws NoSePuedeMoverException, BatallonDisueltoException {
         Tablero tablero = new Tablero();
         Infanteria soldado1 = new Infanteria(1,2,2);
         tablero.ocuparCasilla(soldado1,2,2);
@@ -160,7 +160,7 @@ public class MovimientoTest {
     }
 
     @Test
-    public void testBatallonEn3x3y_2x2y_4x4y_SeMuevenArribaIzquierda_resta1ACadaPosicion() throws NoSePuedeMoverException {
+    public void testBatallonEn3x3y_2x2y_4x4y_SeMuevenArribaIzquierda_resta1ACadaPosicion() throws NoSePuedeMoverException, BatallonDisueltoException {
         Tablero tablero = new Tablero();
         Infanteria soldado1 = new Infanteria(1,3,3);
         tablero.ocuparCasilla(soldado1,2,2);
@@ -184,7 +184,7 @@ public class MovimientoTest {
     }
 
     @Test
-    public void testBatallonEn2x2y_3x3y_4x4y_SeMuevenAbajoDerecha_suma1ACadaPosicion() throws NoSePuedeMoverException {
+    public void testBatallonEn2x2y_3x3y_4x4y_SeMuevenAbajoDerecha_suma1ACadaPosicion() throws NoSePuedeMoverException, BatallonDisueltoException {
         Tablero tablero = new Tablero();
         Infanteria soldado1 = new Infanteria(1,2,2);
         tablero.ocuparCasilla(soldado1,2,2);
@@ -208,7 +208,7 @@ public class MovimientoTest {
     }
 
     @Test
-    public void testBatallonEn2x2y_3x2y_2x3y_SeMuevenAbajoIzquierda_resta1EnX_suma1EnY() throws NoSePuedeMoverException {
+    public void testBatallonEn2x2y_3x2y_2x3y_SeMuevenAbajoIzquierda_resta1EnX_suma1EnY() throws NoSePuedeMoverException, BatallonDisueltoException {
         Tablero tablero = new Tablero();
         Infanteria soldado1 = new Infanteria(1,2,2);
         tablero.ocuparCasilla(soldado1,2,2);
@@ -232,7 +232,7 @@ public class MovimientoTest {
     }
 
     @Test
-    public void testBatallonEn2x2y_3x2y_2x3y_ObstaculoEn3x3y_MovimientoAbajoDerecha_2x2yQuedaIgual() throws NoSePuedeMoverException {
+    public void testBatallonEn2x2y_3x2y_2x3y_ObstaculoEn3x3y_MovimientoAbajoDerecha_2x2yQuedaIgual() throws NoSePuedeMoverException, BatallonDisueltoException {
         Tablero tablero = new Tablero();
         Infanteria soldado1 = new Infanteria(1,2,2);
         tablero.ocuparCasilla(soldado1,2,2);
@@ -258,7 +258,34 @@ public class MovimientoTest {
     }
 
     @Test
-    public void testBatallonEn1x1y_2x2y_3x3y_Obstaculo4x4y_MoverAbajoDerecha_mantienenMismasPosiciones() {
+    public void testDisolverBatallonEn2x2y_3x2y_2x3y_ObstaculoEn3x3y_MovimientoAbajoDerecha_2x2yNoSeMueve_SeDisuelveBatallon() throws NoSePuedeMoverException, BatallonDisueltoException {
+        Tablero tablero = new Tablero();
+        Infanteria soldado1 = new Infanteria(1,2,2);
+        tablero.ocuparCasilla(soldado1,2,2);
+        Infanteria soldado2 = new Infanteria(1,3,2);
+        tablero.ocuparCasilla(soldado2,3,2);
+        Infanteria soldado3 = new Infanteria(1,2,3);
+        tablero.ocuparCasilla(soldado3,2,3);
+
+        Catapulta obstaculo = new Catapulta(1,3,3);
+        tablero.ocuparCasilla(obstaculo,3,3);
+
+        Batallon soldados = new Batallon(soldado1, soldado2, soldado3);
+        soldados.mover(tablero, new AbajoDerecha());
+
+        assertEquals(2, soldado1.getUbicacion().getPosicionEnX());
+        assertEquals(2, soldado1.getUbicacion().getPosicionEnY());
+
+        assertEquals(4, soldado2.getUbicacion().getPosicionEnX());
+        assertEquals(3, soldado2.getUbicacion().getPosicionEnY());
+
+        assertEquals(3, soldado3.getUbicacion().getPosicionEnX());
+        assertEquals(4, soldado3.getUbicacion().getPosicionEnY());
+
+        assertTrue(soldados.disolverBatallon());
+    }
+    @Test
+    public void testBatallonEn1x1y_2x2y_3x3y_Obstaculo4x4y_MoverAbajoDerecha_mantienenMismasPosiciones() throws BatallonDisueltoException {
          Tablero tablero = new Tablero();
 
          Infanteria soldado1 = new Infanteria(1,1,1);
@@ -282,4 +309,5 @@ public class MovimientoTest {
          assertEquals(ubi3, soldado3.getUbicacion());
 
     }
+    
 }
