@@ -34,6 +34,7 @@ public abstract class Pieza {
     public void setVida(double vida){
         this.vida = vida;
     }
+
     public double getPuntosVida(){
         return vida;
     }
@@ -41,12 +42,15 @@ public abstract class Pieza {
     public Ubicacion getUbicacion(){
         return ubicacion;
     }
+
     public void setUbicacion(Ubicacion ubicacion){
         this.ubicacion = ubicacion;
     }
 
     public int getEquipo(){ return equipo;}
+
     public int getCosto(){ return costo;}
+
     public boolean esEnemigo(Pieza otra){
         return (this.getEquipo() != otra.getEquipo());
     }
@@ -68,12 +72,6 @@ public abstract class Pieza {
         vida += modoSanacion.restaurarPuntosDeVida(puntos);
         vida = Math.min(vida, vida_maxima);
     }
-
-    /*
-    public void moverse(){
-        movimiento.moverse();
-    }
-    */
 
     public void moverArriba() throws NoSePuedeMoverException {
         Ubicacion nueva = modoMovimiento.arriba(this.getUbicacion());

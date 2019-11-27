@@ -21,9 +21,7 @@ public class Curandero extends Pieza {
         if ( super.getEquipo() != unaUndidadCurable.getEquipo()) { throw new CurandoAEnemigoException(); }
         int distanciaAAliado= this.ubicacion.getDistanciaAOtroPunto(unaUndidadCurable.getUbicacion());
         if ( distanciaAAliado>2 || distanciaAAliado < 0 ) { throw new CurandoCuraADistanciaCortaException(); }
-
         unaUndidadCurable.sanar(PUNTOS_DE_CURACION);
-
         }
 
     @Override

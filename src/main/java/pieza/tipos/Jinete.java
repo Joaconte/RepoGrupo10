@@ -37,7 +37,6 @@ public class Jinete extends PiezaAtacante {
     @Override
     public String getNombre(){ return "Jinete";}
 
-
     public void obtenerModoDeAtaque(Tablero tablero, Pieza atacada) {
         List<Pieza> piezas = tablero.getPiezasAdyacentes(this.ubicacion);
         int aliados=0;
