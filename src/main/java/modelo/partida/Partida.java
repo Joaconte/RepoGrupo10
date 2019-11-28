@@ -93,13 +93,13 @@ public class Partida {
 
             setJugadorUno(jugadorUno);
             setJugadorDos(jugadorDos);
-            setJugadorEnTurno(this.jugadorDos);
+            setJugadorEnTurno(this.jugadorUno);
 
         } else{
 
             setJugadorUno(jugadorDos);
             setJugadorDos(jugadorUno);
-            setJugadorEnTurno(this.jugadorDos);
+            setJugadorEnTurno(this.jugadorUno);
         }
     }
 
