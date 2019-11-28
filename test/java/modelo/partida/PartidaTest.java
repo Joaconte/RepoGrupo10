@@ -33,15 +33,23 @@ public class PartidaTest {
     @Test
     public void test03PartidaAgregaJugadoresCorrectamente(){
         Partida partida = new Partida();
-        partida.setJugadorUno( "pepe" );
-        partida.setJugadorDos( "jose" );
+        partida.agregarJugadores("pepe", "jose");
 
         assertEquals(1, partida.getJugadorUno().getNumeroDeJugador());
         assertEquals(2, partida.getJugadorDos().getNumeroDeJugador());
     }
 
     @Test
-    public void test04PartidaAgregaJugadorEnTurnoCorrectamente(){
+    public void test04PartidaAgregaJugadoresYElQueEstaEnTurnoEsElUno(){
+        Partida partida = new Partida();
+        partida.agregarJugadores("pepe", "jose");
+
+        assertEquals(1, partida.getJugadorUno().getNumeroDeJugador());
+        assertEquals(1, partida.getJugadorEnTurno().getNumeroDeJugador());
+    }
+
+    @Test
+    public void test05PartidaAgregaJugadorEnTurnoCorrectamente(){
         Partida partida = new Partida();
         Jugador jugador = new Jugador(1);
         partida.setJugadorEnTurno(jugador);
@@ -50,7 +58,7 @@ public class PartidaTest {
     }
 
     @Test
-    public void test05JugadorUnoTerminaTurnoEnFaseMediaYSeVerificaQueSeaElJugador2ElNuevoJugadorEnTurno() throws EjercitoIncompletoException {
+    public void test06JugadorUnoTerminaTurnoEnFaseMediaYSeVerificaQueSeaElJugador2ElNuevoJugadorEnTurno() throws EjercitoIncompletoException {
         Partida miPartida = new Partida();
         FaseMedia miNuevaFase = Mockito.mock(FaseMedia.class);
         miPartida.cambiarFaseDePartida(miNuevaFase);
@@ -65,7 +73,7 @@ public class PartidaTest {
     }
 
     @Test
-    public void test06JugadorUnoTerminaTurnoEnFaseMediaYSeVerificaQueNoSeaElJugador1ElNuevoJugadorEnTurno() throws EjercitoIncompletoException {
+    public void test07JugadorUnoTerminaTurnoEnFaseMediaYSeVerificaQueNoSeaElJugador1ElNuevoJugadorEnTurno() throws EjercitoIncompletoException {
         Partida miPartida = new Partida();
         FaseMedia miNuevaFase = Mockito.mock(FaseMedia.class);
         miPartida.cambiarFaseDePartida(miNuevaFase);
