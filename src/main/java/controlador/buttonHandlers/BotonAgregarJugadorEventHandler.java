@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import modelo.Juego;
 import vista.BotonIniciarPartida;
 
@@ -17,15 +18,17 @@ public class BotonAgregarJugadorEventHandler implements EventHandler<ActionEvent
     private Label labelDos;
     private Juego juego;
     private VBox vbox;
+    private Stage stage;
     private boolean primeraVez=true;
 
-    public BotonAgregarJugadorEventHandler(TextField textoUno, TextField textoDos, Label etiquetaUno, Label etiquetaDos, Juego juego, VBox vbox) {
+    public BotonAgregarJugadorEventHandler(TextField textoUno, TextField textoDos, Label etiquetaUno, Label etiquetaDos, Juego juego, VBox vbox, Stage stage) {
         textFieldUno = textoUno ;
         textFieldDos = textoDos;
         labelUno = etiquetaUno;
         labelDos = etiquetaDos;
         this.juego = juego;
         this.vbox = vbox;
+        this.stage = stage;
     }
 
     @Override
@@ -47,7 +50,7 @@ public class BotonAgregarJugadorEventHandler implements EventHandler<ActionEvent
             juego.agregarJugadores(jugadorUno, jugadorDos);
 
             if (primeraVez){
-                vbox.getChildren().add(new BotonIniciarPartida(juego, vbox));
+                vbox.getChildren().add(new BotonIniciarPartida(juego, vbox, stage));
                 primeraVez = false;
             }
         }

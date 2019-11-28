@@ -1,9 +1,6 @@
 package vista;
 
-
-import controlador.buttonHandlers.TextoEventHandler;
 import javafx.application.Application;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -16,6 +13,7 @@ public class Main extends Application {
     private VistaDeJuego vistaDeJuego;
 
     public static void main(String[] args) {
+
         launch(args);
     }
 
@@ -25,9 +23,9 @@ public class Main extends Application {
         Juego juego = new Juego();
         VBox vbox = new VBox();
 
-        vistaDeJuego = new VistaDeJuego( juego, vbox );
+        vistaDeJuego = new VistaDeJuego( juego, vbox, stage );
 
-        Scene scene = new Scene(vbox, 400, 250);
+        Scene scene = new Scene(vbox, 925, 785);
 
         stage.setScene(scene);
 
