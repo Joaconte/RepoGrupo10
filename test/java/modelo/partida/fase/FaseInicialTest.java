@@ -16,6 +16,5 @@ public class FaseInicialTest {
         FaseInicial miFaseInicial = new FaseInicial();
         assertEquals("Fase Inicial", miFaseInicial.darNombreDeFase());
     }
-    
 
 }
