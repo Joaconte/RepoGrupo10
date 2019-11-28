@@ -22,8 +22,7 @@ public class FaseMedia implements FaseDePartida{
 
     //Metodo que permite indicar que el jugador termina con las acciones de su turno.
     @Override
-    public void terminarMiTurno(){
-        //Construir?
+    public void verificarFinTurno(Jugador jugadorEnTurno){
     }
 
     //Metodo para pedir a fase su nombre

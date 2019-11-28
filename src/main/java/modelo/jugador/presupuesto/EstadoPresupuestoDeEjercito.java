@@ -8,5 +8,4 @@ public interface EstadoPresupuestoDeEjercito {
 
     Pieza comprarPieza(int ejercito, String nombreUnidad, int posX, int posY) throws PresupuestoAgotadoException, CompraInvalidaException;
     EstadoPresupuestoDeEjercito devolverEstadoDePresuesto();
-
 }

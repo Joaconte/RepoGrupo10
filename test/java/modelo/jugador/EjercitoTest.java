@@ -1,8 +1,11 @@
 package modelo.jugador;
 
 import modelo.jugador.presupuesto.CompraInvalidaException;
+import modelo.jugador.presupuesto.EstadoPresupuestoAgotado;
 import modelo.jugador.presupuesto.PresupuestoAgotadoException;
 import org.junit.Test;
+import org.mockito.Mockito;
+
 import static org.junit.Assert.assertEquals;
 
 
@@ -38,4 +41,19 @@ public class EjercitoTest {
         assertEquals(4, ejercito.getTamanio() );
     }
 
+    @Test
+    public void test04EjercitoConPresupuestoAgotadoNoArrojaExcepcionAlVerificarSiEstaCompleto() throws  EjercitoIncompletoException {
+
+        Ejercito ejercito = new Ejercito(1);
+        EstadoPresupuestoAgotado estadoAgotado = new EstadoPresupuestoAgotado();
+        ejercito.setEstadoPresupuesto(estadoAgotado);
+        ejercito.verificarSiEstaIncompleto();
+    }
+
+    @Test (expected = EjercitoIncompletoException.class)
+    public void test05EjercitoSinPresupuestoAgotadoArrojaExcepcionAlVerificarSiEstaCompleto() throws  EjercitoIncompletoException {
+
+        Ejercito ejercito = new Ejercito(1);
+        ejercito.verificarSiEstaIncompleto();
+    }
 }

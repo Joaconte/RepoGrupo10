@@ -43,6 +43,9 @@ public class Ejercito{
     }
 
 
+    public void verificarSiEstaIncompleto() throws EjercitoIncompletoException {
+        if (presupuesto.getClass() == EstadoPresupuestoNoAgotado.class){throw new EjercitoIncompletoException(); }
+    }
 }
 
 

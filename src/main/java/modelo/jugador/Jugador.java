@@ -23,13 +23,6 @@ public class Jugador {
         this.ejercito = new Ejercito (numeroDeJugador);
     }
 
-    public Jugador(String nombre){
-
-        this.nombre = nombre;
-        this.numeroDeJugador = numeroDeJugador;
-        this.sector = new Sector(numeroDeJugador);
-        this.ejercito = new Ejercito (numeroDeJugador);
-    }
 
     public Jugador(int numeroDeJugador){
 
@@ -64,6 +57,9 @@ public class Jugador {
         tablero.ocuparCasilla(pieza, posicionX, posicionY);
     }
 
+    public void verificarSiEjercitoEstaListo() throws EjercitoIncompletoException {
+        ejercito.verificarSiEstaIncompleto();
+    }
 }
 
     /*    public void quitarUnidad(Ubicacion ubicacion) {

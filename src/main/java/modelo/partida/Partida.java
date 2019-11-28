@@ -1,5 +1,6 @@
 package modelo.partida;
 
+import modelo.jugador.EjercitoIncompletoException;
 import modelo.pieza.ataque.PiezaAliadaNoAtacableException;
 import modelo.pieza.UnidadEstaMuertaException;
 import modelo.pieza.ataque.DistanciaDeAtaqueInvalidaException;
@@ -19,7 +20,7 @@ public class Partida {
     private FaseDePartida miFase = new FaseInicial();
     private Tablero tableroDePartida = new Tablero();
     private Jugador jugadorEnTurno;
-    private Jugador jugadorUno; //¿Los guardamos asi?
+    private Jugador jugadorUno;
     private Jugador jugadorDos;
 
     //-----------GETTERS-----------//
@@ -55,8 +56,10 @@ public class Partida {
         miFase.atacar(atacante, atacada, tableroDePartida);
     }
 
-    public void terminarMiTurno(){
-        miFase.terminarMiTurno();
+    public void pasarTurno() throws EjercitoIncompletoException {
+        miFase.verificarFinTurno(jugadorEnTurno);
+        if (jugadorEnTurno==jugadorUno) setJugadorEnTurno(jugadorDos);
+        else setJugadorEnTurno(jugadorUno);
     }
 
     //---------------Metodos de Fase------------//

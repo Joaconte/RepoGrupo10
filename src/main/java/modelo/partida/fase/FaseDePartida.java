@@ -1,5 +1,6 @@
 package modelo.partida.fase;
 
+import modelo.jugador.EjercitoIncompletoException;
 import modelo.pieza.ataque.PiezaAliadaNoAtacableException;
 import modelo.jugador.Jugador;
 import modelo.jugador.PiezaFueraDeSectorException;
@@ -15,7 +16,7 @@ public interface FaseDePartida{
 
     void moverUnidadEnTablero(Pieza pieza, int numeroFila, int numeroColumna);
 
-    void terminarMiTurno();
+    void verificarFinTurno(Jugador jugadorEnTurno) throws EjercitoIncompletoException;
 
     String darNombreDeFase();
 
