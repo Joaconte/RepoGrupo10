@@ -1,0 +1,10 @@
+package modelo.pieza.movimiento;
+
+public class Derecha extends Direccion{
+    static final int DESPLAZAMIENTO_X = 1;
+    static final int DESPLAZAMIENTO_Y = 0;
+
+    public Derecha(){
+        super(DESPLAZAMIENTO_X,DESPLAZAMIENTO_Y);
+    }
+}

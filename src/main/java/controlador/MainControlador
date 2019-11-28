@@ -1,0 +1,23 @@
+package controlador;
+
+import javafx.scene.input.KeyEvent;
+import modelo.Juego;
+
+
+import javafx.event.EventHandler;
+
+public class MainControlador implements EventHandler<KeyEvent> {
+
+    private Juego juego;
+
+
+    public MainControlador(Juego juego) {
+        this.juego = juego;
+    }
+
+    public void handle(KeyEvent event) {
+
+
+    }
+
+}
