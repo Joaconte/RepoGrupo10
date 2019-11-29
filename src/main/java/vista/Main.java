@@ -6,9 +6,9 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import modelo.Juego;
+import modelo.tablero.Tablero;
 
 public class Main extends Application {
-
 
     private VistaDeJuego vistaDeJuego;
 
@@ -25,10 +25,8 @@ public class Main extends Application {
 
         vistaDeJuego = new VistaDeJuego( juego, vbox, stage );
 
-        Scene scene = new Scene(vbox, 925, 785);
-
+        Scene scene = new Scene(vbox, 1200, 950);
         stage.setScene(scene);
-
         stage.show();
 
     }

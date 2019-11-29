@@ -12,16 +12,21 @@ import modelo.tablero.Tablero;
 import modelo.pieza.Pieza;
 import modelo.jugador.Jugador;
 
+import javax.servlet.http.Part;
 import java.util.Random;
 
 
 public class Partida {
 
     private FaseDePartida miFase = new FaseInicial();
-    private Tablero tableroDePartida = new Tablero();
+    private Tablero tableroDePartida;
     private Jugador jugadorEnTurno;
     private Jugador jugadorUno;
     private Jugador jugadorDos;
+
+    public Partida(){
+        tableroDePartida = new Tablero();
+    }
 
     //-----------GETTERS-----------//
 
@@ -89,13 +94,13 @@ public class Partida {
 
         Random rand = new Random();
         int n = rand.nextInt(2);
-        if (n==0){
+        if (n == 0) {
 
             setJugadorUno(jugadorUno);
             setJugadorDos(jugadorDos);
             setJugadorEnTurno(this.jugadorUno);
 
-        } else{
+        } else {
 
             setJugadorUno(jugadorDos);
             setJugadorDos(jugadorUno);
@@ -103,6 +108,9 @@ public class Partida {
         }
     }
 
+    public Tablero getTableroDePartida() {
+        return tableroDePartida;
+    }
 }
 
 
