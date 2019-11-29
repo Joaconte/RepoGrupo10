@@ -1,5 +1,7 @@
 package modelo.pieza;
 
+import modelo.pieza.tipos.Catapulta;
+import modelo.pieza.tipos.Curandero;
 import modelo.pieza.tipos.Infanteria;
 import org.junit.Test;
 import modelo.pieza.ataque.DistanciaDeAtaqueInvalidaException;
@@ -32,7 +34,7 @@ public class JineteTest {
     }
 
     @Test
-    public void test03JineteAtacaADistancia5AEnemigoYSaca15PuntosDeVida() throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
+    public void test03JineteAtacaADistanciaMediaMaximaAEnemigoYSaca15PuntosDeVida() throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
 
         Jinete jineteAtacante = new Jinete(1,1,1);  //----------Jinete atacante
         Jinete oponente = new Jinete(2,6,6);  //----------Enemigo atacado Media distancia
@@ -49,7 +51,7 @@ public class JineteTest {
     }
 
     @Test (expected = DistanciaDeAtaqueInvalidaException.class)
-    public void test04JineteNoAtacaADistancia3AEnemigoPorqueEstaAsediadoYNoTieneRefuerzos() throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
+    public void test04JineteNoAtacaAMediaDistanciaAEnemigoPorqueEstaAsediadoYNoTieneRefuerzos() throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
 
         Jinete jinete = new Jinete(1,1,1); //----------Jinete atacante
         Jinete oponente = new Jinete(2,4,4); //-----Blanco enemigo media distancia
@@ -65,15 +67,13 @@ public class JineteTest {
         jinete.atacar(oponente,tablero);
     }
 
-    @Test
-    public void test05JineteAtacaAEnemigoACortaDistanciaEstandoCuebierto() throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
+    @Test (expected = DistanciaDeAtaqueInvalidaException.class)
+    public void test05JineteNoPuedeAtacarACortaDistanciaCuandoEstaCubiertoYAsediado() throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
 
         Jinete jinete = new Jinete(1,9,9); //----------Jinete atacante
         Jinete oponenteCercano = new Jinete(2,9,8); //----------Enemigo atacado que asedia
-        double vida = oponenteCercano.getPuntosVida();
-        Infanteria infanteAliado = Mockito.mock(Infanteria.class);  //----------Infante Aliado Mock
-        Mockito.when(infanteAliado.esEnemigo(jinete)).thenReturn(false);
-        Mockito.when(infanteAliado.getNombre()).thenReturn("Infanteria");
+
+        Infanteria infanteAliado = new Infanteria(1,8,8);
 
         //----------Metodos Probados Tablero/Ubicacion ------
         Tablero tablero = Mockito.mock(Tablero.class);
@@ -84,7 +84,6 @@ public class JineteTest {
 
         //----------Ataque ------------------
         jinete.atacar(oponenteCercano,tablero);
-        assertEquals(vida-5,oponenteCercano.getPuntosVida(),0);
     }
 
     @Test
@@ -108,15 +107,21 @@ public class JineteTest {
     @Test(expected= DistanciaDeAtaqueInvalidaException.class)
     public void test07JineteNoAtacaAEnemigoAMediaDistanciaPorqueUnidadDistintaAInfanteEsUnicoRefuerzoYEstaSiendoAsediado() throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
 
-        Jinete jinete = new Jinete(1,1,1); //----------Jinete atacante
-        Jinete jineteADistancia = new Jinete(2,5,4);  //----Enemigo Blanco fallido medio-lejano
-        Jinete jineteAcosador = new Jinete(2,2,2);  //--------Enemigo Asediador
+        Jinete jinete = new Jinete(1,2,2); //----------Jinete atacante
         Jinete jineteAliado = new Jinete (1,2,1); //---- Aliado jinete cercano
+        Curandero curanderoAliado = new Curandero(1,1,2); //---- Aliado curandero cercano
+        Catapulta catapultaAliada = new Catapulta(1,2,3); //---- Aliado Catapulta cercano
+
+        Jinete jineteADistancia = new Jinete(2,5,4);  //----Enemigo Blanco fallido medio-lejano
+        Jinete jineteAcosador = new Jinete(2,3,3);  //--------Enemigo Asediador
+
 
         //----------Metodos Probados Tablero/Ubicacion --------
         Tablero tablero = Mockito.mock(Tablero.class);
         List<Pieza> lista = new ArrayList<>();
         lista.add(jineteAliado);
+        lista.add(curanderoAliado);
+        lista.add(catapultaAliada);
         lista.add(jineteAcosador);
         Mockito.when(tablero.getPiezasAdyacentes(jinete.getUbicacion())).thenReturn(lista);
 
@@ -130,10 +135,10 @@ public class JineteTest {
         Jinete jinete = new Jinete(1, 1, 1); //----------Jinete atacante
         Jinete jineteADistancia = new Jinete(2, 5,5 ); //---Enemigo atacado a media distancia
         double vidaAntesDelAtaque = jineteADistancia.getPuntosVida();
+
         Jinete jineteAcosador = new Jinete(2,2,2 ); //-----Enemigo a corta distancia
-        Infanteria infanteAliado = Mockito.mock(Infanteria.class); //---Infante Aliado a corta distancia
-        Mockito.when(infanteAliado.esEnemigo(jinete)).thenReturn(false);
-        Mockito.when(infanteAliado.getNombre()).thenReturn("Infanteria");
+        Infanteria infanteAliado = new Infanteria(1,2,1); //---Infante Aliado a corta distancia
+
 
         //----------Metodos Probados Tablero/Ubicacion --------
         Tablero tablero = Mockito.mock(Tablero.class);

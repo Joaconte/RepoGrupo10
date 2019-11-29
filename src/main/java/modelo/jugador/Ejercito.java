@@ -39,7 +39,7 @@ public class Ejercito{
     }
 
 
-    public boolean verificarSiEstaCompleto() {
+    public boolean estaCompleto() {
         return presupuesto.estaAgotado();
     }
 

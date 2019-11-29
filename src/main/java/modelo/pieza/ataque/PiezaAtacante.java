@@ -32,12 +32,6 @@ public abstract class PiezaAtacante extends Pieza {
         return danioMedio;
     }
 
-    private void setDanioCuerpo_Distancia_Media(int danioCuerpo, int danioMedio, int danioLejano){
-
-    }
-
     public abstract void atacar(Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException;
 
-    @Override
-    public abstract String getNombre();
 }

@@ -19,7 +19,7 @@ public class Jinete extends PiezaAtacante {
     static final int DANIO_DISTANCIA = 0;
     static final IModoMovimiento MOVIMIENTO = new SeMueveEnTodasDirecciones();
     static final IModoSanacion MODO_CURACION = new SanacionNormal();
-    static final IModoAtaque ATAQUE = new AtaqueVariable();
+    static final IModoAtaqueVariable ATAQUE = new AtaqueVariable();
 
 
     public Jinete(int equipo, int posX, int posY){
@@ -31,11 +31,9 @@ public class Jinete extends PiezaAtacante {
     public void atacar(Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
         if(!this.esEnemigo(atacada)){ throw new PiezaAliadaNoAtacableException();}
         obtenerModoDeAtaque(tablero, atacada);
-        ATAQUE.atacar(this, atacada ,this.ubicacion.getDistanciaAOtroPunto(atacada.getUbicacion()));
+        ATAQUE.atacar(this, atacada);
     }
 
-    @Override
-    public String getNombre(){ return "Jinete";}
 
     public void obtenerModoDeAtaque(Tablero tablero, Pieza atacada) {
         // usar stream() como en otro lado
@@ -44,18 +42,19 @@ public class Jinete extends PiezaAtacante {
         int enemigos=0;
         for (int i=0; i <piezas.size(); i++ ){
             Pieza pieza = piezas.get(i);
-            // encapsular el pieza.getNombre() == "Infanteria"
-            if ((!pieza.esEnemigo(this)) && (pieza.getNombre() == "Infanteria")){ aliados++;}
+            if ((!pieza.esEnemigo(this)) && (pieza.esRefuerzoDeJinete())){ aliados++;}
             else if (pieza.esEnemigo(this)) { enemigos++;}
         }
-        // this.ubicacion.getDistanciaAOtroPunto(atacada.getUbicacion()) se puede encapsular como
-        // distanciaA(Ubicacion) en Unidad y que esta delege a Ubicacion el calculo de distancia
-        setModo(aliados, enemigos, this.ubicacion.getDistanciaAOtroPunto(atacada.getUbicacion()));
+        setModo(aliados, enemigos);
     }
 
-    public void setModo(int aliados, int enemigos, int distancia){
-        if ((aliados>0 && distancia>2) || enemigos==0){  ATAQUE.setModoAtaque(new AtaqueMedio()); }
-        else {ATAQUE.setModoAtaque(new AtaqueCuerpoACuerpo());}
+    public void setModo(int aliados, int enemigos){
+        if ((aliados>0) || enemigos==0){  ATAQUE.setModoDeAtaque(new AtaqueMedio()); }
+        else {ATAQUE.setModoDeAtaque(new AtaqueCuerpoACuerpo());}
     }
 
+    @Override
+    public boolean esRefuerzoDeJinete() {
+        return false;
+    }
 }

@@ -8,18 +8,11 @@ import java.util.List;
 public class AtaqueMedio implements IModoAtaque{
 
     @Override
-    public void atacar(PiezaAtacante miUnidad, Pieza otraUnidad, int distancia) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException {
+    public void atacar(PiezaAtacante miUnidad, Pieza otraUnidad) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException {
+        int distancia = miUnidad.getDistanciaAOtraPieza(otraUnidad);
         if (distancia < 3 || distancia > 5){throw new DistanciaDeAtaqueInvalidaException();}
         otraUnidad.recibirDanio(miUnidad.getDanioMedio());
     }
 
-    @Override
-    public void ataqueMasivo(PiezaAtacante miUnidad, Pieza victima, List<Pieza> piezas, int distancia) throws DistanciaDeAtaqueInvalidaException, UnidadEstaMuertaException {
 
-    }
-
-    @Override
-    public void setModoAtaque(IModoAtaque modoAtaque) {
-
-    }
 }

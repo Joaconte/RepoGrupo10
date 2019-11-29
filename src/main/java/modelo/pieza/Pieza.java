@@ -25,16 +25,11 @@ public abstract class Pieza {
         this.equipo = equipo;
         this.modoMovimiento = modoMovimiento;
         this.modoSanacion = modoSanacion;
-        // verificar si esta en su zona consultando a tablero?
         this.ubicacion = new Ubicacion(posX, posY);
         this.danioARecibir = new DanioZonaPropia();
     }
 
     // SETTER GETTER
-
-    public void setVida(double vida){
-        this.vida = vida;
-    }
 
     public double getPuntosVida(){
         return vida;
@@ -61,7 +56,11 @@ public abstract class Pieza {
     public void evaluarZonaDeDanio(Sector sector) {
         if (sector.esDelSector(ubicacion.getPosicionEnX())) { this.danioARecibir = new DanioZonaEnemiga(); }
         else this.danioARecibir = new DanioZonaPropia();
-    } //Variara dependiendo de donde lo recibe. Incluso puede hacer un new Sector (equipo) y ya esta
+    }
+
+    public int getDistanciaAOtraPieza(Pieza pieza) {
+        return ubicacion.getDistanciaAOtroPunto(pieza.getUbicacion());
+    }
 
     public void recibirDanio(double danioBase) throws UnidadEstaMuertaException {
         if (vida<=0) throw new UnidadEstaMuertaException();
@@ -73,6 +72,7 @@ public abstract class Pieza {
         vida += modoSanacion.restaurarPuntosDeVida(puntos);
         vida = Math.min(vida, vida_maxima);
     }
+    public abstract boolean esRefuerzoDeJinete();
 
     // Solo se usa en pruebas
     public void moverArriba() throws NoSePuedeMoverException {
@@ -100,5 +100,4 @@ public abstract class Pieza {
         }
     }
 
-    public abstract String getNombre();
 }

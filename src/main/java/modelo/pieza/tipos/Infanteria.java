@@ -23,16 +23,12 @@ public class Infanteria extends PiezaAtacante {
 
     public Infanteria(int equipo,int posX, int posY){
         super(COSTO, VIDA_MAXIMA, equipo, MOVIMIENTO, MODO_CURACION, ATAQUE, DANIO_CUERPO, DANIO_MEDIO, DANIO_DISTANCIA, posX, posY);
-
     }
-
-    @Override
-    public String getNombre(){ return "Infanteria";}
 
     @Override
     public void atacar(Pieza oponente, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
         if(!this.esEnemigo(oponente)){ throw new PiezaAliadaNoAtacableException();}
-        ATAQUE.atacar(this, oponente ,this.ubicacion.getDistanciaAOtroPunto(oponente.getUbicacion()));
+        ATAQUE.atacar(this, oponente);
     }
 
 
@@ -58,5 +54,10 @@ public class Infanteria extends PiezaAtacante {
                 (soldado2.getUbicacion().getPosicionEnY() == soldado1.getUbicacion().getPosicionEnY());
         return (soldado2AntesDeSoldado1 ? -1 :
                 (mismaUbicacion ? 0 : 1));
+    }
+
+    @Override
+    public boolean esRefuerzoDeJinete() {
+        return true;
     }
 }

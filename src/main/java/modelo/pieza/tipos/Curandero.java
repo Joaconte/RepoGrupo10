@@ -19,13 +19,13 @@ public class Curandero extends Pieza {
 
     public void curarAAliado(Pieza unaUndidadCurable) throws CurandoAEnemigoException, UnidadNoSePuedeCurar, CurandoCuraADistanciaCortaException {
         if ( super.getEquipo() != unaUndidadCurable.getEquipo()) { throw new CurandoAEnemigoException(); }
-        int distanciaAAliado= this.ubicacion.getDistanciaAOtroPunto(unaUndidadCurable.getUbicacion());
+        int distanciaAAliado= this.getDistanciaAOtraPieza(unaUndidadCurable);
         if ( distanciaAAliado>2 || distanciaAAliado < 0 ) { throw new CurandoCuraADistanciaCortaException(); }
         unaUndidadCurable.sanar(PUNTOS_DE_CURACION);
         }
 
     @Override
-    public String getNombre() {
-        return "Curandero";
+    public boolean esRefuerzoDeJinete() {
+        return false;
     }
 }

@@ -36,9 +36,6 @@ public class Jugador {
     }
     public String getNombre(){ return nombre;}
 
-    //-----------SETTERS-------------//
-
-
 
     //----------Agrega Ubicacion A Unidad--------------//
 
@@ -50,7 +47,7 @@ public class Jugador {
     }
 
     public boolean verificarSiEjercitoEstaListo(){
-        return ejercito.verificarSiEstaCompleto();
+        return ejercito.estaCompleto();
     }
 }
 

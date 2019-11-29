@@ -49,13 +49,13 @@ public class EjercitoTest {
         ejercito.obtenerNuevaPieza("Catapulta",1,1);
         ejercito.obtenerNuevaPieza("Catapulta",1,1);
         ejercito.obtenerNuevaPieza("Catapulta",1,1);
-        assertTrue(ejercito.verificarSiEstaCompleto());
+        assertTrue(ejercito.estaCompleto());
     }
 
     @Test
     public void test05EjercitoSinPresupuestoAgotadoArrojaExcepcionAlVerificarSiEstaCompleto() throws  EjercitoIncompletoException {
 
         Ejercito ejercito = new Ejercito(1);
-        assertFalse(ejercito.verificarSiEstaCompleto());
+        assertFalse(ejercito.estaCompleto());
     }
 }

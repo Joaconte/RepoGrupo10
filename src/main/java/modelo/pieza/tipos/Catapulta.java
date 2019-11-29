@@ -21,7 +21,7 @@ public class Catapulta extends PiezaAtacante {
     static final int DANIO_CUERPO = 0;
     static final int DANIO_MEDIO = 0;
     static final IModoMovimiento MOVIMIENTO = new SinMovimientos();
-    static final IModoAtaque ATAQUE = new AtaqueADistancia();
+    static final IModoAtaqueMasivo ATAQUE = new AtaqueADistanciaMasivo();
     static final IModoSanacion MODO_CURACION = new SinSanacion();
 
 
@@ -32,16 +32,17 @@ public class Catapulta extends PiezaAtacante {
     @Override
     public void atacar(Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
         if(!this.esEnemigo(atacada)){ throw new PiezaAliadaNoAtacableException();}
-        ATAQUE.ataqueMasivo(this, atacada, tablero.getPiezasAdycentesInfinitas(atacada.getUbicacion()),this.ubicacion.getDistanciaAOtroPunto(atacada.getUbicacion()));
+        ATAQUE.atacarEnMasa(this, tablero.getPiezasAdycentesInfinitas(atacada.getUbicacion()));
     }
 
-    @Override
-    public String getNombre() {
-        return "Catapulta";
-    }
 
     @Override
     public void evaluarZonaDeDanio(Sector sector){}
+
+    @Override
+    public boolean esRefuerzoDeJinete() {
+        return false;
+    }
 
     @Override
     public void setUbicacion(Ubicacion ubicacion){}
