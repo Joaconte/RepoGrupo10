@@ -30,13 +30,12 @@ public class Jinete extends PiezaAtacante {
     @Override
     public void atacar(Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
         if(!this.esEnemigo(atacada)){ throw new PiezaAliadaNoAtacableException();}
-        obtenerModoDeAtaque(tablero, atacada);
+        obtenerModoDeAtaque(tablero);
         ATAQUE.atacar(this, atacada);
     }
 
 
-    public void obtenerModoDeAtaque(Tablero tablero, Pieza atacada) {
-
+    public void obtenerModoDeAtaque(Tablero tablero) {
         List<Pieza> piezas = tablero.getPiezasAdyacentes(this.ubicacion);
         long aliados=piezas.stream().filter(pieza -> !pieza.esEnemigo(this)&& pieza.esRefuerzoDeJinete()).count();
         long enemigos=piezas.stream().filter(pieza -> pieza.esEnemigo(this)).count();

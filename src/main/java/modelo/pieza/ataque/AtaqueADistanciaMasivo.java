@@ -18,13 +18,7 @@ public class AtaqueADistanciaMasivo extends AtaqueADistancia  implements IModoAt
         super.atacar(miUnidad, victimaPrincipal);
         double danioAReplicar = vidaAntesDelAtaque - victimaPrincipal.getPuntosVida();
 
-        piezas.stream().forEach(p-> {
-            try {
-                p.recibirDanio(danioAReplicar);
-            } catch (UnidadEstaMuertaException e) {
-                e.printStackTrace();
-            }
-        });
+        piezas.stream().forEach(p-> { try { p.recibirDanio(danioAReplicar); } catch (UnidadEstaMuertaException e) { e.printStackTrace(); } });
     }
 
 }
