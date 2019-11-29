@@ -12,7 +12,7 @@ public class VistaDeTablero extends Group {
 
     public VistaDeTablero(Stage stage, VBox vbox){
 
-        Image image = new Image("Tablero.png");
+        Image image = new Image("vista/imagenes/Tablero.png");
         ImageView imageView = new ImageView();
         imageView.setImage(image);
         vbox.getChildren().add(imageView);

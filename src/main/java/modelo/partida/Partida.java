@@ -1,6 +1,10 @@
 package modelo.partida;
 
 import modelo.jugador.EjercitoIncompletoException;
+import modelo.jugador.PiezaFueraDeSectorException;
+import modelo.jugador.UbicacionInvalidaException;
+import modelo.jugador.presupuesto.CompraInvalidaException;
+import modelo.jugador.presupuesto.PresupuestoAgotadoException;
 import modelo.pieza.ataque.PiezaAliadaNoAtacableException;
 import modelo.pieza.UnidadEstaMuertaException;
 import modelo.pieza.ataque.DistanciaDeAtaqueInvalidaException;
@@ -51,25 +55,27 @@ public class Partida {
     //---------------Acciones de Turno------------//
 
 
-    void atacar(PiezaAtacante atacante, Pieza atacada) throws JugadorNoPuedeException, PiezaAliadaNoAtacableException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException {
+    void atacarPieza(PiezaAtacante atacante, Pieza atacada) throws JugadorNoPuedeException, PiezaAliadaNoAtacableException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException {
         validarJugadorTurno(atacante);
         miFase.atacar(atacante, atacada, tableroDePartida);
     }
 
-    public void pasarTurno() throws EjercitoIncompletoException {
-        miFase.verificarFinTurno(jugadorEnTurno);
-        if (jugadorEnTurno==jugadorUno) setJugadorEnTurno(jugadorDos);
-        else setJugadorEnTurno(jugadorUno);
+    void colocarPieza(String nombreDeUnidad, int posicionEnX, int posicionEnY) throws UbicacionInvalidaException, PresupuestoAgotadoException, CompraInvalidaException, PiezaFueraDeSectorException {
+        miFase.colocarPieza(jugadorEnTurno,tableroDePartida,nombreDeUnidad,posicionEnX,posicionEnY);
     }
+
 
     //---------------Metodos de Fase------------//
 
-    public void cambiarFaseDePartida(FaseDePartida miNuevaFase){
-        this.miFase = miNuevaFase;
+    public void pasarTurno() throws EjercitoIncompletoException {
+        miFase.finalizarTurno(jugadorEnTurno);
+        if (jugadorEnTurno==jugadorUno) setJugadorEnTurno(jugadorDos);
+        else setJugadorEnTurno(jugadorUno);
+        miFase = miFase.retornarProximaFase();
     }
 
-    public String darNombreDeFase(){
-        return miFase.darNombreDeFase();
+    public boolean estaEnFaseInicial(){
+        return miFase.esFaseInicial();
     }
 
 

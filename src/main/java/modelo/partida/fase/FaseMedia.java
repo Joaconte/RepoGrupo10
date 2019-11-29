@@ -1,5 +1,9 @@
 package modelo.partida.fase;
 
+import modelo.jugador.PiezaFueraDeSectorException;
+import modelo.jugador.UbicacionInvalidaException;
+import modelo.jugador.presupuesto.CompraInvalidaException;
+import modelo.jugador.presupuesto.PresupuestoAgotadoException;
 import modelo.pieza.ataque.PiezaAliadaNoAtacableException;
 import modelo.jugador.Jugador;
 import modelo.pieza.UnidadEstaMuertaException;
@@ -12,7 +16,6 @@ public class FaseMedia implements FaseDePartida{
 
     private boolean jugadorYaAtacoOCuro = false;
     private boolean jugadorYaMovio = false;
-    private boolean jugadorPasoTurno =false;
 
     //Metodo que permite que una ficha se ubique en una casilla adyacente vacia, del tablero.
     @Override
@@ -22,13 +25,14 @@ public class FaseMedia implements FaseDePartida{
 
     //Metodo que permite indicar que el jugador termina con las acciones de su turno.
     @Override
-    public void verificarFinTurno(Jugador jugadorEnTurno){
+    public void finalizarTurno(Jugador jugadorEnTurno){
+        jugadorYaAtacoOCuro=false;
+        jugadorYaMovio = false;
     }
 
-    //Metodo para pedir a fase su nombre
     @Override
-    public String darNombreDeFase(){
-        return "Fase Media";
+    public boolean esFaseInicial(){
+        return false;
     }
 
     //Ataques o cura
@@ -37,6 +41,15 @@ public class FaseMedia implements FaseDePartida{
         atacante.atacar(atacada,tablero);
     }
 
+    @Override
+    public FaseDePartida retornarProximaFase() {
+        return this;
+    }
+
+    @Override
+    public void colocarPieza(Jugador jugadorEnTurno, Tablero tableroDePartida, String nombreDeUnidad, int posicionEnX, int posicionEnY) throws UbicacionInvalidaException, PresupuestoAgotadoException, CompraInvalidaException, PiezaFueraDeSectorException {
+
+    }
 
 
 }

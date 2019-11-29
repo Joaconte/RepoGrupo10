@@ -1,12 +1,12 @@
 package modelo.jugador;
 
 import modelo.jugador.presupuesto.CompraInvalidaException;
-import modelo.jugador.presupuesto.EstadoPresupuestoAgotado;
 import modelo.jugador.presupuesto.PresupuestoAgotadoException;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 
 
@@ -42,18 +42,20 @@ public class EjercitoTest {
     }
 
     @Test
-    public void test04EjercitoConPresupuestoAgotadoNoArrojaExcepcionAlVerificarSiEstaCompleto() throws  EjercitoIncompletoException {
+    public void test04EjercitoConPresupuestoAgotadoNoArrojaExcepcionAlVerificarSiEstaCompleto() throws PresupuestoAgotadoException, CompraInvalidaException {
 
         Ejercito ejercito = new Ejercito(1);
-        EstadoPresupuestoAgotado estadoAgotado = new EstadoPresupuestoAgotado();
-        ejercito.setEstadoPresupuesto(estadoAgotado);
-        ejercito.verificarSiEstaIncompleto();
+        ejercito.obtenerNuevaPieza("Catapulta",1,1);
+        ejercito.obtenerNuevaPieza("Catapulta",1,1);
+        ejercito.obtenerNuevaPieza("Catapulta",1,1);
+        ejercito.obtenerNuevaPieza("Catapulta",1,1);
+        assertTrue(ejercito.verificarSiEstaCompleto());
     }
 
-    @Test (expected = EjercitoIncompletoException.class)
+    @Test
     public void test05EjercitoSinPresupuestoAgotadoArrojaExcepcionAlVerificarSiEstaCompleto() throws  EjercitoIncompletoException {
 
         Ejercito ejercito = new Ejercito(1);
-        ejercito.verificarSiEstaIncompleto();
+        assertFalse(ejercito.verificarSiEstaCompleto());
     }
 }

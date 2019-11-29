@@ -29,24 +29,22 @@ public class Ejercito{
     public int getTamanio(){ return ( piezas.size()); }
     public ArrayList<Pieza> getPiezas(){ return piezas; }
 
-    public void setEstadoPresupuesto(EstadoPresupuestoDeEjercito presupuesto){
-        this.presupuesto = presupuesto.devolverEstadoDePresuesto();
-    }
-
     //-----------Add-Remove-----------//
 
     public Pieza obtenerNuevaPieza(String unidadNombre, int posX, int posY) throws PresupuestoAgotadoException, CompraInvalidaException {
         Pieza piezaComprada = presupuesto.comprarPieza(numeroDeEjercito, unidadNombre, posX, posY);
         piezas.add(piezaComprada);
-        this.setEstadoPresupuesto(this.presupuesto);
+        this.presupuesto = presupuesto.devolverEstadoDePresuesto();
         return piezaComprada;
     }
 
 
-    public void verificarSiEstaIncompleto() throws EjercitoIncompletoException {
-        if (presupuesto.getClass() == EstadoPresupuestoNoAgotado.class){throw new EjercitoIncompletoException(); }
+    public boolean verificarSiEstaCompleto() {
+        return presupuesto.estaAgotado();
     }
+
 }
+
 
 
 

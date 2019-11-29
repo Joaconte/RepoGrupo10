@@ -15,4 +15,9 @@ public class EstadoPresupuestoAgotado implements EstadoPresupuestoDeEjercito{
         return this ;
     }
 
+    @Override
+    public boolean estaAgotado() {
+        return true;
+    }
+
 }

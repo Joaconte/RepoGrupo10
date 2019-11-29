@@ -57,8 +57,8 @@ public class Jugador {
         tablero.ocuparCasilla(pieza, posicionX, posicionY);
     }
 
-    public void verificarSiEjercitoEstaListo() throws EjercitoIncompletoException {
-        ejercito.verificarSiEstaIncompleto();
+    public boolean verificarSiEjercitoEstaListo(){
+        return ejercito.verificarSiEstaCompleto();
     }
 }
 
