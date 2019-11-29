@@ -13,7 +13,7 @@ public class JugadorTest {
     @Test
     public void test01SeAgregaNumeroDeJugadorCorrectamente(){
 
-        Jugador jugador = new Jugador(1);
+        Jugador jugador = new Jugador(1,"pepe");
 
         assertEquals(1, jugador.getNumeroDeJugador() );
     }
@@ -21,7 +21,7 @@ public class JugadorTest {
     @Test
     public void test02SeAgregaSectorCorrectamente(){
 
-        Jugador jugador = new Jugador(1);
+        Jugador jugador = new Jugador(1, "pepe");
 
         assertEquals( 0 , jugador.getSector().getPrimeraPos());
         assertEquals( 9 , jugador.getSector().getUltimaPos());

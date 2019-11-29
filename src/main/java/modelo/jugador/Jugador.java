@@ -14,18 +14,10 @@ public class Jugador {
     private String nombre;
 
     //---------Inicializacion---------//
-    //DEJAR UNO SOLO
+
     public Jugador(int numeroDeJugador, String nombre){
 
         this.nombre = nombre;
-        this.numeroDeJugador = numeroDeJugador;
-        this.sector = new Sector(numeroDeJugador);
-        this.ejercito = new Ejercito (numeroDeJugador);
-    }
-
-
-    public Jugador(int numeroDeJugador){
-
         this.numeroDeJugador = numeroDeJugador;
         this.sector = new Sector(numeroDeJugador);
         this.ejercito = new Ejercito (numeroDeJugador);

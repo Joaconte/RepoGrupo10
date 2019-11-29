@@ -6,7 +6,6 @@ import modelo.jugador.Jugador;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotSame;
 
 import modelo.jugador.PiezaFueraDeSectorException;
 import modelo.jugador.UbicacionInvalidaException;
@@ -69,7 +68,7 @@ public class PartidaTest {
     @Test
     public void test05PartidaAgregaJugadorEnTurnoCorrectamente(){
         Partida partida = new Partida();
-        Jugador jugador = new Jugador(1);
+        Jugador jugador = new Jugador(1,"pepe");
         partida.setJugadorEnTurno(jugador);
 
         assertEquals(1, partida.getJugadorEnTurno().getNumeroDeJugador());
@@ -102,7 +101,7 @@ public class PartidaTest {
 
         Jugador jugador1 = miPartida.getJugadorUno();
         Jugador jugador2 = miPartida.getJugadorDos();
-        
+
         Tablero unTablero = Mockito.mock(Tablero.class);
         Mockito.when(unTablero.casillaEstaOcupada(2,2)).thenReturn(false);
         Mockito.when(unTablero.casillaEstaOcupada(12,2)).thenReturn(false);
