@@ -18,6 +18,7 @@ public class AtaqueADistancia implements IModoAtaque {
 
     @Override
     public void ataqueMasivo(PiezaAtacante miUnidad, Pieza victima, List<Pieza> piezas, int distancia) throws DistanciaDeAtaqueInvalidaException, UnidadEstaMuertaException {
+        // fijarse de usar stream() como hicieron en otros lados
         double daniaAReplicar = victima.getPuntosVida(); //Cuestiones de enunciado.
         atacar(miUnidad, victima, distancia);
         piezas.remove(0);

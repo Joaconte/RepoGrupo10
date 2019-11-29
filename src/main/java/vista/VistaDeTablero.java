@@ -7,6 +7,7 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 
+
 public class VistaDeTablero extends Group {
 
     public VistaDeTablero(Stage stage, VBox vbox){

@@ -38,14 +38,18 @@ public class Jinete extends PiezaAtacante {
     public String getNombre(){ return "Jinete";}
 
     public void obtenerModoDeAtaque(Tablero tablero, Pieza atacada) {
+        // usar stream() como en otro lado
         List<Pieza> piezas = tablero.getPiezasAdyacentes(this.ubicacion);
         int aliados=0;
         int enemigos=0;
         for (int i=0; i <piezas.size(); i++ ){
             Pieza pieza = piezas.get(i);
+            // encapsular el pieza.getNombre() == "Infanteria"
             if ((!pieza.esEnemigo(this)) && (pieza.getNombre() == "Infanteria")){ aliados++;}
             else if (pieza.esEnemigo(this)) { enemigos++;}
         }
+        // this.ubicacion.getDistanciaAOtroPunto(atacada.getUbicacion()) se puede encapsular como
+        // distanciaA(Ubicacion) en Unidad y que esta delege a Ubicacion el calculo de distancia
         setModo(aliados, enemigos, this.ubicacion.getDistanciaAOtroPunto(atacada.getUbicacion()));
     }
 

@@ -2,6 +2,7 @@ package modelo.pieza.movimiento;
 
 import modelo.pieza.Ubicacion;
 
+// la interfaz no se utiliza en ningùn lado. Podría borrarse
 public interface IModoMovimiento {
     void moverUnidad(Ubicacion actual, Ubicacion miNuevaUbicacion) throws NoSePuedeMoverException;
 

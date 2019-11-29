@@ -74,6 +74,7 @@ public abstract class Pieza {
         vida = Math.min(vida, vida_maxima);
     }
 
+    // Solo se usa en pruebas
     public void moverArriba() throws NoSePuedeMoverException {
         Ubicacion nueva = modoMovimiento.arriba(this.getUbicacion());
         this.setUbicacion(nueva);
@@ -81,6 +82,10 @@ public abstract class Pieza {
 
     public void mover(Tablero tablero, Direccion direccion) throws NoSePuedeMoverException {
         Ubicacion anterior = this.getUbicacion();
+
+        // MP: esto se puede encapsular con un mensaje en Direcciòn que sea mover(Ubicacion ubicacion) que devuelva
+        // una nueva con las coordenadas que correspondes.
+        // Borrar los getters y probar con el nuevo mensajes
         int nuevoX = anterior.getPosicionEnX()+ direccion.getDesplazamientoEnX();
         int nuevoY = anterior.getPosicionEnY() + direccion.getDesplazamientoEnY();
         /* ver q la ubicacion sea valida, que no se salga de los parametros del tablero */

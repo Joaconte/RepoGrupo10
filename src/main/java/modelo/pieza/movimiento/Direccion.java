@@ -16,4 +16,6 @@ public abstract class Direccion {
     public int getDesplazamientoEnY() {
         return desplazamientoEnY;
     }
+
+
 }
