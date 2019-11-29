@@ -13,13 +13,18 @@ public class AtaqueADistanciaMasivo extends AtaqueADistancia  implements IModoAt
         Pieza victimaPrincipal = piezas.get(0);
         piezas.remove(0);
 
-        double daniaAReplicar = victimaPrincipal.getPuntosVida(); //Cuestiones de enunciado.
-        super.atacar(miUnidad, victimaPrincipal);
-        daniaAReplicar = daniaAReplicar - victimaPrincipal.getPuntosVida();
 
-        for (int i=0; i<piezas.size(); i++){
-            piezas.get(i).recibirDanio(daniaAReplicar);
-        }
+        double vidaAntesDelAtaque= victimaPrincipal.getPuntosVida(); //Cuestiones de enunciado.
+        super.atacar(miUnidad, victimaPrincipal);
+        double danioAReplicar = vidaAntesDelAtaque - victimaPrincipal.getPuntosVida();
+
+        piezas.stream().forEach(p-> {
+            try {
+                p.recibirDanio(danioAReplicar);
+            } catch (UnidadEstaMuertaException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
 }

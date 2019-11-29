@@ -36,19 +36,14 @@ public class Jinete extends PiezaAtacante {
 
 
     public void obtenerModoDeAtaque(Tablero tablero, Pieza atacada) {
-        // usar stream() como en otro lado
+
         List<Pieza> piezas = tablero.getPiezasAdyacentes(this.ubicacion);
-        int aliados=0;
-        int enemigos=0;
-        for (int i=0; i <piezas.size(); i++ ){
-            Pieza pieza = piezas.get(i);
-            if ((!pieza.esEnemigo(this)) && (pieza.esRefuerzoDeJinete())){ aliados++;}
-            else if (pieza.esEnemigo(this)) { enemigos++;}
-        }
+        long aliados=piezas.stream().filter(pieza -> !pieza.esEnemigo(this)&& pieza.esRefuerzoDeJinete()).count();
+        long enemigos=piezas.stream().filter(pieza -> pieza.esEnemigo(this)).count();
         setModo(aliados, enemigos);
     }
 
-    public void setModo(int aliados, int enemigos){
+    public void setModo(long aliados, long enemigos){
         if ((aliados>0) || enemigos==0){  ATAQUE.setModoDeAtaque(new AtaqueMedio()); }
         else {ATAQUE.setModoDeAtaque(new AtaqueCuerpoACuerpo());}
     }
