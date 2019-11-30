@@ -20,6 +20,8 @@ public class EstadoPresupuestoNoAgotado implements EstadoPresupuestoDeEjercito{
         this.presupuesto = unValor;
     }
 
+    public int getPresupuesto(){ return presupuesto;}
+
 
     @Override
     public Pieza comprarPieza(int ejercito, String nombreUnidad, int posX, int posY) throws CompraInvalidaException {

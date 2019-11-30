@@ -51,7 +51,7 @@ public class BotonAgregarJugadorEventHandler implements EventHandler<ActionEvent
             juego.agregarJugadores(jugadorUno, jugadorDos);
 
             if (primeraVez){
-                vbox.getChildren().add(new BotonIniciarPartida(juego, vbox, stage));
+                vbox.getChildren().add(new BotonIniciarPartida(juego, vbox));
                 primeraVez = false;
             }
         }

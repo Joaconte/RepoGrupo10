@@ -35,6 +35,7 @@ public class Jugador {
         return this.ejercito.getTamanio();
     }
     public String getNombre(){ return nombre;}
+    public int getPuntos(){ return ejercito.getPresupuesto();}
 
 
     //----------Agrega Ubicacion A Unidad--------------//
@@ -49,30 +50,17 @@ public class Jugador {
     public boolean verificarSiEjercitoEstaListo(){
         return ejercito.estaCompleto();
     }
+
+
+    //CATCH SUCIOS
+    public void agregarPieza(Pieza pieza) {
+        try {
+
+            ejercito.agregarPieza( pieza );
+        }catch( PresupuestoAgotadoException e){
+        }catch( CompraInvalidaException k){ }
+    }
+
 }
 
-    /*    public void quitarUnidad(Ubicacion ubicacion) {
-        for (int i = 0; i < ejercito.size(); ++i) {
-            if(ejercito.get(i).getUbicacion() == ubicacion){
-                ejercito.remove(i);
-            }
-        }
-    }
 
-    private Unidad menuUnidades() {
-
-        byte i = '1';
-        Scanner capt = new Scanner(System.in);
-        while (i != '0') {
-
-            System.out.println("Ingrese 0 para terminar la compra de unidades");
-            System.out.println("Ingrese 1 para seleccionar la unidad Infanteria");
-            System.out.println("Ingrese 2 para seleccionar la unidad Jinete");
-            System.out.println("Ingrese 3 para seleccionar la unidad Curandero");
-            System.out.println("Ingrese 4 para seleccionar la unidad Catapulta");
-            i = capt.nextByte();
-            Unidad unidad = opcionesUnidades(i);
-        }
-        return null;
-    }
-    */
