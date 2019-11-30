@@ -2,6 +2,7 @@ package vista;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -14,17 +15,19 @@ public class Main extends Application {
         launch(args);
     }
 
-    public void start(Stage stage) {
-        stage.setTitle( "Juego X" );
-
+    public void start(Stage escenarioPrincipal) {
+        escenarioPrincipal.setTitle( "Juego AlgoChess" );
         Juego juego = new Juego();
-        VBox vbox = new VBox();
+        VBox contenedorVertical = new VBox();
+        VistaDeJuego vistaDeJuego = new VistaDeJuego( juego, contenedorVertical, escenarioPrincipal );
 
-        VistaDeJuego vistaDeJuego = new VistaDeJuego( juego, vbox, stage );
+        ScrollPane panelConBarrasDeMovimiento = new ScrollPane();
+        panelConBarrasDeMovimiento.setContent(contenedorVertical);
+        panelConBarrasDeMovimiento.setPrefSize(1200,950);
 
-        Scene scene = new Scene(vbox, 1200, 950);
-        stage.setScene(scene);
-        stage.show();
+        Scene escenaDeJuego = new Scene(panelConBarrasDeMovimiento, 1200, 950);
+        escenarioPrincipal.setScene(escenaDeJuego);
+        escenarioPrincipal.show();
 
     }
 

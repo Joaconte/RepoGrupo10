@@ -9,7 +9,7 @@ import modelo.pieza.Ubicacion;
 public class VistaDeUnidad {
 
     private double escalaDeUnidad = 1;
-    private VistaDeTablero stage;
+    private VistaDeTablero vistaDeTablero;
     public ImageView imagenDeUnidad;
 
     private Pieza unidad;
@@ -18,13 +18,13 @@ public class VistaDeUnidad {
     private int ultimaPosicionX;
 
 
-    public VistaDeUnidad(VistaDeTablero stage, Pieza unidad, String nombreClase) {
+    public VistaDeUnidad(VistaDeTablero vistaDeTablero, Pieza unidadAUbicar, String nombreClase) {
 
-        this.stage = stage;
-        this.unidad = unidad;
-        ubicacion = unidad.getUbicacion();
+        this.vistaDeTablero = vistaDeTablero;
+        this.unidad = unidadAUbicar;
+        ubicacion = unidadAUbicar.getUbicacion();
 
-        this.ultimaPosicionX = unidad.getUbicacion().getPosicionEnX();
+        this.ultimaPosicionX = unidadAUbicar.getUbicacion().getPosicionEnX();
 
         //NO ME FUNCA unidad.addObserver( this);
 
@@ -35,7 +35,7 @@ public class VistaDeUnidad {
         imagenDeUnidad.setFitWidth(45);
 
         imagenDeUnidad.setImage(new Image(nombreClase +".png"));
-        stage.agregarUnidad(imagenDeUnidad, ubicacion.getPosicionEnX(), ubicacion.getPosicionEnY() );
+        vistaDeTablero.agregarUnidad(imagenDeUnidad, ubicacion.getPosicionEnX(), ubicacion.getPosicionEnY() );
         //draw();
     }
 

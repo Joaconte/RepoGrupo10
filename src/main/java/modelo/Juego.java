@@ -16,9 +16,14 @@ public class Juego {
         partida.agregarJugadores( nombreJugadorUno, nombreJugadorDos );
     }
 
+    public Partida getPartida(){ return partida; }
+
+
     public Tablero getTablero(){
         return partida.getTableroDePartida();
     }
+
+
 
     public void arrancarPartida(){
 
