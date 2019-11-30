@@ -34,7 +34,7 @@ public class VistaDeUnidad {
         imagenDeUnidad.setFitHeight(45);
         imagenDeUnidad.setFitWidth(45);
 
-        imagenDeUnidad.setImage(new Image("resources/"+ nombreClase +".png"));
+        imagenDeUnidad.setImage(new Image( nombreClase +".png"));
         vistaDeTablero.agregarUnidad(imagenDeUnidad, ubicacion.getPosicionEnX(), ubicacion.getPosicionEnY() );
         //draw();
     }
