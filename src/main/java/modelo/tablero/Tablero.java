@@ -53,33 +53,6 @@ public class Tablero {
     }
 
 
-    /* POR SI LAS DUDAS
-    private ArrayList<Casilla> getCasillasPorRango(Ubicacion ubicacion, int rango){
-
-        ArrayList<Casilla> listadoDeCasillas = new ArrayList<Casilla>();
-
-        int posicionEnX = ubicacion.getPosicionEnX();
-        int posicionEnY = ubicacion.getPosicionEnY();
-
-        //Problemas de borde
-        int inicioX = Math.max( 0, posicionEnX - rango );
-        int finX = Math.min( 19, posicionEnX + rango );
-        int inicioY = Math.max( 0, posicionEnY - rango );
-        int finY = Math.min( 19, posicionEnY + rango );
-
-        for (int i = inicioX; i <= finX ; i++){
-
-            Columna columna = columnas.get(i);
-            for (int j = inicioY; j <= finY ; j++){
-
-                Casilla casilla = columna.getCasilla(j);
-                listadoDeCasillas.add(casilla);
-            }
-        }
-        return listadoDeCasillas;
-    }
-     */
-
     private ArrayList<Casilla> getCasillasEntreRangos(Ubicacion ubicacion, int radioInicial, int radioFinal){
 
         ArrayList<Casilla> listadoDeCasillas = new ArrayList<>();
@@ -137,20 +110,26 @@ public class Tablero {
         return listadoDeCasillas;
     }
 
-    public List<Pieza> getPiezasAdyacentes(Ubicacion ubicacion){
-        return getPiezasEntreRangos(ubicacion, 1, 1);
-    }
-
-    public List<Pieza> getPiezasEntreRangos(Ubicacion ubicacion, int rangoInicial, int rangoFinal) {
-        return this.getCasillasEntreRangos(ubicacion, rangoInicial, rangoFinal).stream()
-                .filter(Casilla::estaOcupada)
-                .map(Casilla::getContenido)
-                .collect(Collectors.toList());
-    }
-
     public List<Casilla> getCasillasVaciasAdyacentes(Ubicacion ubicacion) {
         return this.getCasillasEntreRangos(ubicacion, 1, 1).stream()
                 .filter(c-> !c.estaOcupada())
+                .collect(Collectors.toList());
+    }
+
+
+
+    public List<Pieza> getPiezasAdyacentes(Ubicacion ubicacion){
+        return getPiezasEnRadio(ubicacion, 1, 1);
+    }
+
+    public List<Pieza> getPiezasAdyacentesDentroDeRadio(Ubicacion ubicacion, int radio){
+        return getPiezasEnRadio(ubicacion, 1, radio);
+    }
+
+    private List<Pieza> getPiezasEnRadio(Ubicacion ubicacion, int rangoInicial, int rangoFinal) {
+        return this.getCasillasEntreRangos(ubicacion, rangoInicial, rangoFinal).stream()
+                .filter(Casilla::estaOcupada)
+                .map(Casilla::getContenido)
                 .collect(Collectors.toList());
     }
 

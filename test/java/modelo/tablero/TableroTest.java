@@ -340,7 +340,7 @@ public class TableroTest {
         Mockito.when(ubicacion.getPosicionEnX()).thenReturn(2);
         Mockito.when(ubicacion.getPosicionEnY()).thenReturn(2);
 
-        assertEquals(24, tablero.getPiezasEntreRangos(  ubicacion,1,2 ).size() );
+        assertEquals(24, tablero.getPiezasAdyacentesDentroDeRadio(  ubicacion,2 ).size() );
     }
 
 }
