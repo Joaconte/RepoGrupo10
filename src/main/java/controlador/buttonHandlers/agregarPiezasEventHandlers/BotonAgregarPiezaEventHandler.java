@@ -2,6 +2,7 @@ package controlador.buttonHandlers.agregarPiezasEventHandlers;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
@@ -34,11 +35,16 @@ public abstract class BotonAgregarPiezaEventHandler implements EventHandler<Acti
 
         } else {
 
+            try{
             String sX = this.textFieldUno.getText();
             String sY = this.textFieldDos.getText();
             int x = Integer.parseInt(sX);
             int y = Integer.parseInt(sY);
-            crearPiezaYAgregarATablero(x, y, vistaDeTablero);
+            crearPiezaYAgregarATablero(x, y, vistaDeTablero);}
+            catch (NumberFormatException e){
+                this.labelUno.setText("Debe ingresar numeros");
+                this.labelUno.setTextFill(Color.web("#FF0000"));
+            }
 
         }
     }
