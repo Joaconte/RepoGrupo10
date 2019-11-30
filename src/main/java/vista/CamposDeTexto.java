@@ -5,17 +5,17 @@ import javafx.scene.control.TextField;
 
 public class CamposDeTexto {
 
-    TextField textoUno;
-    TextField textoDos;
-    Label etiquetaUno;
-    Label etiquetaDos;
+    public TextField textoUno;
+    public TextField textoDos;
+    public Label etiquetaUno;
+    public Label etiquetaDos;
 
-    public CamposDeTexto(){
+    public CamposDeTexto(String s1, String s2){
 
         textoUno = new TextField();
-        textoUno.setPromptText("Ingrese un jugador");
+        textoUno.setPromptText(s1);
         textoDos = new TextField();
-        textoDos.setPromptText("Ingrese otro jugador");
+        textoDos.setPromptText(s2);
 
         etiquetaUno = new Label();
         etiquetaUno.setText(textoUno.getText());
@@ -25,3 +25,4 @@ public class CamposDeTexto {
     }
 
 }
+

@@ -5,9 +5,8 @@ import modelo.pieza.movimiento.*;
 import modelo.pieza.recibirDanio.*;
 import modelo.pieza.sanacion.*;
 import modelo.tablero.Tablero;
-import java.util.Observable;
 
-public abstract class Pieza extends Observable {
+public abstract class Pieza {
     private int costo;
     private int vida_maxima;
     private double vida;

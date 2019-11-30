@@ -3,9 +3,7 @@ package vista;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.stage.Stage;
 import modelo.tablero.Tablero;
 
 
@@ -15,16 +13,18 @@ public class VistaDeTablero extends Group {
     public int anchura;
     private int alturaCelda = 45;
     private int anchuraCelda = 45;
+    private Tablero tablero;
 
     private GridPane table;
     private Pane[][] panes;
 
     public VistaDeTablero(Tablero tablero){
 
+        this.tablero = tablero;
         table = new GridPane();
         anchura = anchuraCelda * tablero.getColumnas();
         altura = alturaCelda * tablero.getFilas();
-        panes = new Pane[ (int)anchura][(int)altura];
+        panes = new Pane[anchura][altura];
 
         for (int i = 0; i < tablero.getColumnas(); i++) {
             for (int j = 0; j < tablero.getFilas(); j++) {
@@ -35,7 +35,8 @@ public class VistaDeTablero extends Group {
                 table.add(v , i, j);
             }
         }
-        Background bi = new Background(new BackgroundImage(new Image("Tablero.png"),
+
+        Background bi = new Background(new BackgroundImage(new Image("tablero.png"),
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.CENTER,
@@ -45,12 +46,12 @@ public class VistaDeTablero extends Group {
         this.addView(table);
     }
 
-    private void mostrarFondo(VBox vbox, Stage stage){
-        Image image = new Image("Tablero.png");
-        ImageView imageView = new ImageView();
-        imageView.setImage(image);
-        vbox.getChildren().add(imageView);
-        stage.sizeToScene();
+    public void agregarUnidad(Node unidad, int x, int y){
+
+        GridPane.setRowIndex(unidad, x);
+        GridPane.setColumnIndex(unidad, y);
+        table.getChildren().add(unidad);
+        addViewOnMap(unidad, x, y);
     }
 
     public void addViewOnMap(Node view, int x, int y) {
@@ -74,5 +75,7 @@ public class VistaDeTablero extends Group {
         getChildren().remove(view);
         getChildren().add(view);
     }
+
+    public Tablero getTablero(){ return tablero;}
 
 }

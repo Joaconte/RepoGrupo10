@@ -3,13 +3,12 @@ package modelo.tablero;
 import modelo.pieza.Pieza;
 import modelo.pieza.Ubicacion;
 import modelo.tablero.casilla.Casilla;
-import modelo.pieza.observer.Observable;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Tablero extends Observable {
+public class Tablero {
     private static final int FILAS = 20;
     private static final int COLUMNAS = 20;
     private List<Columna> columnas = new ArrayList<Columna>();

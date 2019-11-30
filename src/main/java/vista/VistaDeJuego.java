@@ -8,14 +8,12 @@ import modelo.Juego;
 
 public class VistaDeJuego {
 
-    VistaDeTablero vistaDeTablero;
-
     public VistaDeJuego( Juego juego, VBox vbox, Stage stage){
 
         vbox.setSpacing(10);
         vbox.setPadding(new Insets(20));
 
-        CamposDeTexto camposDeTexto = new CamposDeTexto();
+        CamposDeTexto camposDeTexto = new CamposDeTexto("Ingrese un jugador", "Ingrese otro jugador");
         BotonAgregarJugadores botonAgregarJugadores = new BotonAgregarJugadores(camposDeTexto , juego, vbox, stage );
         ContenedorBotones contenedorBotones = new ContenedorBotones(camposDeTexto, juego, vbox, stage );
 

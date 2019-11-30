@@ -3,14 +3,12 @@ package controlador.buttonHandlers;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import modelo.Juego;
-import modelo.pieza.Pieza;
-import modelo.pieza.tipos.Infanteria;
-import modelo.tablero.Tablero;
 import vista.VistaDeTablero;
-import vista.VistaDeUnidad;
+import vista.VistaFaseInicial;
 
 public class BotonIniciarPartidaEventHandler implements EventHandler<ActionEvent> {
 
@@ -30,19 +28,14 @@ public class BotonIniciarPartidaEventHandler implements EventHandler<ActionEvent
         juego.arrancarPartida();
         vbox.getChildren().clear();
 
+        HBox hbox = new HBox();
+
+        vbox.getChildren().add(hbox);
+
         VistaDeTablero vistaDeTablero = new VistaDeTablero(juego.getTablero());
-        vbox.getChildren().add(vistaDeTablero);
-        agregarUnidad(vistaDeTablero, juego.getTablero());
+        hbox.getChildren().add(vistaDeTablero);
+        VistaFaseInicial vistaFaseInicial = new VistaFaseInicial(vistaDeTablero, hbox);
 
     }
 
-    public void agregarUnidad( VistaDeTablero vistaDeTablero, Tablero tablero ){
-
-        Pieza unidad = new Infanteria(1,0,0);
-        tablero.agregarPieza(unidad);
-        VistaDeUnidad vistaDeUnidad = new VistaDeUnidad(vistaDeTablero, unidad);
-        tablero.addObserver(vistaDeUnidad);
-
-
-    }
 }
