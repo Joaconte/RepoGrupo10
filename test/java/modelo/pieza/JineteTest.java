@@ -61,7 +61,7 @@ public class JineteTest {
         Tablero tablero = Mockito.mock(Tablero.class);
         List<Pieza> lista = new ArrayList<>();
         lista.add(jineteAcosador);
-        Mockito.when(tablero.getPiezasEntreRangos(jinete.getUbicacion(),2,2)).thenReturn(lista);
+        Mockito.when(tablero.getPiezasDentroDeRadio(jinete.getUbicacion(),2)).thenReturn(lista);
 
         //----------Ataque -----------------
         jinete.atacar(oponente,tablero);
@@ -80,7 +80,7 @@ public class JineteTest {
         List<Pieza> lista = new ArrayList<>();
         lista.add(infanteAliado);
         lista.add(oponenteCercano);
-        Mockito.when(tablero.getPiezasEntreRangos(jinete.getUbicacion(),2,2)).thenReturn(lista);
+        Mockito.when(tablero.getPiezasDentroDeRadio(jinete.getUbicacion(),2)).thenReturn(lista);
 
         //----------Ataque ------------------
         jinete.atacar(oponenteCercano,tablero);
@@ -97,7 +97,7 @@ public class JineteTest {
         Tablero tablero = Mockito.mock(Tablero.class);
         List<Pieza> lista =  new ArrayList<>();
         lista.add(oponenteCercano);
-        Mockito.when(tablero.getPiezasEntreRangos(jinete.getUbicacion(),2,2)).thenReturn(lista);
+        Mockito.when(tablero.getPiezasDentroDeRadio(jinete.getUbicacion(),2)).thenReturn(lista);
 
 
         //----------Ataque ------------------
@@ -124,7 +124,7 @@ public class JineteTest {
         lista.add(curanderoAliado);
         lista.add(catapultaAliada);
         lista.add(jineteAcosador);
-        Mockito.when(tablero.getPiezasEntreRangos(jinete.getUbicacion(),2,2)).thenReturn(lista);
+        Mockito.when(tablero.getPiezasDentroDeRadio(jinete.getUbicacion(),2)).thenReturn(lista);
 
         //----------Ataque ------------------
         jinete.atacar(jineteADistancia,tablero);
@@ -146,7 +146,7 @@ public class JineteTest {
         List<Pieza> lista = new ArrayList<>();
         lista.add(jineteAcosador);
         lista.add(infanteAliado);
-        Mockito.when(tablero.getPiezasEntreRangos(jinete.getUbicacion(),2,2)).thenReturn(lista);
+        Mockito.when(tablero.getPiezasDentroDeRadio(jinete.getUbicacion(),2)).thenReturn(lista);
 
         //----------Ataque ------------------
         jinete.atacar(jineteADistancia,tablero);
@@ -162,7 +162,7 @@ public class JineteTest {
         //----------Metodos Probados Tablero/Ubicacion --------
         Tablero tablero = Mockito.mock(Tablero.class);
         List<Pieza> lista = new ArrayList<>();
-        Mockito.when(tablero.getPiezasEntreRangos(jinete.getUbicacion(),2,2)).thenReturn(lista);
+        Mockito.when(tablero.getPiezasDentroDeRadio(jinete.getUbicacion(),2)).thenReturn(lista);
 
         //----------Ataque ------------------
         jinete.atacar(aliado,tablero);
