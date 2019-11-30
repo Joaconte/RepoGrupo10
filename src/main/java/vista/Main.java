@@ -9,9 +9,6 @@ import modelo.Juego;
 
 public class Main extends Application {
 
-
-    private VistaDeJuego vistaDeJuego;
-
     public static void main(String[] args) {
 
         launch(args);
@@ -23,12 +20,10 @@ public class Main extends Application {
         Juego juego = new Juego();
         VBox vbox = new VBox();
 
-        vistaDeJuego = new VistaDeJuego( juego, vbox, stage );
+        VistaDeJuego vistaDeJuego = new VistaDeJuego( juego, vbox, stage );
 
-        Scene scene = new Scene(vbox, 925, 785);
-
+        Scene scene = new Scene(vbox, 1200, 950);
         stage.setScene(scene);
-
         stage.show();
 
     }

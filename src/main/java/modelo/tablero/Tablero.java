@@ -19,6 +19,11 @@ public class Tablero {
             columnas.add(new Columna(numeroDeColumna, FILAS));
     }
 
+    public void agregarPieza(Pieza pieza){
+        Ubicacion ubicacion = pieza.getUbicacion();
+        this.ocuparCasilla(pieza, ubicacion.getPosicionEnX(), ubicacion.getPosicionEnY() );
+    }
+
     public void ocuparCasilla(Pieza pieza, int numeroDeColumna, int numeroDeFila){
         Columna unaColumna = columnas.get(numeroDeColumna);
         unaColumna.ocuparCasilla(pieza, numeroDeFila);
@@ -33,6 +38,10 @@ public class Tablero {
     public int getTamanio(){
         return FILAS * COLUMNAS;
     }
+
+    public int getFilas(){ return FILAS;}
+    public int getColumnas(){ return COLUMNAS;}
+
 
     public int getCantidadColumnasCreadas(){
         return columnas.size();
@@ -74,7 +83,7 @@ public class Tablero {
 
     private ArrayList<Casilla> getCasillasEntreRangos(Ubicacion ubicacion, int radioInicial, int radioFinal){
 
-        ArrayList<Casilla> listadoDeCasillas = new ArrayList<Casilla>();
+        ArrayList<Casilla> listadoDeCasillas = new ArrayList<>();
 
         int posicionEnX = ubicacion.getPosicionEnX();
         int posicionEnY = ubicacion.getPosicionEnY();
@@ -134,10 +143,10 @@ public class Tablero {
         return getPiezasEntreRangos(ubicacion, 1, 1);
     }
 
-    public List<Pieza> getPiezasEntreRangos(Ubicacion ubicacion, int rangoInicial, int rangoFinal) {
+    private List<Pieza> getPiezasEntreRangos(Ubicacion ubicacion, int rangoInicial, int rangoFinal) {
 
         List<Pieza> piezas = this.getCasillasEntreRangos(ubicacion, rangoInicial, rangoFinal).stream()
-             .filter(c -> c.estaOcupada() == true)
+             .filter(c -> c.estaOcupada())
                 .map(c -> c.getContenido())
                 .collect(Collectors.toList());
         return piezas;
@@ -146,7 +155,7 @@ public class Tablero {
     public List<Casilla> getCasillasVaciasAdyacentes(Ubicacion ubicacion) {
 
         List<Casilla> casillas = this.getCasillasEntreRangos(ubicacion, 1, 1).stream()
-                .filter(c -> c.estaOcupada() == false)
+                .filter(c -> c.estaOcupada())
                 .collect(Collectors.toList());
         return casillas;
     }

@@ -19,7 +19,7 @@ public class BotonAgregarJugadorEventHandler implements EventHandler<ActionEvent
     private Juego juego;
     private VBox vbox;
     private Stage stage;
-    private boolean primeraVez=true;
+    private boolean primeraVez;
 
     public BotonAgregarJugadorEventHandler(TextField textoUno, TextField textoDos, Label etiquetaUno, Label etiquetaDos, Juego juego, VBox vbox, Stage stage) {
         textFieldUno = textoUno ;
@@ -29,6 +29,7 @@ public class BotonAgregarJugadorEventHandler implements EventHandler<ActionEvent
         this.juego = juego;
         this.vbox = vbox;
         this.stage = stage;
+        primeraVez=true;
     }
 
     @Override
