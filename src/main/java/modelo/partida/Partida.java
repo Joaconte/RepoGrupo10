@@ -46,6 +46,10 @@ public class Partida {
         return jugadorEnTurno;
     }
 
+    public String getNombreJugadorEnTurno(){ return jugadorEnTurno.getNombre();}
+
+    public int getPuntosJugadorEnTurno(){ return jugadorEnTurno.getPuntos();}
+
 
     //-----------SETTERS-----------//
 
@@ -117,6 +121,12 @@ public class Partida {
     public Tablero getTableroDePartida() {
         return tableroDePartida;
     }
+
+    public void agregarPieza(Pieza pieza){
+        tableroDePartida.agregarPieza(pieza);
+        jugadorEnTurno.agregarPieza(pieza);
+    }
+
 }
 
 

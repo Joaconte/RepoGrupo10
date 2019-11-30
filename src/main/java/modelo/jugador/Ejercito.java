@@ -28,6 +28,7 @@ public class Ejercito{
     public int getNumeroDeEjercito(){ return numeroDeEjercito; }
     public int getTamanio(){ return ( piezas.size()); }
     public ArrayList<Pieza> getPiezas(){ return piezas; }
+    public int getPresupuesto(){ return presupuesto.getPresupuesto();}
 
     //-----------Add-Remove-----------//
 
@@ -41,6 +42,14 @@ public class Ejercito{
 
     public boolean estaCompleto() {
         return presupuesto.estaAgotado();
+    }
+
+    //PAL VISUAL
+    public void agregarPieza(Pieza pieza ) throws PresupuestoAgotadoException, CompraInvalidaException {
+
+        presupuesto.comprarPieza(numeroDeEjercito, "jinete", pieza.getUbicacion().getPosicionEnX(), pieza.getUbicacion().getPosicionEnY() );
+        piezas.add(pieza);
+        this.presupuesto = presupuesto.devolverEstadoDePresuesto();
     }
 
 }

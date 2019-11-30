@@ -10,6 +10,7 @@ import modelo.pieza.Pieza;
 import modelo.pieza.tipos.Infanteria;
 import vista.VistaDeTablero;
 import vista.VistaDeUnidad;
+import vista.faseInicial.EtiquetaPuntosJugador;
 
 public abstract class BotonAgregarPiezaEventHandler implements EventHandler<ActionEvent> {
 
@@ -17,13 +18,15 @@ public abstract class BotonAgregarPiezaEventHandler implements EventHandler<Acti
     private TextField textFieldDos;
     private Label labelUno;
     private VistaDeTablero vistaDeTablero;
+    protected EtiquetaPuntosJugador etiquetaPuntos;
 
-    public void initialize(TextField textoUno, TextField textoDos, Label etiquetaUno, VistaDeTablero vistaDeTablero) {
+    public void initialize(TextField textoUno, TextField textoDos, Label etiquetaUno, VistaDeTablero vistaDeTablero, EtiquetaPuntosJugador etiquetaPuntos) {
 
         textFieldUno = textoUno;
         textFieldDos = textoDos;
         labelUno = etiquetaUno;
         this.vistaDeTablero = vistaDeTablero;
+        this.etiquetaPuntos= etiquetaPuntos;
     }
 
     @Override
@@ -35,12 +38,15 @@ public abstract class BotonAgregarPiezaEventHandler implements EventHandler<Acti
 
         } else {
 
-            try{
-            String sX = this.textFieldUno.getText();
-            String sY = this.textFieldDos.getText();
-            int x = Integer.parseInt(sX);
-            int y = Integer.parseInt(sY);
-            crearPiezaYAgregarATablero(x, y, vistaDeTablero);}
+            try {
+                String sX = this.textFieldUno.getText();
+                String sY = this.textFieldDos.getText();
+                int x = Integer.parseInt(sX);
+                int y = Integer.parseInt(sY);
+                crearPiezaYAgregarATablero(x, y, vistaDeTablero);
+                etiquetaPuntos.actualizarEtiqueta();
+            }
+
             catch (NumberFormatException e){
                 this.labelUno.setText("Debe ingresar numeros");
                 this.labelUno.setTextFill(Color.web("#FF0000"));

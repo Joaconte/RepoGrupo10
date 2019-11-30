@@ -2,21 +2,18 @@ package controlador.buttonHandlers;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import modelo.Juego;
 import vista.VistaDeTablero;
-import vista.VistaFaseInicial;
+import vista.faseInicial.VistaFaseInicial;
 
 public class BotonIniciarPartidaEventHandler implements EventHandler<ActionEvent> {
 
     private Juego juego;
     private VBox vbox;
-    private Stage stage;
 
-    public BotonIniciarPartidaEventHandler(Juego juego, VBox vbox, Stage stage) {
+    public BotonIniciarPartidaEventHandler(Juego juego, VBox vbox) {
 
         this.juego = juego;
         this.vbox = vbox;
@@ -34,7 +31,7 @@ public class BotonIniciarPartidaEventHandler implements EventHandler<ActionEvent
 
         VistaDeTablero vistaDeTablero = new VistaDeTablero(juego.getTablero());
         hbox.getChildren().add(vistaDeTablero);
-        VistaFaseInicial vistaFaseInicial = new VistaFaseInicial(vistaDeTablero, hbox);
+        VistaFaseInicial vistaFaseInicial = new VistaFaseInicial( juego, vistaDeTablero, hbox);
 
     }
 

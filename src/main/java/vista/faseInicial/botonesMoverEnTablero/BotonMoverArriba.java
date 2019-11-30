@@ -1,4 +1,4 @@
-package vista.botonesMoverEnTablero;
+package vista.faseInicial.botonesMoverEnTablero;
 
 import controlador.buttonHandlers.moverEnTablero.BotonMoverArribaEventHandler;
 import javafx.scene.control.Button;

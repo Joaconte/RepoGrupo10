@@ -9,10 +9,10 @@ import modelo.Juego;
 
 public class BotonIniciarPartida extends Button {
 
-    public BotonIniciarPartida(Juego juego, VBox vbox, Stage stage){
+    public BotonIniciarPartida(Juego juego, VBox vbox){
         super();
         this.setMinHeight(20);
         this.setText( "Iniciar partida" );
-        this.setOnAction(new BotonIniciarPartidaEventHandler( juego, vbox, stage ));
+        this.setOnAction(new BotonIniciarPartidaEventHandler( juego, vbox ));
     }
 }
