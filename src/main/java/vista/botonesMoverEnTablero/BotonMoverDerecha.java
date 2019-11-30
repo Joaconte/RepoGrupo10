@@ -11,5 +11,6 @@ public class BotonMoverDerecha extends Button {
         super("Derecha");
         this.setMinHeight(10);
         this.setOnAction(new BotonMoverDerechaEventHandler(vistaDeTablero, camposDeTexto));
+        this.getBackground();
     }
 }

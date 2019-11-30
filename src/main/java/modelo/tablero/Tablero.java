@@ -3,7 +3,6 @@ package modelo.tablero;
 import modelo.pieza.Pieza;
 import modelo.pieza.Ubicacion;
 import modelo.tablero.casilla.Casilla;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,7 +10,7 @@ import java.util.stream.Collectors;
 public class Tablero {
     private static final int FILAS = 20;
     private static final int COLUMNAS = 20;
-    private List<Columna> columnas = new ArrayList<Columna>();
+    private List<Columna> columnas = new ArrayList<>();
 
 
     public Tablero(){
@@ -139,46 +138,33 @@ public class Tablero {
     }
 
     public List<Pieza> getPiezasAdyacentes(Ubicacion ubicacion){
-
         return getPiezasEntreRangos(ubicacion, 1, 1);
     }
 
-    private List<Pieza> getPiezasEntreRangos(Ubicacion ubicacion, int rangoInicial, int rangoFinal) {
-
-        List<Pieza> piezas = this.getCasillasEntreRangos(ubicacion, rangoInicial, rangoFinal).stream()
-             .filter(c -> c.estaOcupada())
-                .map(c -> c.getContenido())
+    public List<Pieza> getPiezasEntreRangos(Ubicacion ubicacion, int rangoInicial, int rangoFinal) {
+        return this.getCasillasEntreRangos(ubicacion, rangoInicial, rangoFinal).stream()
+                .filter(Casilla::estaOcupada)
+                .map(Casilla::getContenido)
                 .collect(Collectors.toList());
-        return piezas;
     }
 
     public List<Casilla> getCasillasVaciasAdyacentes(Ubicacion ubicacion) {
-
-        List<Casilla> casillas = this.getCasillasEntreRangos(ubicacion, 1, 1).stream()
-                .filter(c -> c.estaOcupada())
+        return this.getCasillasEntreRangos(ubicacion, 1, 1).stream()
+                .filter(c-> !c.estaOcupada())
                 .collect(Collectors.toList());
-        return casillas;
     }
 
     public List<Pieza> getPiezasAdycentesInfinitas(Ubicacion ubicacion){
-        ArrayList<Pieza> listaPiezas= new ArrayList<Pieza>();
-        List<Pieza> piezas = getPiezasAdycentesRecursivo(ubicacion, listaPiezas);
-        return  piezas;
+        ArrayList<Pieza> listaPiezas= new ArrayList<>();
+        return getPiezasAdycentesRecursivo(ubicacion, listaPiezas);
     }
 
     public List<Pieza> getPiezasAdycentesRecursivo( Ubicacion ubicacion, ArrayList<Pieza> piezas ){
-
         List<Pieza> nuevasPiezas = getPiezasAdyacentes(ubicacion);
-        for (int i = 0; i < nuevasPiezas.size() ; i++){
-
-            Pieza pieza = nuevasPiezas.get(i);
-            if ( !piezas.contains( pieza ) ){
-
-                piezas.add(pieza);
-                this.getPiezasAdycentesRecursivo( pieza.getUbicacion(), piezas );
-            }
-        }
-
+        nuevasPiezas.stream().filter(pieza -> !piezas.contains(pieza))
+                    .forEach(pieza->{ piezas.add(pieza);
+                                      getPiezasAdycentesRecursivo(pieza.getUbicacion(),piezas);
+                             });
         return piezas;
     }
 

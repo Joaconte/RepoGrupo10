@@ -66,6 +66,7 @@ public class TableroTest {
 
         Mockito.when(pieza.getUbicacion()).thenReturn(ubicacion);
 
+        //Adyacentes
         tablero.ocuparCasilla(pieza, 1,1);
         tablero.ocuparCasilla(pieza, 0,0);
         tablero.ocuparCasilla(pieza, 0,1);
@@ -74,6 +75,7 @@ public class TableroTest {
         tablero.ocuparCasilla(pieza, 2,0);
         tablero.ocuparCasilla(pieza, 0,2);
 
+        //No Adyacentes
         tablero.ocuparCasilla(pieza, 6,7);
         tablero.ocuparCasilla(pieza, 8,8);
 
@@ -201,66 +203,144 @@ public class TableroTest {
         Tablero tablero = new Tablero();
 
         //-----------Mocks Piezas------------------
-        Jinete pieza1 = Mockito.mock(Jinete.class);
+        Jinete piezaAdyacente1 = Mockito.mock(Jinete.class);
         Ubicacion ubicacion = Mockito.mock(Ubicacion.class);
         Mockito.when(ubicacion.getPosicionEnX()).thenReturn(0);
         Mockito.when(ubicacion.getPosicionEnY()).thenReturn(0);
-        Mockito.when(pieza1.getUbicacion()).thenReturn(ubicacion);
+        Mockito.when(piezaAdyacente1.getUbicacion()).thenReturn(ubicacion);
 
-        Jinete pieza2 = Mockito.mock(Jinete.class);
+        Jinete piezaAdyacente2 = Mockito.mock(Jinete.class);
         Ubicacion ubicacionDos = Mockito.mock(Ubicacion.class);
         Mockito.when(ubicacionDos.getPosicionEnX()).thenReturn(1);
         Mockito.when(ubicacionDos.getPosicionEnY()).thenReturn(0);
-        Mockito.when(pieza2.getUbicacion()).thenReturn(ubicacionDos);
+        Mockito.when(piezaAdyacente2.getUbicacion()).thenReturn(ubicacionDos);
 
-        Jinete pieza3 = Mockito.mock(Jinete.class);
+        Jinete piezaAdyacente3 = Mockito.mock(Jinete.class);
         Ubicacion ubicacionTres = Mockito.mock(Ubicacion.class);
         Mockito.when(ubicacionTres.getPosicionEnX()).thenReturn(2);
         Mockito.when(ubicacionTres.getPosicionEnY()).thenReturn(0);
-        Mockito.when(pieza3.getUbicacion()).thenReturn(ubicacionTres);
+        Mockito.when(piezaAdyacente3.getUbicacion()).thenReturn(ubicacionTres);
 
-        Jinete pieza4 = Mockito.mock(Jinete.class);
+        Jinete piezaAdyacente4 = Mockito.mock(Jinete.class);
         Ubicacion ubicacionCuatro = Mockito.mock(Ubicacion.class);
         Mockito.when(ubicacionCuatro.getPosicionEnX()).thenReturn(3);
         Mockito.when(ubicacionCuatro.getPosicionEnY()).thenReturn(0);
-        Mockito.when(pieza4.getUbicacion()).thenReturn(ubicacionCuatro);
+        Mockito.when(piezaAdyacente4.getUbicacion()).thenReturn(ubicacionCuatro);
 
-        Jinete pieza5 = Mockito.mock(Jinete.class);
+        Jinete piezaAdyacente5 = Mockito.mock(Jinete.class);
         Ubicacion ubicacionCinco = Mockito.mock(Ubicacion.class);
         Mockito.when(ubicacionCinco.getPosicionEnX()).thenReturn(4);
         Mockito.when(ubicacionCinco.getPosicionEnY()).thenReturn(0);
-        Mockito.when(pieza5.getUbicacion()).thenReturn(ubicacionCinco);
+        Mockito.when(piezaAdyacente5.getUbicacion()).thenReturn(ubicacionCinco);
 
-        Jinete pieza6 = Mockito.mock(Jinete.class);
+        Jinete piezaAdaycente6 = Mockito.mock(Jinete.class);
         Ubicacion ubicacionSeis = Mockito.mock(Ubicacion.class);
         Mockito.when(ubicacionSeis.getPosicionEnX()).thenReturn(4);
         Mockito.when(ubicacionSeis.getPosicionEnY()).thenReturn(1);
-        Mockito.when(pieza6.getUbicacion()).thenReturn(ubicacionSeis);
+        Mockito.when(piezaAdaycente6.getUbicacion()).thenReturn(ubicacionSeis);
 
-        Jinete pieza7 = Mockito.mock(Jinete.class);
+        Jinete piezaAdyacente7 = Mockito.mock(Jinete.class);
         Ubicacion ubicacionSiete = Mockito.mock(Ubicacion.class);
         Mockito.when(ubicacionSiete.getPosicionEnX()).thenReturn(4);
         Mockito.when(ubicacionSiete.getPosicionEnY()).thenReturn(2);
-        Mockito.when(pieza7.getUbicacion()).thenReturn(ubicacionSiete);
+        Mockito.when(piezaAdyacente7.getUbicacion()).thenReturn(ubicacionSiete);
 
-        Jinete pieza8 = Mockito.mock(Jinete.class);
+        Jinete piezaAdyacente8 = Mockito.mock(Jinete.class);
         Ubicacion ubicacionOcho = Mockito.mock(Ubicacion.class);
         Mockito.when(ubicacionOcho.getPosicionEnX()).thenReturn(5);
         Mockito.when(ubicacionOcho.getPosicionEnY()).thenReturn(2);
-        Mockito.when(pieza8.getUbicacion()).thenReturn(ubicacionOcho);
+        Mockito.when(piezaAdyacente8.getUbicacion()).thenReturn(ubicacionOcho);
 
         //-----------Ocupar Tablero------------------
 
-        tablero.ocuparCasilla(pieza1, 0, 0);
-        tablero.ocuparCasilla(pieza2, 1, 0);
-        tablero.ocuparCasilla(pieza3, 2, 0);
-        tablero.ocuparCasilla(pieza4, 3, 0);
-        tablero.ocuparCasilla(pieza5, 4, 0);
-        tablero.ocuparCasilla(pieza6, 4, 1);
-        tablero.ocuparCasilla(pieza7, 4, 2);
-        tablero.ocuparCasilla(pieza8, 5, 2);
+        tablero.ocuparCasilla(piezaAdyacente1, 0, 0);
+        tablero.ocuparCasilla(piezaAdyacente2, 1, 0);
+        tablero.ocuparCasilla(piezaAdyacente3, 2, 0);
+        tablero.ocuparCasilla(piezaAdyacente4, 3, 0);
+        tablero.ocuparCasilla(piezaAdyacente5, 4, 0);
+        tablero.ocuparCasilla(piezaAdaycente6, 4, 1);
+        tablero.ocuparCasilla(piezaAdyacente7, 4, 2);
+        tablero.ocuparCasilla(piezaAdyacente8, 5, 2);
 
-        assertEquals(8, tablero.getPiezasAdycentesInfinitas( pieza1.getUbicacion() ).size() );
+        assertEquals(8, tablero.getPiezasAdycentesInfinitas( piezaAdyacente1.getUbicacion() ).size() );
+    }
+
+
+    @Test
+    public void test13BusquedaEnRangoDosSoloEncuentraLasFichasEnRangoDosCorrectamente(){
+
+        Tablero tablero = new Tablero();
+
+        //-----------Mocks Piezas------------------
+
+        Jinete[] jinetesFila0 = new Jinete[5];
+        for (int i = 0; i < 5; i++ ){
+            jinetesFila0[i] = Mockito.mock(Jinete.class);
+            Ubicacion ubicacion = Mockito.mock(Ubicacion.class);
+            Mockito.when(ubicacion.getPosicionEnX()).thenReturn(i);
+            Mockito.when(ubicacion.getPosicionEnY()).thenReturn(0);
+            Mockito.when(jinetesFila0[i].getUbicacion()).thenReturn(ubicacion);
+            tablero.ocuparCasilla(jinetesFila0[i], i, 0);
+        }
+
+        Jinete[] jinetesFila1 = new Jinete[5];
+        for (int i = 0; i < 5; i++ ){
+            jinetesFila1[i] = Mockito.mock(Jinete.class);
+            Ubicacion ubicacion = Mockito.mock(Ubicacion.class);
+            Mockito.when(ubicacion.getPosicionEnX()).thenReturn(i);
+            Mockito.when(ubicacion.getPosicionEnY()).thenReturn(1);
+            Mockito.when(jinetesFila1[i].getUbicacion()).thenReturn(ubicacion);
+            tablero.ocuparCasilla(jinetesFila1[i], i, 1);
+        }
+
+        Jinete[] jinetesFila2 = new Jinete[5];
+        for (int i = 0; i < 5; i++ ){
+            jinetesFila2[i] = Mockito.mock(Jinete.class);
+            Ubicacion ubicacion = Mockito.mock(Ubicacion.class);
+            Mockito.when(ubicacion.getPosicionEnX()).thenReturn(i);
+            Mockito.when(ubicacion.getPosicionEnY()).thenReturn(2);
+            Mockito.when(jinetesFila2[i].getUbicacion()).thenReturn(ubicacion);
+            tablero.ocuparCasilla(jinetesFila2[i], i, 2);
+        }
+
+        Jinete[] jinetesFila3 = new Jinete[5];
+        for (int i = 0; i < 5; i++ ){
+            jinetesFila3[i] = Mockito.mock(Jinete.class);
+            Ubicacion ubicacion = Mockito.mock(Ubicacion.class);
+            Mockito.when(ubicacion.getPosicionEnX()).thenReturn(i);
+            Mockito.when(ubicacion.getPosicionEnY()).thenReturn(3);
+            Mockito.when(jinetesFila3[i].getUbicacion()).thenReturn(ubicacion);
+            tablero.ocuparCasilla(jinetesFila3[i], i, 3);
+        }
+
+        Jinete[] jinetesFila4 = new Jinete[5];
+        for (int i = 0; i < 5; i++ ){
+            jinetesFila4[i] = Mockito.mock(Jinete.class);
+            Ubicacion ubicacion = Mockito.mock(Ubicacion.class);
+            Mockito.when(ubicacion.getPosicionEnX()).thenReturn(i);
+            Mockito.when(ubicacion.getPosicionEnY()).thenReturn(4);
+            Mockito.when(jinetesFila4[i].getUbicacion()).thenReturn(ubicacion);
+            tablero.ocuparCasilla(jinetesFila4[i], i, 4);
+        }
+
+        //No adyacentes
+
+        Jinete[] jinetesFila5 = new Jinete[5];
+        for (int i = 0; i < 5; i++ ){
+            jinetesFila5[i] = Mockito.mock(Jinete.class);
+            Ubicacion ubicacion = Mockito.mock(Ubicacion.class);
+            Mockito.when(ubicacion.getPosicionEnX()).thenReturn(i);
+            Mockito.when(ubicacion.getPosicionEnY()).thenReturn(5);
+            Mockito.when(jinetesFila5[i].getUbicacion()).thenReturn(ubicacion);
+            tablero.ocuparCasilla(jinetesFila5[i], i, 5);
+        }
+
+
+        Ubicacion ubicacion = Mockito.mock(Ubicacion.class);
+        Mockito.when(ubicacion.getPosicionEnX()).thenReturn(2);
+        Mockito.when(ubicacion.getPosicionEnY()).thenReturn(2);
+
+        assertEquals(24, tablero.getPiezasEntreRangos(  ubicacion,0,2 ).size() );
     }
 
 }
