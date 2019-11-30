@@ -1,6 +1,7 @@
 package modelo;
 
 import modelo.partida.Partida;
+import modelo.tablero.Tablero;
 
 public class Juego {
 
@@ -13,6 +14,10 @@ public class Juego {
     public void agregarJugadores( String nombreJugadorUno , String nombreJugadorDos ) {
 
         partida.agregarJugadores( nombreJugadorUno, nombreJugadorDos );
+    }
+
+    public Tablero getTablero(){
+        return partida.getTableroDePartida();
     }
 
     public void arrancarPartida(){

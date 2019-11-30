@@ -6,7 +6,11 @@ import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import modelo.Juego;
+import modelo.pieza.Pieza;
+import modelo.pieza.tipos.Infanteria;
+import modelo.tablero.Tablero;
 import vista.VistaDeTablero;
+import vista.VistaDeUnidad;
 
 public class BotonIniciarPartidaEventHandler implements EventHandler<ActionEvent> {
 
@@ -26,9 +30,19 @@ public class BotonIniciarPartidaEventHandler implements EventHandler<ActionEvent
         juego.arrancarPartida();
         vbox.getChildren().clear();
 
-        VistaDeTablero vistaDeTablero = new VistaDeTablero(stage, vbox);
-        Scene scene = new Scene(vistaDeTablero, 900, 800);
-        vistaDeTablero.getChildren().add(vbox);
-        stage.setScene(scene);
+        VistaDeTablero vistaDeTablero = new VistaDeTablero(juego.getTablero());
+        vbox.getChildren().add(vistaDeTablero);
+        agregarUnidad(vistaDeTablero, juego.getTablero());
+
+    }
+
+    public void agregarUnidad( VistaDeTablero vistaDeTablero, Tablero tablero ){
+
+        Pieza unidad = new Infanteria(1,0,0);
+        tablero.agregarPieza(unidad);
+        VistaDeUnidad vistaDeUnidad = new VistaDeUnidad(vistaDeTablero, unidad);
+        tablero.addObserver(vistaDeUnidad);
+
+
     }
 }
