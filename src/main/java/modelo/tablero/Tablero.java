@@ -122,7 +122,7 @@ public class Tablero {
         return getPiezasEnRadio(ubicacion, 1, 1);
     }
 
-    public List<Pieza> getPiezasDentroDeRadio(Ubicacion ubicacion, int radio){
+    public List<Pieza> getPiezasAdyacentesDentroDeRadio(Ubicacion ubicacion, int radio){
         return getPiezasEnRadio(ubicacion, 1, radio);
     }
 
