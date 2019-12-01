@@ -1,13 +1,11 @@
 package modelo.pieza.tipos;
 
-import modelo.pieza.Pieza;
-import modelo.pieza.UnidadEstaMuertaException;
 import modelo.pieza.ataque.*;
 import modelo.pieza.movimiento.IModoMovimiento;
 import modelo.pieza.movimiento.SeMueveEnTodasDirecciones;
 import modelo.pieza.sanacion.IModoSanacion;
 import modelo.pieza.sanacion.SanacionNormal;
-import modelo.tablero.Tablero;
+
 
 import java.util.Comparator;
 
@@ -25,11 +23,7 @@ public class Infanteria extends PiezaAtacante {
         super(COSTO, VIDA_MAXIMA, equipo, MOVIMIENTO, MODO_CURACION, ATAQUE, DANIO_CUERPO, DANIO_MEDIO, DANIO_DISTANCIA, posX, posY);
     }
 
-    @Override
-    public void atacar(Pieza oponente, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
-        if(!this.esEnemigo(oponente)){ throw new PiezaAliadaNoAtacableException();}
-        ATAQUE.atacar(this, oponente);
-    }
+
 
 
     /* Para ordenar los soldados del batallon y moverlos*/

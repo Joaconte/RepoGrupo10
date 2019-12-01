@@ -32,6 +32,9 @@ public abstract class PiezaAtacante extends Pieza {
         return danioMedio;
     }
 
-    public abstract void atacar(Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException;
+    public void atacar(Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException{
+        if(!this.esEnemigo(atacada)){ throw new PiezaAliadaNoAtacableException();}
+        modoAtaque.atacar(this, atacada);
+    };
 
 }

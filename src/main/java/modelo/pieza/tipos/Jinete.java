@@ -29,9 +29,8 @@ public class Jinete extends PiezaAtacante {
 
     @Override
     public void atacar(Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
-        if(!this.esEnemigo(atacada)){ throw new PiezaAliadaNoAtacableException();}
         obtenerModoDeAtaque(tablero);
-        ATAQUE.atacar(this, atacada);
+        super.atacar(atacada, tablero);
     }
 
 
