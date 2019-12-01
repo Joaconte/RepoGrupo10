@@ -48,7 +48,7 @@ public class VistaDeTablero extends Group {
                 new BackgroundSize(this.anchura, this.altura, false, false, false, false)));
         contenedorTabla.setBackground(fondoDeContenedor);
 
-        this.addView(contenedorTabla);
+        this.getChildren().add(contenedorTabla);
     }
 
     public Rectangle getCirculo(){
@@ -60,7 +60,9 @@ public class VistaDeTablero extends Group {
         GridPane.setRowIndex(unidad, x);
         GridPane.setColumnIndex(unidad, y);
         contenedorTabla.getChildren().add(unidad);
-        addViewOnMap(unidad, x, y);
+        //addViewOnMap(unidad, x, y);
+        casillaTabla[x][y].getChildren().add(0, unidad);
+
     }
 
     public void addViewOnMap(Node view, int x, int y) {
@@ -74,10 +76,6 @@ public class VistaDeTablero extends Group {
             }
         }
         casillaTabla[x][y].getChildren().add(0, view);
-    }
-
-    public void addView(Node view) {
-        this.getChildren().add(view);
     }
 
     public void updateView(Node view) {

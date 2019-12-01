@@ -9,10 +9,7 @@ import vista.CamposDeTexto;
 import vista.faseInicial.botonesAgregarPiezas.ContenedorBotonesAgregarPieza;
 import vista.VistaDeTablero;
 import vista.faseInicial.botonesAgregarPiezas.ContenedorElegirPieza;
-import vista.faseInicial.botonesMoverEnTablero.BotonMoverAbajo;
-import vista.faseInicial.botonesMoverEnTablero.BotonMoverArriba;
-import vista.faseInicial.botonesMoverEnTablero.BotonMoverDerecha;
-import vista.faseInicial.botonesMoverEnTablero.BotonMoverIzquierda;
+import vista.faseInicial.botonesMoverEnTablero.*;
 
 
 public class VistaFaseInicial {
@@ -28,7 +25,6 @@ public class VistaFaseInicial {
         EtiquetaTurnoJugador etiquetaTurnoJugador = new EtiquetaTurnoJugador( juego );
         EtiquetaPuntosJugador etiquetaPuntos = new EtiquetaPuntosJugador( juego );
 
-
         contenedorVertical.getChildren().addAll(etiquetaTurnoJugador.etiqueta, etiquetaPuntos.etiqueta);
 
         CamposDeTexto camposDeTexto = new CamposDeTexto("Ingrese coordenada x", "Ingrese coordenada y");
@@ -38,6 +34,10 @@ public class VistaFaseInicial {
 
         GridPane panelDeControl = new GridPane();
         panelDeControl.setAlignment(Pos.BOTTOM_CENTER);
+
+        // No reconoce el paquete controlador (Para mover con wasd)
+        // contenedorVertical.setOnKeyPressed(new MainControlador(vistaDeTablero,  camposDeTexto));
+
         panelDeControl.add(new BotonMoverArriba(vistaDeTablero, camposDeTexto),1,0);
         panelDeControl.add(new BotonMoverAbajo(vistaDeTablero, camposDeTexto),1,3);
         panelDeControl.add(new BotonMoverDerecha(vistaDeTablero, camposDeTexto),2,2);

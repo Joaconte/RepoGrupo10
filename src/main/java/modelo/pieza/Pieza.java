@@ -35,6 +35,10 @@ public abstract class Pieza {
         return vida;
     }
 
+    public int getVidaMaxima(){
+        return vida_maxima;
+    }
+
     public Ubicacion getUbicacion(){
         return ubicacion;
     }
