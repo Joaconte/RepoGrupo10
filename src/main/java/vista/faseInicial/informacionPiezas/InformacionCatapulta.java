@@ -10,16 +10,7 @@ public class InformacionCatapulta extends InformacionPieza {
 
         super("catapulta");
         catapulta = new Catapulta();
-        mostrarAtributos();
+        mostrarAtributos(catapulta);
     }
 
-    public int getCostoPieza(){
-
-        return catapulta.getCosto();
-    }
-
-    public int getVidaPieza(){
-
-        return catapulta.getVidaMaxima();
-    }
 }

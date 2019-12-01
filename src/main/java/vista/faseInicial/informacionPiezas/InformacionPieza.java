@@ -16,14 +16,11 @@ public abstract class InformacionPieza extends VBox {
         this.getChildren().add(new Text(nombre.toUpperCase()));
     }
 
-    public void mostrarAtributos(){
-        String costo = Integer.toString(getCostoPieza());
-        String vida = Integer.toString(getVidaPieza());
+    public void mostrarAtributos(Pieza pieza){
+        String costo = Integer.toString(pieza.getCosto());
+        String vida = Integer.toString(pieza.getVidaMaxima());
         this.getChildren().add(new Text("Costo: " + costo));
         this.getChildren().add(new Text("Puntos de vida: " + vida));
     }
-
-    abstract int getCostoPieza();
-    abstract int getVidaPieza();
 
 }
