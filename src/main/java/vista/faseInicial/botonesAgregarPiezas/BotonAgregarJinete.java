@@ -1,6 +1,5 @@
 package vista.faseInicial.botonesAgregarPiezas;
 
-import controlador.buttonHandlers.agregarPiezasEventHandlers.BotonAgregarCuranderoEventHandler;
 import controlador.buttonHandlers.agregarPiezasEventHandlers.BotonAgregarJineteEventHandler;
 import javafx.scene.control.Button;
 import vista.CamposDeTexto;
@@ -13,8 +12,7 @@ public class BotonAgregarJinete extends Button {
 
         super();
         this.setMinHeight(20);
-        this.setOnAction(new BotonAgregarCuranderoEventHandler(camposDeTexto.textoUno, camposDeTexto.textoDos,
-                camposDeTexto.etiquetaUno, vistaDeTablero, etiquetaPuntos));
+        this.setOnAction(new BotonAgregarJineteEventHandler(camposDeTexto, vistaDeTablero, etiquetaPuntos));
         this.setText("Agregar jinete");
     }
 }

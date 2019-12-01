@@ -18,10 +18,6 @@ public class Tablero {
             columnas.add(new Columna(numeroDeColumna, FILAS));
     }
 
-    public void agregarPieza(Pieza pieza){
-        Ubicacion ubicacion = pieza.getUbicacion();
-        this.ocuparCasilla(pieza, ubicacion.getPosicionEnX(), ubicacion.getPosicionEnY() );
-    }
 
     public void ocuparCasilla(Pieza pieza, int numeroDeColumna, int numeroDeFila){
         Columna unaColumna = columnas.get(numeroDeColumna);

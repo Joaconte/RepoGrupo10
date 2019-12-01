@@ -16,7 +16,6 @@ import modelo.tablero.Tablero;
 import modelo.pieza.Pieza;
 import modelo.jugador.Jugador;
 
-import javax.servlet.http.Part;
 import java.util.Random;
 
 
@@ -64,13 +63,13 @@ public class Partida {
     //---------------Acciones de Turno------------//
 
 
-    void atacarPieza(PiezaAtacante atacante, Pieza atacada) throws JugadorNoPuedeException, PiezaAliadaNoAtacableException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException {
+    public void atacarPieza(PiezaAtacante atacante, Pieza atacada) throws JugadorNoPuedeException, PiezaAliadaNoAtacableException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException {
         validarJugadorTurno(atacante);
         miFase.atacar(atacante, atacada, tableroDePartida);
     }
 
-    void colocarPieza(String nombreDeUnidad, int posicionEnX, int posicionEnY) throws UbicacionInvalidaException, PresupuestoAgotadoException, CompraInvalidaException, PiezaFueraDeSectorException {
-        miFase.colocarPieza(jugadorEnTurno,tableroDePartida,nombreDeUnidad,posicionEnX,posicionEnY);
+    public Pieza crearPieza(String nombreDeUnidad, int posicionEnX, int posicionEnY) throws UbicacionInvalidaException, PresupuestoAgotadoException, CompraInvalidaException, PiezaFueraDeSectorException {
+        return miFase.crearPieza(jugadorEnTurno,tableroDePartida,nombreDeUnidad,posicionEnX,posicionEnY);
     }
 
 
@@ -122,10 +121,6 @@ public class Partida {
         return tableroDePartida;
     }
 
-    public void agregarPieza(Pieza pieza){
-        tableroDePartida.agregarPieza(pieza);
-        jugadorEnTurno.agregarPieza(pieza);
-    }
 
 }
 

@@ -44,13 +44,7 @@ public class Ejercito{
         return presupuesto.estaAgotado();
     }
 
-    //PAL VISUAL
-    public void agregarPieza(Pieza pieza ) throws PresupuestoAgotadoException, CompraInvalidaException {
 
-        presupuesto.comprarPieza(numeroDeEjercito, "jinete", pieza.getUbicacion().getPosicionEnX(), pieza.getUbicacion().getPosicionEnY() );
-        piezas.add(pieza);
-        this.presupuesto = presupuesto.devolverEstadoDePresuesto();
-    }
 
 }
 

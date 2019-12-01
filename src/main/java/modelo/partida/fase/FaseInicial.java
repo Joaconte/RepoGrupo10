@@ -44,8 +44,8 @@ public class FaseInicial implements FaseDePartida{
     }
 
     @Override
-    public void colocarPieza(Jugador jugadorEnTurno, Tablero tableroDePartida, String nombreDeUnidad, int posicionEnX, int posicionEnY) throws UbicacionInvalidaException, PresupuestoAgotadoException, CompraInvalidaException, PiezaFueraDeSectorException {
-        jugadorEnTurno.crearNuevaUnidad(tableroDePartida,nombreDeUnidad,posicionEnX,posicionEnY);
+    public Pieza crearPieza(Jugador jugadorEnTurno, Tablero tableroDePartida, String nombreDeUnidad, int posicionEnX, int posicionEnY) throws UbicacionInvalidaException, PresupuestoAgotadoException, CompraInvalidaException, PiezaFueraDeSectorException {
+        return jugadorEnTurno.crearNuevaUnidad(tableroDePartida,nombreDeUnidad,posicionEnX,posicionEnY);
     }
 
 

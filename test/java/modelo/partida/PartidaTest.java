@@ -30,17 +30,17 @@ public class PartidaTest {
         Partida miPartida = new Partida();
         miPartida.agregarJugadores("pepe", "jose");
 
-        miPartida.colocarPieza("Catapulta",1,1);
-        miPartida.colocarPieza("Catapulta",2,1);
-        miPartida.colocarPieza("Catapulta",2,2);
-        miPartida.colocarPieza("Catapulta",2,3);
+        miPartida.crearPieza("Catapulta",1,1);
+        miPartida.crearPieza("Catapulta",2,1);
+        miPartida.crearPieza("Catapulta",2,2);
+        miPartida.crearPieza("Catapulta",2,3);
 
         miPartida.pasarTurno();
 
-        miPartida.colocarPieza("Catapulta",12,1);
-        miPartida.colocarPieza("Catapulta",12,2);
-        miPartida.colocarPieza("Catapulta",11,3);
-        miPartida.colocarPieza("Catapulta",11,2);
+        miPartida.crearPieza("Catapulta",12,13);
+        miPartida.crearPieza("Catapulta",12,12);
+        miPartida.crearPieza("Catapulta",11,13);
+        miPartida.crearPieza("Catapulta",11,12);
 
         miPartida.pasarTurno();
 
@@ -104,7 +104,7 @@ public class PartidaTest {
 
         Tablero unTablero = Mockito.mock(Tablero.class);
         Mockito.when(unTablero.casillaEstaOcupada(2,2)).thenReturn(false);
-        Mockito.when(unTablero.casillaEstaOcupada(12,2)).thenReturn(false);
+        Mockito.when(unTablero.casillaEstaOcupada(12,12)).thenReturn(false);
 
         jugador1.crearNuevaUnidad(unTablero,"Catapulta",2,2);
         jugador1.crearNuevaUnidad(unTablero,"Catapulta",2,2);
@@ -113,10 +113,10 @@ public class PartidaTest {
 
         miPartida.pasarTurno();
 
-        jugador2.crearNuevaUnidad(unTablero,"Catapulta",12,2);
-        jugador2.crearNuevaUnidad(unTablero,"Catapulta",12,2);
-        jugador2.crearNuevaUnidad(unTablero,"Catapulta",12,2);
-        jugador2.crearNuevaUnidad(unTablero,"Catapulta",12,2);
+        jugador2.crearNuevaUnidad(unTablero,"Catapulta",12,12);
+        jugador2.crearNuevaUnidad(unTablero,"Catapulta",12,12);
+        jugador2.crearNuevaUnidad(unTablero,"Catapulta",12,12);
+        jugador2.crearNuevaUnidad(unTablero,"Catapulta",12,12);
 
         miPartida.pasarTurno();
 

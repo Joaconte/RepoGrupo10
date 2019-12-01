@@ -12,8 +12,7 @@ public class BotonAgregarCurandero extends Button {
 
         super();
         this.setMinHeight(20);
-        this.setOnAction(new BotonAgregarCuranderoEventHandler(camposDeTexto.textoUno, camposDeTexto.textoDos,
-                camposDeTexto.etiquetaUno, vistaDeTablero, etiquetaPuntos));
+        this.setOnAction(new BotonAgregarCuranderoEventHandler(camposDeTexto, vistaDeTablero, etiquetaPuntos));
         this.setText("Agregar curandero");
     }
 }

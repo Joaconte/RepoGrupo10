@@ -40,11 +40,12 @@ public class Jugador {
 
     //----------Agrega Ubicacion A Unidad--------------//
 
-    public void crearNuevaUnidad(Tablero tablero, String nombreUnidad, int posicionX, int posicionY) throws PiezaFueraDeSectorException, UbicacionInvalidaException, PresupuestoAgotadoException, CompraInvalidaException {
-        if (!sector.esDelSector(posicionX)){ throw new PiezaFueraDeSectorException();}
+    public Pieza crearNuevaUnidad(Tablero tablero, String nombreUnidad, int posicionX, int posicionY) throws PiezaFueraDeSectorException, UbicacionInvalidaException, PresupuestoAgotadoException, CompraInvalidaException {
+        if (!sector.esDelSector(posicionY)){ throw new PiezaFueraDeSectorException();}
         if (tablero.casillaEstaOcupada(posicionX,posicionY)){ throw new UbicacionInvalidaException();}
         Pieza pieza = ejercito.obtenerNuevaPieza(nombreUnidad,posicionX,posicionY);
         tablero.ocuparCasilla(pieza, posicionX, posicionY);
+        return pieza;
     }
 
     public boolean verificarSiEjercitoEstaListo(){
@@ -52,14 +53,6 @@ public class Jugador {
     }
 
 
-    //CATCH SUCIOS
-    public void agregarPieza(Pieza pieza) {
-        try {
-
-            ejercito.agregarPieza( pieza );
-        }catch( PresupuestoAgotadoException e){
-        }catch( CompraInvalidaException k){ }
-    }
 
 }
 

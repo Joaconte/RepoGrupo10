@@ -1,7 +1,6 @@
 package vista.faseInicial.botonesAgregarPiezas;
 
 import controlador.buttonHandlers.agregarPiezasEventHandlers.BotonAgregarCatapultaEventHandler;
-import controlador.buttonHandlers.agregarPiezasEventHandlers.BotonAgregarCuranderoEventHandler;
 import javafx.scene.control.Button;
 import vista.CamposDeTexto;
 import vista.VistaDeTablero;
@@ -13,8 +12,7 @@ public class BotonAgregarCatapulta extends Button {
 
         super();
         this.setMinHeight(20);
-        this.setOnAction(new BotonAgregarCuranderoEventHandler(camposDeTexto.textoUno, camposDeTexto.textoDos,
-                camposDeTexto.etiquetaUno, vistaDeTablero, etiquetaPuntos));
+        this.setOnAction(new BotonAgregarCatapultaEventHandler(camposDeTexto, vistaDeTablero, etiquetaPuntos));
         this.setText("Agregar catapulta");
     }
 }
