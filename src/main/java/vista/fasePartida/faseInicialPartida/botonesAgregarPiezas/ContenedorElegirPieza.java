@@ -1,13 +1,10 @@
-package vista.faseInicial.botonesAgregarPiezas;
+package vista.fasePartida.faseInicialPartida.botonesAgregarPiezas;
 
-import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import vista.CamposDeTexto;
 import vista.VistaDeTablero;
-import vista.faseInicial.EtiquetaPuntosJugador;
-
-import java.awt.*;
+import vista.fasePartida.faseInicialPartida.EtiquetaPuntosJugador;
 
 public class ContenedorElegirPieza extends HBox {
     public ContenedorElegirPieza(VistaDeTablero vistaDeTablero, VBox contenedorVertical, CamposDeTexto camposDeTexto, EtiquetaPuntosJugador etiquetaPuntos){

@@ -1,12 +1,9 @@
 package controlador.buttonHandlers.agregarPiezasEventHandlers;
 
 
-import modelo.pieza.Pieza;
-import modelo.pieza.tipos.Catapulta;
 import vista.CamposDeTexto;
 import vista.VistaDeTablero;
-import vista.VistaDeUnidad;
-import vista.faseInicial.EtiquetaPuntosJugador;
+import vista.fasePartida.faseInicialPartida.EtiquetaPuntosJugador;
 
 public class BotonAgregarCatapultaEventHandler extends BotonAgregarPiezaEventHandler {
     private String nombre = "Catapulta";

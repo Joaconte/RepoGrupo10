@@ -1,4 +1,4 @@
-package vista;
+package vista.faseBienvenida;
 
 import controlador.buttonHandlers.BotonAgregarJugadorEventHandler;
 import controlador.buttonHandlers.BotonIniciarPartidaEventHandler;
@@ -9,10 +9,10 @@ import modelo.Juego;
 
 public class BotonIniciarPartida extends Button {
 
-    public BotonIniciarPartida(Juego juego, VBox vbox){
+    public BotonIniciarPartida(Juego juego, Stage escenarioPrincipal){
         super();
         this.setMinHeight(20);
         this.setText( "Iniciar partida" );
-        this.setOnAction(new BotonIniciarPartidaEventHandler( juego, vbox ));
+        this.setOnAction(new BotonIniciarPartidaEventHandler( juego, escenarioPrincipal ));
     }
 }

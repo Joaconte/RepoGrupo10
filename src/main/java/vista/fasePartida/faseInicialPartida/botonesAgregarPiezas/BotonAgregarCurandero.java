@@ -1,10 +1,10 @@
-package vista.faseInicial.botonesAgregarPiezas;
+package vista.fasePartida.faseInicialPartida.botonesAgregarPiezas;
 
 import controlador.buttonHandlers.agregarPiezasEventHandlers.BotonAgregarCuranderoEventHandler;
 import javafx.scene.control.Button;
 import vista.CamposDeTexto;
 import vista.VistaDeTablero;
-import vista.faseInicial.EtiquetaPuntosJugador;
+import vista.fasePartida.faseInicialPartida.EtiquetaPuntosJugador;
 
 public class BotonAgregarCurandero extends Button {
 

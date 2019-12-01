@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import modelo.jugador.PiezaFueraDeSectorException;
 import modelo.jugador.UbicacionInvalidaException;
@@ -14,8 +13,7 @@ import modelo.pieza.Pieza;
 import vista.CamposDeTexto;
 import vista.VistaDeTablero;
 import vista.VistaDeUnidad;
-import vista.faseInicial.EtiquetaPuntosJugador;
-import vista.faseInicial.EtiquetaTurnoJugador;
+import vista.fasePartida.faseInicialPartida.EtiquetaPuntosJugador;
 
 public abstract class BotonAgregarPiezaEventHandler implements EventHandler<ActionEvent> {
 

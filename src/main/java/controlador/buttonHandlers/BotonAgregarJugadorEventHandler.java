@@ -8,7 +8,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import modelo.Juego;
-import vista.BotonIniciarPartida;
+import vista.faseBienvenida.BotonIniciarPartida;
 
 public class BotonAgregarJugadorEventHandler implements EventHandler<ActionEvent> {
 
@@ -51,7 +51,7 @@ public class BotonAgregarJugadorEventHandler implements EventHandler<ActionEvent
             juego.agregarJugadores(jugadorUno, jugadorDos);
 
             if (primeraVez){
-                vbox.getChildren().add(new BotonIniciarPartida(juego, vbox));
+                vbox.getChildren().add(new BotonIniciarPartida(juego, stage));
                 primeraVez = false;
             }
         }

@@ -1,11 +1,9 @@
-package vista.faseInicial.botonesAgregarPiezas;
+package vista.fasePartida.faseInicialPartida.botonesAgregarPiezas;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-
-import java.io.File;
 
 public class InformacionPieza extends VBox {
     public InformacionPieza(String nombre){

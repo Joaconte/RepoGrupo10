@@ -1,10 +1,8 @@
 package controlador.buttonHandlers.agregarPiezasEventHandlers;
 
-import javafx.scene.layout.VBox;
 import vista.CamposDeTexto;
 import vista.VistaDeTablero;
-import vista.faseInicial.EtiquetaPuntosJugador;
-import vista.faseInicial.EtiquetaTurnoJugador;
+import vista.fasePartida.faseInicialPartida.EtiquetaPuntosJugador;
 
 public class BotonAgregarJineteEventHandler extends BotonAgregarPiezaEventHandler {
 

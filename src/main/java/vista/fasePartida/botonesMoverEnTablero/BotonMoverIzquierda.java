@@ -1,4 +1,4 @@
-package vista.faseInicial.botonesMoverEnTablero;
+package vista.fasePartida.botonesMoverEnTablero;
 
 import controlador.buttonHandlers.moverEnTablero.BotonMoverIzquierdaEventHandler;
 import javafx.scene.control.Button;

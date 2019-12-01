@@ -1,28 +1,27 @@
-package vista.faseInicial;
+package vista.fasePartida.faseInicialPartida;
 
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import modelo.Juego;
 
-public class EtiquetaTurnoJugador {
+public class EtiquetaPuntosJugador {
 
     public Label etiqueta;
     public Juego juego;
 
-    public EtiquetaTurnoJugador( Juego juego ){
+    public EtiquetaPuntosJugador(Juego juego){
 
         etiqueta = new Label();
         this.juego = juego;
         etiqueta.setFont(new Font( "Arial", 25));
-        etiqueta.setTextFill(Color.web("FF821F"));
+        etiqueta.setTextFill(Color.web("FFB900"));
         actualizarEtiqueta();
     }
 
     public void actualizarEtiqueta(){
 
-        etiqueta.setText("Turno de " + juego.getNombreJugadorEnTurno());
+        etiqueta.setText("Puntos : " + juego.getPuntosJugadorEnTurno());
     }
 
 }
-

@@ -5,26 +5,26 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import modelo.Juego;
 import modelo.jugador.EjercitoIncompletoException;
 import vista.CamposDeTexto;
-import vista.faseInicial.EtiquetaPuntosJugador;
-import vista.faseInicial.EtiquetaTurnoJugador;
+import vista.fasePartida.faseInicialPartida.EtiquetaPuntosJugador;
+import vista.fasePartida.EtiquetaTurnoJugador;
 
-public class BotonSiguienteTurnoEventHandler implements EventHandler<ActionEvent> {
+public class BotonConfirmarEjercitoEventHandler implements EventHandler<ActionEvent> {
 
     private EtiquetaTurnoJugador etiquetaTurnoJugador;
     private Juego juego;
     private Label comunicadoTexto;
     private EtiquetaPuntosJugador etiquetaPuntosJugador;
-    private VBox contenedorVertical;
 
-    public BotonSiguienteTurnoEventHandler(EtiquetaTurnoJugador etiquetaTurnoJugador, EtiquetaPuntosJugador etiquetaPuntosJugador, Juego juego, CamposDeTexto camposDeTexto, VBox contenedorVertical){
+    public BotonConfirmarEjercitoEventHandler(EtiquetaTurnoJugador etiquetaTurnoJugador, EtiquetaPuntosJugador etiquetaPuntosJugador, Juego juego, CamposDeTexto camposDeTexto, Stage escenarioPrincipal){
         this.etiquetaTurnoJugador = etiquetaTurnoJugador;
         this.juego = juego;
         this.comunicadoTexto = camposDeTexto.etiquetaUno;
         this.etiquetaPuntosJugador = etiquetaPuntosJugador;
-        this.contenedorVertical = contenedorVertical;
+
     }
 
 
@@ -33,10 +33,10 @@ public class BotonSiguienteTurnoEventHandler implements EventHandler<ActionEvent
         try{juego.cambiarTurno();
             etiquetaTurnoJugador.actualizarEtiqueta();
             etiquetaPuntosJugador.actualizarEtiqueta();
-            comunicadoTexto.setText("Nuevo Turno iniciado");
+            comunicadoTexto.setText(juego.getNombreJugadorEnTurno() + " prepara tus tropas");
             comunicadoTexto.setTextFill(Color.web("#336600"));
             if (!juego.estaEnFaseInicial()){
-                contenedorVertical.getChildren().clear();
+
             }
         }
         catch (EjercitoIncompletoException e){

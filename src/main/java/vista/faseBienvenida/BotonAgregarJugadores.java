@@ -1,10 +1,11 @@
-package vista;
+package vista.faseBienvenida;
 
 import controlador.buttonHandlers.BotonAgregarJugadorEventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import modelo.Juego;
+import vista.CamposDeTexto;
 
 public class BotonAgregarJugadores extends Button {
 
