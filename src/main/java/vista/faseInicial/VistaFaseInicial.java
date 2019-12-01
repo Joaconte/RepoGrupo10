@@ -8,6 +8,7 @@ import modelo.Juego;
 import vista.CamposDeTexto;
 import vista.faseInicial.botonesAgregarPiezas.ContenedorBotonesAgregarPieza;
 import vista.VistaDeTablero;
+import vista.faseInicial.botonesAgregarPiezas.ContenedorElegirPieza;
 import vista.faseInicial.botonesMoverEnTablero.BotonMoverAbajo;
 import vista.faseInicial.botonesMoverEnTablero.BotonMoverArriba;
 import vista.faseInicial.botonesMoverEnTablero.BotonMoverDerecha;
@@ -33,7 +34,7 @@ public class VistaFaseInicial {
         CamposDeTexto camposDeTexto = new CamposDeTexto("Ingrese coordenada x", "Ingrese coordenada y");
 
         ContenedorBotonesAgregarPieza contenedorBotones = new ContenedorBotonesAgregarPieza( vistaDeTablero, contenedorVertical, camposDeTexto, etiquetaPuntos);
-
+        ContenedorElegirPieza piezas = new ContenedorElegirPieza(vistaDeTablero, contenedorVertical, camposDeTexto, etiquetaPuntos);
 
         GridPane panelDeControl = new GridPane();
         panelDeControl.setAlignment(Pos.BOTTOM_CENTER);
@@ -45,7 +46,7 @@ public class VistaFaseInicial {
         BotonSiguienteTurno botonSiguienteTurno = new BotonSiguienteTurno(etiquetaTurnoJugador,etiquetaPuntos,juego,camposDeTexto, contenedorVertical);
         botonSiguienteTurno.setAlignment(Pos.BOTTOM_CENTER);
 
-        contenedorVertical.getChildren().addAll(panelDeControl, botonSiguienteTurno );
+        contenedorVertical.getChildren().addAll(panelDeControl, botonSiguienteTurno, piezas );
 
 
 
