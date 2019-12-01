@@ -7,8 +7,9 @@ public class InformacionJinete extends InformacionPieza {
     Jinete jinete;
 
     public InformacionJinete(){
+        super("jinete");
         jinete = new Jinete();
-        super.initialize("jinete");
+        mostrarAtributos();
     }
 
     public int getCostoPieza(){

@@ -7,8 +7,10 @@ public class InformacionCatapulta extends InformacionPieza {
     Catapulta catapulta;
 
     public InformacionCatapulta(){
+
+        super("catapulta");
         catapulta = new Catapulta();
-        super.initialize("catapulta");
+        mostrarAtributos();
     }
 
     public int getCostoPieza(){

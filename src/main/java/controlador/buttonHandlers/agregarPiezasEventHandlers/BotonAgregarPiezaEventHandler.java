@@ -24,9 +24,9 @@ public abstract class BotonAgregarPiezaEventHandler implements EventHandler<Acti
     private Label labelUno;
     private VistaDeTablero vistaDeTablero;
     private EtiquetaPuntosJugador etiquetaPuntos;
-    private  String nombre;
+    private String nombre;
 
-    public void initialize(CamposDeTexto camposDeTexto, VistaDeTablero vistaDeTablero, EtiquetaPuntosJugador etiquetaPuntos, String nombre) {
+    public BotonAgregarPiezaEventHandler(CamposDeTexto camposDeTexto, VistaDeTablero vistaDeTablero, EtiquetaPuntosJugador etiquetaPuntos, String nombre) {
 
         textFieldUno = camposDeTexto.textoUno;
         textFieldDos = camposDeTexto.textoDos;

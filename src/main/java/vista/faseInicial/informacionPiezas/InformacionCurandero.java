@@ -7,8 +7,10 @@ public class InformacionCurandero extends InformacionPieza {
     Curandero curandero;
 
     public InformacionCurandero(){
+
+        super("curandero");
         curandero = new Curandero();
-        super.initialize("curandero");
+        mostrarAtributos();
     }
 
     public int getCostoPieza(){

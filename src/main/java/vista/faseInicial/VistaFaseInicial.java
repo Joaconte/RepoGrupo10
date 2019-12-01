@@ -29,7 +29,6 @@ public class VistaFaseInicial {
 
         CamposDeTexto camposDeTexto = new CamposDeTexto("Ingrese coordenada x", "Ingrese coordenada y");
 
-        ContenedorBotonesAgregarPieza contenedorBotones = new ContenedorBotonesAgregarPieza( vistaDeTablero, contenedorVertical, camposDeTexto, etiquetaPuntos);
         ContenedorElegirPieza piezas = new ContenedorElegirPieza(vistaDeTablero, contenedorVertical, camposDeTexto, etiquetaPuntos);
 
         GridPane panelDeControl = new GridPane();
@@ -46,7 +45,7 @@ public class VistaFaseInicial {
         BotonSiguienteTurno botonSiguienteTurno = new BotonSiguienteTurno(etiquetaTurnoJugador,etiquetaPuntos,juego,camposDeTexto);
         botonSiguienteTurno.setAlignment(Pos.BOTTOM_CENTER);
 
-        contenedorVertical.getChildren().addAll(panelDeControl, botonSiguienteTurno, piezas );
+        contenedorVertical.getChildren().addAll(piezas, camposDeTexto.etiquetaUno, panelDeControl, botonSiguienteTurno);
 
 
 

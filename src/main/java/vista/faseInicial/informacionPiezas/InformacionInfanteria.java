@@ -7,8 +7,9 @@ public class InformacionInfanteria extends InformacionPieza {
     Infanteria infanteria;
 
     public InformacionInfanteria(){
-        infanteria = new Infanteria();
-        super.initialize("infanteria");
+        super("infanteria");
+        infanteria = new Infanteria();;
+        mostrarAtributos();
     }
 
     public int getCostoPieza(){
