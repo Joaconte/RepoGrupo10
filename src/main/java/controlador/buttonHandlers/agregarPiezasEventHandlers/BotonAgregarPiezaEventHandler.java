@@ -4,17 +4,18 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import modelo.jugador.PiezaFueraDeSectorException;
 import modelo.jugador.UbicacionInvalidaException;
 import modelo.jugador.presupuesto.CompraInvalidaException;
 import modelo.jugador.presupuesto.PresupuestoAgotadoException;
 import modelo.pieza.Pieza;
-import modelo.pieza.tipos.Jinete;
 import vista.CamposDeTexto;
 import vista.VistaDeTablero;
 import vista.VistaDeUnidad;
 import vista.faseInicial.EtiquetaPuntosJugador;
+import vista.faseInicial.EtiquetaTurnoJugador;
 
 public abstract class BotonAgregarPiezaEventHandler implements EventHandler<ActionEvent> {
 
@@ -22,7 +23,7 @@ public abstract class BotonAgregarPiezaEventHandler implements EventHandler<Acti
     private TextField textFieldDos;
     private Label labelUno;
     private VistaDeTablero vistaDeTablero;
-    protected EtiquetaPuntosJugador etiquetaPuntos;
+    private EtiquetaPuntosJugador etiquetaPuntos;
     private  String nombre;
 
     public void initialize(CamposDeTexto camposDeTexto, VistaDeTablero vistaDeTablero, EtiquetaPuntosJugador etiquetaPuntos, String nombre) {
@@ -63,16 +64,23 @@ public abstract class BotonAgregarPiezaEventHandler implements EventHandler<Acti
 
     public void crearPiezaYAgregarATablero(int x, int y, VistaDeTablero vistaDeTablero){
         try {
+            this.labelUno.setText("Tropa agregada con exito");
+            this.labelUno.setTextFill(Color.web("#336600"));
             Pieza pieza = etiquetaPuntos.juego.crearPieza(nombre, x, y);
-            this.labelUno.setText("Pieza ubicada con exito.");
             VistaDeUnidad vistaDeUnidad = new VistaDeUnidad(vistaDeTablero, pieza, nombre.toLowerCase());
 
         }
-        catch (UbicacionInvalidaException | PiezaFueraDeSectorException e){
-            this.labelUno.setText("Ubica la pieza en una casilla libre de tu sector.");
+        catch ( PiezaFueraDeSectorException e){
+            this.labelUno.setText("Ubica la pieza en tu sector.");
             this.labelUno.setTextFill(Color.web("#FF0000")); }
-        catch (PresupuestoAgotadoException | CompraInvalidaException e){
-            this.labelUno.setText("Presupuesto insuficiente para la compra.");
+        catch (PresupuestoAgotadoException e){
+            this.labelUno.setText("Ya puedes acabar tu turno.");
+            this.labelUno.setTextFill(Color.web("#FF0000")); }
+        catch (UbicacionInvalidaException e){
+            this.labelUno.setText("Ya hay una pieza en la casilla.");
+            this.labelUno.setTextFill(Color.web("#FF0000")); }
+        catch (CompraInvalidaException  e){
+            this.labelUno.setText("Presupuesto insuficiente para la pieza.");
             this.labelUno.setTextFill(Color.web("#FF0000")); }
 
 

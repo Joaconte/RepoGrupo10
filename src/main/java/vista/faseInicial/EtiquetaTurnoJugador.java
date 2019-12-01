@@ -19,7 +19,7 @@ public class EtiquetaTurnoJugador {
         actualizarEtiqueta();
     }
 
-    void actualizarEtiqueta(){
+    public void actualizarEtiqueta(){
 
         etiqueta.setText("Turno de " + juego.getNombreJugadorEnTurno());
     }

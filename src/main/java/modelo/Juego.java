@@ -1,5 +1,6 @@
 package modelo;
 
+import modelo.jugador.EjercitoIncompletoException;
 import modelo.jugador.PiezaFueraDeSectorException;
 import modelo.jugador.UbicacionInvalidaException;
 import modelo.jugador.presupuesto.CompraInvalidaException;
@@ -17,11 +18,8 @@ public class Juego {
     }
 
     public void agregarJugadores( String nombreJugadorUno , String nombreJugadorDos ) {
-
         partida.agregarJugadores( nombreJugadorUno, nombreJugadorDos );
     }
-
-    public Partida getPartida(){ return partida; }
 
     public Tablero getTablero(){
         return partida.getTableroDePartida();
@@ -35,6 +33,7 @@ public class Juego {
         return partida.crearPieza(nombre, posX, posY);
     }
 
+    public void cambiarTurno() throws EjercitoIncompletoException { partida.pasarTurno();}
     public void arrancarPartida(){
 
     }
