@@ -34,6 +34,9 @@ public class Juego {
     }
 
     public void cambiarTurno() throws EjercitoIncompletoException { partida.pasarTurno();}
+
+    public boolean estaEnFaseInicial() { return partida.estaEnFaseInicial();}
+
     public void arrancarPartida(){
 
     }

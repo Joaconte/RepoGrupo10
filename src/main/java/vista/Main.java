@@ -1,6 +1,7 @@
 package vista;
 
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
@@ -21,9 +22,10 @@ public class Main extends Application {
         VBox contenedorVertical = new VBox();
         VistaDeJuego vistaDeJuego = new VistaDeJuego( juego, contenedorVertical, escenarioPrincipal );
 
+
         ScrollPane panelConBarrasDeMovimiento = new ScrollPane();
         panelConBarrasDeMovimiento.setContent(contenedorVertical);
-        panelConBarrasDeMovimiento.setPrefSize(1200,950);
+        panelConBarrasDeMovimiento.setPrefSize(1000,950);
 
         Scene escenaDeJuego = new Scene(panelConBarrasDeMovimiento, 1200, 950);
         escenarioPrincipal.setScene(escenaDeJuego);
