@@ -1,12 +1,12 @@
 package vista;
 
-import javafx.geometry.HPos;
+
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import modelo.tablero.Tablero;
 
 
@@ -17,7 +17,7 @@ public class VistaDeTablero extends Group {
     private int alturaCelda = 45;
     private int anchuraCelda = 45;
     private Tablero tablero;
-    private Circle circulo = new Circle(10, Color.DARKGRAY);
+    private Rectangle rectangulo = new Rectangle(45,45,Color.rgb(0,0,0,0.4));
 
     private GridPane contenedorTabla;
     private Pane[][] casillaTabla;
@@ -29,8 +29,7 @@ public class VistaDeTablero extends Group {
         anchura = anchuraCelda * tablero.getColumnas();
         altura = alturaCelda * tablero.getFilas();
         casillaTabla = new Pane[anchura][altura];
-        contenedorTabla.add(circulo,9,9);
-        GridPane.setHalignment(circulo, HPos.CENTER);
+        contenedorTabla.add(rectangulo,9,9);
 
         for (int i = 0; i < tablero.getColumnas(); i++) {
             for (int j = 0; j < tablero.getFilas(); j++) {
@@ -52,8 +51,8 @@ public class VistaDeTablero extends Group {
         this.addView(contenedorTabla);
     }
 
-    public Circle getCirculo(){
-        return circulo;
+    public Rectangle getCirculo(){
+        return rectangulo;
     }
 
     public void agregarUnidad(Node unidad, int x, int y){
