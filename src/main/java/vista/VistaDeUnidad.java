@@ -32,7 +32,8 @@ public class VistaDeUnidad {
         imagenDeUnidad.setFitHeight(45);
         imagenDeUnidad.setFitWidth(45);
 
-        imagenDeUnidad.setImage(new Image( "resources/" + nombreClase +".png"));
+        String equipo = String.valueOf(unidadAUbicar.getEquipo());
+        imagenDeUnidad.setImage(new Image( "resources/" + nombreClase + equipo +".png"));
         vistaDeTablero.agregarUnidad(imagenDeUnidad, ubicacion.getPosicionEnX(), ubicacion.getPosicionEnY() );
     }
 
