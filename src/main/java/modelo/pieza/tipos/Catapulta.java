@@ -53,7 +53,7 @@ public class Catapulta extends PiezaAtacante {
     public void setUbicacion(Ubicacion ubicacion){}
 
     @Override
-    public void mover(Tablero tablero, Direccion direccion) throws NoSePuedeMoverException {
+    public void mover(Ubicacion ubicacion) throws NoSePuedeMoverException {
         throw new NoSePuedeMoverException();
 
     }

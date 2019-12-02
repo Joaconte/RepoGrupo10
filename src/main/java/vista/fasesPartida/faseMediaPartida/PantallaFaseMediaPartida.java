@@ -3,8 +3,10 @@ package vista.fasesPartida.faseMediaPartida;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import modelo.Juego;
+import vista.BarraMenu;
 import vista.VistaDeTablero;
 import vista.fasesPartida.faseMediaPartida.botonesFaseMedia.PanelBotonesFaseMedia;
 
@@ -18,15 +20,29 @@ public class PantallaFaseMediaPartida extends BorderPane {
         this.setPadding(new Insets(20));
         this.setCenter(vistaDeTablero);
         this.comunicador = new Label("Seleccione la accion que desea realizar.");
-        this.barraDeJugador1 = new BarraDeJugador(juego.getNombreDeJugadorUno());
+        this.barraDeJugador1 = new BarraDeJugador(juego.getNombreDeJugadorUno(), 1);
         barraDeJugador1.getChildren().add(comunicador);
-        barraDeJugador1.getChildren().addAll(vistaDeTablero.getUbicacionDelCursor().textoUno,vistaDeTablero.getUbicacionDelCursor().textoDos);
         barraDeJugador1.getChildren().add(vistaDeTablero.getVistaDePiezaClikeada());
-        this.barraDeJugador2 = new BarraDeJugador(juego.getNombreDeJugadorDos());
-        this.setLeft(barraDeJugador1);
-        this.setRight(barraDeJugador2);
+        this.barraDeJugador2 = new BarraDeJugador(juego.getNombreDeJugadorDos(), 2);
+
+        VBox ladoJugador1 = new VBox();
+        ladoJugador1.getChildren().add(barraDeJugador1);
+        ladoJugador1.getChildren().add(new PanelBotonesFaseMedia(barraDeJugador1, barraDeJugador2,juego,comunicador,vistaDeTablero));
+        this.setLeft(ladoJugador1);
+
+        VBox ladoJugador2 = new VBox();
+        ladoJugador2.getChildren().add(barraDeJugador2);
+        ladoJugador2.getChildren().add(new PanelBotonesFaseMedia(barraDeJugador1, barraDeJugador2,juego,comunicador,vistaDeTablero));
+        this.setRight(ladoJugador2);
+
+        //-------------------------
+        //this.setLeft(barraDeJugador1);
+        //this.setRight(barraDeJugador2);
         barraDeJugador2.setDisable(true);
 
-        this.setTop(new PanelBotonesFaseMedia(barraDeJugador1, barraDeJugador2,juego,comunicador,vistaDeTablero));
+        // ----------- este estaba aantes
+        //this.setTop(new PanelBotonesFaseMedia(barraDeJugador1, barraDeJugador2,juego,comunicador,vistaDeTablero));
+
+        this.setTop(new BarraMenu(escenarioPrincipal));
     }
 }

@@ -47,7 +47,9 @@ public class VistaDeUnidad extends VBox {
         imagenDeUnidad.setFitWidth(45);
         if (unidad.getEquipo()==1) imagenDeUnidad.setOpacity(0.7);
         else imagenDeUnidad.setOpacity(0.3);
-        imagenDeUnidad.setImage(new Image( "resources/" + nombreClase +".png"));
+
+        String equipo = String.valueOf(unidad.getEquipo());
+        imagenDeUnidad.setImage(new Image( "resources/" + nombreClase + equipo +".png"));
 
         vistaDeTablero.agregarUnidad(imagenDeUnidad, this, ubicacion.getPosicionEnX(), ubicacion.getPosicionEnY() );
     }

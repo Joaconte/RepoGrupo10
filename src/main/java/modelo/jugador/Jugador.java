@@ -3,6 +3,8 @@ package modelo.jugador;
 import modelo.jugador.presupuesto.CompraInvalidaException;
 import modelo.jugador.presupuesto.PresupuestoAgotadoException;
 import modelo.pieza.Pieza;
+import modelo.pieza.Ubicacion;
+import modelo.pieza.movimiento.NoSePuedeMoverException;
 import modelo.tablero.Tablero;
 
 public class Jugador {
@@ -53,6 +55,10 @@ public class Jugador {
     }
 
 
+    public void moverUnidad(Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) throws PiezaNoEsDeJugadorException, NoSePuedeMoverException {
+
+        ejercito.moverUnidad(ubicacionInicial, ubicacionFinal);
+    }
 
 }
 

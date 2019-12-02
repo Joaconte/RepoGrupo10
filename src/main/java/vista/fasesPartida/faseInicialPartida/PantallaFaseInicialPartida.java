@@ -5,6 +5,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import modelo.Juego;
+import modelo.pieza.Ubicacion;
 import vista.CamposDeTexto;
 import vista.VistaDeTablero;
 import vista.fasesPartida.EtiquetaTurnoJugador;
@@ -16,7 +17,7 @@ public class PantallaFaseInicialPartida extends HBox {
     private VistaDeTablero vistaDeTablero;
     private EtiquetaTurnoJugador etiquetaDeJugadorEnTurno;
     private EtiquetaPresupuestoJugador etiquetaPresupuestoDelJugador;
-    private CamposDeTexto camposDeTexto;
+    private Ubicacion ubicacion;
     private ContenedorElegirPieza botoneraPiezasACrear;
     private BotonConfirmarEjercito botonConfirmarEjercito;
     private Label etiquetaComunicacion;
@@ -30,8 +31,8 @@ public class PantallaFaseInicialPartida extends HBox {
         this.etiquetaPresupuestoDelJugador = new EtiquetaPresupuestoJugador( juego );
         this.etiquetaDeJugadorEnTurno = new EtiquetaTurnoJugador( juego );
         this.vistaDeTablero = new VistaDeTablero(juego.getTablero());
-        this.camposDeTexto = vistaDeTablero.getUbicacionDelCursor();
-        this.botoneraPiezasACrear = new ContenedorElegirPieza(vistaDeTablero, camposDeTexto, etiquetaPresupuestoDelJugador,etiquetaComunicacion);
+        this.ubicacion = vistaDeTablero.getUbicacionDelCursor();
+        this.botoneraPiezasACrear = new ContenedorElegirPieza(vistaDeTablero, ubicacion, etiquetaPresupuestoDelJugador,etiquetaComunicacion);
         this.botonConfirmarEjercito = new BotonConfirmarEjercito(etiquetaDeJugadorEnTurno,etiquetaPresupuestoDelJugador,juego,etiquetaComunicacion,escenarioPrincipal,vistaDeTablero);
 
 
@@ -44,7 +45,7 @@ public class PantallaFaseInicialPartida extends HBox {
     private void configurarBarraLateral() {
 
         barraLateral.setSpacing(15);
-        barraLateral.getChildren().addAll(etiquetaDeJugadorEnTurno.etiqueta, etiquetaPresupuestoDelJugador.etiqueta, camposDeTexto.textoUno, camposDeTexto.textoDos,etiquetaComunicacion);
+        barraLateral.getChildren().addAll(etiquetaDeJugadorEnTurno.etiqueta, etiquetaPresupuestoDelJugador.etiqueta,etiquetaComunicacion);
         barraLateral.getChildren().addAll( botoneraPiezasACrear, botonConfirmarEjercito);
     }
 

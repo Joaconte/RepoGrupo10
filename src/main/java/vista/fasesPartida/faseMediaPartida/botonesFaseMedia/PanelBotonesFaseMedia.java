@@ -22,13 +22,13 @@ public class PanelBotonesFaseMedia extends HBox {
         this.botonAtacar = new BotonAtacar(this, barraDeJugador1,barraDeJugador2);
         this.botonCurar = new BotonCurar(this, barraDeJugador1,barraDeJugador2);
         this.botonCrearBatallon = new BotonCrearBatallon(this, barraDeJugador1,barraDeJugador2);
-        this.botonMover = new BotonMover(this, barraDeJugador1,barraDeJugador2);
+        //this.botonMover = new BotonMover(ubicacionInicial, ubicacionFinal, juego, comunicador, vistaDeTablero);
         this.botonPasarTurno = new BotonPasarTurno(this, juego,comunicador,barraDeJugador1,barraDeJugador2,vistaDeTablero);
 
         this.getChildren().add(botonAtacar);
         this.getChildren().add(botonCrearBatallon);
         this.getChildren().add(botonCurar);
-        this.getChildren().add(botonMover);
+        //this.getChildren().add(botonMover);
         this.getChildren().add(botonPasarTurno);
 
     }

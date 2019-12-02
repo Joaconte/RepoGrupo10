@@ -40,6 +40,7 @@ public class Batallon {
     }*/
 
     /* Acá quiero ignorar si una pieza no se pudo mover */
+    /*
     public void mover(Tablero tablero, Direccion direccion) throws BatallonDisueltoException {
         if (!this.siguenContiguos()){
             throw new BatallonDisueltoException();
@@ -55,11 +56,11 @@ public class Batallon {
         }
         for (Infanteria soldado : soldados) {
             try {
-                soldado.mover(tablero, direccion);
+                soldado.mover(ubicacion);
             } catch (Exception ignore) { }
         }
-        /* ACA SE DISUELVE EL GRUPO DE SOLDADOS ? */
     }
+        /* ACA SE DISUELVE EL GRUPO DE SOLDADOS ? */
 
     public ArrayList<Infanteria> getSoldados() {
         return soldados;

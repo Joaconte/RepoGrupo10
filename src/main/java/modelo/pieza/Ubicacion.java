@@ -18,6 +18,12 @@ public class Ubicacion {
         return posicionEnY;
     }
 
+    public void setPosicionEnX(int x){
+        posicionEnX = x; }
+
+    public void setPosicionEnY(int y){
+        posicionEnY = y; }
+
     public int getDistanciaAOtroPunto(Ubicacion otraUbicacion){
         int otraPosEnY = otraUbicacion.getPosicionEnY();
         int otraPosEnX = otraUbicacion.getPosicionEnX();

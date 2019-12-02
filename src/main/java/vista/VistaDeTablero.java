@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import modelo.pieza.Ubicacion;
 import modelo.tablero.Tablero;
 
 
@@ -22,13 +23,13 @@ public class VistaDeTablero extends Group {
     private Rectangle rectanguloDeMovimiento = new Rectangle(45,45,Color.rgb(0,0,0,0.4));
     private GridPane contenedorTabla;
     private Pane[][] casillaTabla;
-    private CamposDeTexto ubicacionDelCursor;
+    private Ubicacion ubicacionDelCursor;
     private VBox vistaPiezaClikeada;
 
     public VistaDeTablero(Tablero tablero){
 
         this.tablero = tablero;
-        this.ubicacionDelCursor =new CamposDeTexto("Posicion en X", "Posicion en Y");
+        this.ubicacionDelCursor =new Ubicacion(9,9);
         this.vistaPiezaClikeada=new VBox();
         contenedorTabla = new GridPane();
         anchura = anchuraCelda * tablero.getColumnas();
@@ -60,7 +61,7 @@ public class VistaDeTablero extends Group {
     public Rectangle getRectanguloDeMovimiento(){
         return rectanguloDeMovimiento;
     }
-    public CamposDeTexto getUbicacionDelCursor(){return ubicacionDelCursor;}
+    public Ubicacion getUbicacionDelCursor(){return ubicacionDelCursor;}
     public VBox getVistaDePiezaClikeada(){return vistaPiezaClikeada;}
 
     public void agregarUnidad(Node unidadImagen, VBox piezaClikeada,  int x, int y){

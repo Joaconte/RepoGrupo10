@@ -3,6 +3,8 @@ package modelo.tablero;
 import modelo.pieza.Pieza;
 import modelo.pieza.Ubicacion;
 import modelo.tablero.casilla.Casilla;
+import modelo.tablero.casilla.NoHayUnidadEnPosicionException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,6 +20,7 @@ public class Tablero {
             columnas.add(new Columna(numeroDeColumna, FILAS));
     }
 
+    public Pieza getUnidad(int x, int y) throws NoHayUnidadEnPosicionException { return columnas.get(x).getCasilla(y).getContenido();}
 
     public void ocuparCasilla(Pieza pieza, int numeroDeColumna, int numeroDeFila){
         Columna unaColumna = columnas.get(numeroDeColumna);
@@ -28,6 +31,34 @@ public class Tablero {
     public void desocuparCasilla(int numeroDeColumna, int numeroDeFila){
         Columna unaColumna = columnas.get(numeroDeColumna);
         unaColumna.desocuparCasilla(numeroDeFila);
+    }
+
+
+    public void moverUnidad(Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) throws NoHayUnidadEnPosicionException, DesplazamientoInvalidoException {
+
+        List<Casilla> casillas = getCasillasVaciasAdyacentes(ubicacionInicial);
+        for (int i = 0; i < casillas.size(); i++) {
+
+            Casilla casilla = casillas.get(i);
+            if (desplazamientoEsValido( ubicacionInicial, ubicacionFinal )) {
+
+                Pieza pieza = getUnidad(ubicacionInicial.getPosicionEnX(), ubicacionInicial.getPosicionEnY());
+                desocuparCasilla(ubicacionInicial.getPosicionEnX(), ubicacionInicial.getPosicionEnY());
+                ocuparCasilla(pieza, ubicacionFinal.getPosicionEnX(), ubicacionFinal.getPosicionEnY());
+            }
+            else throw new DesplazamientoInvalidoException();
+        }
+    }
+
+    private boolean desplazamientoEsValido(Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) {
+
+        int desplazamientoPos = Math.min (ubicacionInicial.getPosicionEnX() - ubicacionFinal.getPosicionEnX(),
+                ubicacionInicial.getPosicionEnY() - ubicacionFinal.getPosicionEnY());
+
+        int desplazamientoNeg = Math.max (ubicacionInicial.getPosicionEnX() - ubicacionFinal.getPosicionEnX(),
+                ubicacionInicial.getPosicionEnY() - ubicacionFinal.getPosicionEnY());
+
+        return (desplazamientoNeg > -2 && desplazamientoPos < 2);
     }
 
     public int getTamanio(){
@@ -111,7 +142,6 @@ public class Tablero {
                 .filter(c-> !c.estaOcupada())
                 .collect(Collectors.toList());
     }
-
 
 
     public List<Pieza> getPiezasAdyacentes(Ubicacion ubicacion){

@@ -15,19 +15,21 @@ public class BarraDeJugador extends VBox {
 
     private Rectangle fondoDeNombreJugador = new Rectangle(300,45,Color.rgb(0,0,0,0.1));
 
-    public BarraDeJugador(String nombreDeJugador) {
+    public BarraDeJugador(String nombreDeJugador, int numeroJugador) {
 
         this.setSpacing(15);
-        grabarNombre(nombreDeJugador);
+        grabarNombre(nombreDeJugador, numeroJugador);
 
     }
 
-    public void grabarNombre (String nombreDeJugador){
+    public void grabarNombre (String nombreDeJugador, int numeroJugador){
         Label etiqueta = new Label();
         etiqueta.setFont(new Font( "Arial", 15));
-        etiqueta.setTextFill(Color.web("FF821F"));
         etiqueta.setText(" Jugador: " + nombreDeJugador);
         etiqueta.setAlignment(Pos.CENTER);
+
+        if (numeroJugador == 1) etiqueta.setTextFill(Color.web("0075FF"));
+        else etiqueta.setTextFill(Color.web("FF821F"));
 
         StackPane panelNombre = new StackPane();
         panelNombre.getChildren().add(fondoDeNombreJugador);
