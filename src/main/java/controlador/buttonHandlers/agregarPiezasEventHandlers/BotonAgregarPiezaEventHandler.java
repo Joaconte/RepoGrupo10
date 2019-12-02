@@ -21,7 +21,7 @@ public abstract class BotonAgregarPiezaEventHandler implements EventHandler<Acti
 
     private TextField textFieldUno;
     private TextField textFieldDos;
-    private Label labelUno;
+    private Label comunicadoTexto;
     private VistaDeTablero vistaDeTablero;
     private EtiquetaPuntosJugador etiquetaPuntos;
     private String nombre;
@@ -30,7 +30,7 @@ public abstract class BotonAgregarPiezaEventHandler implements EventHandler<Acti
 
         textFieldUno = camposDeTexto.textoUno;
         textFieldDos = camposDeTexto.textoDos;
-        labelUno = camposDeTexto.etiquetaUno;
+        comunicadoTexto = camposDeTexto.etiquetaUno;
         this.vistaDeTablero = vistaDeTablero;
         this.etiquetaPuntos= etiquetaPuntos;
         this.nombre = nombre;
@@ -38,50 +38,42 @@ public abstract class BotonAgregarPiezaEventHandler implements EventHandler<Acti
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        if (this.textFieldUno.getText().trim().equals("") || this.textFieldDos.getText().trim().equals("")) {
 
-            this.labelUno.setText("Debe ingresar ambas coordenadas");
-            this.labelUno.setTextFill(Color.web("#FF0000"));
-
-        } else {
-
-            try {
-                String sX = this.textFieldUno.getText();
-                String sY = this.textFieldDos.getText();
-                int x = Integer.parseInt(sX);
-                int y = Integer.parseInt(sY);
-                crearPiezaYAgregarATablero(x, y, vistaDeTablero);
-                etiquetaPuntos.actualizarEtiqueta();
-            }
-
-            catch (NumberFormatException e){
-                this.labelUno.setText("Debe ingresar numeros");
-                this.labelUno.setTextFill(Color.web("#FF0000"));
-            }
-
+        try {
+            String sX = this.textFieldUno.getText();
+            String sY = this.textFieldDos.getText();
+            int x = Integer.parseInt(sX);
+            int y = Integer.parseInt(sY);
+            crearPiezaYAgregarATablero(x, y, vistaDeTablero);
+            etiquetaPuntos.actualizarEtiqueta();
+        }
+        catch (NumberFormatException e){
+            this.comunicadoTexto.setText("Debe ingresar numeros");
+            this.comunicadoTexto.setTextFill(Color.web("#FF0000"));
         }
     }
 
+
     public void crearPiezaYAgregarATablero(int x, int y, VistaDeTablero vistaDeTablero){
         try {
-            this.labelUno.setText("Tropa agregada con exito");
-            this.labelUno.setTextFill(Color.web("#336600"));
+            this.comunicadoTexto.setText("Tropa agregada con exito");
+            this.comunicadoTexto.setTextFill(Color.web("#336600"));
             Pieza pieza = etiquetaPuntos.juego.crearPieza(nombre, x, y);
             VistaDeUnidad vistaDeUnidad = new VistaDeUnidad(vistaDeTablero, pieza, nombre.toLowerCase());
 
         }
         catch ( PiezaFueraDeSectorException e){
-            this.labelUno.setText("Ubica la pieza en tu sector.");
-            this.labelUno.setTextFill(Color.web("#FF0000")); }
+            this.comunicadoTexto.setText("Ubica la pieza en tu sector.");
+            this.comunicadoTexto.setTextFill(Color.web("#FF0000")); }
         catch (PresupuestoAgotadoException e){
-            this.labelUno.setText("Ya puedes acabar tu turno.");
-            this.labelUno.setTextFill(Color.web("#FF0000")); }
+            this.comunicadoTexto.setText("Ya puedes acabar tu turno.");
+            this.comunicadoTexto.setTextFill(Color.web("#FF0000")); }
         catch (UbicacionInvalidaException e){
-            this.labelUno.setText("Ya hay una pieza en la casilla.");
-            this.labelUno.setTextFill(Color.web("#FF0000")); }
+            this.comunicadoTexto.setText("Ya hay una pieza en la casilla.");
+            this.comunicadoTexto.setTextFill(Color.web("#FF0000")); }
         catch (CompraInvalidaException  e){
-            this.labelUno.setText("Presupuesto insuficiente para la pieza.");
-            this.labelUno.setTextFill(Color.web("#FF0000")); }
+            this.comunicadoTexto.setText("Presupuesto insuficiente para la pieza.");
+            this.comunicadoTexto.setTextFill(Color.web("#FF0000")); }
 
 
     }

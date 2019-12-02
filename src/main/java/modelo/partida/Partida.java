@@ -15,6 +15,7 @@ import modelo.partida.fase.FaseInicial;
 import modelo.tablero.Tablero;
 import modelo.pieza.Pieza;
 import modelo.jugador.Jugador;
+import modelo.tablero.casilla.NoHayUnidadEnPosicionException;
 
 import java.util.Random;
 
@@ -49,6 +50,8 @@ public class Partida {
 
     public int getPuntosJugadorEnTurno(){ return jugadorEnTurno.getPuntos();}
 
+    public Pieza getUnidad(int x, int y) throws NoHayUnidadEnPosicionException {return tableroDePartida.getUnidad(x,y);}
+
 
     //-----------SETTERS-----------//
 
@@ -63,7 +66,7 @@ public class Partida {
     //---------------Acciones de Turno------------//
 
 
-    public void atacarPieza(PiezaAtacante atacante, Pieza atacada) throws JugadorNoPuedeException, PiezaAliadaNoAtacableException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException {
+    public void atacarPieza(PiezaAtacante atacante, Pieza atacada) throws JugadorNoPuedeException, PiezaAliadaNoAtacableException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, NoHayUnidadEnPosicionException {
         validarJugadorTurno(atacante);
         miFase.atacar(atacante, atacada, tableroDePartida);
     }

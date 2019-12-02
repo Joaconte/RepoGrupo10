@@ -13,6 +13,7 @@ import modelo.pieza.movimiento.SinMovimientos;
 import modelo.pieza.sanacion.IModoSanacion;
 import modelo.pieza.sanacion.SinSanacion;
 import modelo.tablero.Tablero;
+import modelo.tablero.casilla.NoHayUnidadEnPosicionException;
 
 public class Catapulta extends PiezaAtacante {
     static final int COSTO = 5;
@@ -35,7 +36,7 @@ public class Catapulta extends PiezaAtacante {
 
 
     @Override
-    public void atacar(Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
+    public void atacar(Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException, NoHayUnidadEnPosicionException {
         if(!this.esEnemigo(atacada)){ throw new PiezaAliadaNoAtacableException();}
         ATAQUE.atacarEnMasa(this, tablero.getPiezasAdycentesInfinitas(atacada.getUbicacion()));
     }

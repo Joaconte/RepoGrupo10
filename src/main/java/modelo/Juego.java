@@ -8,6 +8,7 @@ import modelo.jugador.presupuesto.PresupuestoAgotadoException;
 import modelo.partida.Partida;
 import modelo.pieza.Pieza;
 import modelo.tablero.Tablero;
+import modelo.tablero.casilla.NoHayUnidadEnPosicionException;
 
 public class Juego {
 
@@ -36,4 +37,5 @@ public class Juego {
     public void cambiarTurno() throws EjercitoIncompletoException { partida.pasarTurno();}
     public void arrancarPartida(){ }
     public boolean seEncuentraEnFaseDeJuego(){ return partida.seEncuentraEnFaseDeJuego();}
+    public Pieza getUnidad(int x, int y) throws NoHayUnidadEnPosicionException { return partida.getUnidad(x,y);}
 }

@@ -26,7 +26,7 @@ public class CasillaOcupada implements EstadoCasilla{
     }
 
     @Override
-    public Pieza getContenido(){
+    public Pieza getContenido()throws NoHayUnidadEnPosicionException{
         return pieza;
     }
 

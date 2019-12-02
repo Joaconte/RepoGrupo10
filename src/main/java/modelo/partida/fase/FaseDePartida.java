@@ -12,6 +12,7 @@ import modelo.pieza.ataque.DistanciaDeAtaqueInvalidaException;
 import modelo.pieza.ataque.PiezaAtacante;
 import modelo.pieza.Pieza;
 import modelo.tablero.Tablero;
+import modelo.tablero.casilla.NoHayUnidadEnPosicionException;
 
 public interface FaseDePartida{
 
@@ -23,7 +24,7 @@ public interface FaseDePartida{
 
     boolean esFaseInicial();
 
-    void atacar(PiezaAtacante atacante, Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException;
+    void atacar(PiezaAtacante atacante, Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException, NoHayUnidadEnPosicionException;
 
     FaseDePartida retornarProximaFase();
 

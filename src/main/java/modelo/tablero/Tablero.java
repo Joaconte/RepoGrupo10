@@ -3,6 +3,8 @@ package modelo.tablero;
 import modelo.pieza.Pieza;
 import modelo.pieza.Ubicacion;
 import modelo.tablero.casilla.Casilla;
+import modelo.tablero.casilla.NoHayUnidadEnPosicionException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,6 +20,7 @@ public class Tablero {
             columnas.add(new Columna(numeroDeColumna, FILAS));
     }
 
+    public Pieza getUnidad(int x, int y) throws NoHayUnidadEnPosicionException { return columnas.get(x).getCasilla(y).getContenido();}
 
     public void ocuparCasilla(Pieza pieza, int numeroDeColumna, int numeroDeFila){
         Columna unaColumna = columnas.get(numeroDeColumna);
@@ -114,32 +117,38 @@ public class Tablero {
 
 
 
-    public List<Pieza> getPiezasAdyacentes(Ubicacion ubicacion){
+    public List<Pieza> getPiezasAdyacentes(Ubicacion ubicacion) throws NoHayUnidadEnPosicionException {
         return getPiezasEnRadio(ubicacion, 1, 1);
     }
 
-    public List<Pieza> getPiezasAdyacentesDentroDeRadio(Ubicacion ubicacion, int radio){
+    public List<Pieza> getPiezasAdyacentesDentroDeRadio(Ubicacion ubicacion, int radio) throws NoHayUnidadEnPosicionException {
         return getPiezasEnRadio(ubicacion, 1, radio);
     }
 
-    private List<Pieza> getPiezasEnRadio(Ubicacion ubicacion, int rangoInicial, int rangoFinal) {
-        return this.getCasillasEntreRangos(ubicacion, rangoInicial, rangoFinal).stream()
-                .filter(Casilla::estaOcupada)
-                .map(Casilla::getContenido)
-                .collect(Collectors.toList());
+    private List<Pieza> getPiezasEnRadio(Ubicacion ubicacion, int rangoInicial, int rangoFinal) throws NoHayUnidadEnPosicionException {
+        List<Pieza> list = new ArrayList<>();
+        for (Casilla casilla : this.getCasillasEntreRangos(ubicacion, rangoInicial, rangoFinal)) {
+            if (casilla.estaOcupada()) {
+                Pieza contenido = casilla.getContenido();
+                list.add(contenido);
+            }
+        }
+        return list;
     }
 
-    public List<Pieza> getPiezasAdycentesInfinitas(Ubicacion ubicacion){
+    public List<Pieza> getPiezasAdycentesInfinitas(Ubicacion ubicacion) throws NoHayUnidadEnPosicionException{
         ArrayList<Pieza> listaPiezas= new ArrayList<>();
         return getPiezasAdycentesRecursivo(ubicacion, listaPiezas);
     }
 
-    public List<Pieza> getPiezasAdycentesRecursivo( Ubicacion ubicacion, ArrayList<Pieza> piezas ){
+    public List<Pieza> getPiezasAdycentesRecursivo( Ubicacion ubicacion, ArrayList<Pieza> piezas ) throws NoHayUnidadEnPosicionException {
         List<Pieza> nuevasPiezas = getPiezasAdyacentes(ubicacion);
-        nuevasPiezas.stream().filter(pieza -> !piezas.contains(pieza))
-                    .forEach(pieza->{ piezas.add(pieza);
-                                      getPiezasAdycentesRecursivo(pieza.getUbicacion(),piezas);
-                             });
+        for (Pieza pieza : nuevasPiezas) {
+            if (!piezas.contains(pieza)) {
+                piezas.add(pieza);
+                getPiezasAdycentesRecursivo(pieza.getUbicacion(), piezas);
+            }
+        }
         return piezas;
     }
 

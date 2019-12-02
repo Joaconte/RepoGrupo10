@@ -7,5 +7,5 @@ public interface EstadoCasilla {
     public boolean estaOcupada();
     public EstadoCasilla ocuparCasilla(Pieza pieza);
     public EstadoCasilla desocuparCasilla();
-    public Pieza getContenido();
+    public Pieza getContenido() throws NoHayUnidadEnPosicionException;
 }

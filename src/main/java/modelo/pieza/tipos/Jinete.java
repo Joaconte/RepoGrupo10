@@ -8,6 +8,7 @@ import modelo.pieza.movimiento.SeMueveEnTodasDirecciones;
 import modelo.pieza.sanacion.IModoSanacion;
 import modelo.pieza.sanacion.SanacionNormal;
 import modelo.tablero.Tablero;
+import modelo.tablero.casilla.NoHayUnidadEnPosicionException;
 
 import java.util.List;
 
@@ -32,13 +33,13 @@ public class Jinete extends PiezaAtacante {
 
 
     @Override
-    public void atacar(Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
+    public void atacar(Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException, NoHayUnidadEnPosicionException {
         obtenerModoDeAtaque(tablero);
         super.atacar(atacada, tablero);
     }
 
 
-    public void obtenerModoDeAtaque(Tablero tablero) {
+    public void obtenerModoDeAtaque(Tablero tablero) throws NoHayUnidadEnPosicionException {
         List<Pieza> piezas = tablero.getPiezasAdyacentesDentroDeRadio(this.ubicacion,2);
         long aliados=piezas.stream().filter(pieza -> !pieza.esEnemigo(this)&& pieza.esRefuerzoDeJinete()).count();
         long enemigos=piezas.stream().filter(pieza -> pieza.esEnemigo(this)).count();

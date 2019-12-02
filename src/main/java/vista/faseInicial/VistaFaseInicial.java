@@ -45,7 +45,7 @@ public class VistaFaseInicial {
         panelDeControl.add(new BotonMoverDerecha(vistaDeTablero, camposDeTexto),2,2);
         panelDeControl.add(new BotonMoverIzquierda(vistaDeTablero,camposDeTexto),0,2);
 
-        BotonSiguienteTurno botonSiguienteTurno = new BotonSiguienteTurno(etiquetaTurnoJugador,etiquetaPuntos,juego,camposDeTexto, contenedorVertical, contenedorHorizontal);
+        BotonSiguienteTurno botonSiguienteTurno = new BotonSiguienteTurno(etiquetaTurnoJugador,etiquetaPuntos,juego,camposDeTexto, contenedorVertical, contenedorHorizontal, vistaDeTablero);
         botonSiguienteTurno.setAlignment(Pos.BOTTOM_CENTER);
 
         contenedorVertical.getChildren().addAll(piezas, camposDeTexto.etiquetaUno, panelDeControl, botonSiguienteTurno);

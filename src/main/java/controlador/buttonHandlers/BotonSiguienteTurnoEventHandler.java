@@ -9,7 +9,7 @@ import javafx.scene.paint.Color;
 import modelo.Juego;
 import modelo.jugador.EjercitoIncompletoException;
 import vista.CamposDeTexto;
-import vista.EtiquetaFase;
+import vista.VistaDeTablero;
 import vista.faseInicial.EtiquetaPuntosJugador;
 import vista.faseInicial.EtiquetaTurnoJugador;
 import vista.faseJuego.VistaFaseJuego;
@@ -22,14 +22,16 @@ public class BotonSiguienteTurnoEventHandler implements EventHandler<ActionEvent
     private EtiquetaPuntosJugador etiquetaPuntosJugador;
     private VBox vbox;
     private HBox hbox;
+    private VistaDeTablero vistaDeTablero;
 
-    public BotonSiguienteTurnoEventHandler(EtiquetaTurnoJugador etiquetaTurnoJugador, EtiquetaPuntosJugador etiquetaPuntosJugador, Juego juego, CamposDeTexto camposDeTexto, VBox vbox, HBox hbox){
+    public BotonSiguienteTurnoEventHandler(EtiquetaTurnoJugador etiquetaTurnoJugador, EtiquetaPuntosJugador etiquetaPuntosJugador, Juego juego, CamposDeTexto camposDeTexto, VBox vbox, HBox hbox, VistaDeTablero vistaDeTablero){
         this.etiquetaTurnoJugador = etiquetaTurnoJugador;
         this.juego = juego;
         this.comunicadoTexto = camposDeTexto.etiquetaUno;
         this.etiquetaPuntosJugador = etiquetaPuntosJugador;
         this.vbox = vbox;
         this.hbox = hbox;
+        this.vistaDeTablero = vistaDeTablero;
     }
 
 
@@ -42,7 +44,7 @@ public class BotonSiguienteTurnoEventHandler implements EventHandler<ActionEvent
             comunicadoTexto.setTextFill(Color.web("#336600"));
             if (juego.seEncuentraEnFaseDeJuego()){
                 vbox.getChildren().clear();
-                VistaFaseJuego faseJuego= new VistaFaseJuego(juego, hbox);
+                VistaFaseJuego faseJuego= new VistaFaseJuego(juego, hbox, vistaDeTablero);
             }
         }
         catch (EjercitoIncompletoException e){

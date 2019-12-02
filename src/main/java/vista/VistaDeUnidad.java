@@ -26,8 +26,6 @@ public class VistaDeUnidad {
 
         this.ultimaPosicionX = unidadAUbicar.getUbicacion().getPosicionEnX();
 
-        //NO ME FUNCA unidad.addObserver( this);
-
         imagenDeUnidad = new ImageView();
         imagenDeUnidad.setScaleX(escalaDeUnidad);
         imagenDeUnidad.setScaleY(escalaDeUnidad);

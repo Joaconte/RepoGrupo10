@@ -1,6 +1,7 @@
 package modelo.pieza;
 
 import modelo.pieza.tipos.Infanteria;
+import modelo.tablero.casilla.NoHayUnidadEnPosicionException;
 import org.junit.Test;
 import modelo.pieza.ataque.DistanciaDeAtaqueInvalidaException;
 import modelo.pieza.ataque.PiezaAliadaNoAtacableException;
@@ -60,7 +61,7 @@ public class InfanteriaTest {
     }
 
     @Test (expected = PiezaAliadaNoAtacableException.class)
-    public void test07InfanteriaDeMismosEquiposNoSeAtacan() throws PiezaAliadaNoAtacableException, DistanciaDeAtaqueInvalidaException, UnidadEstaMuertaException {
+    public void test07InfanteriaDeMismosEquiposNoSeAtacan() throws PiezaAliadaNoAtacableException, DistanciaDeAtaqueInvalidaException, UnidadEstaMuertaException, NoHayUnidadEnPosicionException {
 
         Infanteria atacante = new Infanteria(1,2,2);
         Infanteria aliadoAtacado = new Infanteria(1,3,2);
@@ -70,7 +71,7 @@ public class InfanteriaTest {
     }
 
     @Test
-    public void test08InfanteriaDeDistintosEquiposSeAtacanCorrectamente() throws PiezaAliadaNoAtacableException, DistanciaDeAtaqueInvalidaException, UnidadEstaMuertaException {
+    public void test08InfanteriaDeDistintosEquiposSeAtacanCorrectamente() throws PiezaAliadaNoAtacableException, DistanciaDeAtaqueInvalidaException, UnidadEstaMuertaException, NoHayUnidadEnPosicionException {
 
 
         Infanteria atacante = new Infanteria(1,10,10);
@@ -85,7 +86,7 @@ public class InfanteriaTest {
 
 
     @Test (expected= DistanciaDeAtaqueInvalidaException.class)
-    public void test09InfanteriaDeDistintosEquiposNoSeAtacanEnDistanciaSuperiorA2Casillas() throws PiezaAliadaNoAtacableException, DistanciaDeAtaqueInvalidaException, UnidadEstaMuertaException {
+    public void test09InfanteriaDeDistintosEquiposNoSeAtacanEnDistanciaSuperiorA2Casillas() throws PiezaAliadaNoAtacableException, DistanciaDeAtaqueInvalidaException, UnidadEstaMuertaException, NoHayUnidadEnPosicionException {
 
         Infanteria soldado = new Infanteria(1,10,10);
         Infanteria enemigoSoldado = new Infanteria(2,13,13);
