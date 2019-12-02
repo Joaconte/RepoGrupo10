@@ -32,17 +32,26 @@ public class VistaFaseJuego {
         GridPane panelDeControl = new GridPane();
         panelDeControl.setAlignment(Pos.BOTTOM_CENTER);
 
-        Ubicacion ubicacion = new Ubicacion(9,9);
-        Label etiquetaAlertas = new Label();
 
-        panelDeControl.add(new BotonMoverArriba(vistaDeTablero, ubicacion),1,0);
-        panelDeControl.add(new BotonMoverAbajo(vistaDeTablero, ubicacion),1,3);
-        panelDeControl.add(new BotonMoverDerecha(vistaDeTablero, ubicacion),2,2);
-        panelDeControl.add(new BotonMoverIzquierda(vistaDeTablero,ubicacion),0,2);
+        Ubicacion ubicacionVariable = new Ubicacion(9, 9);
+        Ubicacion ubicacionEstatica = new Ubicacion(ubicacionVariable.getPosicionEnX(), ubicacionVariable.getPosicionEnY());
 
-        BotonSeleccionarUnidad botonSeleccionarUnidad = new BotonSeleccionarUnidad(ubicacion, juego, etiquetaAlertas);
+        panelDeControl.add(new BotonMoverArriba(vistaDeTablero, ubicacionVariable),1,0);
+        panelDeControl.add(new BotonMoverAbajo(vistaDeTablero, ubicacionVariable),1,3);
+        panelDeControl.add(new BotonMoverDerecha(vistaDeTablero, ubicacionVariable),2,2);
+        panelDeControl.add(new BotonMoverIzquierda(vistaDeTablero,ubicacionVariable),0,2);
 
-        contenedorVertical.getChildren().addAll(panelDeControl, botonSeleccionarUnidad, etiquetaAlertas);
+        Label etiquetaAlerta1 = new Label();
+        Label etiquetaAlerta2 = new Label();
+
+        Label etiquetaUbicacion1 = new Label();
+        Label etiquetaUbicacion2 = new Label();
+
+        BotonSeleccionarUnidad botonSeleccionarUnidad = new BotonSeleccionarUnidad(ubicacionVariable, ubicacionEstatica, juego, etiquetaAlerta1);
+        BotonMoverUnidad botonMoverUnidad = new BotonMoverUnidad(ubicacionEstatica, ubicacionVariable, juego, etiquetaAlerta2, vistaDeTablero);
+        BotonActualizarPosiciones botonActualizarPosiciones = new BotonActualizarPosiciones(etiquetaUbicacion1, etiquetaUbicacion2, ubicacionEstatica, ubicacionVariable);
+
+        contenedorVertical.getChildren().addAll(panelDeControl, botonSeleccionarUnidad, etiquetaAlerta1, botonMoverUnidad, botonActualizarPosiciones, etiquetaAlerta2, etiquetaUbicacion1 );
 
 
     }

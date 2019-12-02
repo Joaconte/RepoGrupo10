@@ -1,13 +1,11 @@
 package vista.fases.faseInicial;
 
-import controlador.buttonHandlers.BotonSiguienteTurnoEventHandler;
+import controlador.buttonHandlers.fase.faseInicial.BotonSiguienteTurnoEventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import modelo.Juego;
-import modelo.pieza.Ubicacion;
-import vista.CamposDeTexto;
 import vista.VistaDeTablero;
 
 public class BotonSiguienteTurno extends Button {

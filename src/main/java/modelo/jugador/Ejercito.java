@@ -5,6 +5,8 @@ import modelo.jugador.presupuesto.PresupuestoAgotadoException;
 import modelo.pieza.Pieza;
 import modelo.jugador.presupuesto.EstadoPresupuestoDeEjercito;
 import modelo.jugador.presupuesto.EstadoPresupuestoNoAgotado;
+import modelo.pieza.Ubicacion;
+import modelo.pieza.movimiento.NoSePuedeMoverException;
 
 import java.util.ArrayList;
 
@@ -37,6 +39,18 @@ public class Ejercito{
         piezas.add(piezaComprada);
         this.presupuesto = presupuesto.devolverEstadoDePresuesto();
         return piezaComprada;
+    }
+
+    public void moverUnidad( Ubicacion ubicacionInicial, Ubicacion ubicacionFinal ) throws NoSePuedeMoverException {
+
+        for (int i=0; i< piezas.size(); i++){
+
+            Pieza pieza = piezas.get(i);
+            int posicionXPieza = pieza.getUbicacion().getPosicionEnX();
+            int posicionYPieza = pieza.getUbicacion().getPosicionEnY();
+            if (posicionXPieza == ubicacionInicial.getPosicionEnX() && posicionYPieza == pieza.getUbicacion().getPosicionEnY())
+                pieza.mover(ubicacionFinal);
+        }
     }
 
 

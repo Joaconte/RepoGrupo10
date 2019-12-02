@@ -1,4 +1,4 @@
-package controlador.buttonHandlers;
+package controlador.buttonHandlers.fase.faseInicial;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

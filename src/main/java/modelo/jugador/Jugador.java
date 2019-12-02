@@ -3,6 +3,8 @@ package modelo.jugador;
 import modelo.jugador.presupuesto.CompraInvalidaException;
 import modelo.jugador.presupuesto.PresupuestoAgotadoException;
 import modelo.pieza.Pieza;
+import modelo.pieza.Ubicacion;
+import modelo.pieza.movimiento.NoSePuedeMoverException;
 import modelo.tablero.Tablero;
 
 public class Jugador {
@@ -31,9 +33,6 @@ public class Jugador {
     public Sector getSector(){
         return sector;
     }
-    public int getTamanioDelEjercito() {
-        return this.ejercito.getTamanio();
-    }
     public String getNombre(){ return nombre;}
     public int getPuntos(){ return ejercito.getPresupuesto();}
 
@@ -50,6 +49,11 @@ public class Jugador {
 
     public boolean verificarSiEjercitoEstaListo(){
         return ejercito.estaCompleto();
+    }
+
+    public void moverUnidad(Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) throws PiezaNoEsDeJugadorException, NoSePuedeMoverException {
+
+        ejercito.moverUnidad(ubicacionInicial, ubicacionFinal);
     }
 
 

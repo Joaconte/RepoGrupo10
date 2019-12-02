@@ -1,10 +1,9 @@
 package modelo.partida;
 
-import modelo.jugador.EjercitoIncompletoException;
-import modelo.jugador.PiezaFueraDeSectorException;
-import modelo.jugador.UbicacionInvalidaException;
+import modelo.jugador.*;
 import modelo.jugador.presupuesto.CompraInvalidaException;
 import modelo.jugador.presupuesto.PresupuestoAgotadoException;
+import modelo.pieza.Ubicacion;
 import modelo.pieza.ataque.PiezaAliadaNoAtacableException;
 import modelo.pieza.UnidadEstaMuertaException;
 import modelo.pieza.ataque.DistanciaDeAtaqueInvalidaException;
@@ -12,9 +11,10 @@ import modelo.pieza.ataque.PiezaAtacante;
 
 import modelo.partida.fase.FaseDePartida;
 import modelo.partida.fase.FaseInicial;
+import modelo.pieza.movimiento.NoSePuedeMoverException;
+import modelo.tablero.DesplazamientoInvalidoException;
 import modelo.tablero.Tablero;
 import modelo.pieza.Pieza;
-import modelo.jugador.Jugador;
 import modelo.tablero.casilla.NoHayUnidadEnPosicionException;
 
 import java.util.Random;
@@ -75,6 +75,16 @@ public class Partida {
         return miFase.crearPieza(jugadorEnTurno,tableroDePartida,nombreDeUnidad,posicionEnX,posicionEnY);
     }
 
+    public void moverUnidad(Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) throws PiezaNoEsDeJugadorException, NoHayUnidadEnPosicionException, DesplazamientoInvalidoException, NoSePuedeMoverException{
+
+        try {
+            jugadorEnTurno.moverUnidad(ubicacionInicial, ubicacionFinal);
+            tableroDePartida.moverUnidad(ubicacionInicial, ubicacionFinal);
+        }
+        catch (PiezaNoEsDeJugadorException e){
+            throw new PiezaNoEsDeJugadorException();
+        }
+    }
 
     //---------------Metodos de Fase------------//
 

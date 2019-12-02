@@ -1,4 +1,4 @@
-package controlador.buttonHandlers.agregarPiezasEventHandlers;
+package controlador.buttonHandlers.fase.faseInicial.agregarPiezasEventHandlers;
 
 import javafx.scene.control.Label;
 import modelo.pieza.Ubicacion;

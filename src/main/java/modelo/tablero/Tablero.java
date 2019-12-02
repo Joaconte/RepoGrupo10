@@ -51,6 +51,33 @@ public class Tablero {
         return unaColumna.casillaDeLaFilaEstaOcupada(numeroDeLaFila);
     }
 
+    public void moverUnidad(Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) throws NoHayUnidadEnPosicionException, DesplazamientoInvalidoException {
+
+        List<Casilla> casillas = getCasillasVaciasAdyacentes(ubicacionInicial);
+        for (int i = 0; i < casillas.size(); i++) {
+
+            Casilla casilla = casillas.get(i);
+            if (desplazamientoEsValido( ubicacionInicial, ubicacionFinal )) {
+
+                Pieza pieza = getUnidad(ubicacionInicial.getPosicionEnX(), ubicacionInicial.getPosicionEnY());
+                desocuparCasilla(ubicacionInicial.getPosicionEnX(), ubicacionInicial.getPosicionEnY());
+                ocuparCasilla(pieza, ubicacionFinal.getPosicionEnX(), ubicacionFinal.getPosicionEnY());
+            }
+            else throw new DesplazamientoInvalidoException();
+        }
+    }
+
+    private boolean desplazamientoEsValido(Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) {
+
+        int desplazamientoPos = Math.min (ubicacionInicial.getPosicionEnX() - ubicacionFinal.getPosicionEnX(),
+                ubicacionInicial.getPosicionEnY() - ubicacionFinal.getPosicionEnY());
+
+        int desplazamientoNeg = Math.max (ubicacionInicial.getPosicionEnX() - ubicacionFinal.getPosicionEnX(),
+                ubicacionInicial.getPosicionEnY() - ubicacionFinal.getPosicionEnY());
+
+            return (desplazamientoNeg > -2 && desplazamientoPos < 2);
+    }
+
 
     private ArrayList<Casilla> getCasillasEntreRangos(Ubicacion ubicacion, int radioInicial, int radioFinal){
 
@@ -114,7 +141,6 @@ public class Tablero {
                 .filter(c-> !c.estaOcupada())
                 .collect(Collectors.toList());
     }
-
 
 
     public List<Pieza> getPiezasAdyacentes(Ubicacion ubicacion) throws NoHayUnidadEnPosicionException {

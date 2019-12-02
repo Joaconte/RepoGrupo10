@@ -48,7 +48,7 @@ public class VistaDeTablero extends Group {
                 new BackgroundSize(this.anchura, this.altura, false, false, false, false)));
         contenedorTabla.setBackground(fondoDeContenedor);
 
-        this.getChildren().add(contenedorTabla);
+        getChildren().add(contenedorTabla);
     }
 
     public Rectangle getCirculo(){
@@ -57,12 +57,28 @@ public class VistaDeTablero extends Group {
 
     public void agregarUnidad(Node unidad, int x, int y){
 
-        GridPane.setRowIndex(unidad, x);
-        GridPane.setColumnIndex(unidad, y);
-        contenedorTabla.getChildren().add(unidad);
-        casillaTabla[x][y].getChildren().add(0, unidad);
+        contenedorTabla.add(unidad, x, y);
+        casillaTabla[x][y].getChildren().add(unidad);
+    }
+
+    public void moverUnidad(int x1, int y1, int x2, int y2){
+
+        Node unidad = casillaTabla[x1][y1].getChildren().get(0);
+        contenedorTabla.add(unidad, x2, y2);
+        getChildren().clear();
+        getChildren().add(unidad);
 
     }
+
+    private Node getNodeFromGridPane( int col, int row) {
+        for (Node node : contenedorTabla.getChildren()) {
+            if (GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) == row) {
+                return node;
+            }
+        }
+        return null;
+    }
+
 
     public void addViewOnMap(Node view, int x, int y) {
         for (int i = 0; i < anchura; i++) {

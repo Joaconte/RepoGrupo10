@@ -1,6 +1,6 @@
 package vista.fases.faseInicial.botonesAgregarPiezas;
 
-import controlador.buttonHandlers.agregarPiezasEventHandlers.BotonAgregarCuranderoEventHandler;
+import controlador.buttonHandlers.fase.faseInicial.agregarPiezasEventHandlers.BotonAgregarCuranderoEventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import modelo.pieza.Ubicacion;

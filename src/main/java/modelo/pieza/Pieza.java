@@ -84,24 +84,9 @@ public abstract class Pieza {
         this.setUbicacion(nueva);
     }
 
-    public void mover(Tablero tablero, Direccion direccion) throws NoSePuedeMoverException {
-        Ubicacion anterior = this.getUbicacion();
+    public void mover(Ubicacion ubicacion) throws NoSePuedeMoverException {
 
-        // MP: esto se puede encapsular con un mensaje en Direcciòn que sea mover(Ubicacion ubicacion) que devuelva
-        // una nueva con las coordenadas que correspondes.
-        // Borrar los getters y probar con el nuevo mensajes
-        int nuevoX = anterior.getPosicionEnX()+ direccion.getDesplazamientoEnX();
-        int nuevoY = anterior.getPosicionEnY() + direccion.getDesplazamientoEnY();
-        /* ver q la ubicacion sea valida, que no se salga de los parametros del tablero */
-
-        if ( !tablero.casillaEstaOcupada(nuevoX, nuevoY)){
-            this.setUbicacion(new Ubicacion(nuevoX, nuevoY));
-            //this.evaluarZonaDeDanio(sector);
-            tablero.ocuparCasilla(this,nuevoX, nuevoY);
-            tablero.desocuparCasilla(anterior.getPosicionEnX(), anterior.getPosicionEnY());
-        } else{
-            throw new NoSePuedeMoverException();
-        }
+        this.setUbicacion( ubicacion );
     }
 
 }

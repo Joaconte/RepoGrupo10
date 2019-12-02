@@ -1,9 +1,8 @@
-package controlador.buttonHandlers.agregarPiezasEventHandlers;
+package controlador.buttonHandlers.fase.faseInicial.agregarPiezasEventHandlers;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import modelo.jugador.PiezaFueraDeSectorException;
 import modelo.jugador.UbicacionInvalidaException;
@@ -11,7 +10,6 @@ import modelo.jugador.presupuesto.CompraInvalidaException;
 import modelo.jugador.presupuesto.PresupuestoAgotadoException;
 import modelo.pieza.Pieza;
 import modelo.pieza.Ubicacion;
-import vista.CamposDeTexto;
 import vista.VistaDeTablero;
 import vista.VistaDeUnidad;
 import vista.fases.faseInicial.EtiquetaPuntosJugador;

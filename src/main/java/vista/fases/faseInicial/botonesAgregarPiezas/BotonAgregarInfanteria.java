@@ -1,6 +1,6 @@
 package vista.fases.faseInicial.botonesAgregarPiezas;
 
-import controlador.buttonHandlers.agregarPiezasEventHandlers.BotonAgregarInfanteriaEventHandler;
+import controlador.buttonHandlers.fase.faseInicial.agregarPiezasEventHandlers.BotonAgregarInfanteriaEventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import modelo.pieza.Ubicacion;

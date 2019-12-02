@@ -34,7 +34,6 @@ public class VistaDeUnidad {
 
         imagenDeUnidad.setImage(new Image( "resources/" + nombreClase +".png"));
         vistaDeTablero.agregarUnidad(imagenDeUnidad, ubicacion.getPosicionEnX(), ubicacion.getPosicionEnY() );
-        //draw();
     }
 
 }
