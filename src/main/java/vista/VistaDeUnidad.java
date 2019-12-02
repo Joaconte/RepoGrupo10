@@ -1,21 +1,22 @@
 package vista;
 
+
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import modelo.pieza.Pieza;
 import modelo.pieza.Ubicacion;
 
 
-public class VistaDeUnidad {
+public class VistaDeUnidad extends VBox {
 
     private double escalaDeUnidad = 1;
     private VistaDeTablero vistaDeTablero;
     public ImageView imagenDeUnidad;
-
     private Pieza unidad;
     private Ubicacion ubicacion;
 
-    private int ultimaPosicionX;
 
 
     public VistaDeUnidad(VistaDeTablero vistaDeTablero, Pieza unidadAUbicar, String nombreClase) {
@@ -23,20 +24,32 @@ public class VistaDeUnidad {
         this.vistaDeTablero = vistaDeTablero;
         this.unidad = unidadAUbicar;
         ubicacion = unidadAUbicar.getUbicacion();
+        crearVistaParaTablero(nombreClase);
 
-        this.ultimaPosicionX = unidadAUbicar.getUbicacion().getPosicionEnX();
+        //this.getChildren().add(imagenDeUnidad);
+        this.getChildren().add(new Label("Unidad de Jugador " + unidad.getEquipo() ));
+        this.getChildren().add(new Label("Columna: " + unidad.getUbicacion().getPosicionEnX() ));
+        this.getChildren().add(new Label("Fila " + unidad.getUbicacion().getPosicionEnY() ));
+        this.getChildren().add((new Label("Vida restante: " + unidad.getPuntosVida())));
 
-        //NO ME FUNCA unidad.addObserver( this);
+        //unidad.addObserver( this );
+        //draw();
+    }
+
+    private Pieza getUnidad(){ return unidad; }
+
+    private void crearVistaParaTablero (String nombreClase){
 
         imagenDeUnidad = new ImageView();
         imagenDeUnidad.setScaleX(escalaDeUnidad);
         imagenDeUnidad.setScaleY(escalaDeUnidad);
         imagenDeUnidad.setFitHeight(45);
         imagenDeUnidad.setFitWidth(45);
-
+        if (unidad.getEquipo()==1) imagenDeUnidad.setOpacity(0.7);
+        else imagenDeUnidad.setOpacity(0.3);
         imagenDeUnidad.setImage(new Image( "resources/" + nombreClase +".png"));
-        vistaDeTablero.agregarUnidad(imagenDeUnidad, ubicacion.getPosicionEnX(), ubicacion.getPosicionEnY() );
-        //draw();
+
+        vistaDeTablero.agregarUnidad(imagenDeUnidad, this, ubicacion.getPosicionEnX(), ubicacion.getPosicionEnY() );
     }
 
 }

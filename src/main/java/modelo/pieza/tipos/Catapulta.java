@@ -29,6 +29,11 @@ public class Catapulta extends PiezaAtacante {
         super(COSTO,VIDA_MAXIMA,equipo, MOVIMIENTO, MODO_CURACION, ATAQUE,DANIO_CUERPO, DANIO_MEDIO, DANIO_DISTANCIA, posX, posY);
     }
 
+    public Catapulta(){
+        super(COSTO,VIDA_MAXIMA,0, MOVIMIENTO, MODO_CURACION, ATAQUE,DANIO_CUERPO, DANIO_MEDIO, DANIO_DISTANCIA, 0, 0);
+    }
+
+
     @Override
     public void atacar(Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
         if(!this.esEnemigo(atacada)){ throw new PiezaAliadaNoAtacableException();}

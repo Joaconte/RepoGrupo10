@@ -23,6 +23,9 @@ public class Infanteria extends PiezaAtacante {
         super(COSTO, VIDA_MAXIMA, equipo, MOVIMIENTO, MODO_CURACION, ATAQUE, DANIO_CUERPO, DANIO_MEDIO, DANIO_DISTANCIA, posX, posY);
     }
 
+    public Infanteria(){
+        super(COSTO, VIDA_MAXIMA, 0, MOVIMIENTO, MODO_CURACION, ATAQUE, DANIO_CUERPO, DANIO_MEDIO, DANIO_DISTANCIA, 0, 0);
+    }
 
 
 

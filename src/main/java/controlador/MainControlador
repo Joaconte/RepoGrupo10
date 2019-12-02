@@ -1,21 +1,50 @@
 package controlador;
 
-import javafx.scene.input.KeyEvent;
-import modelo.Juego;
-
-
 import javafx.event.EventHandler;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.shape.Rectangle;
+import vista.CamposDeTexto;
+import vista.VistaDeTablero;
 
 public class MainControlador implements EventHandler<KeyEvent> {
 
-    private Juego juego;
+    private Rectangle rectangulo;
+    private CamposDeTexto camposDeTexto;
 
-
-    public MainControlador(Juego juego) {
-        this.juego = juego;
+    public MainControlador(VistaDeTablero vistaDeTablero, CamposDeTexto camposDeTexto) {
+        this.rectangulo = vistaDeTablero.getCirculo();
+        this.camposDeTexto = camposDeTexto;
     }
 
     public void handle(KeyEvent event) {
+
+        try {
+            if (event.getCode() == KeyCode.W) {
+                if (GridPane.getRowIndex(rectangulo)>0)GridPane.setRowIndex(rectangulo,GridPane.getRowIndex(rectangulo)-1);
+                camposDeTexto.textoUno.setText(GridPane.getColumnIndex(rectangulo).toString());
+                camposDeTexto.textoDos.setText(GridPane.getRowIndex(rectangulo).toString());
+            }
+            if (event.getCode() == KeyCode.S) {
+                if (GridPane.getRowIndex(rectangulo)<19) GridPane.setRowIndex(rectangulo,GridPane.getRowIndex(rectangulo)+1);
+                camposDeTexto.textoUno.setText(GridPane.getColumnIndex(rectangulo).toString());
+                camposDeTexto.textoDos.setText(GridPane.getRowIndex(rectangulo).toString());
+            }
+            if (event.getCode() == KeyCode.D) {
+                if (GridPane.getColumnIndex(rectangulo)<19)GridPane.setColumnIndex(rectangulo,GridPane.getColumnIndex(rectangulo)+1);
+                camposDeTexto.textoUno.setText(GridPane.getColumnIndex(rectangulo).toString());
+                camposDeTexto.textoDos.setText(GridPane.getRowIndex(rectangulo).toString());
+            }
+            if (event.getCode() == KeyCode.A) {
+                if (GridPane.getColumnIndex(rectangulo)>0) GridPane.setColumnIndex(rectangulo,GridPane.getColumnIndex(rectangulo)-1);
+                camposDeTexto.textoUno.setText(GridPane.getColumnIndex(rectangulo).toString());
+                camposDeTexto.textoDos.setText(GridPane.getRowIndex(rectangulo).toString());
+            }
+            event.consume();
+        } catch (Exception e) {
+            //Cant move exception
+        }
 
 
     }

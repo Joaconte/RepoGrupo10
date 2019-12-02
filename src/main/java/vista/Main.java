@@ -2,11 +2,10 @@ package vista;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.ScrollPane;
 import javafx.stage.Stage;
 
 import modelo.Juego;
-import vista.faseBienvenida.ContenedorBienvenida;
+import vista.faseBienvenida.PantallaBienvenida;
 
 public class Main extends Application {
 
@@ -20,14 +19,9 @@ public class Main extends Application {
         escenarioPrincipal.setTitle( "Juego AlgoChess" );
         Juego juego = new Juego();
 
-        ContenedorBienvenida contenedorBienvenida = new ContenedorBienvenida(escenarioPrincipal, juego);
+        PantallaBienvenida pantallaBienvenida = new PantallaBienvenida(escenarioPrincipal, juego);
 
-        ScrollPane panelConBarrasDeMovimiento = new ScrollPane();
-        panelConBarrasDeMovimiento.setContent(contenedorBienvenida);
-        panelConBarrasDeMovimiento.setPrefSize(1200,900);
-
-        Scene escenaDeJuego = new Scene(panelConBarrasDeMovimiento, 1200, 950);
-
+        Scene escenaDeJuego = new Scene(pantallaBienvenida, 500, 500);
         escenarioPrincipal.setScene(escenaDeJuego);
         escenarioPrincipal.show();
 

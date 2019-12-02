@@ -37,6 +37,10 @@ public class Juego {
 
     public boolean estaEnFaseInicial() { return partida.estaEnFaseInicial();}
 
+    public String getNombreDeJugadorUno() { return partida.getJugadorUno().getNombre();}
+
+    public String getNombreDeJugadorDos() { return partida.getJugadorDos().getNombre();}
+
     public void arrancarPartida(){
 
     }

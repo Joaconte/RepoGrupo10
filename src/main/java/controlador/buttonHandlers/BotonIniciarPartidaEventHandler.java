@@ -6,7 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.stage.Stage;
 import modelo.Juego;
-import vista.fasePartida.faseInicialPartida.ContenedorFaseInicialPartida;
+import vista.fasesPartida.faseInicialPartida.PantallaFaseInicialPartida;
 
 public class BotonIniciarPartidaEventHandler implements EventHandler<ActionEvent> {
 
@@ -22,14 +22,10 @@ public class BotonIniciarPartidaEventHandler implements EventHandler<ActionEvent
     @Override
     public void handle(ActionEvent actionEvent) {
 
-        juego.arrancarPartida();
-
-        ContenedorFaseInicialPartida contenedorFaseInicialPartida = new ContenedorFaseInicialPartida(juego, escenarioPrincipal);
+        PantallaFaseInicialPartida pantallaFaseInicialPartida = new PantallaFaseInicialPartida(juego, escenarioPrincipal);
         ScrollPane panelConBarrasDeMovimiento = new ScrollPane();
-        panelConBarrasDeMovimiento.setContent(contenedorFaseInicialPartida);
-        panelConBarrasDeMovimiento.setPrefSize(1200,900);
-        Scene escenaFaseInicial = new Scene (panelConBarrasDeMovimiento, 1200,950);
-
+        panelConBarrasDeMovimiento.setContent(pantallaFaseInicialPartida);
+        Scene escenaFaseInicial = new Scene (panelConBarrasDeMovimiento,1200,950);
         escenarioPrincipal.setScene(escenaFaseInicial);
 
     }

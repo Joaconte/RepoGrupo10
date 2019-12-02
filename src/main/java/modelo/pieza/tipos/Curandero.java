@@ -16,6 +16,9 @@ public class Curandero extends Pieza {
     public Curandero(int equipo, int posX, int posY){
         super(COSTO, VIDA_MAXIMA, equipo, MOVIMIENTO, MODO_CURACION, posX, posY);
     }
+    public Curandero(){
+        super(COSTO, VIDA_MAXIMA, 0, MOVIMIENTO, MODO_CURACION, 0, 0);
+    }
 
     public void curarAAliado(Pieza unaUndidadCurable) throws CurandoAEnemigoException, UnidadNoSePuedeCurar, CurandoCuraADistanciaCortaException {
         if ( super.getEquipo() != unaUndidadCurable.getEquipo()) { throw new CurandoAEnemigoException(); }

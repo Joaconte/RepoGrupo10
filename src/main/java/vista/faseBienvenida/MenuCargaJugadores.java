@@ -7,7 +7,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import modelo.Juego;
 import vista.CamposDeTexto;
-import vista.faseBienvenida.BotonAgregarJugadores;
 
 
 public class MenuCargaJugadores extends VBox {
@@ -16,7 +15,9 @@ public class MenuCargaJugadores extends VBox {
 
     public MenuCargaJugadores(Juego juego, Stage escenarioPrincipal){
 
+
         this.camposDeTexto = new CamposDeTexto("Ingrese un jugador", "Ingrese otro jugador");
+        this.setWidth(200);
         this.setSpacing(10);
         this.setPadding(new Insets(20));
         this.setAlignment(Pos.CENTER);

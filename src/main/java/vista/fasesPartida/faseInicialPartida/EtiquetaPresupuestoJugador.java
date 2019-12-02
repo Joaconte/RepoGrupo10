@@ -1,16 +1,16 @@
-package vista.fasePartida.faseInicialPartida;
+package vista.fasesPartida.faseInicialPartida;
 
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import modelo.Juego;
 
-public class EtiquetaPuntosJugador {
+public class EtiquetaPresupuestoJugador {
 
     public Label etiqueta;
     public Juego juego;
 
-    public EtiquetaPuntosJugador(Juego juego){
+    public EtiquetaPresupuestoJugador(Juego juego){
 
         etiqueta = new Label();
         this.juego = juego;

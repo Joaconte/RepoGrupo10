@@ -1,4 +1,4 @@
-package vista.fasePartida;
+package vista.fasesPartida;
 
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;

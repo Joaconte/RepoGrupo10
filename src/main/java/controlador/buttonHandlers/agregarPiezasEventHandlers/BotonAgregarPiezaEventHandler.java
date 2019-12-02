@@ -13,22 +13,22 @@ import modelo.pieza.Pieza;
 import vista.CamposDeTexto;
 import vista.VistaDeTablero;
 import vista.VistaDeUnidad;
-import vista.fasePartida.faseInicialPartida.EtiquetaPuntosJugador;
+import vista.fasesPartida.faseInicialPartida.EtiquetaPresupuestoJugador;
 
 public abstract class BotonAgregarPiezaEventHandler implements EventHandler<ActionEvent> {
 
     private TextField textFieldUno;
     private TextField textFieldDos;
-    private Label labelUno;
+    private Label textoComunicador;
     private VistaDeTablero vistaDeTablero;
-    private EtiquetaPuntosJugador etiquetaPuntos;
-    private  String nombre;
+    private EtiquetaPresupuestoJugador etiquetaPuntos;
+    private String nombre;
 
-    public void initialize(CamposDeTexto camposDeTexto, VistaDeTablero vistaDeTablero, EtiquetaPuntosJugador etiquetaPuntos, String nombre) {
+    public BotonAgregarPiezaEventHandler(CamposDeTexto camposDeTexto, VistaDeTablero vistaDeTablero, EtiquetaPresupuestoJugador etiquetaPuntos, String nombre, Label etiquetaComunicadora) {
 
         textFieldUno = camposDeTexto.textoUno;
         textFieldDos = camposDeTexto.textoDos;
-        labelUno = camposDeTexto.etiquetaUno;
+        textoComunicador = etiquetaComunicadora;
         this.vistaDeTablero = vistaDeTablero;
         this.etiquetaPuntos= etiquetaPuntos;
         this.nombre = nombre;
@@ -38,8 +38,8 @@ public abstract class BotonAgregarPiezaEventHandler implements EventHandler<Acti
     public void handle(ActionEvent actionEvent) {
         if (this.textFieldUno.getText().trim().equals("") || this.textFieldDos.getText().trim().equals("")) {
 
-            this.labelUno.setText("Debe ingresar ambas coordenadas");
-            this.labelUno.setTextFill(Color.web("#FF0000"));
+            this.textoComunicador.setText("Debe ingresar ambas coordenadas");
+            this.textoComunicador.setTextFill(Color.web("#FF0000"));
 
         } else {
 
@@ -53,8 +53,8 @@ public abstract class BotonAgregarPiezaEventHandler implements EventHandler<Acti
             }
 
             catch (NumberFormatException e){
-                this.labelUno.setText("Debe ingresar numeros");
-                this.labelUno.setTextFill(Color.web("#FF0000"));
+                this.textoComunicador.setText("Debe ingresar numeros");
+                this.textoComunicador.setTextFill(Color.web("#FF0000"));
             }
 
         }
@@ -62,24 +62,24 @@ public abstract class BotonAgregarPiezaEventHandler implements EventHandler<Acti
 
     public void crearPiezaYAgregarATablero(int x, int y, VistaDeTablero vistaDeTablero){
         try {
-            this.labelUno.setText("Tropa agregada con exito");
-            this.labelUno.setTextFill(Color.web("#336600"));
+            this.textoComunicador.setText("Tropa agregada con exito");
+            this.textoComunicador.setTextFill(Color.web("#336600"));
             Pieza pieza = etiquetaPuntos.juego.crearPieza(nombre, x, y);
             VistaDeUnidad vistaDeUnidad = new VistaDeUnidad(vistaDeTablero, pieza, nombre.toLowerCase());
 
         }
         catch ( PiezaFueraDeSectorException e){
-            this.labelUno.setText("Ubica la pieza en tu sector.");
-            this.labelUno.setTextFill(Color.web("#FF0000")); }
+            this.textoComunicador.setText("Ubica la pieza en tu sector.");
+            this.textoComunicador.setTextFill(Color.web("#FF0000")); }
         catch (PresupuestoAgotadoException e){
-            this.labelUno.setText("Ya puedes acabar tu turno.");
-            this.labelUno.setTextFill(Color.web("#FF0000")); }
+            this.textoComunicador.setText("Ya puedes acabar tu turno.");
+            this.textoComunicador.setTextFill(Color.web("#FF0000")); }
         catch (UbicacionInvalidaException e){
-            this.labelUno.setText("Ya hay una pieza en la casilla.");
-            this.labelUno.setTextFill(Color.web("#FF0000")); }
+            this.textoComunicador.setText("Ya hay una pieza en la casilla.");
+            this.textoComunicador.setTextFill(Color.web("#FF0000")); }
         catch (CompraInvalidaException  e){
-            this.labelUno.setText("Presupuesto insuficiente para la pieza.");
-            this.labelUno.setTextFill(Color.web("#FF0000")); }
+            this.textoComunicador.setText("Presupuesto insuficiente para la pieza.");
+            this.textoComunicador.setTextFill(Color.web("#FF0000")); }
 
 
     }
