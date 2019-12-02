@@ -121,6 +121,8 @@ public class Partida {
         return tableroDePartida;
     }
 
+    public boolean seEncuentraEnFaseDeJuego(){ return ( !miFase.esFaseInicial() );}
+
 
 }
 

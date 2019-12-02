@@ -3,12 +3,16 @@ package controlador.buttonHandlers;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import modelo.Juego;
 import modelo.jugador.EjercitoIncompletoException;
 import vista.CamposDeTexto;
+import vista.EtiquetaFase;
 import vista.faseInicial.EtiquetaPuntosJugador;
 import vista.faseInicial.EtiquetaTurnoJugador;
+import vista.faseJuego.VistaFaseJuego;
 
 public class BotonSiguienteTurnoEventHandler implements EventHandler<ActionEvent> {
 
@@ -16,12 +20,16 @@ public class BotonSiguienteTurnoEventHandler implements EventHandler<ActionEvent
     private Juego juego;
     private Label comunicadoTexto;
     private EtiquetaPuntosJugador etiquetaPuntosJugador;
+    private VBox vbox;
+    private HBox hbox;
 
-    public BotonSiguienteTurnoEventHandler(EtiquetaTurnoJugador etiquetaTurnoJugador, EtiquetaPuntosJugador etiquetaPuntosJugador, Juego juego, CamposDeTexto camposDeTexto){
+    public BotonSiguienteTurnoEventHandler(EtiquetaTurnoJugador etiquetaTurnoJugador, EtiquetaPuntosJugador etiquetaPuntosJugador, Juego juego, CamposDeTexto camposDeTexto, VBox vbox, HBox hbox){
         this.etiquetaTurnoJugador = etiquetaTurnoJugador;
         this.juego = juego;
         this.comunicadoTexto = camposDeTexto.etiquetaUno;
         this.etiquetaPuntosJugador = etiquetaPuntosJugador;
+        this.vbox = vbox;
+        this.hbox = hbox;
     }
 
 
@@ -32,6 +40,10 @@ public class BotonSiguienteTurnoEventHandler implements EventHandler<ActionEvent
             etiquetaPuntosJugador.actualizarEtiqueta();
             comunicadoTexto.setText("Nuevo Turno iniciado");
             comunicadoTexto.setTextFill(Color.web("#336600"));
+            if (juego.seEncuentraEnFaseDeJuego()){
+                vbox.getChildren().clear();
+                VistaFaseJuego faseJuego= new VistaFaseJuego(juego, hbox);
+            }
         }
         catch (EjercitoIncompletoException e){
             comunicadoTexto.setText("Tus tropas deben estar completas");
