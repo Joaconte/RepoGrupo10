@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import modelo.pieza.Ubicacion;
 import vista.CamposDeTexto;
 import vista.VistaDeTablero;
 
@@ -12,18 +13,18 @@ import vista.VistaDeTablero;
 public class  BotonMoverArribaEventHandler implements EventHandler<ActionEvent> {
 
     private Rectangle rectangulo;
-    private CamposDeTexto camposDeTexto;
+    private Ubicacion ubicacion;
 
-    public BotonMoverArribaEventHandler(VistaDeTablero vistaDeTablero, CamposDeTexto camposDeTexto) {
+    public BotonMoverArribaEventHandler(VistaDeTablero vistaDeTablero, Ubicacion ubicacion) {
         this.rectangulo = vistaDeTablero.getCirculo();
-        this.camposDeTexto = camposDeTexto;
+        this.ubicacion = ubicacion;
     }
 
     @Override
     public void handle(ActionEvent event) {
         if (GridPane.getRowIndex(rectangulo)>0)GridPane.setRowIndex(rectangulo,GridPane.getRowIndex(rectangulo)-1);
-        camposDeTexto.textoUno.setText(GridPane.getColumnIndex(rectangulo).toString());
-        camposDeTexto.textoDos.setText(GridPane.getRowIndex(rectangulo).toString());
+        ubicacion.setPosicionEnX(GridPane.getColumnIndex(rectangulo));
+        ubicacion.setPosicionEnY(GridPane.getRowIndex(rectangulo));
     }
 }
 

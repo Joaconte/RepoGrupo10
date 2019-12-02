@@ -4,33 +4,30 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import modelo.jugador.PiezaFueraDeSectorException;
 import modelo.jugador.UbicacionInvalidaException;
 import modelo.jugador.presupuesto.CompraInvalidaException;
 import modelo.jugador.presupuesto.PresupuestoAgotadoException;
 import modelo.pieza.Pieza;
+import modelo.pieza.Ubicacion;
 import vista.CamposDeTexto;
 import vista.VistaDeTablero;
 import vista.VistaDeUnidad;
-import vista.faseInicial.EtiquetaPuntosJugador;
-import vista.faseInicial.EtiquetaTurnoJugador;
+import vista.fases.faseInicial.EtiquetaPuntosJugador;
 
 public abstract class BotonAgregarPiezaEventHandler implements EventHandler<ActionEvent> {
 
-    private TextField textFieldUno;
-    private TextField textFieldDos;
+    private Ubicacion ubicacion;
     private Label comunicadoTexto;
     private VistaDeTablero vistaDeTablero;
     private EtiquetaPuntosJugador etiquetaPuntos;
     private String nombre;
 
-    public BotonAgregarPiezaEventHandler(CamposDeTexto camposDeTexto, VistaDeTablero vistaDeTablero, EtiquetaPuntosJugador etiquetaPuntos, String nombre) {
+    public BotonAgregarPiezaEventHandler(Label etiquetaAlertas, Ubicacion ubicacion, VistaDeTablero vistaDeTablero, EtiquetaPuntosJugador etiquetaPuntos, String nombre) {
 
-        textFieldUno = camposDeTexto.textoUno;
-        textFieldDos = camposDeTexto.textoDos;
-        comunicadoTexto = camposDeTexto.etiquetaUno;
+        this.ubicacion = ubicacion;
+        comunicadoTexto = etiquetaAlertas;
         this.vistaDeTablero = vistaDeTablero;
         this.etiquetaPuntos= etiquetaPuntos;
         this.nombre = nombre;
@@ -40,11 +37,7 @@ public abstract class BotonAgregarPiezaEventHandler implements EventHandler<Acti
     public void handle(ActionEvent actionEvent) {
 
         try {
-            String sX = this.textFieldUno.getText();
-            String sY = this.textFieldDos.getText();
-            int x = Integer.parseInt(sX);
-            int y = Integer.parseInt(sY);
-            crearPiezaYAgregarATablero(x, y, vistaDeTablero);
+            crearPiezaYAgregarATablero(ubicacion.getPosicionEnX(), ubicacion.getPosicionEnY(), vistaDeTablero);
             etiquetaPuntos.actualizarEtiqueta();
         }
         catch (NumberFormatException e){

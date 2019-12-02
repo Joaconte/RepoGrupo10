@@ -1,14 +1,16 @@
 package controlador.buttonHandlers.agregarPiezasEventHandlers;
 
-import vista.CamposDeTexto;
+import javafx.scene.control.Label;
+import modelo.pieza.Ubicacion;
 import vista.VistaDeTablero;
-import vista.faseInicial.EtiquetaPuntosJugador;
+import vista.fases.faseInicial.EtiquetaPuntosJugador;
+
 
 public class BotonAgregarInfanteriaEventHandler extends BotonAgregarPiezaEventHandler{
 
-    public BotonAgregarInfanteriaEventHandler(CamposDeTexto campoDeTexto, VistaDeTablero vistaDeTablero, EtiquetaPuntosJugador etiquetaPuntos) {
+    public BotonAgregarInfanteriaEventHandler(Label etiquetaAlertas, Ubicacion ubicacion, VistaDeTablero vistaDeTablero, EtiquetaPuntosJugador etiquetaPuntos) {
 
-        super(campoDeTexto, vistaDeTablero, etiquetaPuntos, "Infanteria");
+        super(etiquetaAlertas, ubicacion, vistaDeTablero, etiquetaPuntos, "Infanteria");
 
     }
 

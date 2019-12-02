@@ -10,9 +10,9 @@ import modelo.Juego;
 import modelo.jugador.EjercitoIncompletoException;
 import vista.CamposDeTexto;
 import vista.VistaDeTablero;
-import vista.faseInicial.EtiquetaPuntosJugador;
-import vista.faseInicial.EtiquetaTurnoJugador;
-import vista.faseJuego.VistaFaseJuego;
+import vista.fases.faseInicial.EtiquetaPuntosJugador;
+import vista.fases.faseInicial.EtiquetaTurnoJugador;
+import vista.fases.faseJuego.VistaFaseJuego;
 
 public class BotonSiguienteTurnoEventHandler implements EventHandler<ActionEvent> {
 
@@ -24,10 +24,10 @@ public class BotonSiguienteTurnoEventHandler implements EventHandler<ActionEvent
     private HBox hbox;
     private VistaDeTablero vistaDeTablero;
 
-    public BotonSiguienteTurnoEventHandler(EtiquetaTurnoJugador etiquetaTurnoJugador, EtiquetaPuntosJugador etiquetaPuntosJugador, Juego juego, CamposDeTexto camposDeTexto, VBox vbox, HBox hbox, VistaDeTablero vistaDeTablero){
+    public BotonSiguienteTurnoEventHandler(EtiquetaTurnoJugador etiquetaTurnoJugador, EtiquetaPuntosJugador etiquetaPuntosJugador, Juego juego, Label etiquetaAlertas, VBox vbox, HBox hbox, VistaDeTablero vistaDeTablero){
         this.etiquetaTurnoJugador = etiquetaTurnoJugador;
         this.juego = juego;
-        this.comunicadoTexto = camposDeTexto.etiquetaUno;
+        this.comunicadoTexto = etiquetaAlertas;
         this.etiquetaPuntosJugador = etiquetaPuntosJugador;
         this.vbox = vbox;
         this.hbox = hbox;

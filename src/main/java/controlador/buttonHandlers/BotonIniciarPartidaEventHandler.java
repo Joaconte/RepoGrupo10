@@ -6,7 +6,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import modelo.Juego;
 import vista.VistaDeTablero;
-import vista.faseInicial.VistaFaseInicial;
+import vista.fases.faseInicial.VistaFaseInicial;
 
 public class BotonIniciarPartidaEventHandler implements EventHandler<ActionEvent> {
 

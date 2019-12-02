@@ -1,4 +1,4 @@
-package vista.faseInicial.informacionPiezas;
+package vista.fases.faseInicial.informacionPiezas;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;

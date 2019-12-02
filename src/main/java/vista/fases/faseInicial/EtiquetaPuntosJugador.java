@@ -1,4 +1,4 @@
-package vista.faseInicial;
+package vista.fases.faseInicial;
 
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;

@@ -60,7 +60,6 @@ public class VistaDeTablero extends Group {
         GridPane.setRowIndex(unidad, x);
         GridPane.setColumnIndex(unidad, y);
         contenedorTabla.getChildren().add(unidad);
-        //addViewOnMap(unidad, x, y);
         casillaTabla[x][y].getChildren().add(0, unidad);
 
     }

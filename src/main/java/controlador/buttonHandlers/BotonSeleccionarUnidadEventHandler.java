@@ -7,35 +7,28 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import modelo.Juego;
 import modelo.pieza.Pieza;
+import modelo.pieza.Ubicacion;
 import modelo.tablero.casilla.NoHayUnidadEnPosicionException;
 import vista.CamposDeTexto;
 
 public class BotonSeleccionarUnidadEventHandler implements EventHandler<ActionEvent> {
 
-    private TextField textFieldUno;
-    private TextField textFieldDos;
+    private Ubicacion ubicacion;
     private Label comunicadoTexto;
     private Juego juego;
 
-    public BotonSeleccionarUnidadEventHandler(CamposDeTexto camposDeTexto, Juego juego){
+    public BotonSeleccionarUnidadEventHandler(Ubicacion ubicacion, Juego juego, Label etiquetaAlertas){
 
-        textFieldUno = camposDeTexto.textoUno;
-        textFieldDos = camposDeTexto.textoDos;
-        comunicadoTexto = camposDeTexto.etiquetaUno;
+        this.ubicacion = ubicacion;
+        comunicadoTexto = etiquetaAlertas;
         this.juego = juego;
-
     }
 
     @Override
     public void handle(ActionEvent event){
 
-        String sX = this.textFieldUno.getText();
-        String sY = this.textFieldDos.getText();
-        int x = Integer.parseInt(sX);
-        int y = Integer.parseInt(sY);
-
         try {
-            Pieza unidad = juego.getUnidad(x, y);
+            Pieza unidad = juego.getUnidad(ubicacion.getPosicionEnX(), ubicacion.getPosicionEnY());
             String vida = Double.toString(unidad.getPuntosVida());
             this.comunicadoTexto.setText("Tiene "+ vida + " puntos de vida" );
             this.comunicadoTexto.setTextFill(Color.web("#000000"));
