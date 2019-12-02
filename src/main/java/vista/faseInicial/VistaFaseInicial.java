@@ -6,11 +6,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import modelo.Juego;
 import vista.CamposDeTexto;
-import vista.faseInicial.botonesAgregarPiezas.ContenedorBotonesAgregarPieza;
 import vista.VistaDeTablero;
 import vista.faseInicial.botonesAgregarPiezas.ContenedorElegirPieza;
 import vista.faseInicial.botonesMoverEnTablero.*;
-
 
 public class VistaFaseInicial {
 
@@ -35,7 +33,7 @@ public class VistaFaseInicial {
         panelDeControl.setAlignment(Pos.BOTTOM_CENTER);
 
         // No reconoce el paquete controlador (Para mover con wasd)
-        // contenedorVertical.setOnKeyPressed(new MainControlador(vistaDeTablero,  camposDeTexto));
+        //contenedorVertical.setOnKeyPressed(new MainControlador(vistaDeTablero,  camposDeTexto));
 
         panelDeControl.add(new BotonMoverArriba(vistaDeTablero, camposDeTexto),1,0);
         panelDeControl.add(new BotonMoverAbajo(vistaDeTablero, camposDeTexto),1,3);

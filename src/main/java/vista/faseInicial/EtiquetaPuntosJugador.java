@@ -15,7 +15,7 @@ public class EtiquetaPuntosJugador {
         etiqueta = new Label();
         this.juego = juego;
         etiqueta.setFont(new Font( "Arial", 25));
-        etiqueta.setTextFill(Color.web("FFB900"));
+        etiqueta.setTextFill(Color.web("FF0043"));
         actualizarEtiqueta();
     }
 

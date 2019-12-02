@@ -23,9 +23,9 @@ public class Main extends Application {
 
         ScrollPane panelConBarrasDeMovimiento = new ScrollPane();
         panelConBarrasDeMovimiento.setContent(contenedorVertical);
-        panelConBarrasDeMovimiento.setPrefSize(1200,950);
+        panelConBarrasDeMovimiento.setPrefSize(1500,950);
 
-        Scene escenaDeJuego = new Scene(panelConBarrasDeMovimiento, 1200, 950);
+        Scene escenaDeJuego = new Scene(panelConBarrasDeMovimiento, 1500, 950);
         escenarioPrincipal.setScene(escenaDeJuego);
         escenarioPrincipal.show();
 
