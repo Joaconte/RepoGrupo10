@@ -57,7 +57,7 @@ public class VistaDeTablero extends Group {
 
     public void agregarUnidad(Node unidad, int x, int y){
 
-        contenedorTabla.add(unidad, x, y);
+        contenedorTabla.add(unidad, x, y);git fetch origin
         casillaTabla[x][y].getChildren().add(unidad);
     }
 
