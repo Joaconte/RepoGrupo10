@@ -6,24 +6,26 @@ import javafx.scene.Node;
 import javafx.scene.effect.Effect;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import vista.vistaPiezas.VistaUnidad;
 
 public class ClickEnPiezaEventHandler implements EventHandler<MouseEvent> {
 
-    private Node unidad;
-    private VBox vistaPiezaClikeada;
-    private VBox piezaClikeada;
+    private VistaUnidad vistaPiezaClikeada;
+    private VistaUnidad piezaClikeada;
 
-    public ClickEnPiezaEventHandler(Node unidadImagen, VBox vistaPiezaClikeada, VBox piezaClikeada) {
-        this.unidad=unidadImagen;
+    public ClickEnPiezaEventHandler( VistaUnidad vistaPiezaClikeada, VistaUnidad piezaClikeada) {
         this.vistaPiezaClikeada = vistaPiezaClikeada;
         this.piezaClikeada = piezaClikeada;
+        ;
     }
 
     @Override
     public void handle(MouseEvent mouseEvent) {
-        vistaPiezaClikeada.getChildren().clear();
-        piezaClikeada.setAlignment(Pos.CENTER);
-        vistaPiezaClikeada.getChildren().add(piezaClikeada);
+
+        vistaPiezaClikeada.getVistaInformacion().getChildren().clear();
+        vistaPiezaClikeada.getVistaInformacion().getChildren().add(piezaClikeada.getVistaInformacion());
         vistaPiezaClikeada.setAlignment(Pos.CENTER);
+        vistaPiezaClikeada.setPieza(piezaClikeada.getPieza());
+
     }
 }

@@ -12,7 +12,6 @@ import modelo.pieza.Pieza;
 import modelo.pieza.Ubicacion;
 import vista.VistaDeTablero;
 import vista.fasesPartida.faseInicialPartida.EtiquetaPresupuestoJugador;
-import vista.vistaPiezas.VistaDeUnidad;
 
 public abstract class BotonAgregarPiezaEventHandler implements EventHandler<ActionEvent> {
 

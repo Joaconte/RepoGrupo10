@@ -11,6 +11,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import modelo.pieza.Ubicacion;
 import modelo.tablero.Tablero;
+import vista.vistaPiezas.VistaUnidad;
 
 
 public class VistaDeTablero extends Group {
@@ -24,13 +25,13 @@ public class VistaDeTablero extends Group {
     private GridPane contenedorTabla;
     private Pane[][] casillaTabla;
     private Ubicacion ubicacionDelCursor;
-    private VBox vistaPiezaClikeada;
+    private VistaUnidad vistaUnidad;
 
     public VistaDeTablero(Tablero tablero){
 
         this.tablero = tablero;
         this.ubicacionDelCursor =new Ubicacion(9,9);
-        this.vistaPiezaClikeada=new VBox();
+        this.vistaUnidad=new VistaUnidad();
         contenedorTabla = new GridPane();
         anchura = anchuraCelda * tablero.getColumnas();
         altura = alturaCelda * tablero.getFilas();
@@ -58,19 +59,16 @@ public class VistaDeTablero extends Group {
         this.getChildren().add(contenedorTabla);
     }
 
-    public Rectangle getRectanguloDeMovimiento(){
-        return rectanguloDeMovimiento;
-    }
     public Ubicacion getUbicacionDelCursor(){return ubicacionDelCursor;}
-    public VBox getVistaDePiezaClikeada(){return vistaPiezaClikeada;}
+    public VistaUnidad getVistaDePiezaClikeada(){return vistaUnidad;}
 
-    public void agregarUnidad(Node unidadImagen, VBox piezaClikeada,  int x, int y){
-        GridPane.setRowIndex(unidadImagen, x);
-        GridPane.setColumnIndex(unidadImagen, y);
-        contenedorTabla.getChildren().add(unidadImagen);
+    public void agregarUnidad( VistaUnidad vistaUnidadNueva,  int x, int y){
+        GridPane.setRowIndex(vistaUnidadNueva, x);
+        GridPane.setColumnIndex(vistaUnidadNueva, y);
+        contenedorTabla.getChildren().add(vistaUnidadNueva);
         //addViewOnMap(unidad, x, y);
-        casillaTabla[x][y].getChildren().add(0, unidadImagen);
-        unidadImagen.setOnMouseClicked(new ClickEnPiezaEventHandler(unidadImagen,vistaPiezaClikeada,piezaClikeada));
+        casillaTabla[x][y].getChildren().add(0, vistaUnidadNueva);
+        vistaUnidadNueva.setOnMouseClicked(new ClickEnPiezaEventHandler(vistaUnidad,vistaUnidadNueva));
     }
 
     public void addViewOnMap(Node view, int x, int y) {
