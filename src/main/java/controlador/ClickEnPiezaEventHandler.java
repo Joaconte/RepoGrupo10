@@ -22,6 +22,7 @@ public class ClickEnPiezaEventHandler implements EventHandler<MouseEvent> {
 
         vistaPiezaClikeada.setVistaUnidadCompleta(piezaClikeada.getVistaUnidadCompleta());
         vistaPiezaClikeada.setInformacionUnidad();
+        vistaPiezaClikeada = piezaClikeada;
 
     }
 }

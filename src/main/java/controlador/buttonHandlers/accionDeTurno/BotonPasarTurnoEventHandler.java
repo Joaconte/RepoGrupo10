@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import modelo.Juego;
 import modelo.jugador.EjercitoIncompletoException;
+import resources.sonidos.Audio;
 import vista.VistaDeTablero;
 import vista.fasesPartida.faseMediaPartida.BarraDeJugador;
 import vista.fasesPartida.faseMediaPartida.botonesFaseMedia.PanelBotonesFaseMedia;

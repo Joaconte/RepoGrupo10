@@ -6,6 +6,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import modelo.pieza.Pieza;
+import modelo.pieza.Ubicacion;
 
 
 public class VistaInformacionDeUnidad extends VBox {
@@ -51,6 +52,7 @@ public class VistaInformacionDeUnidad extends VBox {
     }
 
     public ImageView getAvatar(){ return avatar;}
+
 
 
 }

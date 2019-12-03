@@ -38,9 +38,11 @@ public abstract class BotonAgregarPiezaEventHandler implements EventHandler<Acti
             int y = ubicacion.getPosicionEnY();
             crearPiezaYAgregarATablero(x, y, vistaDeTablero);
             etiquetaPuntos.actualizarEtiqueta();
+
         } catch (NumberFormatException e) {
             this.textoComunicador.setText("Debe ingresar numeros");
             this.textoComunicador.setTextFill(Color.web("#FF0000"));
+            Audio.reproducirAlerta();
         }
 
     }
@@ -50,7 +52,9 @@ public abstract class BotonAgregarPiezaEventHandler implements EventHandler<Acti
             agregarPiezaATablero( etiquetaPuntos.juego.crearPieza(nombre, x, y));
             this.textoComunicador.setText("Tropa agregada con exito");
             this.textoComunicador.setTextFill(Color.web("#336600"));
-            //Audio.reproducirCreacionUnidad(nombre);
+
+            Audio.reproducirCreacionUnidad(nombre.toLowerCase());
+
         }
         catch ( PiezaFueraDeSectorException e){
             this.textoComunicador.setText("Ubica la pieza en tu sector.");

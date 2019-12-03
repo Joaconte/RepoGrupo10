@@ -11,7 +11,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import modelo.pieza.Ubicacion;
 import modelo.tablero.Tablero;
-import vista.vistaPiezas.VistaUnidad;
+
 import vista.vistaPiezas.VistaUnidadParaTablero;
 
 
@@ -26,7 +26,9 @@ public class VistaDeTablero extends Group {
     private GridPane contenedorTabla;
     private Pane[][] casillaTabla;
     private Ubicacion ubicacionDelCursor;
+
     private VistaUnidadParaTablero vistaUnidadClikeada;
+
 
     public VistaDeTablero(Tablero tablero){
 
@@ -69,26 +71,16 @@ public class VistaDeTablero extends Group {
         contenedorTabla.getChildren().add(etiquetaUnidad);
         //addViewOnMap(unidad, x, y);
         casillaTabla[x][y].getChildren().add(0, etiquetaUnidad);
-        etiquetaUnidad.setOnMouseClicked(new ClickEnPiezaEventHandler(vistaUnidadClikeada, etiquetaUnidad));
+        etiquetaUnidad.setOnMouseClicked(new ClickEnPiezaEventHandler(vistaUnidadClikeada, etiquetaUnidad)); //Lo Mejor va a ser modelar un evento como atributo de esta clase. Nos ahorra todo.
+
     }
 
-    public void addViewOnMap(Node view, int x, int y) {
-        for (int i = 0; i < anchura; i++) {
-            for (int j = 0; j < altura; j++) {
-                try {
-                    casillaTabla[i][j].getChildren().remove(view);
-                } catch (Exception e) {
-                    //TODO: handle exception
-                }
-            }
-        }
-        casillaTabla[x][y].getChildren().add(0, view);
+    public void moverUnidad(){
+        GridPane.setRowIndex(vistaUnidadClikeada,GridPane.getRowIndex(rectanguloDeMovimiento));
+        GridPane.setColumnIndex(vistaUnidadClikeada,GridPane.getColumnIndex(rectanguloDeMovimiento));
+        //no funciona. Debe ser porque vistaUnidadEsUnaCopiaDelQueTieneElEvento.
     }
 
-    public void updateView(Node view) {
-        getChildren().remove(view);
-        getChildren().add(view);
-    }
 
     public Tablero getTablero(){ return tablero;}
 

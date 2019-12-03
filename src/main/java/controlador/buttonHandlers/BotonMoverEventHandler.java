@@ -1,4 +1,4 @@
-package controlador.buttonHandlers.fase.faseJuego;
+package controlador.buttonHandlers;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -15,16 +15,14 @@ import vista.VistaDeTablero;
 
 public class BotonMoverEventHandler implements EventHandler<ActionEvent> {
 
-    private Ubicacion ubicacionInicial;
-    private Ubicacion ubicacionFinal;
+    private Ubicacion ubicacion;
     private Label comunicadoTexto;
     private Juego juego;
     private VistaDeTablero vistaDeTablero;
 
-    public BotonMoverEventHandler(Ubicacion ubicacionInicial, Ubicacion ubicacionFinal, Juego juego, Label etiquetaAlerta, VistaDeTablero vistaDeTablero) {
+    public BotonMoverEventHandler(Ubicacion ubicacion, Juego juego, Label etiquetaAlerta, VistaDeTablero vistaDeTablero) {
 
-        this.ubicacionInicial = ubicacionInicial;
-        this.ubicacionFinal = ubicacionFinal;
+        this.ubicacion = ubicacion;
         comunicadoTexto = etiquetaAlerta;
         this.juego = juego;
         this.vistaDeTablero = vistaDeTablero;
@@ -34,13 +32,13 @@ public class BotonMoverEventHandler implements EventHandler<ActionEvent> {
     public void handle(ActionEvent event) {
 
         try {
-            juego.moverUnidad(ubicacionInicial, ubicacionFinal);
 
-            //ACTUALIZACION VISUAL
-            //vistaDeTablero.moverUnidad(ubicacionInicial.getPosicionEnX(), ubicacionInicial.getPosicionEnY(),
-            //        ubicacionFinal.getPosicionEnX(), ubicacionFinal.getPosicionEnY());
+            vistaDeTablero.moverUnidad( );
+            juego.moverUnidad(ubicacion, vistaDeTablero.getUbicacionDelCursor());
 
-            this.comunicadoTexto.setText("Moviste la unidad correctamente" );
+            //vistaDeTablero.moverUnidad();
+
+            this.comunicadoTexto.setText("Moviste la unidad correctamente");
             this.comunicadoTexto.setTextFill(Color.web("#000000"));
 
         } catch (PiezaNoEsDeJugadorException | DesplazamientoInvalidoException | NoSePuedeMoverException | NoHayUnidadEnPosicionException e) {
