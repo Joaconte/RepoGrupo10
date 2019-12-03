@@ -1,6 +1,5 @@
 package vista.vistaPiezas;
 
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -16,8 +15,9 @@ public class VistaDeUnidad extends VBox {
     protected VistaDeTablero vistaDeTablero;
     public ImageView imagenDeUnidad;
     private Pieza unidad;
-    private Ubicacion ubicacion;
+    public Ubicacion ubicacion;
 
+    public VistaDeUnidad(){}
 
     public VistaDeUnidad(String nombre, Pieza unidadAUbicar, VistaDeTablero vistaDeTablero){
         this.vistaDeTablero = vistaDeTablero;
@@ -32,6 +32,18 @@ public class VistaDeUnidad extends VBox {
 
     }
 
+    public Ubicacion getUbicacion() {
+        return ubicacion;
+    }
+
+    public ImageView getImagenDeUnidad(){
+        return imagenDeUnidad;
+    }
+
+    public void setUbicacion(Ubicacion ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+
     public void mostrarAtributos(Pieza pieza){
 
         String costo = Integer.toString(pieza.getCosto());
@@ -41,15 +53,13 @@ public class VistaDeUnidad extends VBox {
         }
 
 
-    protected void vistaParaTablero (String nombreClase){
+    public void vistaParaTablero (String nombreClase){
 
         imagenDeUnidad = new ImageView();
         imagenDeUnidad.setScaleX(escalaDeUnidad);
         imagenDeUnidad.setScaleY(escalaDeUnidad);
         imagenDeUnidad.setFitHeight(45);
         imagenDeUnidad.setFitWidth(45);
-        if (unidad.getEquipo()==1) imagenDeUnidad.setOpacity(0.7);
-        else imagenDeUnidad.setOpacity(0.3);
 
         String equipo = String.valueOf(unidad.getEquipo());
         imagenDeUnidad.setImage(new Image( "resources/texturas/" + nombreClase + equipo +".png"));

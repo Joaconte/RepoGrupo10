@@ -4,6 +4,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import modelo.Juego;
+import modelo.pieza.Ubicacion;
 import vista.VistaDeTablero;
 import vista.fasesPartida.faseMediaPartida.BarraDeJugador;
 
@@ -15,21 +16,25 @@ public class PanelBotonesFaseMedia extends HBox {
     private BotonCurar botonCurar;
     private BotonMover botonMover;
     private BotonPasarTurno botonPasarTurno;
+    private Ubicacion ubicacionEstatica;
+    private Ubicacion ubicacionVariable;
 
     public PanelBotonesFaseMedia(BarraDeJugador barraDeJugador1, BarraDeJugador barraDeJugador2, Juego juego, Label comunicador, VistaDeTablero vistaDeTablero){
         this.setSpacing(3);
         this.setAlignment(Pos.CENTER);
 
+        this.ubicacionEstatica = vistaDeTablero.getUbicacionDelCursor();
+
         this.botonAtacar = new BotonAtacar(this, barraDeJugador1,barraDeJugador2);
         this.botonCurar = new BotonCurar(this, barraDeJugador1,barraDeJugador2);
         this.botonCrearBatallon = new BotonCrearBatallon(this, barraDeJugador1,barraDeJugador2);
-        //this.botonMover = new BotonMover(ubicacionInicial, ubicacionFinal, juego, comunicador, vistaDeTablero);
+        this.botonMover = new BotonMover(ubicacionEstatica, juego, comunicador, vistaDeTablero);
         this.botonPasarTurno = new BotonPasarTurno(this, juego,comunicador,barraDeJugador1,barraDeJugador2,vistaDeTablero);
 
-        this.getChildren().add(botonAtacar);
+        this.getChildren().addAll(botonAtacar);
         this.getChildren().add(botonCrearBatallon);
         this.getChildren().add(botonCurar);
-        //this.getChildren().add(botonMover);
+        this.getChildren().add(botonMover);
         this.getChildren().add(botonPasarTurno);
 
     }
@@ -43,7 +48,7 @@ public class PanelBotonesFaseMedia extends HBox {
     }
 
     public void modificarBloqueoDeBotonMover(Boolean estado){
-       // botonMover.setDisable(estado);
+       botonMover.setDisable(estado);
     }
 
 }

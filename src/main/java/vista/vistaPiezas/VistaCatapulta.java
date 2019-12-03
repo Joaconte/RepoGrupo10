@@ -18,8 +18,6 @@ public class VistaCatapulta extends VistaDeUnidad {
         this.getChildren().add(new Label("Fila " +  catapulta.getUbicacion().getPosicionEnY() ));
         this.getChildren().add((new Label("Vida restante: " +  catapulta.getPuntosVida())));
 
-        //unidad.addObserver( this );
-        //draw();
     }
 
     public void vistaParaTablero(String nombreClase){

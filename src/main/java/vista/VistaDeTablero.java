@@ -5,12 +5,16 @@ import controlador.ClickEnPiezaEventHandler;
 import controlador.ClickEnZonaEventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import modelo.Juego;
 import modelo.pieza.Ubicacion;
 import modelo.tablero.Tablero;
+import vista.vistaPiezas.VistaDeUnidad;
 
 
 public class VistaDeTablero extends Group {
@@ -24,13 +28,13 @@ public class VistaDeTablero extends Group {
     private GridPane contenedorTabla;
     private Pane[][] casillaTabla;
     private Ubicacion ubicacionDelCursor;
-    private VBox vistaPiezaClikeada;
+    private VistaDeUnidad vistaPiezaClikeada;
 
     public VistaDeTablero(Tablero tablero){
 
         this.tablero = tablero;
         this.ubicacionDelCursor =new Ubicacion(9,9);
-        this.vistaPiezaClikeada=new VBox();
+        this.vistaPiezaClikeada = new VistaDeUnidad();
         contenedorTabla = new GridPane();
         anchura = anchuraCelda * tablero.getColumnas();
         altura = alturaCelda * tablero.getFilas();
@@ -64,32 +68,23 @@ public class VistaDeTablero extends Group {
     public Ubicacion getUbicacionDelCursor(){return ubicacionDelCursor;}
     public VBox getVistaDePiezaClikeada(){return vistaPiezaClikeada;}
 
-    public void agregarUnidad(Node unidadImagen, VBox piezaClikeada,  int x, int y){
+    public void agregarUnidad(Node unidadImagen, VistaDeUnidad piezaClikeada,  int x, int y){
+
         GridPane.setRowIndex(unidadImagen, x);
         GridPane.setColumnIndex(unidadImagen, y);
         contenedorTabla.getChildren().add(unidadImagen);
-        //addViewOnMap(unidad, x, y);
         casillaTabla[x][y].getChildren().add(0, unidadImagen);
         unidadImagen.setOnMouseClicked(new ClickEnPiezaEventHandler(unidadImagen,vistaPiezaClikeada,piezaClikeada));
     }
 
-    public void addViewOnMap(Node view, int x, int y) {
-        for (int i = 0; i < anchura; i++) {
-            for (int j = 0; j < altura; j++) {
-                try {
-                    casillaTabla[i][j].getChildren().remove(view);
-                } catch (Exception e) {
-                    //TODO: handle exception
-                }
-            }
-        }
-        casillaTabla[x][y].getChildren().add(0, view);
+    public void moverUnidad(Ubicacion ubicacionInicial){
+
+        Node unidadImagen = vistaPiezaClikeada.getImagenDeUnidad();
+        vistaPiezaClikeada.setUbicacion(ubicacionDelCursor);
+        agregarUnidad(unidadImagen, vistaPiezaClikeada, ubicacionDelCursor.getPosicionEnX(), ubicacionDelCursor.getPosicionEnY());
+
     }
 
-    public void updateView(Node view) {
-        getChildren().remove(view);
-        getChildren().add(view);
-    }
 
     public Tablero getTablero(){ return tablero;}
 

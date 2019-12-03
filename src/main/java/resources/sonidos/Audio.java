@@ -11,7 +11,9 @@ public class Audio {
     private static String rutaSonido = "src/main/java/resources/sonidos/";
 
     public static void reproducirIntro() {
+
         reproducir(rutaSonido+"intro.wav");
+        mediaPlayer.setVolume(0.08);
     }
 
     public static void reproducirAlerta() {
@@ -25,6 +27,7 @@ public class Audio {
     public static void reproducirJugando() {
         mediaPlayer.pause();
         reproducir(rutaSonido+"jugando.wav");
+        mediaPlayer.setVolume(0.08);
     }
 
     public static void reproducirVictoria() {
