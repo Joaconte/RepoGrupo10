@@ -50,8 +50,6 @@ public class Partida {
 
     public int getPuntosJugadorEnTurno(){ return jugadorEnTurno.getPuntos();}
 
-    public Pieza getUnidad(int x, int y) throws NoHayUnidadEnPosicionException {return tableroDePartida.getUnidad(x,y);}
-
 
     //-----------SETTERS-----------//
 
@@ -66,7 +64,7 @@ public class Partida {
     //---------------Acciones de Turno------------//
 
 
-    public void atacarPieza(PiezaAtacante atacante, Pieza atacada) throws JugadorNoPuedeException, PiezaAliadaNoAtacableException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, NoHayUnidadEnPosicionException {
+    public void atacarPieza(PiezaAtacante atacante, Pieza atacada) throws JugadorNoPuedeException, PiezaAliadaNoAtacableException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException {
         validarJugadorTurno(atacante);
         miFase.atacar(atacante, atacada, tableroDePartida);
     }
@@ -75,7 +73,7 @@ public class Partida {
         return miFase.crearPieza(jugadorEnTurno,tableroDePartida,nombreDeUnidad,posicionEnX,posicionEnY);
     }
 
-    public void moverUnidad(Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) throws PiezaNoEsDeJugadorException, NoHayUnidadEnPosicionException, DesplazamientoInvalidoException, NoSePuedeMoverException{
+    public void moverUnidad(Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) throws PiezaNoEsDeJugadorException, NoHayUnidadEnPosicionException, DesplazamientoInvalidoException, NoSePuedeMoverException {
 
         try {
             jugadorEnTurno.moverUnidad(ubicacionInicial, ubicacionFinal);
@@ -133,8 +131,6 @@ public class Partida {
     public Tablero getTableroDePartida() {
         return tableroDePartida;
     }
-
-    public boolean seEncuentraEnFaseDeJuego(){ return ( !miFase.esFaseInicial() );}
 
 
 }

@@ -5,7 +5,6 @@ import modelo.pieza.UnidadEstaMuertaException;
 import modelo.pieza.movimiento.IModoMovimiento;
 import modelo.pieza.sanacion.IModoSanacion;
 import modelo.tablero.Tablero;
-import modelo.tablero.casilla.NoHayUnidadEnPosicionException;
 
 public abstract class PiezaAtacante extends Pieza {
     private int danioCuerpoCuerpo;
@@ -33,7 +32,7 @@ public abstract class PiezaAtacante extends Pieza {
         return danioMedio;
     }
 
-    public void atacar(Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException, NoHayUnidadEnPosicionException {
+    public void atacar(Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException{
         if(!this.esEnemigo(atacada)){ throw new PiezaAliadaNoAtacableException();}
         modoAtaque.atacar(this, atacada);
     };

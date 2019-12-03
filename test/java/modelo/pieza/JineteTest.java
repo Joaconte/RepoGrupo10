@@ -3,7 +3,6 @@ package modelo.pieza;
 import modelo.pieza.tipos.Catapulta;
 import modelo.pieza.tipos.Curandero;
 import modelo.pieza.tipos.Infanteria;
-import modelo.tablero.casilla.NoHayUnidadEnPosicionException;
 import org.junit.Test;
 import modelo.pieza.ataque.DistanciaDeAtaqueInvalidaException;
 import modelo.pieza.ataque.PiezaAliadaNoAtacableException;
@@ -35,7 +34,7 @@ public class JineteTest {
     }
 
     @Test
-    public void test03JineteAtacaADistanciaMediaMaximaAEnemigoYSaca15PuntosDeVida() throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException, NoHayUnidadEnPosicionException {
+    public void test03JineteAtacaADistanciaMediaMaximaAEnemigoYSaca15PuntosDeVida() throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
 
         Jinete jineteAtacante = new Jinete(1,1,1);  //----------Jinete atacante
         Jinete oponente = new Jinete(2,6,6);  //----------Enemigo atacado Media distancia
@@ -52,7 +51,7 @@ public class JineteTest {
     }
 
     @Test (expected = DistanciaDeAtaqueInvalidaException.class)
-    public void test04JineteNoAtacaAMediaDistanciaAEnemigoPorqueEstaAsediadoYNoTieneRefuerzos() throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException, NoHayUnidadEnPosicionException {
+    public void test04JineteNoAtacaAMediaDistanciaAEnemigoPorqueEstaAsediadoYNoTieneRefuerzos() throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
 
         Jinete jinete = new Jinete(1,1,1); //----------Jinete atacante
         Jinete oponente = new Jinete(2,4,4); //-----Blanco enemigo media distancia
@@ -69,7 +68,7 @@ public class JineteTest {
     }
 
     @Test (expected = DistanciaDeAtaqueInvalidaException.class)
-    public void test05JineteNoPuedeAtacarACortaDistanciaCuandoEstaCubiertoYAsediado() throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException, NoHayUnidadEnPosicionException {
+    public void test05JineteNoPuedeAtacarACortaDistanciaCuandoEstaCubiertoYAsediado() throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
 
         Jinete jinete = new Jinete(1,9,9); //----------Jinete atacante
         Jinete oponenteCercano = new Jinete(2,9,8); //----------Enemigo atacado que asedia
@@ -88,7 +87,7 @@ public class JineteTest {
     }
 
     @Test
-    public void test06JineteAtacaACortaDistanciaAEnemigoQueLoAsediaSinEstarCuebierto() throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException, NoHayUnidadEnPosicionException {
+    public void test06JineteAtacaACortaDistanciaAEnemigoQueLoAsediaSinEstarCuebierto() throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
 
         Jinete jinete = new Jinete(1,6,6); //----------Jinete atacante
         Jinete oponenteCercano = new Jinete(2,8,7); //------Enemigo atacado que asedia
@@ -107,7 +106,7 @@ public class JineteTest {
     }
 
     @Test(expected= DistanciaDeAtaqueInvalidaException.class)
-    public void test07JineteNoAtacaAEnemigoAMediaDistanciaPorqueUnidadDistintaAInfanteEsUnicoRefuerzoYEstaSiendoAsediado() throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException, NoHayUnidadEnPosicionException {
+    public void test07JineteNoAtacaAEnemigoAMediaDistanciaPorqueUnidadDistintaAInfanteEsUnicoRefuerzoYEstaSiendoAsediado() throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
 
         Jinete jinete = new Jinete(1,2,2); //----------Jinete atacante
         Jinete jineteAliado = new Jinete (1,2,1); //---- Aliado jinete cercano
@@ -125,18 +124,14 @@ public class JineteTest {
         lista.add(curanderoAliado);
         lista.add(catapultaAliada);
         lista.add(jineteAcosador);
-        try {
-            Mockito.when(tablero.getPiezasAdyacentesDentroDeRadio(jinete.getUbicacion(),2)).thenReturn(lista);
-        } catch (NoHayUnidadEnPosicionException e) {
-            e.printStackTrace();
-        }
+        Mockito.when(tablero.getPiezasAdyacentesDentroDeRadio(jinete.getUbicacion(),2)).thenReturn(lista);
 
         //----------Ataque ------------------
         jinete.atacar(jineteADistancia,tablero);
     }
 
     @Test
-    public void test08JineteAtacaEnDistanciaMediaSiendoAsediadoYConRefuerzoCorrecto() throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException, NoHayUnidadEnPosicionException {
+    public void test08JineteAtacaEnDistanciaMediaSiendoAsediadoYConRefuerzoCorrecto() throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
 
         Jinete jinete = new Jinete(1, 1, 1); //----------Jinete atacante
         Jinete jineteADistancia = new Jinete(2, 5,5 ); //---Enemigo atacado a media distancia
@@ -159,7 +154,7 @@ public class JineteTest {
     }
 
     @Test (expected = PiezaAliadaNoAtacableException.class)
-    public void test09JineteNoAtacaAliados() throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException, NoHayUnidadEnPosicionException {
+    public void test09JineteNoAtacaAliados() throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
 
         Jinete jinete = new Jinete(1, 1,1 ); //---Atacante
         Jinete aliado = new Jinete(1, 2,1 ); //---Atacado aliado

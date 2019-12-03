@@ -7,7 +7,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import modelo.tablero.casilla.NoHayUnidadEnPosicionException;
 import org.junit.Test;
 
 import org.mockito.Mockito;
@@ -55,7 +54,7 @@ public class TableroTest {
     }
 
     @Test
-    public void test06TableroEncuentra6PiezasAdyacenctesAPosicionDadaEIgnoraLasPosicionesANoAdyacentes() throws NoHayUnidadEnPosicionException {
+    public void test06TableroEncuentra6PiezasAdyacenctesAPosicionDadaEIgnoraLasPosicionesANoAdyacentes(){
 
         Tablero tablero = new Tablero();
 
@@ -84,7 +83,7 @@ public class TableroTest {
     }
 
     @Test
-    public void test07TableroEncuentra8PiezasAdyacentesQueFormanUnCuadradoYNoCuentaDeMas() throws NoHayUnidadEnPosicionException {
+    public void test07TableroEncuentra8PiezasAdyacentesQueFormanUnCuadradoYNoCuentaDeMas(){
         Tablero tablero = new Tablero();
 
         Jinete pieza = Mockito.mock(Jinete.class);
@@ -107,7 +106,7 @@ public class TableroTest {
     }
 
     @Test
-    public void test08TableroEncuentra2PiezasAdyacentesNoHayProblemaEnEsquinas() throws NoHayUnidadEnPosicionException {
+    public void test08TableroEncuentra2PiezasAdyacentesNoHayProblemaEnEsquinas(){
         Tablero tablero = new Tablero();
 
         Jinete pieza = Mockito.mock(Jinete.class);
@@ -159,7 +158,7 @@ public class TableroTest {
     }
 
     @Test
-    public void test11TableroNoHaceBucleInfinitoAlBuscarPiezasDeFormaRecursivaYEncuentra4() throws NoHayUnidadEnPosicionException {
+    public void test11TableroNoHaceBucleInfinitoAlBuscarPiezasDeFormaRecursivaYEncuentra4(){
 
         Tablero tablero = new Tablero();
 
@@ -199,7 +198,7 @@ public class TableroTest {
     }
 
     @Test
-    public void test12TableroBuscaPiezasDeFormaRecursivaYEncuentra8() throws NoHayUnidadEnPosicionException {
+    public void test12TableroBuscaPiezasDeFormaRecursivaYEncuentra8(){
 
         Tablero tablero = new Tablero();
 
@@ -268,7 +267,7 @@ public class TableroTest {
 
 
     @Test
-    public void test13BusquedaEnRangoDosSoloEncuentraLasFichasEnRangoDosCorrectamente() throws NoHayUnidadEnPosicionException {
+    public void test13BusquedaEnRangoDosSoloEncuentraLasFichasEnRangoDosCorrectamente(){
 
         Tablero tablero = new Tablero();
 

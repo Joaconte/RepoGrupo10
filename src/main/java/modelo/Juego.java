@@ -38,12 +38,19 @@ public class Juego {
         return partida.crearPieza(nombre, posX, posY);
     }
 
+    public void cambiarTurno() throws EjercitoIncompletoException { partida.pasarTurno();}
+
+    public boolean estaEnFaseInicial() { return partida.estaEnFaseInicial();}
+
+    public String getNombreDeJugadorUno() { return partida.getJugadorUno().getNombre();}
+
+    public String getNombreDeJugadorDos() { return partida.getJugadorDos().getNombre();}
+
+    public void arrancarPartida(){
+
+    }
+
     public void moverUnidad(Ubicacion ubicacionInicial, Ubicacion ubicaionFinal) throws PiezaNoEsDeJugadorException, NoHayUnidadEnPosicionException, DesplazamientoInvalidoException, NoSePuedeMoverException {
         partida.moverUnidad(ubicacionInicial, ubicaionFinal);
     }
-
-    public void cambiarTurno() throws EjercitoIncompletoException { partida.pasarTurno();}
-    public void arrancarPartida(){ }
-    public boolean seEncuentraEnFaseDeJuego(){ return partida.seEncuentraEnFaseDeJuego();}
-    public Pieza getUnidad(int x, int y) throws NoHayUnidadEnPosicionException { return partida.getUnidad(x,y);}
 }

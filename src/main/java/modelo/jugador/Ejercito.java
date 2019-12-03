@@ -53,12 +53,9 @@ public class Ejercito{
         }
     }
 
-
     public boolean estaCompleto() {
         return presupuesto.estaAgotado();
     }
-
-
 
 }
 

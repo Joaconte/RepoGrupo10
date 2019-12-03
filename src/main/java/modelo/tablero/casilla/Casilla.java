@@ -4,6 +4,7 @@ import modelo.pieza.Pieza;
 
 public  class  Casilla {
 
+
     private EstadoCasilla estadoCasilla = new CasillaLibre();
 
     public boolean estaOcupada() {
@@ -18,8 +19,7 @@ public  class  Casilla {
         this.estadoCasilla = estadoCasilla.desocuparCasilla();
     }
 
-    public Pieza getContenido() throws NoHayUnidadEnPosicionException {
-        return estadoCasilla.getContenido(); }
+    public Pieza getContenido() { return estadoCasilla.getContenido(); }
 
 }
 

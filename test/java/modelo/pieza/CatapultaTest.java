@@ -1,6 +1,5 @@
 package modelo.pieza;
 
-import modelo.tablero.casilla.NoHayUnidadEnPosicionException;
 import org.junit.Test;
 import org.mockito.Mockito;
 import modelo.pieza.ataque.DistanciaDeAtaqueInvalidaException;
@@ -52,7 +51,7 @@ public class CatapultaTest {
     }
 
     @Test (expected = PiezaAliadaNoAtacableException.class)
-    public void test05CatapultaNoAtacaAPiezaAliada() throws PiezaAliadaNoAtacableException, DistanciaDeAtaqueInvalidaException, UnidadEstaMuertaException, NoHayUnidadEnPosicionException {
+    public void test05CatapultaNoAtacaAPiezaAliada() throws PiezaAliadaNoAtacableException, DistanciaDeAtaqueInvalidaException, UnidadEstaMuertaException {
         Catapulta atacante = new Catapulta(1,1,1);
 
         Catapulta atacada = new Catapulta(1,2,2);
@@ -66,7 +65,7 @@ public class CatapultaTest {
     }
 
     @Test (expected = DistanciaDeAtaqueInvalidaException.class)
-    public void test06CatapultaNoAtacaAPiezaEnRangoMenorA6() throws PiezaAliadaNoAtacableException, DistanciaDeAtaqueInvalidaException, UnidadEstaMuertaException, NoHayUnidadEnPosicionException {
+    public void test06CatapultaNoAtacaAPiezaEnRangoMenorA6() throws PiezaAliadaNoAtacableException, DistanciaDeAtaqueInvalidaException, UnidadEstaMuertaException {
         Catapulta atacante = new Catapulta(1,5,5);
 
         Catapulta atacada = new Catapulta(2,10,10);
@@ -80,7 +79,7 @@ public class CatapultaTest {
     }
 
     @Test (expected = UnidadEstaMuertaException.class)
-    public void test07CatapultaNoHaceAtaquesEnUnidadesMuertas() throws PiezaAliadaNoAtacableException, DistanciaDeAtaqueInvalidaException, UnidadEstaMuertaException, NoHayUnidadEnPosicionException {
+    public void test07CatapultaNoHaceAtaquesEnUnidadesMuertas() throws PiezaAliadaNoAtacableException, DistanciaDeAtaqueInvalidaException, UnidadEstaMuertaException {
         Catapulta atacante = new Catapulta(1,5,5);
 
         Catapulta atacada = new Catapulta(2,12,12);
@@ -95,7 +94,7 @@ public class CatapultaTest {
     }
 
     @Test
-    public void test08CatapultaAtacaAUnEnemigoLejanoCorrectamente() throws PiezaAliadaNoAtacableException, DistanciaDeAtaqueInvalidaException, UnidadEstaMuertaException, NoHayUnidadEnPosicionException {
+    public void test08CatapultaAtacaAUnEnemigoLejanoCorrectamente() throws PiezaAliadaNoAtacableException, DistanciaDeAtaqueInvalidaException, UnidadEstaMuertaException {
         Catapulta atacante = new Catapulta(1,5,5);
 
         Catapulta atacada = new Catapulta(2,12,12);
@@ -111,7 +110,7 @@ public class CatapultaTest {
     }
 
     @Test
-    public void test09CatapultaAtacaAUnEnemigoLejanoYAdyacentesRecibenElMismoDanio() throws PiezaAliadaNoAtacableException, DistanciaDeAtaqueInvalidaException, UnidadEstaMuertaException, NoHayUnidadEnPosicionException {
+    public void test09CatapultaAtacaAUnEnemigoLejanoYAdyacentesRecibenElMismoDanio() throws PiezaAliadaNoAtacableException, DistanciaDeAtaqueInvalidaException, UnidadEstaMuertaException {
         Catapulta atacante = new Catapulta(1,5,5);
 
         Catapulta atacada = new Catapulta(2,12,12);

@@ -33,6 +33,9 @@ public class Jugador {
     public Sector getSector(){
         return sector;
     }
+    public int getTamanioDelEjercito() {
+        return this.ejercito.getTamanio();
+    }
     public String getNombre(){ return nombre;}
     public int getPuntos(){ return ejercito.getPresupuesto();}
 
@@ -51,12 +54,11 @@ public class Jugador {
         return ejercito.estaCompleto();
     }
 
+
     public void moverUnidad(Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) throws PiezaNoEsDeJugadorException, NoSePuedeMoverException {
 
         ejercito.moverUnidad(ubicacionInicial, ubicacionFinal);
     }
-
-
 
 }
 

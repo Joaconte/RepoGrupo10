@@ -33,23 +33,6 @@ public class Tablero {
         unaColumna.desocuparCasilla(numeroDeFila);
     }
 
-    public int getTamanio(){
-        return FILAS * COLUMNAS;
-    }
-
-    public int getFilas(){ return FILAS;}
-    public int getColumnas(){ return COLUMNAS;}
-
-
-    public int getCantidadColumnasCreadas(){
-        return columnas.size();
-    }
-
-    // solo se usa en las pruebas
-    public boolean casillaEstaOcupada(int numeroDeLaColumna, int numeroDeLaFila){
-        Columna unaColumna = columnas.get(numeroDeLaColumna);
-        return unaColumna.casillaDeLaFilaEstaOcupada(numeroDeLaFila);
-    }
 
     public void moverUnidad(Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) throws NoHayUnidadEnPosicionException, DesplazamientoInvalidoException {
 
@@ -75,7 +58,25 @@ public class Tablero {
         int desplazamientoNeg = Math.max (ubicacionInicial.getPosicionEnX() - ubicacionFinal.getPosicionEnX(),
                 ubicacionInicial.getPosicionEnY() - ubicacionFinal.getPosicionEnY());
 
-            return (desplazamientoNeg > -2 && desplazamientoPos < 2);
+        return (desplazamientoNeg > -2 && desplazamientoPos < 2);
+    }
+
+    public int getTamanio(){
+        return FILAS * COLUMNAS;
+    }
+
+    public int getFilas(){ return FILAS;}
+    public int getColumnas(){ return COLUMNAS;}
+
+
+    public int getCantidadColumnasCreadas(){
+        return columnas.size();
+    }
+
+    // solo se usa en las pruebas
+    public boolean casillaEstaOcupada(int numeroDeLaColumna, int numeroDeLaFila){
+        Columna unaColumna = columnas.get(numeroDeLaColumna);
+        return unaColumna.casillaDeLaFilaEstaOcupada(numeroDeLaFila);
     }
 
 
@@ -143,38 +144,32 @@ public class Tablero {
     }
 
 
-    public List<Pieza> getPiezasAdyacentes(Ubicacion ubicacion) throws NoHayUnidadEnPosicionException {
+    public List<Pieza> getPiezasAdyacentes(Ubicacion ubicacion){
         return getPiezasEnRadio(ubicacion, 1, 1);
     }
 
-    public List<Pieza> getPiezasAdyacentesDentroDeRadio(Ubicacion ubicacion, int radio) throws NoHayUnidadEnPosicionException {
+    public List<Pieza> getPiezasAdyacentesDentroDeRadio(Ubicacion ubicacion, int radio){
         return getPiezasEnRadio(ubicacion, 1, radio);
     }
 
-    private List<Pieza> getPiezasEnRadio(Ubicacion ubicacion, int rangoInicial, int rangoFinal) throws NoHayUnidadEnPosicionException {
-        List<Pieza> list = new ArrayList<>();
-        for (Casilla casilla : this.getCasillasEntreRangos(ubicacion, rangoInicial, rangoFinal)) {
-            if (casilla.estaOcupada()) {
-                Pieza contenido = casilla.getContenido();
-                list.add(contenido);
-            }
-        }
-        return list;
+    private List<Pieza> getPiezasEnRadio(Ubicacion ubicacion, int rangoInicial, int rangoFinal) {
+        return this.getCasillasEntreRangos(ubicacion, rangoInicial, rangoFinal).stream()
+                .filter(Casilla::estaOcupada)
+                .map(Casilla::getContenido)
+                .collect(Collectors.toList());
     }
 
-    public List<Pieza> getPiezasAdycentesInfinitas(Ubicacion ubicacion) throws NoHayUnidadEnPosicionException{
+    public List<Pieza> getPiezasAdycentesInfinitas(Ubicacion ubicacion){
         ArrayList<Pieza> listaPiezas= new ArrayList<>();
         return getPiezasAdycentesRecursivo(ubicacion, listaPiezas);
     }
 
-    public List<Pieza> getPiezasAdycentesRecursivo( Ubicacion ubicacion, ArrayList<Pieza> piezas ) throws NoHayUnidadEnPosicionException {
+    public List<Pieza> getPiezasAdycentesRecursivo( Ubicacion ubicacion, ArrayList<Pieza> piezas ){
         List<Pieza> nuevasPiezas = getPiezasAdyacentes(ubicacion);
-        for (Pieza pieza : nuevasPiezas) {
-            if (!piezas.contains(pieza)) {
-                piezas.add(pieza);
-                getPiezasAdycentesRecursivo(pieza.getUbicacion(), piezas);
-            }
-        }
+        nuevasPiezas.stream().filter(pieza -> !piezas.contains(pieza))
+                    .forEach(pieza->{ piezas.add(pieza);
+                                      getPiezasAdycentesRecursivo(pieza.getUbicacion(),piezas);
+                             });
         return piezas;
     }
 

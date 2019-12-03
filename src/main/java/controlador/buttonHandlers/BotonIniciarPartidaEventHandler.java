@@ -2,36 +2,31 @@ package controlador.buttonHandlers;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
+import javafx.stage.Stage;
 import modelo.Juego;
-import vista.VistaDeTablero;
-import vista.fases.faseInicial.VistaFaseInicial;
+import vista.fasesPartida.faseInicialPartida.PantallaFaseInicialPartida;
 
 public class BotonIniciarPartidaEventHandler implements EventHandler<ActionEvent> {
 
     private Juego juego;
-    private VBox vbox;
+    private Stage escenarioPrincipal;
 
-    public BotonIniciarPartidaEventHandler(Juego juego, VBox vbox) {
+    public BotonIniciarPartidaEventHandler(Juego juego, Stage escenarioPrincipal) {
 
         this.juego = juego;
-        this.vbox = vbox;
+        this.escenarioPrincipal = escenarioPrincipal;
     }
 
     @Override
     public void handle(ActionEvent actionEvent) {
 
-        juego.arrancarPartida();
-        vbox.getChildren().clear();
-
-        HBox hbox = new HBox();
-
-        vbox.getChildren().add(hbox);
-
-        VistaDeTablero vistaDeTablero = new VistaDeTablero(juego.getTablero());
-        hbox.getChildren().add(vistaDeTablero);
-        VistaFaseInicial vistaFaseInicial = new VistaFaseInicial( juego, vistaDeTablero, hbox);
+        PantallaFaseInicialPartida pantallaFaseInicialPartida = new PantallaFaseInicialPartida(juego, escenarioPrincipal);
+        ScrollPane panelConBarrasDeMovimiento = new ScrollPane();
+        panelConBarrasDeMovimiento.setContent(pantallaFaseInicialPartida);
+        Scene escenaFaseInicial = new Scene (panelConBarrasDeMovimiento,1200,950);
+        escenarioPrincipal.setScene(escenaFaseInicial);
 
     }
 

@@ -20,9 +20,7 @@ public class CasillaLibre implements EstadoCasilla {
     }
 
     @Override
-    public Pieza getContenido() throws NoHayUnidadEnPosicionException{
-        throw new NoHayUnidadEnPosicionException();
-    };
+    public Pieza getContenido(){ return null; }
 
 
 }

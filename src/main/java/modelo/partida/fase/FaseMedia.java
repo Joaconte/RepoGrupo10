@@ -11,7 +11,6 @@ import modelo.pieza.ataque.DistanciaDeAtaqueInvalidaException;
 import modelo.pieza.ataque.PiezaAtacante;
 import modelo.pieza.Pieza;
 import modelo.tablero.Tablero;
-import modelo.tablero.casilla.NoHayUnidadEnPosicionException;
 
 public class FaseMedia implements FaseDePartida{
 
@@ -38,7 +37,7 @@ public class FaseMedia implements FaseDePartida{
 
     //Ataques o cura
     @Override
-    public void atacar(PiezaAtacante atacante, Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException, NoHayUnidadEnPosicionException {
+    public void atacar(PiezaAtacante atacante, Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
         atacante.atacar(atacada,tablero);
     }
 

@@ -9,8 +9,9 @@ import modelo.tablero.Tablero;
 
 import static org.junit.Assert.*;
 
+/*
+
 public class MovimientoTest {
-    /*
     @Test
     public void testJineteEn2x1y_SeMueveArriba_quedaEn2x0y() throws NoSePuedeMoverException {
         Tablero tablero = new Tablero();
@@ -53,7 +54,6 @@ public class MovimientoTest {
     }
 
     // ----------------- BATALLON ----------------//
-
     @Test
     public void testBatallonEstaEnLaFila2_SeMueveParaAbajoYQuedanTodosEnLaFila3() throws NoSePuedeMoverException, BatallonDisueltoException {
         Tablero tablero = new Tablero();
@@ -312,5 +312,8 @@ public class MovimientoTest {
          assertEquals(ubi3, soldado3.getUbicacion());
 
     }
-    */
+    
 }
+
+ */
+
