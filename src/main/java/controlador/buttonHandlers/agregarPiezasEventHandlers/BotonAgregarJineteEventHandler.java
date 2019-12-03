@@ -6,7 +6,7 @@ import modelo.pieza.Ubicacion;
 import modelo.pieza.tipos.Jinete;
 import vista.VistaDeTablero;
 import vista.fasesPartida.faseInicialPartida.EtiquetaPresupuestoJugador;
-import vista.vistaPiezas.VistaJinete;
+import vista.vistaPiezas.VistaUnidadAtacante;
 
 
 public class BotonAgregarJineteEventHandler extends BotonAgregarPiezaEventHandler {
@@ -18,7 +18,7 @@ public class BotonAgregarJineteEventHandler extends BotonAgregarPiezaEventHandle
 
     @Override
     void agregarPiezaATablero(Pieza pieza) {
-        VistaJinete VistaDeUnidad = new VistaJinete((Jinete) pieza ,vistaDeTablero);
+        VistaUnidadAtacante VistaDeUnidad = new VistaUnidadAtacante((Jinete) pieza ,vistaDeTablero,"jinete");
     }
 }
 

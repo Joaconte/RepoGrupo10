@@ -1,36 +1,31 @@
 package vista.vistaPiezas;
 
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
 import modelo.pieza.Pieza;
+import vista.VistaDeTablero;
 
-public class VistaUnidad extends Label {
+public class VistaUnidad {
 
-    private double escalaDeUnidad = 1;
-    public ImageView imagenDeUnidad;
-    Pieza pieza;
-    VBox info = new VBox();
+    private Pieza pieza;
+    VistaInformacionDeUnidad vistaDatos;
+    VistaDeTablero vistaDeTablero;
 
-    public VistaUnidad(){
-        super();
-        imagenDeUnidad = new ImageView();
-        imagenDeUnidad.setScaleX(escalaDeUnidad);
-        imagenDeUnidad.setScaleY(escalaDeUnidad);
-        imagenDeUnidad.setFitHeight(45);
-        imagenDeUnidad.setFitWidth(45);
+    public VistaUnidad(Pieza pieza, VistaDeTablero vistaDeTablero, String nombre){
+        this.vistaDeTablero= vistaDeTablero;
+        this.pieza =pieza;
+        vistaDatos = new VistaInformacionDeUnidad (nombre, pieza);
+        vistaDatos.avatarIdentificativo();
+        vistaDatos.vistaDeDatosEnPartida();
+        vistaDatos.setAlignment(Pos.CENTER);
+        VistaUnidadParaTablero vistaEnTablero = new VistaUnidadParaTablero(vistaDeTablero);
+        vistaEnTablero.crearVistaEnTablero(vistaDatos.getImagenDeUnidad(),pieza,this);
     }
 
-    public void crearImagenPersonalizada(String nombreClase, Pieza pieza){
-
-        String equipo = String.valueOf(pieza.getEquipo());
-        imagenDeUnidad.setImage(new Image( "resources/" + nombreClase + equipo +".png"));
-        this.setGraphic(imagenDeUnidad);
+    public Pieza getPieza() {
+        return pieza;
     }
-
-     public void setPieza (Pieza pieza){this.pieza = pieza;}
-     public Pieza getPieza(){ return pieza;}
-     public VBox getVistaInformacion(){return info;}
-
+    public VBox getVistaInformacion() {
+        return vistaDatos;
+    }
 }

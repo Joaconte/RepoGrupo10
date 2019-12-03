@@ -7,7 +7,7 @@ import modelo.pieza.tipos.Curandero;
 import vista.VistaDeTablero;
 
 import vista.fasesPartida.faseInicialPartida.EtiquetaPresupuestoJugador;
-import vista.vistaPiezas.VistaCurandero;
+import vista.vistaPiezas.VistaUnidad;
 
 
 public class BotonAgregarCuranderoEventHandler extends BotonAgregarPiezaEventHandler {
@@ -21,7 +21,7 @@ public class BotonAgregarCuranderoEventHandler extends BotonAgregarPiezaEventHan
 
     @Override
     void agregarPiezaATablero(Pieza pieza) {
-        VistaCurandero VistaDeUnidad = new VistaCurandero((Curandero) pieza ,vistaDeTablero);
+        VistaUnidad VistaDeUnidad = new VistaUnidad((Curandero) pieza ,vistaDeTablero,"curandero");
 
     }
 }

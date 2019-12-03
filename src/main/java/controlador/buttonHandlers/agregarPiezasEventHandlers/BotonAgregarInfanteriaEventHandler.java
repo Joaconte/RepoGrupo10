@@ -7,7 +7,7 @@ import modelo.pieza.Ubicacion;
 import modelo.pieza.tipos.Infanteria;
 import vista.VistaDeTablero;
 import vista.fasesPartida.faseInicialPartida.EtiquetaPresupuestoJugador;
-import vista.vistaPiezas.VistaInfanteria;
+import vista.vistaPiezas.VistaUnidadAtacante;
 
 public class BotonAgregarInfanteriaEventHandler extends BotonAgregarPiezaEventHandler{
 
@@ -19,7 +19,7 @@ public class BotonAgregarInfanteriaEventHandler extends BotonAgregarPiezaEventHa
 
     @Override
     void agregarPiezaATablero(Pieza pieza) {
-        VistaInfanteria VistaDeUnidad = new VistaInfanteria((Infanteria) pieza ,vistaDeTablero);
+        VistaUnidadAtacante VistaDeUnidad = new VistaUnidadAtacante((Infanteria) pieza ,vistaDeTablero,"infanteria");
     }
 }
 

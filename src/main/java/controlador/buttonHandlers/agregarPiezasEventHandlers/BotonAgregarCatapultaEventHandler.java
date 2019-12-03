@@ -6,7 +6,7 @@ import modelo.pieza.Ubicacion;
 import modelo.pieza.tipos.Catapulta;
 import vista.VistaDeTablero;
 import vista.fasesPartida.faseInicialPartida.EtiquetaPresupuestoJugador;
-import vista.vistaPiezas.VistaCatapulta;
+import vista.vistaPiezas.VistaUnidadAtacante;
 
 
 public class BotonAgregarCatapultaEventHandler extends BotonAgregarPiezaEventHandler {
@@ -17,7 +17,7 @@ public class BotonAgregarCatapultaEventHandler extends BotonAgregarPiezaEventHan
 
     @Override
     void agregarPiezaATablero(Pieza pieza) {
-        VistaCatapulta VistaDeUnidad = new VistaCatapulta((Catapulta) pieza ,vistaDeTablero);
+        VistaUnidadAtacante VistaDeUnidad = new VistaUnidadAtacante((Catapulta) pieza ,vistaDeTablero,"catapulta");
 
     }
 }

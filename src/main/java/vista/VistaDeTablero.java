@@ -12,6 +12,7 @@ import javafx.scene.shape.Rectangle;
 import modelo.pieza.Ubicacion;
 import modelo.tablero.Tablero;
 import vista.vistaPiezas.VistaUnidad;
+import vista.vistaPiezas.VistaUnidadParaTablero;
 
 
 public class VistaDeTablero extends Group {
@@ -25,13 +26,13 @@ public class VistaDeTablero extends Group {
     private GridPane contenedorTabla;
     private Pane[][] casillaTabla;
     private Ubicacion ubicacionDelCursor;
-    private VistaUnidad vistaUnidad;
+    private VistaUnidadParaTablero vistaUnidadClikeada;
 
     public VistaDeTablero(Tablero tablero){
 
         this.tablero = tablero;
         this.ubicacionDelCursor =new Ubicacion(9,9);
-        this.vistaUnidad=new VistaUnidad();
+        this.vistaUnidadClikeada =new VistaUnidadParaTablero(this);
         contenedorTabla = new GridPane();
         anchura = anchuraCelda * tablero.getColumnas();
         altura = alturaCelda * tablero.getFilas();
@@ -60,15 +61,15 @@ public class VistaDeTablero extends Group {
     }
 
     public Ubicacion getUbicacionDelCursor(){return ubicacionDelCursor;}
-    public VistaUnidad getVistaDePiezaClikeada(){return vistaUnidad;}
+    public VistaUnidadParaTablero getVistaDePiezaClikeada(){return vistaUnidadClikeada;}
 
-    public void agregarUnidad( VistaUnidad vistaUnidadNueva,  int x, int y){
-        GridPane.setRowIndex(vistaUnidadNueva, x);
-        GridPane.setColumnIndex(vistaUnidadNueva, y);
-        contenedorTabla.getChildren().add(vistaUnidadNueva);
+    public void agregarUnidad(VistaUnidadParaTablero etiquetaUnidad, VistaUnidad vistaUnidad, int x, int y){
+        GridPane.setRowIndex(etiquetaUnidad, x);
+        GridPane.setColumnIndex(etiquetaUnidad, y);
+        contenedorTabla.getChildren().add(etiquetaUnidad);
         //addViewOnMap(unidad, x, y);
-        casillaTabla[x][y].getChildren().add(0, vistaUnidadNueva);
-        vistaUnidadNueva.setOnMouseClicked(new ClickEnPiezaEventHandler(vistaUnidad,vistaUnidadNueva));
+        casillaTabla[x][y].getChildren().add(0, etiquetaUnidad);
+        etiquetaUnidad.setOnMouseClicked(new ClickEnPiezaEventHandler(vistaUnidadClikeada, vistaUnidad));
     }
 
     public void addViewOnMap(Node view, int x, int y) {
