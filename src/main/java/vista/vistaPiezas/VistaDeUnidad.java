@@ -24,7 +24,7 @@ public class VistaDeUnidad extends VBox {
         this.unidad = unidadAUbicar;
         ubicacion = unidadAUbicar.getUbicacion();
 
-        String nombreArch = "resources/"+nombre+".png";
+        String nombreArch = "resources/texturas/"+nombre+".png";
         Image imagen = new Image(nombreArch);
         this.getChildren().add(new ImageView(imagen));
         this.getChildren().add(new Text(nombre.toUpperCase()));
@@ -52,7 +52,7 @@ public class VistaDeUnidad extends VBox {
         else imagenDeUnidad.setOpacity(0.3);
 
         String equipo = String.valueOf(unidad.getEquipo());
-        imagenDeUnidad.setImage(new Image( "resources/" + nombreClase + equipo +".png"));
+        imagenDeUnidad.setImage(new Image( "resources/texturas/" + nombreClase + equipo +".png"));
     }
 
 }
