@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import modelo.Juego;
+import resources.sonidos.Audio;
 import vista.faseBienvenida.PantallaBienvenida;
 
 public class Main extends Application {
@@ -20,6 +21,8 @@ public class Main extends Application {
         Juego juego = new Juego();
 
         PantallaBienvenida pantallaBienvenida = new PantallaBienvenida(escenarioPrincipal, juego);
+
+        Audio.reproducirIntro();
 
         Scene escenaDeJuego = new Scene(pantallaBienvenida, 500, 500);
         escenarioPrincipal.setScene(escenaDeJuego);

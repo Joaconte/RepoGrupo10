@@ -6,6 +6,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import modelo.Juego;
+import resources.sonidos.Audio;
 import vista.BarraMenu;
 import vista.VistaDeTablero;
 import vista.fasesPartida.faseMediaPartida.botonesFaseMedia.PanelBotonesFaseMedia;
@@ -17,6 +18,7 @@ public class PantallaFaseMediaPartida extends BorderPane {
     private Label comunicador;
 
     public PantallaFaseMediaPartida(VistaDeTablero vistaDeTablero, Juego juego, Stage escenarioPrincipal){
+        Audio.reproducirJugando();
         this.setPadding(new Insets(20));
         this.setCenter(vistaDeTablero);
         this.comunicador = new Label("Seleccione la accion que desea realizar.");
