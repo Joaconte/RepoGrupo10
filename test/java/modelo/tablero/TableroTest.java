@@ -2,17 +2,15 @@ package modelo.tablero;
 
 import modelo.pieza.Ubicacion;
 import modelo.pieza.tipos.Jinete;
+import org.mockito.Mockito;
+import modelo.pieza.Pieza;
+import modelo.tablero.casilla.Casilla;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-
-import org.mockito.Mockito;
-import modelo.pieza.Pieza;
-import modelo.tablero.casilla.Casilla;
-
 import java.util.List;
 
 

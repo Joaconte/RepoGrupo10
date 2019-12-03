@@ -19,7 +19,7 @@ public class Audio {
 
     public static void reproducirCargaJugadores() {
         mediaPlayer.pause();
-        reproducir(rutaSonido+"registro.wav");
+        reproducir(rutaSonido + "registro.wav");
     }
     public static void reproducirJugando() {
         mediaPlayer.pause();
@@ -41,12 +41,12 @@ public class Audio {
         reproducirEfecto(rutaSonido+"click.wav");
     }
 
-    public static void reproducirCatapultaRota() { reproducirEfecto(rutaSonido+"catapultaRota.wav");}
+    public static void reproducirCatapultaRota(){ reproducirEfecto(rutaSonido+"catapultaRota.wav");}
 
-    public static void reproducirDolor() { reproducirEfecto(rutaSonido+"dolor.wav"); }
+    public static void reproducirDolor(){ reproducirEfecto(rutaSonido+"dolor.wav"); }
 
     public static void reproducirCreacionUnidad( String nombreUnidad){
-        reproducir(rutaSonido + "creacion/" + nombreUnidad + ".wav");
+        reproducirEfecto(rutaSonido + "creacion/" + nombreUnidad + ".wav");
     }
     // -----------------------------------------
     private static void reproducir (String path) {
