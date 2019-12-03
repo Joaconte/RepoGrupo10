@@ -9,9 +9,9 @@ import vista.vistaPiezas.VistaUnidadParaTablero;
 public class ClickEnPiezaEventHandler implements EventHandler<MouseEvent> {
 
     private VistaUnidadParaTablero vistaPiezaClikeada;
-    private VistaUnidad piezaClikeada;
+    private VistaUnidadParaTablero piezaClikeada;
 
-    public ClickEnPiezaEventHandler(VistaUnidadParaTablero vistaPiezaClikeada, VistaUnidad piezaClikeada) {
+    public ClickEnPiezaEventHandler(VistaUnidadParaTablero vistaPiezaClikeada, VistaUnidadParaTablero piezaClikeada) {
         this.vistaPiezaClikeada = vistaPiezaClikeada;
         this.piezaClikeada = piezaClikeada;
         ;
@@ -20,7 +20,8 @@ public class ClickEnPiezaEventHandler implements EventHandler<MouseEvent> {
     @Override
     public void handle(MouseEvent mouseEvent) {
 
-        vistaPiezaClikeada.setVistaUnidadCompleta(piezaClikeada);
+        vistaPiezaClikeada.setVistaUnidadCompleta(piezaClikeada.getVistaUnidadCompleta());
+        vistaPiezaClikeada.setInformacionUnidad();
 
     }
 }

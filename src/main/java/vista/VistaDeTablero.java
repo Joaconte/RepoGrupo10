@@ -63,13 +63,13 @@ public class VistaDeTablero extends Group {
     public Ubicacion getUbicacionDelCursor(){return ubicacionDelCursor;}
     public VistaUnidadParaTablero getVistaDePiezaClikeada(){return vistaUnidadClikeada;}
 
-    public void agregarUnidad(VistaUnidadParaTablero etiquetaUnidad, VistaUnidad vistaUnidad, int x, int y){
+    public void agregarUnidad(VistaUnidadParaTablero etiquetaUnidad, int x, int y){
         GridPane.setRowIndex(etiquetaUnidad, x);
         GridPane.setColumnIndex(etiquetaUnidad, y);
         contenedorTabla.getChildren().add(etiquetaUnidad);
         //addViewOnMap(unidad, x, y);
         casillaTabla[x][y].getChildren().add(0, etiquetaUnidad);
-        etiquetaUnidad.setOnMouseClicked(new ClickEnPiezaEventHandler(vistaUnidadClikeada, vistaUnidad));
+        etiquetaUnidad.setOnMouseClicked(new ClickEnPiezaEventHandler(vistaUnidadClikeada, etiquetaUnidad));
     }
 
     public void addViewOnMap(Node view, int x, int y) {

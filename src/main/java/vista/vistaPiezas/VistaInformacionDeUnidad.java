@@ -15,6 +15,7 @@ public class VistaInformacionDeUnidad extends VBox {
     private String nombre;
     public ImageView imagenDeUnidad;
     private double escalaDeUnidad = 1;
+    private ImageView avatar;
 
 
     public VistaInformacionDeUnidad(String nombre, Pieza unidad){
@@ -40,16 +41,16 @@ public class VistaInformacionDeUnidad extends VBox {
     }
 
     public void avatarIdentificativo(){
-        imagenDeUnidad.setScaleX(escalaDeUnidad);
-        imagenDeUnidad.setScaleY(escalaDeUnidad);
-        imagenDeUnidad.setFitHeight(45);
-        imagenDeUnidad.setFitWidth(45);
         String equipo = String.valueOf(pieza.getEquipo());
-        imagenDeUnidad.setImage(new Image( "resources/texturas/" + nombre + equipo +".png"));
-
+        ImageView avatar = new ImageView( "resources/texturas/" + nombre + equipo +".png");
+        avatar.setScaleX(escalaDeUnidad);
+        avatar.setScaleY(escalaDeUnidad);
+        avatar.setFitHeight(45);
+        avatar.setFitWidth(45);
+        this.avatar = avatar;
     }
 
-    public ImageView getImagenDeUnidad (){ return imagenDeUnidad;}
+    public ImageView getAvatar(){ return avatar;}
 
 
 }

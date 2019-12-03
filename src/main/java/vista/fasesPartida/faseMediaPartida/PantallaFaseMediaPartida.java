@@ -40,7 +40,7 @@ public class PantallaFaseMediaPartida extends BorderPane {
         barraDeJugador1.getChildren().add(new PanelBotonesFaseMedia(barraDeJugador1, barraDeJugador2,juego,comunicador,vistaDeTablero));
         barraDeJugador2.getChildren().add(new PanelBotonesFaseMedia(barraDeJugador1, barraDeJugador2,juego,comunicador,vistaDeTablero));
         barraDeJugador1.getChildren().add(comunicador);
-        barraDeJugador1.getChildren().add(vistaDeTablero.getVistaDePiezaClikeada().getVistaUnidadCompleta().getVistaInformacion());
+        barraDeJugador1.getChildren().add(vistaDeTablero.getVistaDePiezaClikeada().getVistaInformacion());
 
 
         //-------------------------

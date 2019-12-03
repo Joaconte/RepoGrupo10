@@ -19,7 +19,7 @@ public class VistaUnidad {
         vistaDatos.vistaDeDatosEnPartida();
         vistaDatos.setAlignment(Pos.CENTER);
         VistaUnidadParaTablero vistaEnTablero = new VistaUnidadParaTablero(vistaDeTablero);
-        vistaEnTablero.crearVistaEnTablero(vistaDatos.getImagenDeUnidad(),pieza,this);
+        vistaEnTablero.crearVistaEnTablero(vistaDatos.getAvatar(),pieza,this);
     }
 
     public Pieza getPieza() {
