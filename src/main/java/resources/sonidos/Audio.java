@@ -18,7 +18,7 @@ public class Audio {
         reproducir(rutaSonido+"alerta.wav");
     }
 
-   public static void reproducirClick() {
+    public static void reproducirClick() {
         reproducir(rutaSonido+"click.wav");
     }
 
@@ -46,6 +46,12 @@ public class Audio {
         } else {
             mediaPlayer.setMute(true);
         }
+    }
+
+    //-------CREACION DE UNIDAD -------//
+
+    public static void reproducirCreacionUnidad( String nombreUnidad){
+        reproducir(rutaSonido + "creacion/" + nombreUnidad + ".wav");
     }
 
     public static void bajarVolumen(){

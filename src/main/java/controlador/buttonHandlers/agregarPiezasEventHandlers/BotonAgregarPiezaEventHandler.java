@@ -10,6 +10,7 @@ import modelo.jugador.presupuesto.CompraInvalidaException;
 import modelo.jugador.presupuesto.PresupuestoAgotadoException;
 import modelo.pieza.Pieza;
 import modelo.pieza.Ubicacion;
+import resources.sonidos.Audio;
 import vista.VistaDeTablero;
 import vista.fasesPartida.faseInicialPartida.EtiquetaPresupuestoJugador;
 import vista.vistaPiezas.VistaDeUnidad;
@@ -38,6 +39,7 @@ public abstract class BotonAgregarPiezaEventHandler implements EventHandler<Acti
             int y = ubicacion.getPosicionEnY();
             crearPiezaYAgregarATablero(x, y, vistaDeTablero);
             etiquetaPuntos.actualizarEtiqueta();
+            Audio.reproducirCreacionUnidad(nombre);
         } catch (NumberFormatException e) {
             this.textoComunicador.setText("Debe ingresar numeros");
             this.textoComunicador.setTextFill(Color.web("#FF0000"));
