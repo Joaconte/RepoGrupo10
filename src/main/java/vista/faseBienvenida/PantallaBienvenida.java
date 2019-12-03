@@ -11,13 +11,12 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import modelo.Juego;
-
+import resources.sonidos.Audio;
 
 
 public class PantallaBienvenida extends BorderPane {
 
     public PantallaBienvenida(Stage escenarioPrincipal, Juego juego) {
-
         this.setCentro(juego, escenarioPrincipal);
         this.setArriba();
 
