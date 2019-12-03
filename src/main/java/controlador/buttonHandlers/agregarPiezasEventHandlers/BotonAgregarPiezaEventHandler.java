@@ -10,6 +10,7 @@ import modelo.jugador.presupuesto.CompraInvalidaException;
 import modelo.jugador.presupuesto.PresupuestoAgotadoException;
 import modelo.pieza.Pieza;
 import modelo.pieza.Ubicacion;
+import resources.sonidos.Audio;
 import vista.VistaDeTablero;
 import vista.fasesPartida.faseInicialPartida.EtiquetaPresupuestoJugador;
 import vista.vistaPiezas.VistaDeUnidad;
@@ -38,18 +39,21 @@ public abstract class BotonAgregarPiezaEventHandler implements EventHandler<Acti
             int y = ubicacion.getPosicionEnY();
             crearPiezaYAgregarATablero(x, y, vistaDeTablero);
             etiquetaPuntos.actualizarEtiqueta();
+            Audio.reproducirDolor();
         } catch (NumberFormatException e) {
             this.textoComunicador.setText("Debe ingresar numeros");
             this.textoComunicador.setTextFill(Color.web("#FF0000"));
+            Audio.reproducirAlerta();
         }
 
     }
 
     public void crearPiezaYAgregarATablero(int x, int y, VistaDeTablero vistaDeTablero){
         try {
+            agregarPiezaATablero( etiquetaPuntos.juego.crearPieza(nombre, x, y));
             this.textoComunicador.setText("Tropa agregada con exito");
             this.textoComunicador.setTextFill(Color.web("#336600"));
-            agregarPiezaATablero( etiquetaPuntos.juego.crearPieza(nombre, x, y));
+            Audio.reproducirCreacionUnidad(nombre);
         }
         catch ( PiezaFueraDeSectorException e){
             this.textoComunicador.setText("Ubica la pieza en tu sector.");

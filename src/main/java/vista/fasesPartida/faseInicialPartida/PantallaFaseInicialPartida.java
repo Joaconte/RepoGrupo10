@@ -6,6 +6,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import modelo.Juego;
 import modelo.pieza.Ubicacion;
+import resources.sonidos.Audio;
 import vista.CamposDeTexto;
 import vista.VistaDeTablero;
 import vista.fasesPartida.EtiquetaTurnoJugador;
@@ -23,6 +24,7 @@ public class PantallaFaseInicialPartida extends HBox {
     private Label etiquetaComunicacion;
 
     public PantallaFaseInicialPartida(Juego juego, Stage escenarioPrincipal){
+        Audio.reproducirCargaJugadores();
 
         this.setSpacing(10);
 

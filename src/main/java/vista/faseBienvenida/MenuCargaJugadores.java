@@ -6,6 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import modelo.Juego;
+import resources.sonidos.Audio;
 import vista.CamposDeTexto;
 
 
