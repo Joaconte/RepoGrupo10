@@ -49,7 +49,7 @@ public class VistaDeTablero extends Group {
             }
         }
 
-        Background fondoDeContenedor = new Background(new BackgroundImage(new Image("resources/tablero.png"),
+        Background fondoDeContenedor = new Background(new BackgroundImage(new Image("resources/texturas/tablero.png"),
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.CENTER,

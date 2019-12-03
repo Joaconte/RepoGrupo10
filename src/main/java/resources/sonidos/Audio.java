@@ -18,7 +18,7 @@ public class Audio {
         reproducir(rutaSonido+"alerta.wav");
     }
 
-   public static void reproducirClick() {
+    public static void reproducirClick() {
         reproducir(rutaSonido+"click.wav");
     }
 
@@ -36,7 +36,27 @@ public class Audio {
         //Media media = new Media(Audio.class.getResource(path).toExternalForm());
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setAutoPlay(true);
+        mediaPlayer.setVolume(0.5);
 
     }
 
+    public static void mutear(){
+        if (mediaPlayer.isMute()){
+            mediaPlayer.setMute(false);
+        } else {
+            mediaPlayer.setMute(true);
+        }
+    }
+
+    public static void reproducirCreacionUnidad( String nombreUnidad){
+        reproducir(rutaSonido + "creacion/" + nombreUnidad + ".wav");
+    }
+
+    public static void bajarVolumen(){
+        mediaPlayer.setVolume(Math.max(0,mediaPlayer.getVolume()-0.1));
+    }
+
+    public static void subirVolumen(){
+        mediaPlayer.setVolume(mediaPlayer.getVolume()+0.1);
+    }
 }
