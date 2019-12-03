@@ -11,14 +11,14 @@ import modelo.jugador.presupuesto.PresupuestoAgotadoException;
 import modelo.pieza.Pieza;
 import modelo.pieza.Ubicacion;
 import vista.VistaDeTablero;
-import vista.VistaDeUnidad;
 import vista.fasesPartida.faseInicialPartida.EtiquetaPresupuestoJugador;
+import vista.vistaPiezas.VistaDeUnidad;
 
 public abstract class BotonAgregarPiezaEventHandler implements EventHandler<ActionEvent> {
 
     private Ubicacion ubicacion;
     private Label textoComunicador;
-    private VistaDeTablero vistaDeTablero;
+    protected VistaDeTablero vistaDeTablero;
     private EtiquetaPresupuestoJugador etiquetaPuntos;
     private String nombre;
 
@@ -38,9 +38,7 @@ public abstract class BotonAgregarPiezaEventHandler implements EventHandler<Acti
             int y = ubicacion.getPosicionEnY();
             crearPiezaYAgregarATablero(x, y, vistaDeTablero);
             etiquetaPuntos.actualizarEtiqueta();
-        }
-
-        catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             this.textoComunicador.setText("Debe ingresar numeros");
             this.textoComunicador.setTextFill(Color.web("#FF0000"));
         }
@@ -51,9 +49,7 @@ public abstract class BotonAgregarPiezaEventHandler implements EventHandler<Acti
         try {
             this.textoComunicador.setText("Tropa agregada con exito");
             this.textoComunicador.setTextFill(Color.web("#336600"));
-            Pieza pieza = etiquetaPuntos.juego.crearPieza(nombre, x, y);
-            VistaDeUnidad vistaDeUnidad = new VistaDeUnidad(vistaDeTablero, pieza, nombre.toLowerCase());
-
+            agregarPiezaATablero( etiquetaPuntos.juego.crearPieza(nombre, x, y));
         }
         catch ( PiezaFueraDeSectorException e){
             this.textoComunicador.setText("Ubica la pieza en tu sector.");
@@ -67,8 +63,8 @@ public abstract class BotonAgregarPiezaEventHandler implements EventHandler<Acti
         catch (CompraInvalidaException  e){
             this.textoComunicador.setText("Presupuesto insuficiente para la pieza.");
             this.textoComunicador.setTextFill(Color.web("#FF0000")); }
-
-
     }
+
+    abstract void agregarPiezaATablero(Pieza pieza);
 
 }

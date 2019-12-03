@@ -1,44 +1,47 @@
-package vista;
-
+package vista.vistaPiezas;
 
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import modelo.pieza.Pieza;
 import modelo.pieza.Ubicacion;
+import vista.VistaDeTablero;
 
 
 public class VistaDeUnidad extends VBox {
 
     private double escalaDeUnidad = 1;
-    private VistaDeTablero vistaDeTablero;
+    protected VistaDeTablero vistaDeTablero;
     public ImageView imagenDeUnidad;
     private Pieza unidad;
     private Ubicacion ubicacion;
 
 
-
-    public VistaDeUnidad(VistaDeTablero vistaDeTablero, Pieza unidadAUbicar, String nombreClase) {
-
+    public VistaDeUnidad(String nombre, Pieza unidadAUbicar, VistaDeTablero vistaDeTablero){
         this.vistaDeTablero = vistaDeTablero;
         this.unidad = unidadAUbicar;
         ubicacion = unidadAUbicar.getUbicacion();
-        crearVistaParaTablero(nombreClase);
 
-        //this.getChildren().add(imagenDeUnidad);
-        this.getChildren().add(new Label("Unidad de Jugador " + unidad.getEquipo() ));
-        this.getChildren().add(new Label("Columna: " + unidad.getUbicacion().getPosicionEnX() ));
-        this.getChildren().add(new Label("Fila " + unidad.getUbicacion().getPosicionEnY() ));
-        this.getChildren().add((new Label("Vida restante: " + unidad.getPuntosVida())));
+        String nombreArch = "resources/"+nombre+".png";
+        Image imagen = new Image(nombreArch);
+        this.getChildren().add(new ImageView(imagen));
+        this.getChildren().add(new Text(nombre.toUpperCase()));
+        mostrarAtributos(unidadAUbicar);
 
-        //unidad.addObserver( this );
-        //draw();
     }
 
-    private Pieza getUnidad(){ return unidad; }
+    public void mostrarAtributos(Pieza pieza){
 
-    private void crearVistaParaTablero (String nombreClase){
+        String costo = Integer.toString(pieza.getCosto());
+        String vida = Integer.toString(pieza.getVidaMaxima());
+        this.getChildren().add(new Text("Costo: " + costo));
+        this.getChildren().add(new Text("Vida inicial: " + vida));
+        }
+
+
+    protected void vistaParaTablero (String nombreClase){
 
         imagenDeUnidad = new ImageView();
         imagenDeUnidad.setScaleX(escalaDeUnidad);
@@ -50,8 +53,6 @@ public class VistaDeUnidad extends VBox {
 
         String equipo = String.valueOf(unidad.getEquipo());
         imagenDeUnidad.setImage(new Image( "resources/" + nombreClase + equipo +".png"));
-
-        vistaDeTablero.agregarUnidad(imagenDeUnidad, this, ubicacion.getPosicionEnX(), ubicacion.getPosicionEnY() );
     }
 
 }

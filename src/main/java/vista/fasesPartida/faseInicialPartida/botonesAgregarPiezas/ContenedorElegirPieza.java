@@ -5,33 +5,34 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import modelo.pieza.Ubicacion;
+import modelo.pieza.tipos.Catapulta;
+import modelo.pieza.tipos.Curandero;
+import modelo.pieza.tipos.Infanteria;
+import modelo.pieza.tipos.Jinete;
 import vista.CamposDeTexto;
 import vista.VistaDeTablero;
 import vista.fasesPartida.faseInicialPartida.EtiquetaPresupuestoJugador;
-import vista.fasesPartida.informacionPiezas.InformacionCatapulta;
-import vista.fasesPartida.informacionPiezas.InformacionCurandero;
-import vista.fasesPartida.informacionPiezas.InformacionInfanteria;
-import vista.fasesPartida.informacionPiezas.InformacionJinete;
+import vista.vistaPiezas.VistaDeUnidad;
 
 public class ContenedorElegirPieza extends GridPane {
     public ContenedorElegirPieza(VistaDeTablero vistaDeTablero, Ubicacion ubicacion, EtiquetaPresupuestoJugador etiquetaPuntos, Label etiquteComunicadora){
 
-        InformacionInfanteria infanteria = new InformacionInfanteria();
+        VistaDeUnidad infanteria = new VistaDeUnidad("infanteria",new Infanteria(),vistaDeTablero);
         VBox pieza1 = new VBox(5);
         BotonAgregarInfanteria btnInfanteria = new BotonAgregarInfanteria(ubicacion, vistaDeTablero, etiquetaPuntos,etiquteComunicadora);
         pieza1.getChildren().addAll(infanteria, btnInfanteria);
 
-        InformacionCurandero curandero = new InformacionCurandero();
+        VistaDeUnidad curandero = new VistaDeUnidad("curandero",new Curandero(),vistaDeTablero);
         VBox pieza2 = new VBox(5);
         BotonAgregarCurandero btnCurandero = new BotonAgregarCurandero(ubicacion, vistaDeTablero, etiquetaPuntos,etiquteComunicadora);
         pieza2.getChildren().addAll(curandero, btnCurandero);
 
-        InformacionJinete jinete = new InformacionJinete();
+        VistaDeUnidad jinete = new VistaDeUnidad("jinete",new Jinete(),vistaDeTablero);
         VBox pieza3 = new VBox(5);
         BotonAgregarJinete btnJinete = new BotonAgregarJinete(ubicacion, vistaDeTablero, etiquetaPuntos, etiquteComunicadora);
         pieza3.getChildren().addAll(jinete, btnJinete);
 
-        InformacionCatapulta catapulta = new InformacionCatapulta();
+        VistaDeUnidad catapulta = new VistaDeUnidad("catapulta",new Catapulta(),vistaDeTablero);
         VBox pieza4 = new VBox(5);
         BotonAgregarCatapulta botonCatapulta = new BotonAgregarCatapulta(ubicacion, vistaDeTablero, etiquetaPuntos,etiquteComunicadora);
         pieza4.getChildren().addAll(catapulta, botonCatapulta);

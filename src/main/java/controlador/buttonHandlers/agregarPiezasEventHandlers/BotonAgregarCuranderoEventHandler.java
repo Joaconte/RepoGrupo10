@@ -1,11 +1,13 @@
 package controlador.buttonHandlers.agregarPiezasEventHandlers;
 
 import javafx.scene.control.Label;
+import modelo.pieza.Pieza;
 import modelo.pieza.Ubicacion;
-import vista.CamposDeTexto;
+import modelo.pieza.tipos.Curandero;
 import vista.VistaDeTablero;
 
 import vista.fasesPartida.faseInicialPartida.EtiquetaPresupuestoJugador;
+import vista.vistaPiezas.VistaCurandero;
 
 
 public class BotonAgregarCuranderoEventHandler extends BotonAgregarPiezaEventHandler {
@@ -17,5 +19,9 @@ public class BotonAgregarCuranderoEventHandler extends BotonAgregarPiezaEventHan
     }
 
 
+    @Override
+    void agregarPiezaATablero(Pieza pieza) {
+        VistaCurandero VistaDeUnidad = new VistaCurandero((Curandero) pieza ,vistaDeTablero);
 
+    }
 }

@@ -38,12 +38,15 @@ public class BotonPasarTurnoEventHandler implements EventHandler<ActionEvent> {
             panelBotonesFaseMedia.modificarBloqueoDeBotonMover(false);
             barraDeJugador1.invertirEstadoDeshabilitado();
             barraDeJugador2.invertirEstadoDeshabilitado();
+            vistaDeTablero.getVistaDePiezaClikeada().getChildren().clear();
+
             if (juego.getNombreJugadorEnTurno() == juego.getNombreDeJugadorUno()){
-                 barraDeJugador1.getChildren().addAll(comunicador, vistaDeTablero.getVistaDePiezaClikeada());}
-            else barraDeJugador2.getChildren().addAll(comunicador, vistaDeTablero.getVistaDePiezaClikeada());
+                barraDeJugador1.getChildren().addAll(comunicador,vistaDeTablero.getVistaDePiezaClikeada());}
+            else barraDeJugador2.getChildren().addAll(comunicador,vistaDeTablero.getVistaDePiezaClikeada());
         } catch (EjercitoIncompletoException e) {
-            comunicador.setText("No completaste tu ejercito (?)");
+            e.printStackTrace();
         }
+
 
     }
 }

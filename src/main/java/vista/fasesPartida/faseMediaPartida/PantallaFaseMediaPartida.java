@@ -20,24 +20,30 @@ public class PantallaFaseMediaPartida extends BorderPane {
         this.setPadding(new Insets(20));
         this.setCenter(vistaDeTablero);
         this.comunicador = new Label("Seleccione la accion que desea realizar.");
+
+
         this.barraDeJugador1 = new BarraDeJugador(juego.getNombreDeJugadorUno(), 1);
-        barraDeJugador1.getChildren().add(comunicador);
-        barraDeJugador1.getChildren().add(vistaDeTablero.getVistaDePiezaClikeada());
         this.barraDeJugador2 = new BarraDeJugador(juego.getNombreDeJugadorDos(), 2);
 
-        VBox ladoJugador1 = new VBox();
-        ladoJugador1.getChildren().add(barraDeJugador1);
-        ladoJugador1.getChildren().add(new PanelBotonesFaseMedia(barraDeJugador1, barraDeJugador2,juego,comunicador,vistaDeTablero));
-        this.setLeft(ladoJugador1);
+        //VBox ladoJugador1 = new VBox();
+        //ladoJugador1.getChildren().add(barraDeJugador1);
+        //ladoJugador1.getChildren().add(new PanelBotonesFaseMedia(barraDeJugador1, barraDeJugador2,juego,comunicador,vistaDeTablero));
+        //this.setLeft(ladoJugador1);
 
-        VBox ladoJugador2 = new VBox();
-        ladoJugador2.getChildren().add(barraDeJugador2);
-        ladoJugador2.getChildren().add(new PanelBotonesFaseMedia(barraDeJugador1, barraDeJugador2,juego,comunicador,vistaDeTablero));
-        this.setRight(ladoJugador2);
+        //VBox ladoJugador2 = new VBox();
+        //ladoJugador2.getChildren().add(barraDeJugador2);
+        //ladoJugador2.getChildren().add(new PanelBotonesFaseMedia(barraDeJugador1, barraDeJugador2,juego,comunicador,vistaDeTablero));
+        //this.setRight(ladoJugador2);
+
+        barraDeJugador1.getChildren().add(new PanelBotonesFaseMedia(barraDeJugador1, barraDeJugador2,juego,comunicador,vistaDeTablero));
+        barraDeJugador2.getChildren().add(new PanelBotonesFaseMedia(barraDeJugador1, barraDeJugador2,juego,comunicador,vistaDeTablero));
+        barraDeJugador1.getChildren().add(comunicador);
+        barraDeJugador1.getChildren().add(vistaDeTablero.getVistaDePiezaClikeada());
+
 
         //-------------------------
-        //this.setLeft(barraDeJugador1);
-        //this.setRight(barraDeJugador2);
+        this.setLeft(barraDeJugador1);
+        this.setRight(barraDeJugador2);
         barraDeJugador2.setDisable(true);
 
         // ----------- este estaba aantes

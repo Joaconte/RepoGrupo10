@@ -2,10 +2,12 @@ package controlador.buttonHandlers.agregarPiezasEventHandlers;
 
 
 import javafx.scene.control.Label;
+import modelo.pieza.Pieza;
 import modelo.pieza.Ubicacion;
-import vista.CamposDeTexto;
+import modelo.pieza.tipos.Infanteria;
 import vista.VistaDeTablero;
 import vista.fasesPartida.faseInicialPartida.EtiquetaPresupuestoJugador;
+import vista.vistaPiezas.VistaInfanteria;
 
 public class BotonAgregarInfanteriaEventHandler extends BotonAgregarPiezaEventHandler{
 
@@ -15,4 +17,9 @@ public class BotonAgregarInfanteriaEventHandler extends BotonAgregarPiezaEventHa
 
     }
 
+    @Override
+    void agregarPiezaATablero(Pieza pieza) {
+        VistaInfanteria VistaDeUnidad = new VistaInfanteria((Infanteria) pieza ,vistaDeTablero);
+    }
 }
+
