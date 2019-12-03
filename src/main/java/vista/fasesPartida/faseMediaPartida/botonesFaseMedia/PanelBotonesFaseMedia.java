@@ -25,7 +25,7 @@ public class PanelBotonesFaseMedia extends HBox {
 
         this.ubicacionEstatica = vistaDeTablero.getUbicacionDelCursor();
 
-        this.botonAtacar = new BotonAtacar(this, barraDeJugador1,barraDeJugador2);
+        this.botonAtacar = new BotonAtacar(this, juego, comunicador, barraDeJugador1,barraDeJugador2, vistaDeTablero);
         this.botonCurar = new BotonCurar(this, barraDeJugador1,barraDeJugador2);
         this.botonCrearBatallon = new BotonCrearBatallon(this, barraDeJugador1,barraDeJugador2);
         this.botonMover = new BotonMover(ubicacionEstatica, juego, comunicador, vistaDeTablero);
