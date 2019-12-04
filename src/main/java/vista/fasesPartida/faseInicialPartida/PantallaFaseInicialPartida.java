@@ -24,7 +24,8 @@ public class PantallaFaseInicialPartida extends HBox {
     private Label etiquetaComunicacion;
 
     public PantallaFaseInicialPartida(Juego juego, Stage escenarioPrincipal){
-        Audio.reproducirCargaJugadores();
+        //Audio.reproducirCargaJugadores();
+        Audio.reproducirMusica("registro");
 
         this.setSpacing(10);
 
