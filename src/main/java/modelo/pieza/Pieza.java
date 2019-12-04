@@ -79,8 +79,6 @@ public abstract class Pieza {
     }
     public abstract boolean esRefuerzoDeJinete();
 
-
-
     public void mover(Ubicacion ubicacion) throws NoSePuedeMoverException {
         this.getUbicacion().setPosicionEnX(ubicacion.getPosicionEnX());
         this.getUbicacion().setPosicionEnY(ubicacion.getPosicionEnY());

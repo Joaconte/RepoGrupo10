@@ -2,7 +2,6 @@ package modelo.pieza.tipos;
 
 import modelo.pieza.Pieza;
 
-import java.util.ArrayList;
 
 public class Auxiliares {
     public boolean son3Aliados(Pieza p1, Pieza p2, Pieza p3){

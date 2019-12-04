@@ -1,6 +1,7 @@
 package modelo.pieza.ataque;
 
 import modelo.pieza.Pieza;
+import modelo.pieza.Ubicacion;
 import modelo.pieza.UnidadEstaMuertaException;
 import modelo.pieza.movimiento.IModoMovimiento;
 import modelo.pieza.sanacion.IModoSanacion;
@@ -35,6 +36,5 @@ public abstract class PiezaAtacante extends Pieza {
     public void atacar(Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException{
         if(!this.esEnemigo(atacada)){ throw new PiezaAliadaNoAtacableException();}
         modoAtaque.atacar(this, atacada);
-    };
-
+    }
 }

@@ -12,6 +12,7 @@ import modelo.pieza.UnidadEstaMuertaException;
 import modelo.pieza.ataque.DistanciaDeAtaqueInvalidaException;
 import modelo.pieza.ataque.PiezaAtacante;
 import modelo.pieza.Pieza;
+import modelo.pieza.movimiento.Direccion;
 import modelo.pieza.movimiento.NoSePuedeMoverException;
 import modelo.pieza.sanacion.CurandoAEnemigoException;
 import modelo.pieza.sanacion.UnidadNoSePuedeCurar;
@@ -20,6 +21,8 @@ import modelo.pieza.tipos.CurandoCuraADistanciaCortaException;
 import modelo.tablero.DesplazamientoInvalidoException;
 import modelo.tablero.Tablero;
 import modelo.tablero.casilla.NoHayUnidadEnPosicionException;
+
+import java.util.ArrayList;
 
 public class FaseMedia implements FaseDePartida{
 
@@ -55,6 +58,14 @@ public class FaseMedia implements FaseDePartida{
         if(!jugadorEnTurno.jugadorControlaUbicacion(ubicacionInicial)) throw new PiezaNoEsDeJugadorException();
         tableroDePartida.moverUnidad(ubicacionInicial, ubicacionFinal);
 
+    }
+
+    public void moverBatallon(Tablero tableroDePartida , ArrayList<Ubicacion> ubicaciones, Direccion direccion ){
+        tableroDePartida.moverBatallon(ubicaciones, direccion);
+    }
+
+    public boolean formanBatallon(Tablero tableroDePartida, ArrayList<Ubicacion> ubicaciones) {
+        return tableroDePartida.formanBatallon(ubicaciones);
     }
 
     @Override

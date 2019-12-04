@@ -40,7 +40,6 @@ public class Catapulta extends PiezaAtacante {
         ATAQUE.atacarEnMasa(this, atacada, tablero.getPiezasAdycentesInfinitas(atacada.getUbicacion()));
     }
 
-
     @Override
     public void evaluarZonaDeDanio(Sector sector){}
 
