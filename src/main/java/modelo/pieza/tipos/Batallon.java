@@ -22,29 +22,13 @@ public class Batallon {
 
     }
 
-    public void atacar(Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
-        /* ataca solo 1 o todos los que tengan un enemigo a rango*/
-
-    }
-
     public String getNombre() {
         return "Batallon";
     }
 
 
-    /*public void moverBatallon(Ubicacion ubicacionActual, Ubicacion miNuevaUbicacion){
-
-        soldados.get(0).moverUnidad(ubicacionActual, miNuevaUbicacion);
-        soldados.get(1).moverUnidad(ubicacionActual, miNuevaUbicacion);
-        soldados.get(2).moverUnidad(ubicacionActual, miNuevaUbicacion);
-    }*/
-
     /* Acá quiero ignorar si una pieza no se pudo mover */
-    /*
-    public void mover(Tablero tablero, Direccion direccion) throws BatallonDisueltoException {
-        if (!this.siguenContiguos()){
-            throw new BatallonDisueltoException();
-        }
+    public void mover(Tablero tablero, Direccion direccion, Ubicacion ubicacion) throws BatallonDisueltoException {
 
         boolean recorrerDesc = (direccion.getClass() == Derecha.class)||(direccion.getClass() == Abajo.class)||
                 (direccion.getClass() == AbajoDerecha.class)||(direccion.getClass() == AbajoIzquierda.class);
@@ -58,6 +42,9 @@ public class Batallon {
             try {
                 soldado.mover(ubicacion);
             } catch (Exception ignore) { }
+        }
+        if (!this.siguenContiguos()){
+            throw new BatallonDisueltoException();
         }
     }
         /* ACA SE DISUELVE EL GRUPO DE SOLDADOS ? */

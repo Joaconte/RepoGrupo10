@@ -11,6 +11,7 @@ import modelo.pieza.ataque.PiezaAtacante;
 
 import modelo.partida.fase.FaseDePartida;
 import modelo.partida.fase.FaseInicial;
+import modelo.pieza.movimiento.Direccion;
 import modelo.pieza.movimiento.NoSePuedeMoverException;
 import modelo.pieza.sanacion.CurandoAEnemigoException;
 import modelo.pieza.sanacion.UnidadNoSePuedeCurar;
@@ -21,6 +22,7 @@ import modelo.tablero.Tablero;
 import modelo.pieza.Pieza;
 import modelo.tablero.casilla.NoHayUnidadEnPosicionException;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 
@@ -81,6 +83,13 @@ public class Partida {
         miFase.moverUnidadEnTablero(tableroDePartida, jugadorEnTurno, ubicacionInicial,ubicacionFinal);
     }
 
+    public void moverBatallon( ArrayList<Ubicacion> ubicaciones, Direccion direccion ){
+        miFase.moverBatallon(tableroDePartida, ubicaciones, direccion);
+    }
+
+    public boolean formanBatallon(ArrayList<Ubicacion> ubicaciones) {
+        return miFase.formanBatallon(tableroDePartida, ubicaciones);
+    }
 
     //---------------Metodos de Fase------------//
 
@@ -140,6 +149,7 @@ public class Partida {
     public void curarAAliado(Curandero piezaCurandera, Pieza otraPieza) throws CurandoAEnemigoException, CurandoCuraADistanciaCortaException, UnidadNoSePuedeCurar {
         miFase.curarAAliado(piezaCurandera,otraPieza);
     }
+
 }
 
 

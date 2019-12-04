@@ -3,6 +3,7 @@ package modelo.tablero;
 import modelo.jugador.UbicacionInvalidaException;
 import modelo.pieza.Pieza;
 import modelo.pieza.Ubicacion;
+import modelo.pieza.movimiento.Direccion;
 import modelo.pieza.movimiento.NoSePuedeMoverException;
 import modelo.tablero.casilla.Casilla;
 import modelo.tablero.casilla.NoHayUnidadEnPosicionException;
@@ -57,6 +58,13 @@ public class Tablero {
         int desplazamientoEnX = Math.abs(ubicacionInicial.getPosicionEnX() - ubicacionFinal.getPosicionEnX());
         int desplazamientoEnY = Math.abs(ubicacionInicial.getPosicionEnY() - ubicacionFinal.getPosicionEnY());
         return ((desplazamientoEnX < 2) && (desplazamientoEnY < 2));
+    }
+
+    public void moverBatallon(ArrayList<Ubicacion> ubicaciones, Direccion direccion) {
+
+    }
+    public boolean formanBatallon(ArrayList<Ubicacion> ubicaciones) {
+        return true;
     }
 
     public int getTamanio(){

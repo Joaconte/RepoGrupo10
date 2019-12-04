@@ -14,6 +14,7 @@ import modelo.pieza.UnidadEstaMuertaException;
 import modelo.pieza.ataque.DistanciaDeAtaqueInvalidaException;
 import modelo.pieza.ataque.PiezaAliadaNoAtacableException;
 import modelo.pieza.ataque.PiezaAtacante;
+import modelo.pieza.movimiento.Direccion;
 import modelo.pieza.movimiento.NoSePuedeMoverException;
 import modelo.pieza.sanacion.CurandoAEnemigoException;
 import modelo.pieza.sanacion.UnidadNoSePuedeCurar;
@@ -64,6 +65,14 @@ public class Juego {
 
     public void moverUnidad(Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) throws PiezaNoEsDeJugadorException, NoHayUnidadEnPosicionException, DesplazamientoInvalidoException, NoSePuedeMoverException, UbicacionInvalidaException {
         partida.moverUnidad(ubicacionInicial, ubicacionFinal);
+    }
+
+    public void moverBatallon( ArrayList<Ubicacion> ubicaciones, Direccion direccion ){
+        partida.moverBatallon( ubicaciones, direccion);
+    }
+
+    public boolean formanBatallon( ArrayList<Ubicacion> ubicaciones){
+        return partida.formanBatallon( ubicaciones);
     }
 
     public void atacar (PiezaAtacante piezaAtacante, Pieza pieza) throws PiezaAliadaNoAtacableException, JugadorNoPuedeManipularEsaPiezaException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException {

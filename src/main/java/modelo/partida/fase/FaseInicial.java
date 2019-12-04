@@ -10,11 +10,14 @@ import modelo.jugador.presupuesto.PresupuestoAgotadoException;
 import modelo.pieza.Ubicacion;
 import modelo.pieza.ataque.PiezaAtacante;
 import modelo.pieza.Pieza;
+import modelo.pieza.movimiento.Direccion;
 import modelo.pieza.sanacion.CurandoAEnemigoException;
 import modelo.pieza.sanacion.UnidadNoSePuedeCurar;
 import modelo.pieza.tipos.Curandero;
 import modelo.pieza.tipos.CurandoCuraADistanciaCortaException;
 import modelo.tablero.Tablero;
+
+import java.util.ArrayList;
 
 public class FaseInicial implements FaseDePartida{
 
@@ -58,6 +61,16 @@ public class FaseInicial implements FaseDePartida{
     @Override
     public void moverUnidadEnTablero(Tablero tableroDePartida, Jugador jugadorEnTurno, Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) {
 
+    }
+
+    @Override
+    public void moverBatallon(Tablero tableroDePartida, ArrayList<Ubicacion> ubicaciones, Direccion direccion) {
+
+    }
+
+    @Override
+    public boolean formanBatallon(Tablero tableroDePartida, ArrayList<Ubicacion> ubicaciones) {
+        return false;
     }
 
 
