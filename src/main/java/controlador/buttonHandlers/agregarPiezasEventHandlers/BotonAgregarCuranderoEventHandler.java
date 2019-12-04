@@ -22,7 +22,7 @@ public class BotonAgregarCuranderoEventHandler extends BotonAgregarPiezaEventHan
 
     @Override
     void agregarPiezaATablero(Pieza pieza) {
-        VistaUnidad vistaDeUnidad = new VistaUnidadCurandera((Curandero) pieza ,vistaDeTablero,"curandero",etiquetaPuntos.juego);
+        VistaUnidadCurandera vistaDeUnidad = new VistaUnidadCurandera((Curandero) pieza ,vistaDeTablero,"curandero",etiquetaPuntos.juego);
         vistaDeUnidad.crearVistaEnTablero();
 
     }

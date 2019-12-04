@@ -11,7 +11,7 @@ import vista.VistaDeTablero;
 
 public class VistaUnidad extends Label{
 
-    private Pieza pieza;
+    protected Pieza pieza;
     protected VistaInformacionDeUnidad vistaDatos;
     protected VistaDeTablero vistaDeTablero;
     protected HBox barraDeOpcionesDeUnidad = new HBox();

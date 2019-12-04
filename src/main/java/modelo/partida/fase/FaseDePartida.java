@@ -11,6 +11,10 @@ import modelo.pieza.UnidadEstaMuertaException;
 import modelo.pieza.ataque.DistanciaDeAtaqueInvalidaException;
 import modelo.pieza.ataque.PiezaAtacante;
 import modelo.pieza.Pieza;
+import modelo.pieza.sanacion.CurandoAEnemigoException;
+import modelo.pieza.sanacion.UnidadNoSePuedeCurar;
+import modelo.pieza.tipos.Curandero;
+import modelo.pieza.tipos.CurandoCuraADistanciaCortaException;
 import modelo.tablero.Tablero;
 
 public interface FaseDePartida{
@@ -28,4 +32,6 @@ public interface FaseDePartida{
     FaseDePartida retornarProximaFase();
 
     Pieza crearPieza(Jugador jugadorEnTurno, Tablero tableroDePartida, String nombreDeUnidad, int posicionEnX, int posicionEnY) throws UbicacionInvalidaException, PresupuestoAgotadoException, CompraInvalidaException, PiezaFueraDeSectorException;
+
+    void curarAAliado(Curandero piezaCurandera, Pieza otraPieza) throws UnidadNoSePuedeCurar, CurandoCuraADistanciaCortaException, CurandoAEnemigoException;
 }

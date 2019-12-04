@@ -1,4 +1,4 @@
-package controlador.buttonHandlers;
+package controlador.buttonHandlers.accionDeTurno;
 
 import controlador.ClickEnZonaEventHandler;
 import javafx.event.ActionEvent;

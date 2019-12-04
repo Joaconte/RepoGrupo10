@@ -10,6 +10,10 @@ import modelo.pieza.UnidadEstaMuertaException;
 import modelo.pieza.ataque.DistanciaDeAtaqueInvalidaException;
 import modelo.pieza.ataque.PiezaAtacante;
 import modelo.pieza.Pieza;
+import modelo.pieza.sanacion.CurandoAEnemigoException;
+import modelo.pieza.sanacion.UnidadNoSePuedeCurar;
+import modelo.pieza.tipos.Curandero;
+import modelo.pieza.tipos.CurandoCuraADistanciaCortaException;
 import modelo.tablero.Tablero;
 
 public class FaseMedia implements FaseDePartida{
@@ -42,6 +46,11 @@ public class FaseMedia implements FaseDePartida{
     }
 
     @Override
+    public void curarAAliado(Curandero piezaCurandera, Pieza otraPieza) throws UnidadNoSePuedeCurar, CurandoCuraADistanciaCortaException, CurandoAEnemigoException {
+        piezaCurandera.curarAAliado(otraPieza);
+    }
+
+    @Override
     public FaseDePartida retornarProximaFase() {
         return this;
     }
@@ -50,6 +59,8 @@ public class FaseMedia implements FaseDePartida{
     public Pieza crearPieza(Jugador jugadorEnTurno, Tablero tableroDePartida, String nombreDeUnidad, int posicionEnX, int posicionEnY) throws UbicacionInvalidaException, PresupuestoAgotadoException, CompraInvalidaException, PiezaFueraDeSectorException {
         throw new PresupuestoAgotadoException();
     }
+
+
 
 
 }

@@ -15,6 +15,10 @@ import modelo.pieza.ataque.DistanciaDeAtaqueInvalidaException;
 import modelo.pieza.ataque.PiezaAliadaNoAtacableException;
 import modelo.pieza.ataque.PiezaAtacante;
 import modelo.pieza.movimiento.NoSePuedeMoverException;
+import modelo.pieza.sanacion.CurandoAEnemigoException;
+import modelo.pieza.sanacion.UnidadNoSePuedeCurar;
+import modelo.pieza.tipos.Curandero;
+import modelo.pieza.tipos.CurandoCuraADistanciaCortaException;
 import modelo.tablero.DesplazamientoInvalidoException;
 import modelo.tablero.Tablero;
 import modelo.tablero.casilla.NoHayUnidadEnPosicionException;
@@ -69,6 +73,10 @@ public class Juego {
 
     public void actualizarTablero(){
         partida.actualizarTablero();
+    }
+
+    public void curarAAliado(Curandero piezaCurandera, Pieza otraPieza) throws UnidadNoSePuedeCurar, CurandoCuraADistanciaCortaException, CurandoAEnemigoException {
+        partida.curarAAliado(piezaCurandera,otraPieza);
     }
 }
 

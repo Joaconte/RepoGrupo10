@@ -8,8 +8,10 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import modelo.pieza.Pieza;
 import modelo.pieza.Ubicacion;
 import modelo.pieza.ataque.PiezaAtacante;
+import modelo.pieza.tipos.Curandero;
 import modelo.tablero.Tablero;
 
 import vista.vistaPiezas.VistaUnidad;
@@ -92,8 +94,8 @@ public class VistaDeTablero extends Group {
         listaDeUnidades.stream().forEach(p->p.setOnMouseClicked(new ClickEnPiezaAtaqueActivoEventHandler(vistaUnidadClikeada,p, piezaAtacante, this)));
     }
 
-    public void tableroEnModoCuracion(){
-        listaDeUnidades.stream().forEach(p->p.setOnMouseClicked(new ClickEnPiezaModoCuracionEventHandler(vistaUnidadClikeada,p)));
+    public void tableroEnModoCuracion(Curandero pieza){
+        listaDeUnidades.stream().forEach(p->p.setOnMouseClicked(new ClickEnPiezaModoCuracionEventHandler(vistaUnidadClikeada,p,pieza,this)));
     }
 
     public void tableroEnModoMovimiento(){

@@ -1,10 +1,18 @@
 package vista.fasesPartida.faseMediaPartida.botonesFaseMedia;
 
+import controlador.buttonHandlers.accionDeTurno.BotonCurarEventHandler;
 import javafx.scene.control.Button;
-import vista.fasesPartida.faseMediaPartida.BarraDeJugador;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import modelo.Juego;
+import modelo.pieza.tipos.Curandero;
+import vista.VistaDeTablero;
 
 public class BotonCurar extends Button {
-    public BotonCurar(BarraDeJugador barraDeJugador1, BarraDeJugador barraDeJugador){
-        super("Curar");
+
+    public BotonCurar(Curandero pieza, Juego juego, Label etiquetaDeTexto, VistaDeTablero vistaDeTablero, HBox barraDeOpcionesDeUnidad) {
+        super("Curar a Aliado");
+        this.setOnAction(new BotonCurarEventHandler(pieza,juego,etiquetaDeTexto,vistaDeTablero,barraDeOpcionesDeUnidad));
+
     }
 }

@@ -12,6 +12,10 @@ import modelo.pieza.ataque.PiezaAtacante;
 import modelo.partida.fase.FaseDePartida;
 import modelo.partida.fase.FaseInicial;
 import modelo.pieza.movimiento.NoSePuedeMoverException;
+import modelo.pieza.sanacion.CurandoAEnemigoException;
+import modelo.pieza.sanacion.UnidadNoSePuedeCurar;
+import modelo.pieza.tipos.Curandero;
+import modelo.pieza.tipos.CurandoCuraADistanciaCortaException;
 import modelo.tablero.DesplazamientoInvalidoException;
 import modelo.tablero.Tablero;
 import modelo.pieza.Pieza;
@@ -136,6 +140,12 @@ public class Partida {
     public void actualizarTablero() {
         jugadorDos.actualizarEstadoTropas(tableroDePartida);
         jugadorUno.actualizarEstadoTropas(tableroDePartida);
+    }
+
+
+
+    public void curarAAliado(Curandero piezaCurandera, Pieza otraPieza) throws CurandoAEnemigoException, CurandoCuraADistanciaCortaException, UnidadNoSePuedeCurar {
+        miFase.curarAAliado(piezaCurandera,otraPieza);
     }
 }
 
