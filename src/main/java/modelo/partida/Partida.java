@@ -137,7 +137,6 @@ public class Partida {
     }
 
 
-
     public void curarAAliado(Curandero piezaCurandera, Pieza otraPieza) throws CurandoAEnemigoException, CurandoCuraADistanciaCortaException, UnidadNoSePuedeCurar {
         miFase.curarAAliado(piezaCurandera,otraPieza);
     }

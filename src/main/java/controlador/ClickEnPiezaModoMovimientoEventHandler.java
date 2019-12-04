@@ -36,22 +36,21 @@ public class ClickEnPiezaModoMovimientoEventHandler implements EventHandler<Mous
 
     @Override
     public void handle(MouseEvent mouseEvent) {
+
+
+        this.etiquetaTexto.setTextFill(Color.web("#FF0000"));
         try {
             juego.moverUnidad(ubicacionInicial, ubicacionFinal);
             vistaDeTablero.actualizarUbicacion(ubicacionInicial,ubicacionFinal);
-            vistaDeTablero.restablecerTableroMovimiento();
-            vistaDeTablero.tableroNormal();
             etiquetaTexto.setText("Se movio correctamente");
-        } catch (PiezaNoEsDeJugadorException | NoSePuedeMoverException | DesplazamientoInvalidoException | NoHayUnidadEnPosicionException j) {
-            vistaDeTablero.tableroNormal();
-            vistaDeTablero.restablecerTableroMovimiento();
-            etiquetaTexto.setText("No se puede mover");
-        } catch (UbicacionInvalidaException n) {
-            vistaDeTablero.tableroNormal();
-            vistaDeTablero.restablecerTableroMovimiento();
-            etiquetaTexto.setText("Ubicacion invalida");
+            this.etiquetaTexto.setTextFill(Color.web("#000000"));
+
+        } catch (PiezaNoEsDeJugadorException | NoSePuedeMoverException | UbicacionInvalidaException |DesplazamientoInvalidoException | NoHayUnidadEnPosicionException j) {
+            etiquetaTexto.setText(j.getMessage());
         }
 
+        vistaDeTablero.tableroNormal();
+        vistaDeTablero.restablecerTableroMovimiento();
     }
 }
 

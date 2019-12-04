@@ -89,10 +89,6 @@ public class VistaDeTablero extends Group {
     }
 
     public void agregarUnidad(VistaUnidad etiquetaUnidad, int x, int y){
-        GridPane.setRowIndex(etiquetaUnidad, x);
-        GridPane.setColumnIndex(etiquetaUnidad, y);
-        contenedorTabla.getChildren().add(etiquetaUnidad);
-        //addViewOnMap(unidad, x, y);
         casillaTabla[x][y].getChildren().add(0, etiquetaUnidad);
         listaDeUnidades.add(etiquetaUnidad);
     }

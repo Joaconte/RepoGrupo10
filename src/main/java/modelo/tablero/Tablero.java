@@ -38,8 +38,8 @@ public class Tablero {
 
     public void moverUnidad(Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) throws NoHayUnidadEnPosicionException, DesplazamientoInvalidoException, UbicacionInvalidaException, NoSePuedeMoverException {
 
-        if (ubicacionInicial.getPosicionEnX() == ubicacionFinal.getPosicionEnX() &&
-                ubicacionInicial.getPosicionEnY() == ubicacionFinal.getPosicionEnY() ) throw new UbicacionInvalidaException();
+        if (columnas.get(ubicacionFinal.getPosicionEnX()).getCasilla(ubicacionFinal.getPosicionEnY()).estaOcupada())
+            throw new UbicacionInvalidaException();
 
         else if (desplazamientoEsValido( ubicacionInicial, ubicacionFinal )) {
 
@@ -54,12 +54,9 @@ public class Tablero {
 
     private boolean desplazamientoEsValido(Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) {
 
-
-        int desplazamientoEnX = Math.abs (ubicacionInicial.getPosicionEnX() - ubicacionFinal.getPosicionEnX());
-
-        int desplazamientoEnY = Math.abs (ubicacionInicial.getPosicionEnY() - ubicacionFinal.getPosicionEnY());
-
-        return ( (  desplazamientoEnX < 2 ) && ( desplazamientoEnY < 2 ) );
+        int desplazamientoEnX = Math.abs(ubicacionInicial.getPosicionEnX() - ubicacionFinal.getPosicionEnX());
+        int desplazamientoEnY = Math.abs(ubicacionInicial.getPosicionEnY() - ubicacionFinal.getPosicionEnY());
+        return ((desplazamientoEnX < 2) && (desplazamientoEnY < 2));
     }
 
     public int getTamanio(){
