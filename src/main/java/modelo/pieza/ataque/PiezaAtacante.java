@@ -37,4 +37,7 @@ public abstract class PiezaAtacante extends Pieza {
         if(!this.esEnemigo(atacada)){ throw new PiezaAliadaNoAtacableException();}
         modoAtaque.atacar(this, atacada);
     }
+
+    public abstract String getSonidoAtaque();
+
 }

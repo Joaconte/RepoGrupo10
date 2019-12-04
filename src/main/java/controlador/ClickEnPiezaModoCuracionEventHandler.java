@@ -8,6 +8,7 @@ import modelo.pieza.sanacion.CurandoAEnemigoException;
 import modelo.pieza.sanacion.UnidadNoSePuedeCurar;
 import modelo.pieza.tipos.Curandero;
 import modelo.pieza.tipos.CurandoCuraADistanciaCortaException;
+import resources.sonidos.Audio;
 import vista.VistaDeTablero;
 import vista.vistaPiezas.VistaUnidad;
 
@@ -28,6 +29,7 @@ public class ClickEnPiezaModoCuracionEventHandler implements EventHandler<MouseE
     @Override
     public void handle(MouseEvent mouseEvent) {
 
+        piezaClikeada.getEtiquetaDeTexto().setTextFill(Color.web("#FF0000"));
         try {
             vistaUnidadClikeada.getChildren().clear();
             vistaUnidadClikeada.getChildren().add(piezaClikeada.getVistaInformacion());
@@ -35,21 +37,15 @@ public class ClickEnPiezaModoCuracionEventHandler implements EventHandler<MouseE
             piezaClikeada.getVistaInformacion().actualizarDatosEnPartida();
             piezaClikeada.setEtiquetaDeTexto("Fue sanada con exito.");
             piezaClikeada.getEtiquetaDeTexto().setTextFill(Color.web("#336600"));
-            vistaDeTablero.tableroNormal();
+            Audio.reproducirAtaque("heal");
 
         } catch (UnidadNoSePuedeCurar unidadNoSePuedeCurar) {
             piezaClikeada.setEtiquetaDeTexto("Esta pieza no quiere ayuda.");
-            piezaClikeada.getEtiquetaDeTexto().setTextFill(Color.web("#FF0000"));
-            vistaDeTablero.tableroNormal();
         } catch (CurandoCuraADistanciaCortaException e) {
             piezaClikeada.setEtiquetaDeTexto("Distancia de curacion invalida.");
-            piezaClikeada.getEtiquetaDeTexto().setTextFill(Color.web("#FF0000"));
-            vistaDeTablero.tableroNormal();
         } catch (CurandoAEnemigoException e) {
             piezaClikeada.setEtiquetaDeTexto("No se puede curar a enemigos.");
-            piezaClikeada.getEtiquetaDeTexto().setTextFill(Color.web("#FF0000"));
-            vistaDeTablero.tableroNormal();
         }
-
+        vistaDeTablero.tableroNormal();
     }
 }

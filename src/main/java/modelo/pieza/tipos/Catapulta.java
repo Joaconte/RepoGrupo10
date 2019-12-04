@@ -49,6 +49,8 @@ public class Catapulta extends PiezaAtacante {
     }
 
 
+    @Override
+    public String getSonidoAtaque(){return "catapulta";}
 
     @Override
     public void mover(Ubicacion ubicacion) throws NoSePuedeMoverException {
