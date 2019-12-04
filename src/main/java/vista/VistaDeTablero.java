@@ -75,10 +75,15 @@ public class VistaDeTablero extends Group {
     }
 
     public void actualizarTableroPorMuertas(){
+        List <VistaUnidad> auxiliar = new ArrayList<>();
         listaDeUnidades.stream()
                 .filter(p->p.getPieza().getPuntosVida()==0)
-                .forEach(p-> {casillaTabla[p.getPieza().getUbicacion().getPosicionEnX()][p.getPieza().getUbicacion().getPosicionEnY()].getChildren().clear();
-                    listaDeUnidades.remove(p);});
+                .forEach(p-> {casillaTabla[p.getPieza().getUbicacion().getPosicionEnX()][p.getPieza().getUbicacion().getPosicionEnY()].getChildren().clear(); });
+        listaDeUnidades.stream()
+                .filter(p->p.getPieza().getPuntosVida()>0)
+                .forEach(p->auxiliar.add(p));
+        listaDeUnidades.clear();
+        listaDeUnidades.addAll(auxiliar);
     }
 
     public void actualizarUbicacion(Ubicacion vieja, Ubicacion nueva){
