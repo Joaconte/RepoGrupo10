@@ -29,15 +29,13 @@ public class ClickEnPiezaModoCuracionEventHandler implements EventHandler<MouseE
     public void handle(MouseEvent mouseEvent) {
 
         try {
+            piezaClikeada.getJuego().curarAAliado(pieza,piezaClikeada.getPieza());
             vistaUnidadClikeada.getChildren().clear();
             vistaUnidadClikeada.getChildren().add(piezaClikeada.getVistaInformacion());
-            piezaClikeada.getJuego().curarAAliado(pieza,piezaClikeada.getPieza());
-            piezaClikeada.getVistaInformacion();
             piezaClikeada.setEtiquetaDeTexto("Fue sanada con exito.");
             piezaClikeada.getEtiquetaDeTexto().setTextFill(Color.web("#336600"));
             vistaDeTablero.tableroNormal();
-            piezaClikeada.getJuego().actualizarTablero();
-            vistaDeTablero.actualizarTabler();
+
         } catch (UnidadNoSePuedeCurar unidadNoSePuedeCurar) {
             piezaClikeada.setEtiquetaDeTexto("Esta pieza no quiere ayuda.");
             piezaClikeada.getEtiquetaDeTexto().setTextFill(Color.web("#FF0000"));
