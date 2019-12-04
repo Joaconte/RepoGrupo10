@@ -30,6 +30,7 @@ public class BotonCurarEventHandler  implements EventHandler<ActionEvent>{
         etiquetaTexto.setText("Haga click en la pieza a la que desea curar");
         etiquetaTexto.setTextFill(Color.web("#336600"));
         vistaDeTablero.tableroEnModoCuracion(pieza);
+        barraDeOpcionesDeUnidad.setVisible(false);
 
     }
 }
