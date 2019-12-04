@@ -28,6 +28,7 @@ public class BotonIniciarPartidaEventHandler implements EventHandler<ActionEvent
         panelConBarrasDeMovimiento.setContent(pantallaFaseInicialPartida);
         Scene escenaFaseInicial = new Scene (panelConBarrasDeMovimiento,1200,950);
         escenarioPrincipal.setScene(escenaFaseInicial);
+        Audio.reproducirClick();
     }
 
 }

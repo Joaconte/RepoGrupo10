@@ -7,6 +7,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import modelo.Juego;
 import modelo.pieza.ataque.PiezaAtacante;
+import resources.sonidos.Audio;
 import vista.VistaDeTablero;
 
 
@@ -30,5 +31,6 @@ private HBox barra;
         this.comunicador.setTextFill(Color.web("#336600"));
         vistaDeTablero.tableroEnModoAtaque(piezaAtacante);
         barra.setVisible(false);
+        Audio.reproducirInterfaz("click");
     }
 }

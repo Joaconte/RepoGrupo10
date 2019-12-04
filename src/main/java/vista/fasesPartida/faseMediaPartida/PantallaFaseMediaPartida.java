@@ -18,6 +18,7 @@ public class PantallaFaseMediaPartida extends BorderPane {
 
     public PantallaFaseMediaPartida(VistaDeTablero vistaDeTablero, Juego juego, Stage escenarioPrincipal){
         Audio.reproducirJugando();
+
         this.setPadding(new Insets(20));
         this.setCenter(vistaDeTablero);
         vistaDeTablero.tableroNormal();

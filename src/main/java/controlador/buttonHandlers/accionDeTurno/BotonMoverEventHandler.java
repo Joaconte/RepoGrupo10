@@ -9,6 +9,7 @@ import modelo.Juego;
 import modelo.pieza.Pieza;
 import modelo.pieza.tipos.Curandero;
 
+import resources.sonidos.Audio;
 import vista.VistaDeTablero;
 import vista.vistaPiezas.VistaUnidad;
 
@@ -34,6 +35,6 @@ public class BotonMoverEventHandler implements EventHandler<ActionEvent> {
         etiquetaTexto.setTextFill(Color.web("#336600"));
         vistaDeTablero.tableroEnModoMovimiento(vistaUnidad,etiquetaTexto);
         barraDeOpcionesDeUnidad.setVisible(false);
-
+        Audio.reproducirInterfaz("click");
     }
 }
