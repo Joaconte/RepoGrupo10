@@ -8,8 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import modelo.Juego;
-import modelo.pieza.Pieza;
+import javafx.stage.Stage;
 import modelo.pieza.Ubicacion;
 import modelo.pieza.ataque.PiezaAtacante;
 import modelo.pieza.tipos.Curandero;
@@ -26,6 +25,7 @@ public class VistaDeTablero extends Group {
     public int anchura;
     private int alturaCelda = 45;
     private int anchuraCelda = 45;
+    private Stage stage;
     private Tablero tablero;
     private Rectangle rectanguloDeMovimiento = new Rectangle(45,45,Color.rgb(0,0,0,0.4));
     private GridPane contenedorTabla;
@@ -35,8 +35,9 @@ public class VistaDeTablero extends Group {
     private List<VistaUnidad> listaDeUnidades = new ArrayList<>();
 
 
-    public VistaDeTablero(Tablero tablero){
+    public VistaDeTablero(Tablero tablero, Stage stage){
 
+        this.stage=stage;
         this.tablero = tablero;
         this.ubicacionDelCursor =new Ubicacion(9,9);
         contenedorTabla = new GridPane();
@@ -78,10 +79,10 @@ public class VistaDeTablero extends Group {
         List <VistaUnidad> auxiliar = new ArrayList<>();
         listaDeUnidades.stream()
                 .filter(p->p.getPieza().getPuntosVida()==0)
-                .forEach(p-> {casillaTabla[p.getPieza().getUbicacion().getPosicionEnX()][p.getPieza().getUbicacion().getPosicionEnY()].getChildren().clear(); });
+                .forEach(p-> casillaTabla[p.getPieza().getUbicacion().getPosicionEnX()][p.getPieza().getUbicacion().getPosicionEnY()].getChildren().clear());
         listaDeUnidades.stream()
                 .filter(p->p.getPieza().getPuntosVida()>0)
-                .forEach(p->auxiliar.add(p));
+                .forEach(auxiliar::add);
         listaDeUnidades.clear();
         listaDeUnidades.addAll(auxiliar);
     }
@@ -98,17 +99,16 @@ public class VistaDeTablero extends Group {
         listaDeUnidades.add(etiquetaUnidad);
     }
 
-
     public void tableroNormal(){
-        listaDeUnidades.stream().forEach(p->p.setOnMouseClicked(new ClickEnPiezaEventHandler(vistaUnidadClikeada,p)));
+        listaDeUnidades.forEach(p->p.setOnMouseClicked(new ClickEnPiezaEventHandler(vistaUnidadClikeada,p)));
     }
 
     public void tableroEnModoAtaque(PiezaAtacante piezaAtacante){
-        listaDeUnidades.stream().forEach(p->p.setOnMouseClicked(new ClickEnPiezaAtaqueActivoEventHandler(vistaUnidadClikeada,p, piezaAtacante, this)));
+        listaDeUnidades.forEach(p->p.setOnMouseClicked(new ClickEnPiezaAtaqueActivoEventHandler(vistaUnidadClikeada,p, piezaAtacante, this, stage)));
     }
 
     public void tableroEnModoCuracion(Curandero pieza){
-        listaDeUnidades.stream().forEach(p->p.setOnMouseClicked(new ClickEnPiezaModoCuracionEventHandler(vistaUnidadClikeada,p,pieza,this)));
+        listaDeUnidades.forEach(p->p.setOnMouseClicked(new ClickEnPiezaModoCuracionEventHandler(vistaUnidadClikeada,p,pieza,this)));
     }
 
 
@@ -129,7 +129,6 @@ public class VistaDeTablero extends Group {
             }
         }
     }
-
 
     public Tablero getTablero(){ return tablero;}
 

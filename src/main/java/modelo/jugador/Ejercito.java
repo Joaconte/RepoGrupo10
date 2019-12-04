@@ -31,7 +31,6 @@ public class Ejercito{
 
     public int getNumeroDeEjercito(){ return numeroDeEjercito; }
     public int getTamanio(){ return ( piezas.size()); }
-    public ArrayList<Pieza> getPiezas(){ return piezas; }
     public int getPresupuesto(){ return presupuesto.getPresupuesto();}
 
     //-----------Add-Remove-----------//
@@ -43,7 +42,7 @@ public class Ejercito{
         return piezaComprada;
     }
 
-    public boolean piezaEsDeJugador( Ubicacion ubicacionInicial ) {
+    public boolean ejercitoControlaUbicacion(Ubicacion ubicacionInicial ) {
 
         for (int i=0; i< piezas.size(); i++){
         Pieza pieza = piezas.get(i);
@@ -58,6 +57,8 @@ public class Ejercito{
     public boolean estaCompleto() {
         return presupuesto.estaAgotado();
     }
+
+    public boolean estaDestruido(){ return piezas.size()==0; }
 
     public void actualizarEstadoTropas(Tablero tableroDePartida) {
         piezas.stream().filter(Objects::nonNull).filter(p->(p.getPuntosVida()==0)).forEach(p->{ tableroDePartida.desocuparCasilla(p.getUbicacion().getPosicionEnX(),p.getUbicacion().getPosicionEnY());});

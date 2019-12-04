@@ -52,7 +52,7 @@ public class FaseMedia implements FaseDePartida{
 
     @Override
     public void moverUnidadEnTablero(Tablero tableroDePartida, Jugador jugadorEnTurno, Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) throws UbicacionInvalidaException, NoHayUnidadEnPosicionException, DesplazamientoInvalidoException, NoSePuedeMoverException, PiezaNoEsDeJugadorException {
-        if(!jugadorEnTurno.piezaEsDeJugador(ubicacionInicial)) throw new PiezaNoEsDeJugadorException();
+        if(!jugadorEnTurno.jugadorControlaUbicacion(ubicacionInicial)) throw new PiezaNoEsDeJugadorException();
         tableroDePartida.moverUnidad(ubicacionInicial, ubicacionFinal);
 
     }

@@ -54,6 +54,9 @@ public class Partida {
 
     public int getPuntosJugadorEnTurno(){ return jugadorEnTurno.getPuntos();}
 
+    public Tablero getTableroDePartida() {
+        return tableroDePartida;
+    }
 
     //-----------SETTERS-----------//
 
@@ -81,6 +84,9 @@ public class Partida {
         miFase.moverUnidadEnTablero(tableroDePartida, jugadorEnTurno, ubicacionInicial,ubicacionFinal);
     }
 
+    public void curarAAliado(Curandero piezaCurandera, Pieza otraPieza) throws CurandoAEnemigoException, CurandoCuraADistanciaCortaException, UnidadNoSePuedeCurar {
+        miFase.curarAAliado(piezaCurandera,otraPieza);
+    }
 
     //---------------Metodos de Fase------------//
 
@@ -96,10 +102,16 @@ public class Partida {
     }
 
 
+
     //---------------Validaciones-Actualizaciones-----------
 
     void validarJugadorTurno(Pieza piezaEnAccion)throws JugadorNoPuedeManipularEsaPiezaException {
         if(piezaEnAccion.getEquipo() != jugadorEnTurno.getNumeroDeJugador()){ throw new JugadorNoPuedeManipularEsaPiezaException();}
+    }
+
+    public void actualizarTablero() {
+        jugadorDos.actualizarEstadoTropas(tableroDePartida);
+        jugadorUno.actualizarEstadoTropas(tableroDePartida);
     }
 
     //---------------Metodos de Jugadores------------
@@ -126,20 +138,14 @@ public class Partida {
         }
     }
 
-    public Tablero getTableroDePartida() {
-        return tableroDePartida;
+     public boolean jugadorDosEsPerdedor(){
+        return jugadorDos.jugadorEsPerdedor();
+     }
+
+    public boolean jugadorUnoEsPerdedor(){
+        return jugadorUno.jugadorEsPerdedor();
     }
 
-
-    public void actualizarTablero() {
-        jugadorDos.actualizarEstadoTropas(tableroDePartida);
-        jugadorUno.actualizarEstadoTropas(tableroDePartida);
-    }
-
-
-    public void curarAAliado(Curandero piezaCurandera, Pieza otraPieza) throws CurandoAEnemigoException, CurandoCuraADistanciaCortaException, UnidadNoSePuedeCurar {
-        miFase.curarAAliado(piezaCurandera,otraPieza);
-    }
 }
 
 

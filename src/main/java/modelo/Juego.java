@@ -77,5 +77,14 @@ public class Juego {
     public void curarAAliado(Curandero piezaCurandera, Pieza otraPieza) throws UnidadNoSePuedeCurar, CurandoCuraADistanciaCortaException, CurandoAEnemigoException {
         partida.curarAAliado(piezaCurandera,otraPieza);
     }
+
+    public boolean jugadorUnoEsPerdedor(){
+        return partida.jugadorUnoEsPerdedor();
+    }
+
+    public boolean jugadorDosEsPerdedor(){
+        return partida.jugadorDosEsPerdedor();
+    }
+
 }
 
