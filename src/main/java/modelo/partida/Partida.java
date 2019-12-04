@@ -64,7 +64,7 @@ public class Partida {
     //---------------Acciones de Turno------------//
 
 
-    public void atacarPieza(PiezaAtacante atacante, Pieza atacada) throws JugadorNoPuedeException, PiezaAliadaNoAtacableException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException {
+    public void atacarPieza(PiezaAtacante atacante, Pieza atacada) throws JugadorNoPuedeManipularEsaPiezaException, PiezaAliadaNoAtacableException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException {
         validarJugadorTurno(atacante);
         miFase.atacar(atacante, atacada, tableroDePartida);
     }
@@ -88,7 +88,7 @@ public class Partida {
 
     public void pasarTurno() throws EjercitoIncompletoException {
         miFase.finalizarTurno(jugadorEnTurno);
-        if (jugadorEnTurno==jugadorUno) setJugadorEnTurno(jugadorDos);
+        if (jugadorEnTurno.getNombre()==jugadorUno.getNombre()) setJugadorEnTurno(jugadorDos);
         else setJugadorEnTurno(jugadorUno);
         miFase = miFase.retornarProximaFase();
     }
@@ -100,8 +100,8 @@ public class Partida {
 
     //---------------Validaciones-Actualizaciones-----------
 
-    void validarJugadorTurno(Pieza piezaEnAccion)throws JugadorNoPuedeException{
-        if(piezaEnAccion.getEquipo() != jugadorEnTurno.getNumeroDeJugador()){ throw new JugadorNoPuedeException();}
+    void validarJugadorTurno(Pieza piezaEnAccion)throws JugadorNoPuedeManipularEsaPiezaException {
+        if(piezaEnAccion.getEquipo() != jugadorEnTurno.getNumeroDeJugador()){ throw new JugadorNoPuedeManipularEsaPiezaException();}
     }
 
     //---------------Metodos de Jugadores------------

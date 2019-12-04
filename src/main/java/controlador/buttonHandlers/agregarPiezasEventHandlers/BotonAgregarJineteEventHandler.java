@@ -7,6 +7,7 @@ import modelo.pieza.tipos.Jinete;
 import vista.VistaDeTablero;
 import vista.fasesPartida.faseInicialPartida.EtiquetaPresupuestoJugador;
 import vista.vistaPiezas.VistaUnidadAtacante;
+import vista.vistaPiezas.VistaUnidadParaTablero;
 
 
 public class BotonAgregarJineteEventHandler extends BotonAgregarPiezaEventHandler {
@@ -18,7 +19,10 @@ public class BotonAgregarJineteEventHandler extends BotonAgregarPiezaEventHandle
 
     @Override
     void agregarPiezaATablero(Pieza pieza) {
-        VistaUnidadAtacante VistaDeUnidad = new VistaUnidadAtacante((Jinete) pieza ,vistaDeTablero,"jinete");
+        VistaUnidadAtacante vistaDeUnidad = new VistaUnidadAtacante((Jinete) pieza ,vistaDeTablero,"jinete",etiquetaPuntos.juego);
+        VistaUnidadParaTablero vistaEnTablero = new VistaUnidadParaTablero(vistaDeTablero);
+        vistaEnTablero.crearVistaEnTablero(vistaDeUnidad.getVistaInformacion().getAvatar(),pieza,vistaDeUnidad);
+
     }
 }
 

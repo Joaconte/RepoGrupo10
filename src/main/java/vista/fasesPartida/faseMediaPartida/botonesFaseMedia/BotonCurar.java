@@ -4,7 +4,7 @@ import javafx.scene.control.Button;
 import vista.fasesPartida.faseMediaPartida.BarraDeJugador;
 
 public class BotonCurar extends Button {
-    public BotonCurar(PanelBotonesFaseMedia panelBotonesFaseMedia, BarraDeJugador barraDeJugador1, BarraDeJugador barraDeJugador){
+    public BotonCurar(BarraDeJugador barraDeJugador1, BarraDeJugador barraDeJugador){
         super("Curar");
     }
 }

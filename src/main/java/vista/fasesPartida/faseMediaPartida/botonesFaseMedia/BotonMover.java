@@ -11,7 +11,6 @@ public class BotonMover extends Button {
 
     public BotonMover( Ubicacion ubicacion, Juego juego, Label etiquetaAlerta, VistaDeTablero vistaDeTablero) {
         super("Mover");
-        this.setMinHeight(30);
         this.setOnAction(new BotonMoverEventHandler(ubicacion, juego, etiquetaAlerta, vistaDeTablero));
     }
 }

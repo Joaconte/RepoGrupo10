@@ -36,8 +36,8 @@ public class BotonConfirmarEjercitoEventHandler implements EventHandler<ActionEv
 
     @Override
     public void handle(ActionEvent event) {
-        try{juego.cambiarTurno();
-
+        try{
+            juego.cambiarTurno();
             etiquetaTurnoJugador.actualizarEtiqueta();
             etiquetaPresupuestoJugador.actualizarEtiqueta();
             comunicadoTexto.setText(juego.getNombreJugadorEnTurno() + " prepara tus tropas");

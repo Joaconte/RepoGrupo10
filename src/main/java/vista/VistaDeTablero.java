@@ -1,18 +1,21 @@
 package vista;
 
 
-import controlador.ClickEnPiezaEventHandler;
-import controlador.ClickEnZonaEventHandler;
+import controlador.*;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import modelo.pieza.Ubicacion;
+import modelo.pieza.ataque.PiezaAtacante;
 import modelo.tablero.Tablero;
 
 import vista.vistaPiezas.VistaUnidadParaTablero;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
 
 
 public class VistaDeTablero extends Group {
@@ -26,8 +29,8 @@ public class VistaDeTablero extends Group {
     private GridPane contenedorTabla;
     private Pane[][] casillaTabla;
     private Ubicacion ubicacionDelCursor;
-
     private VistaUnidadParaTablero vistaUnidadClikeada;
+    private List<VistaUnidadParaTablero> listaDeUnidades = new ArrayList<>();
 
 
     public VistaDeTablero(Tablero tablero){
@@ -63,7 +66,9 @@ public class VistaDeTablero extends Group {
     }
 
     public Ubicacion getUbicacionDelCursor(){return ubicacionDelCursor;}
+    public Rectangle getRectanguloDeMovimiento(){return rectanguloDeMovimiento;}
     public VistaUnidadParaTablero getVistaDePiezaClikeada(){return vistaUnidadClikeada;}
+
 
     public void agregarUnidad(VistaUnidadParaTablero etiquetaUnidad, int x, int y){
         GridPane.setRowIndex(etiquetaUnidad, x);
@@ -71,16 +76,27 @@ public class VistaDeTablero extends Group {
         contenedorTabla.getChildren().add(etiquetaUnidad);
         //addViewOnMap(unidad, x, y);
         casillaTabla[x][y].getChildren().add(0, etiquetaUnidad);
-        etiquetaUnidad.setOnMouseClicked(new ClickEnPiezaEventHandler(vistaUnidadClikeada, etiquetaUnidad)); //Lo Mejor va a ser modelar un evento como atributo de esta clase. Nos ahorra todo.
+        listaDeUnidades.add(etiquetaUnidad);
+        etiquetaUnidad.setOnMouseClicked(new ClickEnPiezaEventHandler(vistaUnidadClikeada, etiquetaUnidad));
 
     }
 
-    public void moverUnidad(){
-        GridPane.setRowIndex(vistaUnidadClikeada,GridPane.getRowIndex(rectanguloDeMovimiento));
-        GridPane.setColumnIndex(vistaUnidadClikeada,GridPane.getColumnIndex(rectanguloDeMovimiento));
-        //no funciona. Debe ser porque vistaUnidadEsUnaCopiaDelQueTieneElEvento.
+
+    public void tableroNormal(){
+        listaDeUnidades.stream().forEach(p->p.setOnMouseClicked(new ClickEnPiezaEventHandler(vistaUnidadClikeada,p)));
     }
 
+    public void tableroEnModoAtaque(PiezaAtacante piezaAtacante){
+        listaDeUnidades.stream().forEach(p->p.setOnMouseClicked(new ClickEnPiezaAtaqueActivoEventHandler(vistaUnidadClikeada,p, piezaAtacante, this)));
+    }
+
+    public void tableroEnModoCuracion(){
+        listaDeUnidades.stream().forEach(p->p.setOnMouseClicked(new ClickEnPiezaModoCuracionEventHandler(vistaUnidadClikeada,p)));
+    }
+
+    public void tableroEnModoMovimiento(){
+        listaDeUnidades.stream().forEach(p->p.setOnMouseClicked(new ClickEnPiezaModoMovimientoEventHandler(vistaUnidadClikeada,p)));
+    }
 
     public Tablero getTablero(){ return tablero;}
 

@@ -6,9 +6,14 @@ import modelo.jugador.PiezaNoEsDeJugadorException;
 import modelo.jugador.UbicacionInvalidaException;
 import modelo.jugador.presupuesto.CompraInvalidaException;
 import modelo.jugador.presupuesto.PresupuestoAgotadoException;
+import modelo.partida.JugadorNoPuedeManipularEsaPiezaException;
 import modelo.partida.Partida;
 import modelo.pieza.Pieza;
 import modelo.pieza.Ubicacion;
+import modelo.pieza.UnidadEstaMuertaException;
+import modelo.pieza.ataque.DistanciaDeAtaqueInvalidaException;
+import modelo.pieza.ataque.PiezaAliadaNoAtacableException;
+import modelo.pieza.ataque.PiezaAtacante;
 import modelo.pieza.movimiento.NoSePuedeMoverException;
 import modelo.tablero.DesplazamientoInvalidoException;
 import modelo.tablero.Tablero;
@@ -38,6 +43,10 @@ public class Juego {
         return partida.crearPieza(nombre, posX, posY);
     }
 
+    public boolean estaEnTurno(int numero){
+        return partida.getJugadorEnTurno().getNumeroDeJugador() == numero;
+    }
+
     public void cambiarTurno() throws EjercitoIncompletoException { partida.pasarTurno();}
 
     public boolean estaEnFaseInicial() { return partida.estaEnFaseInicial();}
@@ -52,5 +61,9 @@ public class Juego {
 
     public void moverUnidad(Ubicacion ubicacionInicial, Ubicacion ubicaionFinal) throws PiezaNoEsDeJugadorException, NoHayUnidadEnPosicionException, DesplazamientoInvalidoException, NoSePuedeMoverException {
         partida.moverUnidad(ubicacionInicial, ubicaionFinal);
+    }
+
+    public void atacar (PiezaAtacante piezaAtacante, Pieza pieza) throws PiezaAliadaNoAtacableException, JugadorNoPuedeManipularEsaPiezaException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException {
+        partida.atacarPieza(piezaAtacante,pieza);
     }
 }

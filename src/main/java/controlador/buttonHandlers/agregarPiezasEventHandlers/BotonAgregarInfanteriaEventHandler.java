@@ -8,6 +8,7 @@ import modelo.pieza.tipos.Infanteria;
 import vista.VistaDeTablero;
 import vista.fasesPartida.faseInicialPartida.EtiquetaPresupuestoJugador;
 import vista.vistaPiezas.VistaUnidadAtacante;
+import vista.vistaPiezas.VistaUnidadParaTablero;
 
 public class BotonAgregarInfanteriaEventHandler extends BotonAgregarPiezaEventHandler{
 
@@ -19,7 +20,10 @@ public class BotonAgregarInfanteriaEventHandler extends BotonAgregarPiezaEventHa
 
     @Override
     void agregarPiezaATablero(Pieza pieza) {
-        VistaUnidadAtacante VistaDeUnidad = new VistaUnidadAtacante((Infanteria) pieza ,vistaDeTablero,"infanteria");
+        VistaUnidadAtacante vistaDeUnidad = new VistaUnidadAtacante((Infanteria) pieza ,vistaDeTablero,"infanteria",etiquetaPuntos.juego);
+        VistaUnidadParaTablero vistaEnTablero = new VistaUnidadParaTablero(vistaDeTablero);
+        vistaEnTablero.crearVistaEnTablero(vistaDeUnidad.getVistaInformacion().getAvatar(),pieza,vistaDeUnidad);
+
     }
 }
 

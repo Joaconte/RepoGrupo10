@@ -1,7 +1,5 @@
 package vista.vistaPiezas;
 
-import javafx.collections.ObservableList;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -26,11 +24,11 @@ public class VistaUnidadParaTablero extends Label {
         vistaDeTablero.agregarUnidad(this, unidad.getUbicacion().getPosicionEnX(), unidad.getUbicacion().getPosicionEnY() );
     }
 
-    public void setVistaUnidadCompleta (VistaUnidad vistaUnidad){this.vistaUnidad = vistaUnidad;}
-    public VistaUnidad getVistaUnidadCompleta(){ return vistaUnidad;}
+    public void setVistaUnidad(VistaUnidad vistaUnidad){this.vistaUnidad = vistaUnidad;}
+
+    public VistaUnidad getVistaUnidad(){ return vistaUnidad;}
 
     public VBox getVistaInformacion(){ return informacionUnidad;}
-
 
     public void setInformacionUnidad() {
         informacionUnidad.getChildren().clear();

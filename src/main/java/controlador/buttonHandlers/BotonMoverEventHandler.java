@@ -1,5 +1,6 @@
 package controlador.buttonHandlers;
 
+import controlador.ClickEnZonaEventHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
@@ -33,10 +34,10 @@ public class BotonMoverEventHandler implements EventHandler<ActionEvent> {
 
         try {
 
-            vistaDeTablero.moverUnidad( );
+            //vistaDeTablero.moverUnidad( );
             juego.moverUnidad(ubicacion, vistaDeTablero.getUbicacionDelCursor());
 
-            //vistaDeTablero.moverUnidad();
+            new ClickEnZonaEventHandler(vistaDeTablero.getVistaDePiezaClikeada(), vistaDeTablero.getRectanguloDeMovimiento(),vistaDeTablero.getUbicacionDelCursor());
 
             this.comunicadoTexto.setText("Moviste la unidad correctamente");
             this.comunicadoTexto.setTextFill(Color.web("#000000"));

@@ -1,12 +1,14 @@
 package vista.vistaPiezas;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import modelo.Juego;
 import modelo.pieza.Pieza;
-import modelo.pieza.Ubicacion;
 
 
 public class VistaInformacionDeUnidad extends VBox {
@@ -17,13 +19,13 @@ public class VistaInformacionDeUnidad extends VBox {
     public ImageView imagenDeUnidad;
     private double escalaDeUnidad = 1;
     private ImageView avatar;
+    private VBox datosActualizables=new VBox();
 
 
     public VistaInformacionDeUnidad(String nombre, Pieza unidad){
 
         this.pieza = unidad;
         this.nombre = nombre;
-
         String nombreArch = "resources/texturas/"+nombre+".png";
         Image imagen = new Image(nombreArch);
         this.imagenDeUnidad = new ImageView(imagen);
@@ -35,13 +37,20 @@ public class VistaInformacionDeUnidad extends VBox {
     }
 
     public void vistaDeDatosEnPartida(){
-        this.getChildren().add(new Label("Unidad de Jugador " + pieza.getEquipo() ));
-        this.getChildren().add(new Label("Columna: " + pieza.getUbicacion().getPosicionEnX() ));
-        this.getChildren().add(new Label("Fila " +  pieza.getUbicacion().getPosicionEnY() ));
-        this.getChildren().add((new Label("Vida restante: " + pieza.getPuntosVida())));
+        actualizarDatosEnPartida();
+        this.getChildren().add(datosActualizables);
     }
 
-    public void avatarIdentificativo(){
+    public void actualizarDatosEnPartida(){
+        datosActualizables.getChildren().clear();
+        datosActualizables.setAlignment(Pos.CENTER);
+        datosActualizables.getChildren().add(new Label("Unidad de Jugador " + pieza.getEquipo() ));
+        datosActualizables.getChildren().add(new Label("Columna: " + pieza.getUbicacion().getPosicionEnX() ));
+        datosActualizables.getChildren().add(new Label("Fila " +  pieza.getUbicacion().getPosicionEnY() ));
+        datosActualizables.getChildren().add((new Label("Vida restante: " + pieza.getPuntosVida())));
+    }
+
+    public void vistaEnAvatarDeTablero(){
         String equipo = String.valueOf(pieza.getEquipo());
         ImageView avatar = new ImageView( "resources/texturas/" + nombre + equipo +".png");
         avatar.setScaleX(escalaDeUnidad);
@@ -51,8 +60,7 @@ public class VistaInformacionDeUnidad extends VBox {
         this.avatar = avatar;
     }
 
+
     public ImageView getAvatar(){ return avatar;}
-
-
 
 }

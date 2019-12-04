@@ -13,13 +13,14 @@ import modelo.pieza.Ubicacion;
 import resources.sonidos.Audio;
 import vista.VistaDeTablero;
 import vista.fasesPartida.faseInicialPartida.EtiquetaPresupuestoJugador;
+import vista.vistaPiezas.VistaUnidadParaTablero;
 
 public abstract class BotonAgregarPiezaEventHandler implements EventHandler<ActionEvent> {
 
     private Ubicacion ubicacion;
     private Label textoComunicador;
     protected VistaDeTablero vistaDeTablero;
-    private EtiquetaPresupuestoJugador etiquetaPuntos;
+    protected EtiquetaPresupuestoJugador etiquetaPuntos;
     private String nombre;
 
     public BotonAgregarPiezaEventHandler(Ubicacion ubicacion, VistaDeTablero vistaDeTablero, EtiquetaPresupuestoJugador etiquetaPuntos, String nombre, Label etiquetaComunicadora) {
