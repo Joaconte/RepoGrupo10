@@ -12,6 +12,7 @@ import modelo.pieza.movimiento.NoSePuedeMoverException;
 import modelo.tablero.DesplazamientoInvalidoException;
 import modelo.tablero.casilla.NoHayUnidadEnPosicionException;
 
+import resources.sonidos.Audio;
 import vista.VistaDeTablero;
 
 public class BotonMoverEventHandler implements EventHandler<ActionEvent> {
@@ -33,7 +34,7 @@ public class BotonMoverEventHandler implements EventHandler<ActionEvent> {
     public void handle(ActionEvent event) {
 
         try {
-
+            Audio.reproducirInterfaz("click");
             //vistaDeTablero.moverUnidad( );
             juego.moverUnidad(ubicacion, vistaDeTablero.getUbicacionDelCursor());
 

@@ -5,6 +5,7 @@ import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import modelo.pieza.Ubicacion;
+import resources.sonidos.Audio;
 
 public class ClickEnZonaEventHandler implements EventHandler<MouseEvent> {
     private Node nodoAMover;
@@ -23,6 +24,6 @@ public class ClickEnZonaEventHandler implements EventHandler<MouseEvent> {
         GridPane.setRowIndex(nodoAMover,GridPane.getRowIndex(nodoDireccion));
         ubicacion.setPosicionEnX(GridPane.getColumnIndex(nodoAMover));
         ubicacion.setPosicionEnY(GridPane.getRowIndex(nodoAMover));
-
+        Audio.reproducirInterfaz("click");
     }
 }

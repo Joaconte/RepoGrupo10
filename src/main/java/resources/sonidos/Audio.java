@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 public class Audio {
     private static MediaPlayer mediaPlayer = null;
+    private static MediaPlayer player = null;
     private static String rutaSonido = "src/main/java/resources/sonidos/";
 
     // -------------- musica de fondo pantallas ------------
@@ -86,7 +87,7 @@ public class Audio {
 
     private static void reproducirEfecto(String path) {
         Media media = new Media(new File(path).toURI().toString());
-        MediaPlayer player = new MediaPlayer(media);
+        player = new MediaPlayer(media);
         player.setVolume(8);
         player.play();
     }

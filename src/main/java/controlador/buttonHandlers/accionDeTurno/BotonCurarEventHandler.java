@@ -7,6 +7,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import modelo.Juego;
 import modelo.pieza.tipos.Curandero;
+import resources.sonidos.Audio;
 import vista.VistaDeTablero;
 
 public class BotonCurarEventHandler  implements EventHandler<ActionEvent>{
@@ -31,7 +32,7 @@ public class BotonCurarEventHandler  implements EventHandler<ActionEvent>{
         etiquetaTexto.setTextFill(Color.web("#336600"));
         vistaDeTablero.tableroEnModoCuracion(pieza);
         barraDeOpcionesDeUnidad.setVisible(false);
-
+        Audio.reproducirInterfaz("click");
     }
 }
 
