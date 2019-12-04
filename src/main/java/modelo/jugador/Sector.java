@@ -9,8 +9,8 @@ public class Sector {
 
     public Sector(int numeroJugador){
         this.numeroDeSector=numeroJugador;
-        this.primeraFila= (numeroJugador - 1 ) * filasTotalesEnElSector; //Se admite posicion 0.
-        this.ultimaFila= (numeroJugador * filasTotalesEnElSector) - 1; //Se baja uno porque existe columna 0
+        this.primeraFila= (numeroJugador - 1 ) * filasTotalesEnElSector;
+        this.ultimaFila= (numeroJugador * filasTotalesEnElSector) - 1;
     }
 
     //-----------GETTERS-----------//

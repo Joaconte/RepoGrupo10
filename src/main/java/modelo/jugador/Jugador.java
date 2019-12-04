@@ -59,9 +59,6 @@ public class Jugador {
         return ejercito.piezaEsDeJugador(ubicacionInicial);
     }
 
-    public Ejercito getEjercito() {
-        return ejercito;
-    }
 
     public void actualizarEstadoTropas(Tablero tableroDePartida) {
         ejercito.actualizarEstadoTropas(tableroDePartida);

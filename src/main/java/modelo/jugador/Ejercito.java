@@ -60,8 +60,11 @@ public class Ejercito{
     }
 
     public void actualizarEstadoTropas(Tablero tableroDePartida) {
-
         piezas.stream().filter(Objects::nonNull).filter(p->(p.getPuntosVida()==0)).forEach(p->{ tableroDePartida.desocuparCasilla(p.getUbicacion().getPosicionEnX(),p.getUbicacion().getPosicionEnY());});
+        ArrayList <Pieza> auxiliar = new ArrayList<>();
+        piezas.stream().filter(pieza -> pieza.getPuntosVida()>0).forEach(p->auxiliar.add(p));
+        piezas.clear();
+        piezas.addAll(auxiliar);
     }
 }
 
