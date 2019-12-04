@@ -2,6 +2,7 @@ package controlador.buttonHandlers.accionDeTurno;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import modelo.Juego;
 import modelo.jugador.EjercitoIncompletoException;
@@ -42,8 +43,8 @@ public class BotonPasarTurnoEventHandler implements EventHandler<ActionEvent> {
 
             vistaDeTablero.getVistaDePiezaClikeada().getVistaInformacion().getChildren().clear();
             if (juego.getNombreJugadorEnTurno() == juego.getNombreDeJugadorUno()){
-                barraDeJugador1.getChildren().addAll(comunicador,vistaDeTablero.getVistaDePiezaClikeada().getVistaInformacion());}
-            else barraDeJugador2.getChildren().addAll(comunicador,vistaDeTablero.getVistaDePiezaClikeada().getVistaInformacion());
+                barraDeJugador1.getChildren().addAll(comunicador,  vistaDeTablero.getVistaDePiezaClikeada().getVistaInformacion());}
+            else barraDeJugador2.getChildren().addAll(comunicador,  vistaDeTablero.getVistaDePiezaClikeada().getVistaInformacion());
         } catch (EjercitoIncompletoException e) {
             e.printStackTrace();
         }
