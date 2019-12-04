@@ -8,19 +8,16 @@ import java.util.List;
 public class AtaqueADistanciaMasivo extends AtaqueADistancia  implements IModoAtaqueMasivo  {
 
     @Override
-    public void atacarEnMasa(PiezaAtacante miUnidad, List<Pieza> piezas) throws DistanciaDeAtaqueInvalidaException, UnidadEstaMuertaException {
-        try {
-        Pieza victimaPrincipal = piezas.get(0);
-        piezas.remove(0);
+    public void atacarEnMasa(PiezaAtacante miUnidad, Pieza piezaAtacada, List<Pieza> piezas) throws DistanciaDeAtaqueInvalidaException, UnidadEstaMuertaException {
 
-        double vidaAntesDelAtaque= victimaPrincipal.getPuntosVida();
-        super.atacar(miUnidad, victimaPrincipal);
-        double danioAReplicar = vidaAntesDelAtaque - victimaPrincipal.getPuntosVida();
-        piezas.stream().forEach(p-> { try { p.recibirDanio(danioAReplicar); } catch (UnidadEstaMuertaException e) {  } });
 
-        }
-        catch (IndexOutOfBoundsException e){ String nota = "Mandar una lista vacia es poco probable, pero..."; }
+        double vidaAntesDelAtaque= piezaAtacada.getPuntosVida();
+        super.atacar(miUnidad, piezaAtacada);
+        double danioAReplicar = vidaAntesDelAtaque - piezaAtacada.getPuntosVida();
+        piezas.stream().forEach(p-> { try { p.recibirDanio(danioAReplicar); } catch (UnidadEstaMuertaException e) { } });
+
 
     }
+
 
 }

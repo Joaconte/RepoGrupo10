@@ -9,7 +9,6 @@ import vista.VistaDeTablero;
 import vista.fasesPartida.faseInicialPartida.EtiquetaPresupuestoJugador;
 import vista.vistaPiezas.VistaUnidad;
 import vista.vistaPiezas.VistaUnidadCurandera;
-import vista.vistaPiezas.VistaUnidadParaTablero;
 
 
 public class BotonAgregarCuranderoEventHandler extends BotonAgregarPiezaEventHandler {
@@ -24,9 +23,7 @@ public class BotonAgregarCuranderoEventHandler extends BotonAgregarPiezaEventHan
     @Override
     void agregarPiezaATablero(Pieza pieza) {
         VistaUnidad vistaDeUnidad = new VistaUnidadCurandera((Curandero) pieza ,vistaDeTablero,"curandero",etiquetaPuntos.juego);
-        VistaUnidadParaTablero vistaEnTablero = new VistaUnidadParaTablero(vistaDeTablero);
-        vistaEnTablero.crearVistaEnTablero(vistaDeUnidad.getVistaInformacion().getAvatar(),pieza,vistaDeUnidad);
-
+        vistaDeUnidad.crearVistaEnTablero();
 
     }
 }

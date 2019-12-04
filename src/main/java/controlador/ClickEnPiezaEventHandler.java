@@ -1,26 +1,29 @@
 package controlador;
 
 import javafx.event.EventHandler;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import vista.vistaPiezas.VistaUnidadParaTablero;
+import javafx.scene.layout.VBox;
+import vista.vistaPiezas.VistaUnidad;
 
 public class ClickEnPiezaEventHandler implements EventHandler<MouseEvent> {
 
-    private VistaUnidadParaTablero vistaPiezaClikeada;
-    private VistaUnidadParaTablero piezaClikeada;
+    private VistaUnidad vistaPiezaClikeada;
+    private VBox piezaClikeada;
 
-    public ClickEnPiezaEventHandler(VistaUnidadParaTablero vistaPiezaClikeada, VistaUnidadParaTablero piezaClikeada) {
-        this.vistaPiezaClikeada = vistaPiezaClikeada;
-        this.piezaClikeada = piezaClikeada;
 
+    public ClickEnPiezaEventHandler(VBox etiquetaUnidad, VistaUnidad vistaUnidadClikeada) {
+    this.vistaPiezaClikeada = vistaUnidadClikeada;
+    this.piezaClikeada = etiquetaUnidad;
     }
 
     @Override
     public void handle(MouseEvent mouseEvent) {
 
-        vistaPiezaClikeada.setVistaUnidad(piezaClikeada.getVistaUnidad());
-        vistaPiezaClikeada.setInformacionUnidad();
-        vistaPiezaClikeada.getVistaUnidad().visibilidadDeOpcionesPorTurno();
-        vistaPiezaClikeada.getVistaUnidad().barraDeOpciones();
+        piezaClikeada.getChildren().clear();
+        vistaPiezaClikeada.getVistaInformacion().actualizarDatosEnPartida();
+        piezaClikeada.getChildren().add(vistaPiezaClikeada.getVistaInformacion());
+        vistaPiezaClikeada.visibilidadDeOpcionesPorTurno();
+        vistaPiezaClikeada.barraDeOpciones();
     }
 }

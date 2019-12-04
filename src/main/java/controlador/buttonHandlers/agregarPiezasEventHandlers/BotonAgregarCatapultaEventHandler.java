@@ -6,9 +6,7 @@ import modelo.pieza.Ubicacion;
 import modelo.pieza.tipos.Catapulta;
 import vista.VistaDeTablero;
 import vista.fasesPartida.faseInicialPartida.EtiquetaPresupuestoJugador;
-import vista.vistaPiezas.VistaUnidadAtacante;
 import vista.vistaPiezas.VistaUnidadCatapulta;
-import vista.vistaPiezas.VistaUnidadParaTablero;
 
 
 public class BotonAgregarCatapultaEventHandler extends BotonAgregarPiezaEventHandler {
@@ -20,8 +18,6 @@ public class BotonAgregarCatapultaEventHandler extends BotonAgregarPiezaEventHan
     @Override
     void agregarPiezaATablero(Pieza pieza) {
         VistaUnidadCatapulta vistaDeUnidad = new VistaUnidadCatapulta((Catapulta) pieza ,vistaDeTablero,"catapulta",etiquetaPuntos.juego);
-        VistaUnidadParaTablero vistaEnTablero = new VistaUnidadParaTablero(vistaDeTablero);
-        vistaEnTablero.crearVistaEnTablero(vistaDeUnidad.getVistaInformacion().getAvatar(),pieza,vistaDeUnidad);
-
+        vistaDeUnidad.crearVistaEnTablero();
     }
 }

@@ -32,11 +32,11 @@ public class BotonPasarTurnoEventHandler implements EventHandler<ActionEvent> {
             juego.cambiarTurno();
             barraDeJugador1.invertirEstadoDeshabilitado();
             barraDeJugador2.invertirEstadoDeshabilitado();
-            vistaDeTablero.getVistaDePiezaClikeada().getVistaInformacion().getChildren().clear();
+            vistaDeTablero.getVistaDePiezaClikeada().getChildren().clear();
 
             if (juego.getNombreJugadorEnTurno() == juego.getNombreDeJugadorUno()){
-                barraDeJugador1.getChildren().addAll(comunicador,  vistaDeTablero.getVistaDePiezaClikeada().getVistaInformacion());}
-            else barraDeJugador2.getChildren().addAll(comunicador,  vistaDeTablero.getVistaDePiezaClikeada().getVistaInformacion());
+                barraDeJugador1.getChildren().addAll(comunicador,  vistaDeTablero.getVistaDePiezaClikeada());}
+            else barraDeJugador2.getChildren().addAll(comunicador,  vistaDeTablero.getVistaDePiezaClikeada());
         } catch (EjercitoIncompletoException e) {
             comunicador.setText("Ejercito Incompleto");
         }

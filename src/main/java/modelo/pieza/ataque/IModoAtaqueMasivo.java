@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface IModoAtaqueMasivo extends IModoAtaque {
 
-    void atacarEnMasa(PiezaAtacante miUnidad, List<Pieza> piezas) throws DistanciaDeAtaqueInvalidaException, UnidadEstaMuertaException;
+    void atacarEnMasa(PiezaAtacante miUnidad, Pieza pieza, List<Pieza> piezas) throws DistanciaDeAtaqueInvalidaException, UnidadEstaMuertaException;
 }

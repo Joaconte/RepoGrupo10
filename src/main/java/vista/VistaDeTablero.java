@@ -3,6 +3,7 @@ package vista;
 
 import controlador.*;
 import javafx.scene.Group;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -11,11 +12,9 @@ import modelo.pieza.Ubicacion;
 import modelo.pieza.ataque.PiezaAtacante;
 import modelo.tablero.Tablero;
 
-import vista.vistaPiezas.VistaUnidadParaTablero;
-
+import vista.vistaPiezas.VistaUnidad;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 
 public class VistaDeTablero extends Group {
@@ -29,15 +28,14 @@ public class VistaDeTablero extends Group {
     private GridPane contenedorTabla;
     private Pane[][] casillaTabla;
     private Ubicacion ubicacionDelCursor;
-    private VistaUnidadParaTablero vistaUnidadClikeada;
-    private List<VistaUnidadParaTablero> listaDeUnidades = new ArrayList<>();
+    private VBox vistaUnidadClikeada = new VBox();
+    private List<VistaUnidad> listaDeUnidades = new ArrayList<>();
 
 
     public VistaDeTablero(Tablero tablero){
 
         this.tablero = tablero;
         this.ubicacionDelCursor =new Ubicacion(9,9);
-        this.vistaUnidadClikeada =new VistaUnidadParaTablero(this);
         contenedorTabla = new GridPane();
         anchura = anchuraCelda * tablero.getColumnas();
         altura = alturaCelda * tablero.getFilas();
@@ -67,18 +65,16 @@ public class VistaDeTablero extends Group {
 
     public Ubicacion getUbicacionDelCursor(){return ubicacionDelCursor;}
     public Rectangle getRectanguloDeMovimiento(){return rectanguloDeMovimiento;}
-    public VistaUnidadParaTablero getVistaDePiezaClikeada(){return vistaUnidadClikeada;}
+    public VBox getVistaDePiezaClikeada(){return vistaUnidadClikeada;}
 
 
-    public void agregarUnidad(VistaUnidadParaTablero etiquetaUnidad, int x, int y){
+    public void agregarUnidad(VistaUnidad etiquetaUnidad, int x, int y){
         GridPane.setRowIndex(etiquetaUnidad, x);
         GridPane.setColumnIndex(etiquetaUnidad, y);
         contenedorTabla.getChildren().add(etiquetaUnidad);
         //addViewOnMap(unidad, x, y);
         casillaTabla[x][y].getChildren().add(0, etiquetaUnidad);
         listaDeUnidades.add(etiquetaUnidad);
-        etiquetaUnidad.setOnMouseClicked(new ClickEnPiezaEventHandler(vistaUnidadClikeada, etiquetaUnidad));
-
     }
 
 

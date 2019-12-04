@@ -13,7 +13,6 @@ import modelo.pieza.Ubicacion;
 import resources.sonidos.Audio;
 import vista.VistaDeTablero;
 import vista.fasesPartida.faseInicialPartida.EtiquetaPresupuestoJugador;
-import vista.vistaPiezas.VistaUnidadParaTablero;
 
 public abstract class BotonAgregarPiezaEventHandler implements EventHandler<ActionEvent> {
 

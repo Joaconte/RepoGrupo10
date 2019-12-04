@@ -28,7 +28,7 @@ public class PantallaFaseMediaPartida extends BorderPane {
         barraDeJugador1.getChildren().add( new BotonPasarTurno(juego,comunicador,barraDeJugador1,barraDeJugador2,vistaDeTablero));
         barraDeJugador2.getChildren().add( new BotonPasarTurno(juego,comunicador,barraDeJugador1,barraDeJugador2,vistaDeTablero));
         barraDeJugador1.getChildren().add(comunicador);
-        barraDeJugador1.getChildren().add( vistaDeTablero.getVistaDePiezaClikeada().getVistaInformacion());
+        barraDeJugador1.getChildren().add( vistaDeTablero.getVistaDePiezaClikeada());
 
 
         //-------------------------

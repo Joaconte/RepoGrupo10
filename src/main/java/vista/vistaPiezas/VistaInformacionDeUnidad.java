@@ -4,10 +4,8 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import modelo.Juego;
 import modelo.pieza.Pieza;
 
 
@@ -17,8 +15,6 @@ public class VistaInformacionDeUnidad extends VBox {
     private Pieza pieza;
     private String nombre;
     public ImageView imagenDeUnidad;
-    private double escalaDeUnidad = 1;
-    private ImageView avatar;
     private VBox datosActualizables=new VBox();
 
 
@@ -50,17 +46,6 @@ public class VistaInformacionDeUnidad extends VBox {
         datosActualizables.getChildren().add((new Label("Vida restante: " + pieza.getPuntosVida())));
     }
 
-    public void vistaEnAvatarDeTablero(){
-        String equipo = String.valueOf(pieza.getEquipo());
-        ImageView avatar = new ImageView( "resources/texturas/" + nombre + equipo +".png");
-        avatar.setScaleX(escalaDeUnidad);
-        avatar.setScaleY(escalaDeUnidad);
-        avatar.setFitHeight(45);
-        avatar.setFitWidth(45);
-        this.avatar = avatar;
-    }
 
-
-    public ImageView getAvatar(){ return avatar;}
 
 }

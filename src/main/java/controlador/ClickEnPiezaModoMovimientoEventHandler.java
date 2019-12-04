@@ -1,11 +1,15 @@
 package controlador;
 
 import javafx.event.EventHandler;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import vista.vistaPiezas.VistaUnidadParaTablero;
+import javafx.scene.layout.VBox;
+import vista.vistaPiezas.VistaUnidad;
 
 public class ClickEnPiezaModoMovimientoEventHandler implements EventHandler<MouseEvent> {
-    public ClickEnPiezaModoMovimientoEventHandler(VistaUnidadParaTablero vistaUnidadClikeada, VistaUnidadParaTablero p) {
+
+    public ClickEnPiezaModoMovimientoEventHandler(VBox vistaUnidadClikeada, VistaUnidad p) {
+
     }
 
     @Override
