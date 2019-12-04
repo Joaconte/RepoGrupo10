@@ -32,7 +32,7 @@ public class ClickEnPiezaModoCuracionEventHandler implements EventHandler<MouseE
             vistaUnidadClikeada.getChildren().clear();
             vistaUnidadClikeada.getChildren().add(piezaClikeada.getVistaInformacion());
             piezaClikeada.getJuego().curarAAliado(pieza,piezaClikeada.getPieza());
-            piezaClikeada.getVistaInformacion();
+            piezaClikeada.getVistaInformacion().actualizarDatosEnPartida();
             piezaClikeada.setEtiquetaDeTexto("Fue sanada con exito.");
             piezaClikeada.getEtiquetaDeTexto().setTextFill(Color.web("#336600"));
             vistaDeTablero.tableroNormal();

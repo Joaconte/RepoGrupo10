@@ -17,7 +17,7 @@ private PiezaAtacante piezaAtacante;
 private HBox barra;
 
 
-    public BotonAtacarEventHandler(PiezaAtacante piezaAtacante, Juego juego, Label comunicador, VistaDeTablero vistaDeTablero, HBox barraDeOpcionesDeUnidad){
+    public BotonAtacarEventHandler(PiezaAtacante piezaAtacante, Label comunicador, VistaDeTablero vistaDeTablero, HBox barraDeOpcionesDeUnidad){
     this.comunicador = comunicador;
     this.vistaDeTablero = vistaDeTablero;
     this.piezaAtacante = piezaAtacante;

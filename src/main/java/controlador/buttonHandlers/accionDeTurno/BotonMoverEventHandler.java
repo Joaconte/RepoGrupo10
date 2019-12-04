@@ -1,50 +1,39 @@
 package controlador.buttonHandlers.accionDeTurno;
 
-import controlador.ClickEnZonaEventHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import modelo.Juego;
-import modelo.jugador.PiezaNoEsDeJugadorException;
-import modelo.pieza.Ubicacion;
-import modelo.pieza.movimiento.NoSePuedeMoverException;
-import modelo.tablero.DesplazamientoInvalidoException;
-import modelo.tablero.casilla.NoHayUnidadEnPosicionException;
+import modelo.pieza.Pieza;
+import modelo.pieza.tipos.Curandero;
 
 import vista.VistaDeTablero;
+import vista.vistaPiezas.VistaUnidad;
 
 public class BotonMoverEventHandler implements EventHandler<ActionEvent> {
 
-    private Ubicacion ubicacion;
-    private Label comunicadoTexto;
-    private Juego juego;
+    private Label etiquetaTexto;
     private VistaDeTablero vistaDeTablero;
+    private HBox barraDeOpcionesDeUnidad;
+    private VistaUnidad vistaUnidad;
 
-    public BotonMoverEventHandler(Ubicacion ubicacion, Juego juego, Label etiquetaAlerta, VistaDeTablero vistaDeTablero) {
 
-        this.ubicacion = ubicacion;
-        comunicadoTexto = etiquetaAlerta;
-        this.juego = juego;
-        this.vistaDeTablero = vistaDeTablero;
+    public BotonMoverEventHandler(VistaUnidad vistaUnidad, Label etiquetaAlerta, VistaDeTablero vistaDeTablero, HBox barraDeOpcionesDeUnidad) {
+        this.etiquetaTexto=etiquetaAlerta;
+        this.vistaDeTablero=vistaDeTablero;
+        this.barraDeOpcionesDeUnidad=barraDeOpcionesDeUnidad;
+        this.vistaUnidad = vistaUnidad;
     }
+
 
     @Override
     public void handle(ActionEvent event) {
+        etiquetaTexto.setText("Haga en la direccion a la que se movera");
+        etiquetaTexto.setTextFill(Color.web("#336600"));
+        vistaDeTablero.tableroEnModoMovimiento(vistaUnidad,etiquetaTexto);
+        barraDeOpcionesDeUnidad.setVisible(false);
 
-        try {
-
-            //vistaDeTablero.moverUnidad( );
-            juego.moverUnidad(ubicacion, vistaDeTablero.getUbicacionDelCursor());
-
-            new ClickEnZonaEventHandler(vistaDeTablero.getVistaDePiezaClikeada(), vistaDeTablero.getRectanguloDeMovimiento(),vistaDeTablero.getUbicacionDelCursor());
-
-            this.comunicadoTexto.setText("Moviste la unidad correctamente");
-            this.comunicadoTexto.setTextFill(Color.web("#000000"));
-
-        } catch (PiezaNoEsDeJugadorException | DesplazamientoInvalidoException | NoSePuedeMoverException | NoHayUnidadEnPosicionException e) {
-            this.comunicadoTexto.setText(e.getMessage());
-            this.comunicadoTexto.setTextFill(Color.web("#FF0000"));
-        }
     }
 }

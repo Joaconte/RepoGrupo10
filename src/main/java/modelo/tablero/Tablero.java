@@ -1,7 +1,9 @@
 package modelo.tablero;
 
+import modelo.jugador.UbicacionInvalidaException;
 import modelo.pieza.Pieza;
 import modelo.pieza.Ubicacion;
+import modelo.pieza.movimiento.NoSePuedeMoverException;
 import modelo.tablero.casilla.Casilla;
 import modelo.tablero.casilla.NoHayUnidadEnPosicionException;
 
@@ -34,31 +36,30 @@ public class Tablero {
     }
 
 
-    public void moverUnidad(Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) throws NoHayUnidadEnPosicionException, DesplazamientoInvalidoException {
+    public void moverUnidad(Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) throws NoHayUnidadEnPosicionException, DesplazamientoInvalidoException, UbicacionInvalidaException, NoSePuedeMoverException {
 
-        List<Casilla> casillas = getCasillasVaciasAdyacentes(ubicacionInicial);
-        for (int i = 0; i < casillas.size(); i++) {
+        if (ubicacionInicial.getPosicionEnX() == ubicacionFinal.getPosicionEnX() &&
+                ubicacionInicial.getPosicionEnY() == ubicacionFinal.getPosicionEnY() ) throw new UbicacionInvalidaException();
 
-            Casilla casilla = casillas.get(i);
-            if (desplazamientoEsValido( ubicacionInicial, ubicacionFinal )) {
+        else if (desplazamientoEsValido( ubicacionInicial, ubicacionFinal )) {
 
-                Pieza pieza = getUnidad(ubicacionInicial.getPosicionEnX(), ubicacionInicial.getPosicionEnY());
-                desocuparCasilla(ubicacionInicial.getPosicionEnX(), ubicacionInicial.getPosicionEnY());
-                ocuparCasilla(pieza, ubicacionFinal.getPosicionEnX(), ubicacionFinal.getPosicionEnY());
-            }
-            else throw new DesplazamientoInvalidoException();
+            Pieza pieza = getUnidad(ubicacionInicial.getPosicionEnX(), ubicacionInicial.getPosicionEnY());
+            desocuparCasilla(ubicacionInicial.getPosicionEnX(), ubicacionInicial.getPosicionEnY());
+            ocuparCasilla(pieza, ubicacionFinal.getPosicionEnX(), ubicacionFinal.getPosicionEnY());
+            pieza.mover(ubicacionFinal);
         }
+
+        else throw new DesplazamientoInvalidoException();
     }
 
     private boolean desplazamientoEsValido(Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) {
 
-        int desplazamientoPos = Math.min (ubicacionInicial.getPosicionEnX() - ubicacionFinal.getPosicionEnX(),
-                ubicacionInicial.getPosicionEnY() - ubicacionFinal.getPosicionEnY());
 
-        int desplazamientoNeg = Math.max (ubicacionInicial.getPosicionEnX() - ubicacionFinal.getPosicionEnX(),
-                ubicacionInicial.getPosicionEnY() - ubicacionFinal.getPosicionEnY());
+        int desplazamientoEnX = Math.abs (ubicacionInicial.getPosicionEnX() - ubicacionFinal.getPosicionEnX());
 
-        return (desplazamientoNeg > -2 && desplazamientoPos < 2);
+        int desplazamientoEnY = Math.abs (ubicacionInicial.getPosicionEnY() - ubicacionFinal.getPosicionEnY());
+
+        return ( (  desplazamientoEnX < 2 ) && ( desplazamientoEnY < 2 ) );
     }
 
     public int getTamanio(){

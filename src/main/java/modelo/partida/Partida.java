@@ -77,16 +77,10 @@ public class Partida {
         return miFase.crearPieza(jugadorEnTurno,tableroDePartida,nombreDeUnidad,posicionEnX,posicionEnY);
     }
 
-    public void moverUnidad(Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) throws PiezaNoEsDeJugadorException, NoHayUnidadEnPosicionException, DesplazamientoInvalidoException, NoSePuedeMoverException {
-
-        try {
-            jugadorEnTurno.moverUnidad(ubicacionInicial, ubicacionFinal);
-            tableroDePartida.moverUnidad(ubicacionInicial, ubicacionFinal);
-        }
-        catch (PiezaNoEsDeJugadorException e){
-            throw new PiezaNoEsDeJugadorException();
-        }
+    public void moverUnidad(Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) throws PiezaNoEsDeJugadorException, NoHayUnidadEnPosicionException, DesplazamientoInvalidoException, NoSePuedeMoverException, UbicacionInvalidaException {
+        miFase.moverUnidadEnTablero(tableroDePartida, jugadorEnTurno, ubicacionInicial,ubicacionFinal);
     }
+
 
     //---------------Metodos de Fase------------//
 

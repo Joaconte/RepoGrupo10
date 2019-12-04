@@ -23,6 +23,8 @@ import modelo.tablero.DesplazamientoInvalidoException;
 import modelo.tablero.Tablero;
 import modelo.tablero.casilla.NoHayUnidadEnPosicionException;
 
+import java.util.ArrayList;
+
 public class Juego {
 
     private Partida partida;
@@ -59,12 +61,22 @@ public class Juego {
 
     public String getNombreDeJugadorDos() { return partida.getJugadorDos().getNombre();}
 
-    public void arrancarPartida(){
 
+    public void moverUnidad(Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) throws PiezaNoEsDeJugadorException, NoHayUnidadEnPosicionException, DesplazamientoInvalidoException, NoSePuedeMoverException, UbicacionInvalidaException {
+        partida.moverUnidad(ubicacionInicial, ubicacionFinal);
     }
 
-    public void moverUnidad(Ubicacion ubicacionInicial, Ubicacion ubicaionFinal) throws PiezaNoEsDeJugadorException, NoHayUnidadEnPosicionException, DesplazamientoInvalidoException, NoSePuedeMoverException {
-        partida.moverUnidad(ubicacionInicial, ubicaionFinal);
+    public String mostrarPiezas(){
+
+        ArrayList<Pieza> piezas = partida.getJugadorEnTurno().getEjercito().getPiezas();
+        String x="";
+        for (int i=0; i< piezas.size(); i++) {
+            Pieza pieza = piezas.get(i);
+            int posX = pieza.getUbicacion().getPosicionEnX();
+            int posY = pieza.getUbicacion().getPosicionEnY();
+            x += " --- " + Integer.toString(posX) + "-" + Integer.toString(posY);
+        }
+        return x;
     }
 
     public void atacar (PiezaAtacante piezaAtacante, Pieza pieza) throws PiezaAliadaNoAtacableException, JugadorNoPuedeManipularEsaPiezaException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException {

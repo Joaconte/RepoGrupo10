@@ -1,7 +1,6 @@
 package controlador;
 
 import javafx.event.EventHandler;
-import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -33,12 +32,12 @@ public class ClickEnPiezaAtaqueActivoEventHandler implements EventHandler<MouseE
             vistaPiezaClikeada.getChildren().clear();
             vistaPiezaClikeada.getChildren().add(piezaClikeada.getVistaInformacion());
             piezaClikeada.getJuego().atacar(piezaAtacante,piezaClikeada.getPieza());
-            piezaClikeada.getVistaInformacion();
+            piezaClikeada.getVistaInformacion().actualizarDatosEnPartida();
             piezaClikeada.setEtiquetaDeTexto("Fue atacada con exito.");
             piezaClikeada.getEtiquetaDeTexto().setTextFill(Color.web("#336600"));
             vistaDeTablero.tableroNormal();
             piezaClikeada.getJuego().actualizarTablero();
-            vistaDeTablero.actualizarTabler();
+            vistaDeTablero.actualizarTableroPorMuertas();
 
         }catch (PiezaAliadaNoAtacableException e){
             piezaClikeada.setEtiquetaDeTexto("Pieza Aliadas no se atacan.");

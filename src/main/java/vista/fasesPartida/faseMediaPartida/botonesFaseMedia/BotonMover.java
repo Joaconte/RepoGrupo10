@@ -3,14 +3,15 @@ package vista.fasesPartida.faseMediaPartida.botonesFaseMedia;
 import controlador.buttonHandlers.accionDeTurno.BotonMoverEventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import modelo.Juego;
-import modelo.pieza.Ubicacion;
+import javafx.scene.layout.HBox;
 import vista.VistaDeTablero;
+import vista.vistaPiezas.VistaUnidad;
 
 public class BotonMover extends Button {
 
-    public BotonMover( Ubicacion ubicacion, Juego juego, Label etiquetaAlerta, VistaDeTablero vistaDeTablero) {
+    public BotonMover(VistaUnidad vistaUnidad, Label etiquetaDeTexto, VistaDeTablero vistaDeTablero, HBox barraDeOpcionesDeUnidad) {
         super("Mover");
-        this.setOnAction(new BotonMoverEventHandler(ubicacion, juego, etiquetaAlerta, vistaDeTablero));
+        this.setOnAction(new BotonMoverEventHandler(vistaUnidad, etiquetaDeTexto, vistaDeTablero, barraDeOpcionesDeUnidad));
+
     }
 }

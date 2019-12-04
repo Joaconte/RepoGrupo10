@@ -10,9 +10,9 @@ import vista.VistaDeTablero;
 
 public class BotonCurar extends Button {
 
-    public BotonCurar(Curandero pieza, Juego juego, Label etiquetaDeTexto, VistaDeTablero vistaDeTablero, HBox barraDeOpcionesDeUnidad) {
+    public BotonCurar(Curandero pieza, Label etiquetaDeTexto, VistaDeTablero vistaDeTablero, HBox barraDeOpcionesDeUnidad) {
         super("Curar a Aliado");
-        this.setOnAction(new BotonCurarEventHandler(pieza,juego,etiquetaDeTexto,vistaDeTablero,barraDeOpcionesDeUnidad));
+        this.setOnAction(new BotonCurarEventHandler(pieza,etiquetaDeTexto,vistaDeTablero,barraDeOpcionesDeUnidad));
 
     }
 }

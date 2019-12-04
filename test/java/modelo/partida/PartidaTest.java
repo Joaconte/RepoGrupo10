@@ -1,18 +1,19 @@
 package modelo.partida;
 
-import modelo.jugador.EjercitoIncompletoException;
-import modelo.jugador.Jugador;
+import modelo.jugador.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 
-import modelo.jugador.PiezaFueraDeSectorException;
-import modelo.jugador.UbicacionInvalidaException;
 import modelo.jugador.presupuesto.CompraInvalidaException;
 import modelo.jugador.presupuesto.PresupuestoAgotadoException;
 
+import modelo.pieza.Ubicacion;
+import modelo.pieza.movimiento.NoSePuedeMoverException;
+import modelo.tablero.DesplazamientoInvalidoException;
 import modelo.tablero.Tablero;
+import modelo.tablero.casilla.NoHayUnidadEnPosicionException;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -121,5 +122,30 @@ public class PartidaTest {
         miPartida.pasarTurno();
 
         assertEquals(miPartida.getJugadorEnTurno(),jugador1);
+    }
+
+    @Test
+    public void test08PartidaMueveUnidadSinSaltoDeExcepciones() throws  UbicacionInvalidaException, PresupuestoAgotadoException, CompraInvalidaException, PiezaFueraDeSectorException, NoHayUnidadEnPosicionException, PiezaNoEsDeJugadorException, DesplazamientoInvalidoException, NoSePuedeMoverException {
+
+        Partida miPartida = new Partida();
+        miPartida.agregarJugadores("pepe", "jose");
+
+        Ubicacion ubicacion1= new Ubicacion(0,0);
+        miPartida.crearPieza("Jinete", 0 ,0);
+        miPartida.crearPieza("Jinete", 4 ,4);
+        miPartida.crearPieza("Jinete", 4 ,6);
+
+        Ubicacion ubicacion2 = new Ubicacion(1,1);
+        Ubicacion ubicacion3 = new Ubicacion(2,2);
+        Ubicacion ubicacion4 = new Ubicacion(3,3);
+        Ubicacion ubicacion5 = new Ubicacion(4,4);
+
+        miPartida.moverUnidad(ubicacion1, ubicacion2);
+
+        miPartida.moverUnidad(ubicacion2, ubicacion3);
+
+        miPartida.moverUnidad(ubicacion3, ubicacion4);
+
+        miPartida.moverUnidad(ubicacion4, ubicacion5);
     }
 }

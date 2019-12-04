@@ -43,8 +43,9 @@ public abstract class Pieza {
         return ubicacion;
     }
 
-    public void setUbicacion(Ubicacion ubicacion){
-        this.ubicacion = ubicacion;
+    public void setUbicacion(int x, int y){
+            this.ubicacion.setPosicionEnX(x);
+            this.ubicacion.setPosicionEnY(y);
     }
 
     public int getEquipo(){ return equipo;}
@@ -78,15 +79,11 @@ public abstract class Pieza {
     }
     public abstract boolean esRefuerzoDeJinete();
 
-    // Solo se usa en pruebas
-    public void moverArriba() throws NoSePuedeMoverException {
-        Ubicacion nueva = modoMovimiento.arriba(this.getUbicacion());
-        this.setUbicacion(nueva);
-    }
+
 
     public void mover(Ubicacion ubicacion) throws NoSePuedeMoverException {
-
-        this.setUbicacion( ubicacion );
+        this.getUbicacion().setPosicionEnX(ubicacion.getPosicionEnX());
+        this.getUbicacion().setPosicionEnY(ubicacion.getPosicionEnY());
     }
 
 }

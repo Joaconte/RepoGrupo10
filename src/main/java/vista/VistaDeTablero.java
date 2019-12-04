@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import modelo.Juego;
 import modelo.pieza.Pieza;
 import modelo.pieza.Ubicacion;
 import modelo.pieza.ataque.PiezaAtacante;
@@ -44,16 +45,7 @@ public class VistaDeTablero extends Group {
         casillaTabla = new Pane[anchura][altura];
         contenedorTabla.add(rectanguloDeMovimiento,9,9);
 
-        for (int i = 0; i < tablero.getColumnas(); i++) {
-            for (int j = 0; j < tablero.getFilas(); j++) {
-                Pane v = new Pane();
-                v.setOnMouseClicked(new ClickEnZonaEventHandler(rectanguloDeMovimiento,v, ubicacionDelCursor));
-                v.setMinHeight(this.alturaCelda);
-                v.setMinWidth(this.anchuraCelda);
-                casillaTabla[i][j] = v;
-                contenedorTabla.add(v , i, j);
-            }
-        }
+        crearPanelesPorDefecto();
 
         Background fondoDeContenedor = new Background(new BackgroundImage(new Image("resources/texturas/tablero.png"),
                 BackgroundRepeat.NO_REPEAT,
@@ -66,14 +58,34 @@ public class VistaDeTablero extends Group {
     }
 
     public Ubicacion getUbicacionDelCursor(){return ubicacionDelCursor;}
-    public Rectangle getRectanguloDeMovimiento(){return rectanguloDeMovimiento;}
+
     public VBox getVistaDePiezaClikeada(){return vistaUnidadClikeada;}
 
+    public void crearPanelesPorDefecto(){
+        for (int i = 0; i < tablero.getColumnas(); i++) {
+            for (int j = 0; j < tablero.getFilas(); j++) {
+                Pane v = new Pane();
+                v.setOnMouseClicked(new ClickEnZonaEventHandler(rectanguloDeMovimiento,v, ubicacionDelCursor));
+                v.setMinHeight(this.alturaCelda);
+                v.setMinWidth(this.anchuraCelda);
+                casillaTabla[i][j] = v;
+                contenedorTabla.add(v , i, j);
+            }
+        }
+    }
 
-    public void actualizarTabler(){
+    public void actualizarTableroPorMuertas(){
         listaDeUnidades.stream()
                 .filter(p->p.getPieza().getPuntosVida()==0)
-                .forEach( p->p.setVisible(false));
+                .forEach(p-> {casillaTabla[p.getPieza().getUbicacion().getPosicionEnX()][p.getPieza().getUbicacion().getPosicionEnY()].getChildren().clear();
+                    listaDeUnidades.remove(p);});
+    }
+
+    public void actualizarUbicacion(Ubicacion vieja, Ubicacion nueva){
+        casillaTabla[vieja.getPosicionEnX()][vieja.getPosicionEnY()].getChildren().clear();
+        listaDeUnidades.stream()
+                .filter(p->(p.getPieza().getUbicacion().getPosicionEnY()== nueva.getPosicionEnY() && p.getPieza().getUbicacion().getPosicionEnX()==nueva.getPosicionEnX()))
+                .forEach(p->casillaTabla[nueva.getPosicionEnX()][nueva.getPosicionEnY()].getChildren().add(p));
     }
 
     public void agregarUnidad(VistaUnidad etiquetaUnidad, int x, int y){
@@ -98,9 +110,25 @@ public class VistaDeTablero extends Group {
         listaDeUnidades.stream().forEach(p->p.setOnMouseClicked(new ClickEnPiezaModoCuracionEventHandler(vistaUnidadClikeada,p,pieza,this)));
     }
 
-    public void tableroEnModoMovimiento(){
-        listaDeUnidades.stream().forEach(p->p.setOnMouseClicked(new ClickEnPiezaModoMovimientoEventHandler(vistaUnidadClikeada,p)));
+
+    public void tableroEnModoMovimiento(VistaUnidad vistaUnidad, Label etiquetaTexto){
+        rectanguloDeMovimiento.setVisible(false);
+        for (int i = 0; i < tablero.getColumnas(); i++) {
+            for (int j = 0; j < tablero.getFilas(); j++) {
+                casillaTabla[i][j].setOnMouseClicked(new ClickEnPiezaModoMovimientoEventHandler(i, j, this, vistaUnidad,etiquetaTexto));
+            }
+        }
     }
+
+    public void restablecerTableroMovimiento(){
+        rectanguloDeMovimiento.setVisible(true);
+        for (int i = 0; i < tablero.getColumnas(); i++) {
+            for (int j = 0; j < tablero.getFilas(); j++) {
+                casillaTabla[i][j].setOnMouseClicked(new ClickEnZonaEventHandler(rectanguloDeMovimiento,casillaTabla[i][j], ubicacionDelCursor));
+            }
+        }
+    }
+
 
     public Tablero getTablero(){ return tablero;}
 

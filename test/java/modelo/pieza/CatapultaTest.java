@@ -33,22 +33,7 @@ public class CatapultaTest {
         assertEquals(50, catapulta.getPuntosVida(),0);
     }
 
-    @Test(expected = NoSePuedeMoverException.class)
-    public void test03CatapultaNoSePuedeMoverArriba() throws NoSePuedeMoverException {
-        Catapulta catapulta = new Catapulta(1,1,1);;
-        catapulta.moverArriba();
-    }
 
-    @Test
-    public void test04CatapultaNoSeteaUbicacion() throws NoSePuedeMoverException {
-        Catapulta catapulta = new Catapulta(1,1,1);
-
-        Ubicacion ubicacion= Mockito.mock(Ubicacion.class);
-        Mockito.when(ubicacion.getPosicionEnX()).thenReturn(2);
-        Mockito.when(ubicacion.getPosicionEnY()).thenReturn(2);
-        catapulta.setUbicacion(ubicacion);
-        assertEquals(1,catapulta.getUbicacion().getPosicionEnY());
-    }
 
     @Test (expected = PiezaAliadaNoAtacableException.class)
     public void test05CatapultaNoAtacaAPiezaAliada() throws PiezaAliadaNoAtacableException, DistanciaDeAtaqueInvalidaException, UnidadEstaMuertaException {

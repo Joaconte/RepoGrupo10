@@ -43,16 +43,16 @@ public class Ejercito{
         return piezaComprada;
     }
 
-    public void moverUnidad( Ubicacion ubicacionInicial, Ubicacion ubicacionFinal ) throws NoSePuedeMoverException {
+    public boolean piezaEsDeJugador( Ubicacion ubicacionInicial ) {
 
         for (int i=0; i< piezas.size(); i++){
-
-            Pieza pieza = piezas.get(i);
-            int posicionXPieza = pieza.getUbicacion().getPosicionEnX();
-            int posicionYPieza = pieza.getUbicacion().getPosicionEnY();
-            if (posicionXPieza == ubicacionInicial.getPosicionEnX() && posicionYPieza == pieza.getUbicacion().getPosicionEnY())
-                pieza.mover(ubicacionFinal);
+        Pieza pieza = piezas.get(i);
+        int posX = pieza.getUbicacion().getPosicionEnX();
+        int posY = pieza.getUbicacion().getPosicionEnY();
+            if ((posX == ubicacionInicial.getPosicionEnX()) && (posY == ubicacionInicial.getPosicionEnY()))
+            return true;
         }
+        return false;
     }
 
     public boolean estaCompleto() {

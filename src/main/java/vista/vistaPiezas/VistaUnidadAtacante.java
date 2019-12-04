@@ -28,8 +28,10 @@ public class VistaUnidadAtacante extends VistaUnidad{
     public void barraDeOpciones(){
         barraDeOpcionesDeUnidad.getChildren().clear();
         etiquetaDeTexto.setText("");
-        barraDeOpcionesDeUnidad.getChildren().add(new BotonAtacar(piezaAtacante,juego,etiquetaDeTexto,vistaDeTablero,barraDeOpcionesDeUnidad));
-        barraDeOpcionesDeUnidad.getChildren().add(new BotonMover(piezaAtacante.getUbicacion(),juego,etiquetaDeTexto,vistaDeTablero));
+        barraDeOpcionesDeUnidad.getChildren().add(new BotonAtacar(piezaAtacante,etiquetaDeTexto,vistaDeTablero,barraDeOpcionesDeUnidad));
+        barraDeOpcionesDeUnidad.getChildren().add(new BotonMover(this,etiquetaDeTexto,vistaDeTablero,barraDeOpcionesDeUnidad));
+
+
     }
 
 

@@ -50,14 +50,17 @@ public class Jugador {
         return pieza;
     }
 
-    public boolean verificarSiEjercitoEstaListo(){
+    public boolean estaCompletoEjercito(){
         return ejercito.estaCompleto();
     }
 
 
-    public void moverUnidad(Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) throws PiezaNoEsDeJugadorException, NoSePuedeMoverException {
+    public boolean piezaEsDeJugador(Ubicacion ubicacionInicial) {
+        return ejercito.piezaEsDeJugador(ubicacionInicial);
+    }
 
-        ejercito.moverUnidad(ubicacionInicial, ubicacionFinal);
+    public Ejercito getEjercito() {
+        return ejercito;
     }
 
     public void actualizarEstadoTropas(Tablero tableroDePartida) {

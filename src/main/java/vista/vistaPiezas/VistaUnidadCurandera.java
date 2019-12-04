@@ -2,7 +2,6 @@ package vista.vistaPiezas;
 
 import javafx.geometry.Pos;
 import modelo.Juego;
-import modelo.pieza.Pieza;
 import modelo.pieza.tipos.Curandero;
 import vista.VistaDeTablero;
 import vista.fasesPartida.faseMediaPartida.botonesFaseMedia.BotonCurar;
@@ -22,8 +21,8 @@ public class VistaUnidadCurandera extends VistaUnidad {
     public void barraDeOpciones() {
         barraDeOpcionesDeUnidad.getChildren().clear();
         etiquetaDeTexto.setText("");
-        barraDeOpcionesDeUnidad.getChildren().add(new BotonCurar(curandero, juego, etiquetaDeTexto, vistaDeTablero, barraDeOpcionesDeUnidad));
-        barraDeOpcionesDeUnidad.getChildren().add(new BotonMover(curandero.getUbicacion(),juego,etiquetaDeTexto,vistaDeTablero));
+        barraDeOpcionesDeUnidad.getChildren().add(new BotonCurar(curandero, etiquetaDeTexto, vistaDeTablero, barraDeOpcionesDeUnidad));
+        barraDeOpcionesDeUnidad.getChildren().add(new BotonMover(this,etiquetaDeTexto,vistaDeTablero,barraDeOpcionesDeUnidad));
 
     }
 

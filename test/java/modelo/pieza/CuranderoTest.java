@@ -73,14 +73,6 @@ public class CuranderoTest {
         assertEquals(75,unCuranderoAliado.getPuntosVida(),0);
     }
 
-    @Test
-    public void test07CuranderoSePueceMoverCorrectamenteHaciaArriba() throws NoSePuedeMoverException {
-        Curandero curandero = new Curandero(1,1,2);
-        curandero.moverArriba();
-
-        assertEquals(1, curandero.getUbicacion().getPosicionEnX());
-        assertEquals(1, curandero.getUbicacion().getPosicionEnY());
-    }
 
     @Test (expected = CurandoCuraADistanciaCortaException.class)
     public void test08CuranderoNoCuraADistanciaMayorA2Casillas() throws NoSePuedeMoverException, UnidadNoSePuedeCurar, CurandoCuraADistanciaCortaException, CurandoAEnemigoException {

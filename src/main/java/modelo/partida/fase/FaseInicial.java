@@ -7,6 +7,7 @@ import modelo.jugador.PiezaFueraDeSectorException;
 import modelo.jugador.UbicacionInvalidaException;
 import modelo.jugador.presupuesto.CompraInvalidaException;
 import modelo.jugador.presupuesto.PresupuestoAgotadoException;
+import modelo.pieza.Ubicacion;
 import modelo.pieza.ataque.PiezaAtacante;
 import modelo.pieza.Pieza;
 import modelo.pieza.sanacion.CurandoAEnemigoException;
@@ -19,15 +20,11 @@ public class FaseInicial implements FaseDePartida{
 
     int turnos = 0;
 
-    //Metodo que permite intercambiar fichas en dos posiciones cualesquiera en el sector del jugador.
-    @Override
-    public void moverUnidadEnTablero(Pieza pieza, int posicionFila, int posicionColumna){
-    }
 
     //Metodo que permite indicar que el jugador termina con las acciones de su turno.
     @Override
     public void finalizarTurno(Jugador jugadorEnTurno) throws EjercitoIncompletoException {
-        if (!jugadorEnTurno.verificarSiEjercitoEstaListo()) throw new EjercitoIncompletoException();
+        if (!jugadorEnTurno.estaCompletoEjercito()) throw new EjercitoIncompletoException();
         turnos ++;
     }
 
@@ -55,6 +52,11 @@ public class FaseInicial implements FaseDePartida{
 
     @Override
     public void curarAAliado(Curandero piezaCurandera, Pieza otraPieza) throws UnidadNoSePuedeCurar, CurandoCuraADistanciaCortaException, CurandoAEnemigoException {
+
+    }
+
+    @Override
+    public void moverUnidadEnTablero(Tablero tableroDePartida, Jugador jugadorEnTurno, Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) {
 
     }
 

@@ -14,7 +14,7 @@ public class VistaUnidadCatapulta extends VistaUnidadAtacante {
     public void barraDeOpciones() {
         barraDeOpcionesDeUnidad.getChildren().clear();
         etiquetaDeTexto.setText("");
-        barraDeOpcionesDeUnidad.getChildren().add(new BotonAtacar(piezaAtacante, juego, etiquetaDeTexto, vistaDeTablero, barraDeOpcionesDeUnidad));
+        barraDeOpcionesDeUnidad.getChildren().add(new BotonAtacar(piezaAtacante, etiquetaDeTexto, vistaDeTablero, barraDeOpcionesDeUnidad));
     }
 
 

@@ -12,14 +12,12 @@ import vista.VistaDeTablero;
 public class BotonCurarEventHandler  implements EventHandler<ActionEvent>{
 
     private Curandero pieza;
-    private Juego juego;
     private Label etiquetaTexto;
     private VistaDeTablero vistaDeTablero;
     private HBox barraDeOpcionesDeUnidad;
 
-    public BotonCurarEventHandler(Curandero pieza, Juego juego, Label etiquetaDeTexto, VistaDeTablero vistaDeTablero, HBox barraDeOpcionesDeUnidad) {
+    public BotonCurarEventHandler(Curandero pieza, Label etiquetaDeTexto, VistaDeTablero vistaDeTablero, HBox barraDeOpcionesDeUnidad) {
         this.pieza=pieza;
-        this.juego=juego;
         this.etiquetaTexto=etiquetaDeTexto;
         this.vistaDeTablero=vistaDeTablero;
         this.barraDeOpcionesDeUnidad=barraDeOpcionesDeUnidad;
