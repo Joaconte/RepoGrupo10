@@ -4,6 +4,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import modelo.partida.JugadorNoPuedeManipularEsaPiezaException;
 import modelo.pieza.UnidadEstaMuertaException;
 import modelo.pieza.ataque.DistanciaDeAtaqueInvalidaException;
@@ -34,18 +35,24 @@ public class ClickEnPiezaAtaqueActivoEventHandler implements EventHandler<MouseE
             piezaClikeada.getJuego().atacar(piezaAtacante,piezaClikeada.getPieza());
             piezaClikeada.getVistaInformacion();
             piezaClikeada.setEtiquetaDeTexto("Fue atacada con exito.");
+            piezaClikeada.getEtiquetaDeTexto().setTextFill(Color.web("#336600"));
             vistaDeTablero.tableroNormal();
+            piezaClikeada.getJuego().actualizarTablero();
+            vistaDeTablero.actualizarTabler();
 
         }catch (PiezaAliadaNoAtacableException e){
             piezaClikeada.setEtiquetaDeTexto("Pieza Aliadas no se atacan.");
+            piezaClikeada.getEtiquetaDeTexto().setTextFill(Color.web("#FF0000"));
             vistaDeTablero.tableroNormal();
         }
         catch (UnidadEstaMuertaException | JugadorNoPuedeManipularEsaPiezaException e){
             piezaClikeada.setEtiquetaDeTexto("Error con las piezas seleccionada.");
+            piezaClikeada.getEtiquetaDeTexto().setTextFill(Color.web("#FF0000"));
             vistaDeTablero.tableroNormal();
         }
         catch (DistanciaDeAtaqueInvalidaException e){
             piezaClikeada.setEtiquetaDeTexto("La distancia de ataque es incorrecta.");
+            piezaClikeada.getEtiquetaDeTexto().setTextFill(Color.web("#FF0000"));
             vistaDeTablero.tableroNormal();
         }
 

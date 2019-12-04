@@ -60,6 +60,9 @@ public class Jugador {
         ejercito.moverUnidad(ubicacionInicial, ubicacionFinal);
     }
 
+    public void actualizarEstadoTropas(Tablero tableroDePartida) {
+        ejercito.actualizarEstadoTropas(tableroDePartida);
+    }
 }
 
 

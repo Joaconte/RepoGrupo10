@@ -133,6 +133,10 @@ public class Partida {
     }
 
 
+    public void actualizarTablero() {
+        jugadorDos.actualizarEstadoTropas(tableroDePartida);
+        jugadorUno.actualizarEstadoTropas(tableroDePartida);
+    }
 }
 
 

@@ -7,8 +7,10 @@ import modelo.jugador.presupuesto.EstadoPresupuestoDeEjercito;
 import modelo.jugador.presupuesto.EstadoPresupuestoNoAgotado;
 import modelo.pieza.Ubicacion;
 import modelo.pieza.movimiento.NoSePuedeMoverException;
+import modelo.tablero.Tablero;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Ejercito{
 
@@ -57,6 +59,10 @@ public class Ejercito{
         return presupuesto.estaAgotado();
     }
 
+    public void actualizarEstadoTropas(Tablero tableroDePartida) {
+
+        piezas.stream().filter(Objects::nonNull).filter(p->(p.getPuntosVida()==0)).forEach(p->{ tableroDePartida.desocuparCasilla(p.getUbicacion().getPosicionEnX(),p.getUbicacion().getPosicionEnY());});
+    }
 }
 
 

@@ -68,6 +68,12 @@ public class VistaDeTablero extends Group {
     public VBox getVistaDePiezaClikeada(){return vistaUnidadClikeada;}
 
 
+    public void actualizarTabler(){
+        listaDeUnidades.stream()
+                .filter(p->p.getPieza().getPuntosVida()==0)
+                .forEach( p->p.setVisible(false));
+    }
+
     public void agregarUnidad(VistaUnidad etiquetaUnidad, int x, int y){
         GridPane.setRowIndex(etiquetaUnidad, x);
         GridPane.setColumnIndex(etiquetaUnidad, y);

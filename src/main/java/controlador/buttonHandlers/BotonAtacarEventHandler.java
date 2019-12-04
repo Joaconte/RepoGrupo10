@@ -26,8 +26,8 @@ private HBox barra;
 
     @Override
     public void handle(ActionEvent event) {
-        this.comunicador.setText("Haga click a la pieza con la que desea atacar");
-        this.comunicador.setTextFill(Color.web("#000000"));
+        this.comunicador.setText("Haga click a la pieza a la que desea atacar");
+        this.comunicador.setTextFill(Color.web("#336600"));
         vistaDeTablero.tableroEnModoAtaque(piezaAtacante);
         barra.setVisible(false);
     }

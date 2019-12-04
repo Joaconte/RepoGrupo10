@@ -66,4 +66,9 @@ public class Juego {
     public void atacar (PiezaAtacante piezaAtacante, Pieza pieza) throws PiezaAliadaNoAtacableException, JugadorNoPuedeManipularEsaPiezaException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException {
         partida.atacarPieza(piezaAtacante,pieza);
     }
+
+    public void actualizarTablero(){
+        partida.actualizarTablero();
+    }
 }
+

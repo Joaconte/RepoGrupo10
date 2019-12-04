@@ -62,5 +62,6 @@ public class VistaUnidad extends Label{
     public void barraDeOpciones(){
     }
     public void setEtiquetaDeTexto(String mensaje){ etiquetaDeTexto.setText(mensaje);}
+    public Label getEtiquetaDeTexto(){return etiquetaDeTexto;}
 
 }
