@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import modelo.Juego;
 import modelo.partida.JugadorNoPuedeManipularEsaPiezaException;
 import modelo.partida.fase.JugadorYaRealizoLaAccionException;
+import modelo.partida.fase.PiezaYaAtacoException;
 import modelo.pieza.UnidadEstaMuertaException;
 import modelo.pieza.ataque.DistanciaDeAtaqueInvalidaException;
 import modelo.pieza.ataque.PiezaAliadaNoAtacableException;
@@ -86,12 +87,12 @@ public class ClickEnPiezaAtaqueActivoEventHandler implements EventHandler<MouseE
         }
         catch (DistanciaDeAtaqueInvalidaException e){
             piezaClikeada.setEtiquetaDeTexto("La distancia de ataque es incorrecta.");
-            piezaClikeada.getEtiquetaDeTexto().setTextFill(Color.web("#FF0000"));
-            vistaDeTablero.tableroNormal();
-        } catch (JugadorYaRealizoLaAccionException e) {
-            piezaClikeada.setEtiquetaDeTexto("Solo un ataque o cura por turno.");
-            piezaClikeada.getEtiquetaDeTexto().setTextFill(Color.web("#FF0000"));
-            vistaDeTablero.tableroNormal();
+        }
+        catch (JugadorYaRealizoLaAccionException e) {
+            piezaClikeada.setEtiquetaDeTexto("Solo 3 ataques o curas por turno.");
+        }
+        catch (PiezaYaAtacoException e) {
+            piezaClikeada.setEtiquetaDeTexto(e.getMessage());
         }
 
     }

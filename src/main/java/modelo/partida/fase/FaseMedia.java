@@ -27,15 +27,21 @@ import java.util.ArrayList;
 
 public class FaseMedia implements FaseDePartida{
 
-    private boolean jugadorYaAtacoOCuro = false;
-    private boolean jugadorYaMovio = false;
+    private static int ATAQUES_MAXIMOS = 3;
+    private static int MOVIMIENTOS_MAXIMOS = 2;
+    private int ataquesDeJugador;
+    private int movimientosDeJugador;
+    ArrayList<Ubicacion> ubicacionesQueAtacaron = new ArrayList<>();
+    ArrayList<Ubicacion> ubicacionesQueMovieron = new ArrayList<>();
 
 
     //Metodo que permite indicar que el jugador termina con las acciones de su turno.
     @Override
     public void finalizarTurno(Jugador jugadorEnTurno){
-        jugadorYaAtacoOCuro=false;
-        jugadorYaMovio = false;
+        ataquesDeJugador = 0;
+        movimientosDeJugador = 0;
+        ubicacionesQueAtacaron.clear();
+        ubicacionesQueMovieron.clear();
     }
 
     @Override
@@ -45,32 +51,54 @@ public class FaseMedia implements FaseDePartida{
 
     //Ataques o cura
     @Override
-    public void atacar(PiezaAtacante atacante, Pieza atacada, Tablero tablero) throws JugadorYaRealizoLaAccionException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
-        if(jugadorYaAtacoOCuro) throw new JugadorYaRealizoLaAccionException();
+    public void atacar(PiezaAtacante atacante, Pieza atacada, Tablero tablero) throws JugadorYaRealizoLaAccionException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException, PiezaYaAtacoException {
+        if(ataquesDeJugador == ATAQUES_MAXIMOS) throw new JugadorYaRealizoLaAccionException();
+        else if (ubicacionYaHizoAccion(atacante.getUbicacion(), ubicacionesQueAtacaron)) throw new PiezaYaAtacoException();
         atacante.atacar(atacada,tablero);
-        jugadorYaAtacoOCuro=true;
+        ataquesDeJugador += 1;
+        ubicacionesQueAtacaron.add(atacante.getUbicacion());
     }
 
     @Override
-    public void curarAAliado(Curandero piezaCurandera, Pieza otraPieza) throws UnidadNoSePuedeCurar, CurandoCuraADistanciaCortaException, CurandoAEnemigoException, JugadorYaRealizoLaAccionException {
-        if(jugadorYaAtacoOCuro) throw new JugadorYaRealizoLaAccionException();
+    public void curarAAliado(Curandero piezaCurandera, Pieza otraPieza) throws UnidadNoSePuedeCurar, CurandoCuraADistanciaCortaException, CurandoAEnemigoException, JugadorYaRealizoLaAccionException, PiezaYaAtacoException {
+        if(ataquesDeJugador == ATAQUES_MAXIMOS) throw new JugadorYaRealizoLaAccionException();
+        else if (ubicacionYaHizoAccion(piezaCurandera.getUbicacion(), ubicacionesQueAtacaron)) throw new PiezaYaAtacoException();
         piezaCurandera.curarAAliado(otraPieza);
-        jugadorYaAtacoOCuro=true;
+        ataquesDeJugador +=1;
+        ubicacionesQueAtacaron.add(piezaCurandera.getUbicacion());
     }
 
     @Override
-    public void moverUnidadEnTablero(Tablero tableroDePartida, Jugador jugadorEnTurno, Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) throws UbicacionInvalidaException, NoHayUnidadEnPosicionException, DesplazamientoInvalidoException, NoSePuedeMoverException, PiezaNoEsDeJugadorException, JugadorYaRealizoLaAccionException {
-        if(jugadorYaMovio) throw new JugadorYaRealizoLaAccionException();
-        if(!jugadorEnTurno.jugadorControlaUbicacion(ubicacionInicial)) throw new PiezaNoEsDeJugadorException();
+    public void moverUnidadEnTablero(Tablero tableroDePartida, Jugador jugadorEnTurno, Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) throws UbicacionInvalidaException, NoHayUnidadEnPosicionException, DesplazamientoInvalidoException, NoSePuedeMoverException, PiezaNoEsDeJugadorException, JugadorYaRealizoLaAccionException, PiezaYaMovioException {
+        if(movimientosDeJugador == MOVIMIENTOS_MAXIMOS) throw new JugadorYaRealizoLaAccionException();
+        else if (ubicacionYaHizoAccion(ubicacionInicial, ubicacionesQueMovieron)) throw new PiezaYaMovioException();
+        else if (!jugadorEnTurno.jugadorControlaUbicacion(ubicacionInicial)) throw new PiezaNoEsDeJugadorException();
         tableroDePartida.moverUnidad(ubicacionInicial, ubicacionFinal);
-        jugadorYaMovio=true;
+        movimientosDeJugador += 1;
+        ubicacionesQueMovieron.add(ubicacionFinal);
 
     }
 
+    @Override
     public void moverBatallon(Jugador jugador, Tablero tableroDePartida , Ubicacion ubicacionInicial, Ubicacion ubicacionFinal ) throws JugadorYaRealizoLaAccionException, NoHayBatallonException, UbicacionInvalidaException, JugadorNoPuedeManipularEsaPiezaException {
-        if(jugadorYaMovio) throw new JugadorYaRealizoLaAccionException();
+        if(movimientosDeJugador == MOVIMIENTOS_MAXIMOS) throw new JugadorYaRealizoLaAccionException();
         jugador.desplazarBatallon(tableroDePartida,ubicacionInicial,ubicacionFinal);
-        jugadorYaMovio=true;
+        movimientosDeJugador += 1;
+        ubicacionesQueMovieron.add(ubicacionFinal);
+    }
+
+
+    public boolean ubicacionYaHizoAccion (Ubicacion ubicacion, ArrayList<Ubicacion> ubicaciones){
+        for (int j = 0; j < ubicaciones.size(); j++)
+            if (sonLaMismaUbicacion(ubicaciones.get(j), ubicacion))
+                return true;
+        return false;
+    }
+
+    public boolean sonLaMismaUbicacion(Ubicacion ubicacion1, Ubicacion ubicacion2){
+
+        return (ubicacion1.getPosicionEnX() == ubicacion2.getPosicionEnX() &&
+                ubicacion1.getPosicionEnY() == ubicacion2.getPosicionEnY());
     }
 
     @Override

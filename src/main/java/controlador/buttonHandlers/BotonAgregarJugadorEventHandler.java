@@ -35,19 +35,25 @@ public class BotonAgregarJugadorEventHandler implements EventHandler<ActionEvent
     @Override
     public void handle(ActionEvent actionEvent) {
 
-        if (this.textFieldUno.getText().trim().equals("") || this.textFieldDos.getText().trim().equals("")) {
+        this.labelUno.setTextFill(Color.web("#FF0000"));
+        String jugadorUno = lectorDeNombres(textFieldUno);
+        String jugadorDos = lectorDeNombres(textFieldDos);
 
-            this.labelUno.setText("Debe ingresar un texto");
-            this.labelUno.setTextFill(Color.web("#FF0000"));
+        if (jugadorUno.isEmpty() || jugadorDos.isEmpty()) {
+            labelUno.setText("Debe ingresar un texto");
+
+        } else if (jugadorUno.equals(jugadorDos)) {
+            labelUno.setText("Los jugadores no pueden tener el mismo nombre");
+
+        } else if (jugadorUno.length() > 9 || jugadorDos.length() > 9 ) {
+            labelUno.setText("Los nombres de los jugadores no pueden ser mayores a 10 caracteres");
 
         } else {
 
-            String jugadorUno = this.textFieldUno.getText();
-            String jugadorDos = this.textFieldDos.getText();
-            this.labelUno.setText("El jugador "+ jugadorUno + " se agrego correctamente.");
-            this.labelUno.setTextFill(Color.web("#336600"));
-            this.labelDos.setText("El jugador "+ jugadorDos + " tambien se agrego correctamente.");
-            this.labelDos.setTextFill(Color.web("#336600"));
+            labelUno.setText("El jugador "+ jugadorUno + " se agrego correctamente.");
+            labelUno.setTextFill(Color.web("#336600"));
+            labelDos.setText("El jugador "+ jugadorDos + " tambien se agrego correctamente.");
+            labelDos.setTextFill(Color.web("#336600"));
             juego.agregarJugadores(jugadorUno, jugadorDos);
 
             if (primeraVez){
@@ -55,5 +61,12 @@ public class BotonAgregarJugadorEventHandler implements EventHandler<ActionEvent
                 primeraVez = false;
             }
         }
+    }
+
+    public String lectorDeNombres(TextField textField){
+        String jugador = textField.getText();
+        String primerCaracter = jugador.substring(0,1).toUpperCase();
+        String restoCaracteres = jugador.substring(1).toLowerCase();
+        return primerCaracter + restoCaracteres;
     }
 }

@@ -7,8 +7,11 @@ import javafx.scene.paint.Color;
 import modelo.Juego;
 import modelo.jugador.PiezaNoEsDeJugadorException;
 import modelo.jugador.UbicacionInvalidaException;
+import modelo.partida.JugadorNoPuedeManipularEsaPiezaException;
 import modelo.partida.fase.JugadorYaRealizoLaAccionException;
+import modelo.partida.fase.PiezaYaMovioException;
 import modelo.pieza.Ubicacion;
+import modelo.pieza.tipos.NoHayBatallonException;
 import modelo.pieza.tipos.NoSePuedeMoverException;
 import modelo.tablero.DesplazamientoInvalidoException;
 import modelo.tablero.casilla.NoHayUnidadEnPosicionException;
@@ -37,13 +40,13 @@ public class ClickEnPiezaModoMovimientoBatallonEventHandler implements EventHand
 
         this.etiquetaTexto.setTextFill(Color.web("#FF0000"));
         try {
-            juego.moverUnidad(ubicacionInicial, ubicacionFinal);
+            juego.moverBatallon(ubicacionInicial, ubicacionFinal);
             vistaDeTablero.actualizarUbicaciones();
             etiquetaTexto.setText("Se movio correctamente");
             this.etiquetaTexto.setTextFill(Color.web("#000000"));
             Audio.reproducirMovimientoAPie();
 
-        } catch (PiezaNoEsDeJugadorException | NoSePuedeMoverException | UbicacionInvalidaException | DesplazamientoInvalidoException | NoHayUnidadEnPosicionException | JugadorYaRealizoLaAccionException j) {
+        } catch (NoHayBatallonException | JugadorNoPuedeManipularEsaPiezaException | JugadorYaRealizoLaAccionException | UbicacionInvalidaException j) {
             etiquetaTexto.setText(j.getMessage());
         }
         vistaDeTablero.tableroNormal();
