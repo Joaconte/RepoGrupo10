@@ -1,10 +1,10 @@
 package vista.vistaPiezas;
 
 import modelo.Juego;
-import modelo.pieza.ataque.PiezaAtacante;
 import modelo.pieza.tipos.Infanteria;
 import vista.VistaDeTablero;
 import vista.fasesPartida.faseMediaPartida.botonesFaseMedia.BotonCrearBatallon;
+import vista.fasesPartida.faseMediaPartida.botonesFaseMedia.BotonMoverBatallon;
 
 public class VistaUnidadInfanteria extends VistaUnidadAtacante {
 
@@ -18,6 +18,8 @@ public class VistaUnidadInfanteria extends VistaUnidadAtacante {
     public void barraDeOpciones() {
         super.barraDeOpciones();
         barraDeOpcionesDeUnidad.getChildren().add(new BotonCrearBatallon(piezaAtacante,etiquetaDeTexto,vistaDeTablero,barraDeOpcionesDeUnidad));
+        barraDeOpcionesDeUnidad.getChildren().add(new BotonMoverBatallon(this,etiquetaDeTexto,vistaDeTablero,barraDeOpcionesDeUnidad));
+
     }
 
     public Infanteria getPieza(){

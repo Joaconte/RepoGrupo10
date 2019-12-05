@@ -2,13 +2,8 @@ package modelo.pieza.tipos;
 
 import modelo.pieza.Pieza;
 import modelo.pieza.Ubicacion;
-import modelo.jugador.Sector;
 import modelo.pieza.UnidadEstaMuertaException;
 import modelo.pieza.ataque.*;
-import modelo.pieza.movimiento.Direccion;
-import modelo.pieza.movimiento.IModoMovimiento;
-import modelo.pieza.movimiento.NoSePuedeMoverException;
-import modelo.pieza.movimiento.SinMovimientos;
 
 import modelo.pieza.sanacion.IModoSanacion;
 import modelo.pieza.sanacion.SinSanacion;
@@ -20,17 +15,16 @@ public class Catapulta extends PiezaAtacante {
     static final int DANIO_DISTANCIA = 20;
     static final int DANIO_CUERPO = 0;
     static final int DANIO_MEDIO = 0;
-    static final IModoMovimiento MOVIMIENTO = new SinMovimientos();
     static final IModoAtaqueMasivo ATAQUE = new AtaqueADistanciaMasivo();
     static final IModoSanacion MODO_CURACION = new SinSanacion();
 
 
     public Catapulta(int equipo, int posX, int posY){
-        super(COSTO,VIDA_MAXIMA,equipo, MOVIMIENTO, MODO_CURACION, ATAQUE,DANIO_CUERPO, DANIO_MEDIO, DANIO_DISTANCIA, posX, posY);
+        super(COSTO,VIDA_MAXIMA,equipo,  MODO_CURACION, ATAQUE,DANIO_CUERPO, DANIO_MEDIO, DANIO_DISTANCIA, posX, posY);
     }
 
     public Catapulta(){
-        super(COSTO,VIDA_MAXIMA,0, MOVIMIENTO, MODO_CURACION, ATAQUE,DANIO_CUERPO, DANIO_MEDIO, DANIO_DISTANCIA, 0, 0);
+        super(COSTO,VIDA_MAXIMA,0, MODO_CURACION, ATAQUE,DANIO_CUERPO, DANIO_MEDIO, DANIO_DISTANCIA, 0, 0);
     }
 
 

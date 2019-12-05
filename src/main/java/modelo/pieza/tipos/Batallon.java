@@ -1,68 +1,80 @@
 package modelo.pieza.tipos;
 
+import modelo.jugador.UbicacionInvalidaException;
 import modelo.pieza.Pieza;
-import modelo.pieza.UnidadEstaMuertaException;
-import modelo.pieza.ataque.DistanciaDeAtaqueInvalidaException;
-import modelo.pieza.ataque.PiezaAliadaNoAtacableException;
-import modelo.pieza.movimiento.*;
+import modelo.pieza.Ubicacion;
+import modelo.tablero.DesplazamientoInvalidoException;
 import modelo.tablero.Tablero;
+import modelo.tablero.casilla.NoHayUnidadEnPosicionException;
 
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Batallon {
     private AnalizadorDeBatallon analizadorDeBatallon = new AnalizadorDeBatallon();
-    private Ordenamientos ordenar = new Ordenamientos();
-    private ArrayList<Pieza> soldados ;
+    private ArrayList<Pieza> soldados;
 
     public Batallon(ArrayList<Pieza> piezas) throws NoSirvenParaBatallonException {
         if (!analizadorDeBatallon.formanBatallon(piezas)) {
-            throw new NoSirvenParaBatallonException() ;
+            throw new NoSirvenParaBatallonException();
         }
         soldados = piezas;
-
     }
 
-    public String getNombre() {
-        return "Batallon";
+    public ArrayList<Pieza> ordenarMovimiento(Tablero tablero, Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) {
+        ArrayList<Pieza> ordenados = new ArrayList<>();
+        ArrayList<Pieza> soldadosSeguidores = new ArrayList<>(soldados);
+
+        int variacionX = ubicacionFinal.getPosicionEnX() - ubicacionInicial.getPosicionEnX();
+        int variacionY = ubicacionFinal.getPosicionEnY() - ubicacionInicial.getPosicionEnX();
+
+        //Saco al elegido como primero.
+        soldadosSeguidores.stream()
+                .filter(p -> (p.getUbicacion().getPosicionEnX() == ubicacionFinal.getPosicionEnX()) && (p.getUbicacion().getPosicionEnY() == ubicacionFinal.getPosicionEnY()))
+                .forEach(p -> {
+                    soldadosSeguidores.remove(p);
+                    ordenados.add(p);
+                });
+        //Saco el que es imposible mover (no existe direccion)
+        soldadosSeguidores.stream()
+                .filter(p -> !tablero.existePosicion(p.getUbicacion().getPosicionEnY() + variacionY, p.getUbicacion().getPosicionEnX() + variacionX))
+                .forEach(soldadosSeguidores::remove);
+        //Ordeno
+        soldadosSeguidores.stream()
+                .filter(p -> tablero.casillaEstaOcupada(p.getUbicacion().getPosicionEnY() + variacionY, p.getUbicacion().getPosicionEnX() + variacionX))
+                .forEach(p -> {
+                    soldadosSeguidores.remove(p);
+                    soldadosSeguidores.add(p);
+                });
+        ordenados.addAll(soldadosSeguidores);
+        return ordenados;
+    }
+
+    public void desplazaBatallonEnOrden(Tablero tablero, Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) {
+        ArrayList<Pieza> ordenValido = ordenarMovimiento(tablero, ubicacionInicial, ubicacionFinal);
+
+        int variacionX = ubicacionFinal.getPosicionEnX() - ubicacionInicial.getPosicionEnX();
+        int variacionY = ubicacionFinal.getPosicionEnY() - ubicacionInicial.getPosicionEnX();
+
+        ordenValido.forEach(p -> {
+            if (!tablero.casillaEstaOcupada(p.getUbicacion().getPosicionEnX() + variacionX, p.getUbicacion().getPosicionEnY() + variacionY)) {
+                try { tablero.moverUnidad(p.getUbicacion(), new Ubicacion(p.getUbicacion().getPosicionEnX() + variacionX, p.getUbicacion().getPosicionEnY() + variacionY));
+                } catch (NoHayUnidadEnPosicionException | DesplazamientoInvalidoException | NoSePuedeMoverException | UbicacionInvalidaException e) {
+                    e.printStackTrace(); }
+            }
+        });
     }
 
 
-    /* Acá quiero ignorar si una pieza no se pudo mover */
 
-    public void mover(Tablero tablero, Direccion direccion) throws BatallonDisueltoException {
-        if (!this.siguenContiguos()){
-            throw new BatallonDisueltoException();
-        }
-
-        boolean recorrerDesc = (direccion.getClass() == Derecha.class)||(direccion.getClass() == Abajo.class)||
-                (direccion.getClass() == AbajoDerecha.class)||(direccion.getClass() == AbajoIzquierda.class);
-
-        if (recorrerDesc){
-            soldados.sort(Ordenamientos.ubicacionDesComparator);
-        } else {
-            soldados.sort(Ordenamientos.ubicacionAscComparator);
-        }
-        for (Pieza soldado : soldados) {
-            try {
-                soldado.moverA(direccion,tablero);
-            } catch (Exception ignore) { }
-        }
-        if (!this.siguenContiguos()){
-            throw new BatallonDisueltoException();
-        }
-    }
-        /* ACA SE DISUELVE EL GRUPO DE SOLDADOS ? */
-
-    public ArrayList<Pieza> getSoldados() {
-        return soldados;
-    }
-
-    private boolean siguenContiguos(){
+    public boolean siguenContiguos(){
         return analizadorDeBatallon.estanContiguos(soldados);
     }
 
-    public void disolverBatallon(){
-        soldados.clear();
-    }
 
+    public boolean contiene(Ubicacion ubicacionInicial) {
+        AtomicBoolean contiene= new AtomicBoolean(false);
+        soldados.forEach(p ->{ if (p.getUbicacion().getDistanciaAOtroPunto(ubicacionInicial)==0) { contiene.set(true); } });
+        return contiene.get();
+    }
 }

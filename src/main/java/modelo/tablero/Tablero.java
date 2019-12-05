@@ -3,8 +3,7 @@ package modelo.tablero;
 import modelo.jugador.UbicacionInvalidaException;
 import modelo.pieza.Pieza;
 import modelo.pieza.Ubicacion;
-import modelo.pieza.movimiento.Direccion;
-import modelo.pieza.movimiento.NoSePuedeMoverException;
+import modelo.pieza.tipos.NoSePuedeMoverException;
 import modelo.tablero.casilla.Casilla;
 import modelo.tablero.casilla.NoHayUnidadEnPosicionException;
 
@@ -30,7 +29,6 @@ public class Tablero {
         unaColumna.ocuparCasilla(pieza, numeroDeFila);
     }
 
-    // se usa solo en pruebas
     public void desocuparCasilla(int numeroDeColumna, int numeroDeFila){
         Columna unaColumna = columnas.get(numeroDeColumna);
         unaColumna.desocuparCasilla(numeroDeFila);
@@ -60,12 +58,6 @@ public class Tablero {
         return ((desplazamientoEnX < 2) && (desplazamientoEnY < 2));
     }
 
-    public void moverBatallon(ArrayList<Ubicacion> ubicaciones, Direccion direccion) {
-
-    }
-    public boolean formanBatallon(ArrayList<Ubicacion> ubicaciones) {
-        return true;
-    }
 
     public int getTamanio(){
         return FILAS * COLUMNAS;
@@ -79,12 +71,14 @@ public class Tablero {
         return columnas.size();
     }
 
-    // solo se usa en las pruebas
     public boolean casillaEstaOcupada(int numeroDeLaColumna, int numeroDeLaFila){
         Columna unaColumna = columnas.get(numeroDeLaColumna);
         return unaColumna.casillaDeLaFilaEstaOcupada(numeroDeLaFila);
     }
 
+    public boolean existePosicion(int fila, int columna){
+        return fila<FILAS && 0<=fila && columna<COLUMNAS && columna<=0;
+    }
 
     private ArrayList<Casilla> getCasillasEntreRangos(Ubicacion ubicacion, int radioInicial, int radioFinal){
 

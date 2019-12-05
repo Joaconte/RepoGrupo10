@@ -11,12 +11,9 @@ import modelo.pieza.ataque.DistanciaDeAtaqueInvalidaException;
 import modelo.pieza.ataque.PiezaAtacante;
 import modelo.partida.fase.FaseDePartida;
 import modelo.partida.fase.FaseInicial;
-import modelo.pieza.movimiento.Direccion;
-import modelo.pieza.movimiento.NoSePuedeMoverException;
+import modelo.pieza.tipos.*;
 import modelo.pieza.sanacion.CurandoAEnemigoException;
 import modelo.pieza.sanacion.UnidadNoSePuedeCurar;
-import modelo.pieza.tipos.Curandero;
-import modelo.pieza.tipos.CurandoCuraADistanciaCortaException;
 import modelo.tablero.DesplazamientoInvalidoException;
 import modelo.tablero.Tablero;
 import modelo.pieza.Pieza;
@@ -91,12 +88,13 @@ public class Partida {
         miFase.curarAAliado(piezaCurandera,otraPieza);
     }
 
-    public void moverBatallon( ArrayList<Ubicacion> ubicaciones, Direccion direccion ) throws JugadorYaRealizoLaAccionException {
-        miFase.moverBatallon(tableroDePartida, ubicaciones, direccion);
+    public void moverBatallon( Ubicacion ubicacionInicial, Ubicacion ubicacionFinal ) throws JugadorYaRealizoLaAccionException, NoHayBatallonException, UbicacionInvalidaException, JugadorNoPuedeManipularEsaPiezaException {
+        miFase.moverBatallon(jugadorEnTurno, tableroDePartida, ubicacionInicial, ubicacionFinal);
     }
 
-    public boolean formanBatallon(ArrayList<Ubicacion> ubicaciones) {
-        return miFase.formanBatallon(tableroDePartida, ubicaciones);
+    public void formanBatallon(ArrayList<Pieza> piezas) throws JugadorNoPuedeManipularEsaPiezaException, NoSirvenParaBatallonException {
+        validarJugadorTurno(piezas.get(0)); //ballaton valida el resto
+        jugadorEnTurno.formanBatallon(piezas);
     }
 
     //---------------Metodos de Fase------------//

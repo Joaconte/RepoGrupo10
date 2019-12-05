@@ -9,12 +9,7 @@ import static org.junit.Assert.assertFalse;
 import modelo.jugador.presupuesto.CompraInvalidaException;
 import modelo.jugador.presupuesto.PresupuestoAgotadoException;
 
-import modelo.partida.fase.JugadorYaRealizoLaAccionException;
-import modelo.pieza.Ubicacion;
-import modelo.pieza.movimiento.NoSePuedeMoverException;
-import modelo.tablero.DesplazamientoInvalidoException;
 import modelo.tablero.Tablero;
-import modelo.tablero.casilla.NoHayUnidadEnPosicionException;
 import org.junit.Test;
 import org.mockito.Mockito;
 

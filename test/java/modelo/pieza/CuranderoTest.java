@@ -3,7 +3,7 @@ package modelo.pieza;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
-import modelo.pieza.movimiento.NoSePuedeMoverException;
+import modelo.pieza.tipos.NoSePuedeMoverException;
 import modelo.pieza.sanacion.CurandoAEnemigoException;
 import modelo.pieza.sanacion.UnidadNoSePuedeCurar;
 import modelo.pieza.tipos.Catapulta;

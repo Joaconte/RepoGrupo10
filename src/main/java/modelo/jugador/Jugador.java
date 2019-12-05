@@ -2,9 +2,14 @@ package modelo.jugador;
 
 import modelo.jugador.presupuesto.CompraInvalidaException;
 import modelo.jugador.presupuesto.PresupuestoAgotadoException;
+import modelo.partida.JugadorNoPuedeManipularEsaPiezaException;
 import modelo.pieza.Pieza;
 import modelo.pieza.Ubicacion;
+import modelo.pieza.tipos.NoHayBatallonException;
+import modelo.pieza.tipos.NoSirvenParaBatallonException;
 import modelo.tablero.Tablero;
+
+import java.util.ArrayList;
 
 public class Jugador {
 
@@ -52,13 +57,21 @@ public class Jugador {
 
 
     public boolean jugadorControlaUbicacion(Ubicacion ubicacionInicial) {
-        return ejercito.ejercitoControlaUbicacion(ubicacionInicial);
+        return ejercito.dominaEstaUbicacion(ubicacionInicial);
     }
 
     public boolean jugadorEsPerdedor(){ return ejercito.estaDestruido(); }
 
     public void actualizarEstadoTropas(Tablero tableroDePartida) {
-        ejercito.actualizarEstadoTropas(tableroDePartida);
+        ejercito.removerBajas(tableroDePartida);
+    }
+
+    public void formanBatallon(ArrayList<Pieza> piezas) throws NoSirvenParaBatallonException {
+        ejercito.agregarBatallon(piezas);
+    }
+    public void desplazarBatallon(Tablero tablero, Ubicacion ubicacionInicial, Ubicacion  ubicacionFinal) throws NoHayBatallonException, UbicacionInvalidaException, JugadorNoPuedeManipularEsaPiezaException {
+        if (!jugadorControlaUbicacion(ubicacionInicial)) throw new JugadorNoPuedeManipularEsaPiezaException();
+        ejercito.desplazarBatallon(tablero,ubicacionInicial,ubicacionFinal);
     }
 }
 

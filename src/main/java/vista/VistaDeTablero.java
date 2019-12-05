@@ -60,6 +60,8 @@ public class VistaDeTablero extends Group {
         this.getChildren().add(contenedorTabla);
     }
 
+    public GridPane getContenedorTabla(){return contenedorTabla;}
+
     public Ubicacion getUbicacionDelCursor(){return ubicacionDelCursor;}
 
     public VBox getVistaDePiezaClikeada(){return vistaUnidadClikeada;}
@@ -137,6 +139,24 @@ public class VistaDeTablero extends Group {
 
     public void tableroEnModoArmarBatallon(ArrayList<Pieza> piezas) {
         listaDeUnidades.forEach(p->p.setOnMouseClicked(new ClickEnPiezaModoCrearBatallonEventHandler(vistaUnidadClikeada,p,piezas,this)));
+
+    }
+
+    public void tableroEnModoMovimientoBatallon(VistaUnidad vistaUnidad, Label etiquetaTexto) {
+        rectanguloDeMovimiento.setVisible(false);
+        for (int i = 0; i < tablero.getColumnas(); i++) {
+            for (int j = 0; j < tablero.getFilas(); j++) {
+                casillaTabla[i][j].setOnMouseClicked(new ClickEnPiezaModoMovimientoBatallonEventHandler(i, j, this, vistaUnidad,etiquetaTexto));
+            }
+        }
+    }
+
+    public void actualizarUbicaciones() {
+        VistaDeTablero vistaAuxiliar = new VistaDeTablero(tablero, stage);
+        listaDeUnidades.forEach(p->vistaAuxiliar.agregarUnidad(p, p.getPieza().getUbicacion().getPosicionEnX(),  p.getPieza().getUbicacion().getPosicionEnY()));
+        GridPane gridPane = vistaAuxiliar.getContenedorTabla();
+        this.getChildren().clear();
+        this.getChildren().add(gridPane);
 
     }
 }

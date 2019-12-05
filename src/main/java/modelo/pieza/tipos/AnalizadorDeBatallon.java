@@ -31,24 +31,30 @@ public class AnalizadorDeBatallon {
 
     }
 
-    public boolean estanContiguos(ArrayList<Pieza> piezas){
+    public boolean estanContiguos(ArrayList<Pieza> piezas) {
         Pieza p1 = piezas.get(0);
         Pieza p2 = piezas.get(1);
         Pieza p3 = piezas.get(2);
-        int distanciaP1aP2 = p1.getUbicacion().getDistanciaAOtroPunto(p2.getUbicacion());
-        int distanciaP1aP3 = p1.getUbicacion().getDistanciaAOtroPunto(p3.getUbicacion());
-        int distanciaP2aP3 = p2.getUbicacion().getDistanciaAOtroPunto(p3.getUbicacion());
-        int distanciaTotal = distanciaP1aP2+distanciaP1aP3+distanciaP2aP3;
-        return (distanciaTotal<=4);
+        return p1.esContiguoAAlguno(p2, p3) && p2.esContiguoAAlguno(p1, p3) && p3.esContiguoAAlguno(p1, p2);
+    }
+
+    public boolean noHayRepeticiones(ArrayList<Pieza> piezas){
+        Pieza pieza = piezas.get(0);
+        piezas.remove(0);
+        if (piezas.contains(pieza)) return true;
+        pieza = piezas.get(0);
+        return (piezas.contains(pieza));
     }
 
     public boolean sonAliadosDeInfanteria(ArrayList<Pieza> piezas){
-
         return ((son3Aliados(piezas))&(los3SonDeInfanteria(piezas)));
     }
 
     public boolean formanBatallon(ArrayList<Pieza> piezas){
-        return (sonAliadosDeInfanteria(piezas)) & (estanContiguos(piezas));
+        if (piezas.size()!=3) return false;
+        return (sonAliadosDeInfanteria(piezas)) && (estanContiguos(piezas)) && noHayRepeticiones(piezas);
     }
+
+
 
 }

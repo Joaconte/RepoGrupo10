@@ -3,8 +3,6 @@ package modelo.pieza.tipos;
 import modelo.pieza.Pieza;
 import modelo.pieza.UnidadEstaMuertaException;
 import modelo.pieza.ataque.*;
-import modelo.pieza.movimiento.IModoMovimiento;
-import modelo.pieza.movimiento.SeMueveEnTodasDirecciones;
 import modelo.pieza.sanacion.IModoSanacion;
 import modelo.pieza.sanacion.SanacionNormal;
 import modelo.tablero.Tablero;
@@ -17,18 +15,17 @@ public class Jinete extends PiezaAtacante {
     static final int DANIO_CUERPO = 5;
     static final int DANIO_MEDIO =15;
     static final int DANIO_DISTANCIA = 0;
-    static final IModoMovimiento MOVIMIENTO = new SeMueveEnTodasDirecciones();
     static final IModoSanacion MODO_CURACION = new SanacionNormal();
     static final IModoAtaqueVariable ATAQUE = new AtaqueVariable();
     String sonidoAtaque;
 
 
     public Jinete(int equipo, int posX, int posY){
-        super(COSTO, VIDA_MAXIMA, equipo, MOVIMIENTO,  MODO_CURACION, ATAQUE,DANIO_CUERPO, DANIO_MEDIO,DANIO_DISTANCIA, posX, posY);
+        super(COSTO, VIDA_MAXIMA, equipo,   MODO_CURACION, ATAQUE,DANIO_CUERPO, DANIO_MEDIO,DANIO_DISTANCIA, posX, posY);
     }
 
     public Jinete(){
-        super(COSTO, VIDA_MAXIMA, 0, MOVIMIENTO,  MODO_CURACION, ATAQUE,DANIO_CUERPO, DANIO_MEDIO,DANIO_DISTANCIA, 0, 0);
+        super(COSTO, VIDA_MAXIMA, 0,   MODO_CURACION, ATAQUE,DANIO_CUERPO, DANIO_MEDIO,DANIO_DISTANCIA, 0, 0);
     }
 
 

@@ -7,7 +7,7 @@ import modelo.pieza.Ubicacion;
 import modelo.pieza.UnidadEstaMuertaException;
 import modelo.pieza.ataque.DistanciaDeAtaqueInvalidaException;
 import modelo.pieza.ataque.PiezaAliadaNoAtacableException;
-import modelo.pieza.movimiento.NoSePuedeMoverException;
+import modelo.pieza.tipos.NoSePuedeMoverException;
 import modelo.pieza.sanacion.CurandoAEnemigoException;
 import modelo.pieza.sanacion.UnidadNoSePuedeCurar;
 import modelo.pieza.tipos.Curandero;

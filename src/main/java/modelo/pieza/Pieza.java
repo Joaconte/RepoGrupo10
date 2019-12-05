@@ -1,9 +1,9 @@
 package modelo.pieza;
 
 import modelo.jugador.Sector;
-import modelo.pieza.movimiento.*;
 import modelo.pieza.recibirDanio.*;
 import modelo.pieza.sanacion.*;
+import modelo.pieza.tipos.NoSePuedeMoverException;
 import modelo.tablero.Tablero;
 
 public abstract class Pieza {
@@ -13,17 +13,15 @@ public abstract class Pieza {
     protected Ubicacion ubicacion;
     private int equipo;
     // strategy pattern
-    private IModoMovimiento modoMovimiento;
     private ICalculadorDeDanio danioARecibir;
     private IModoSanacion modoSanacion;
 
     // Constructores
-    public Pieza(int costo, int vidaMaxima, int equipo, IModoMovimiento modoMovimiento, IModoSanacion modoSanacion, int posX, int posY) {
+    public Pieza(int costo, int vidaMaxima, int equipo, IModoSanacion modoSanacion, int posX, int posY) {
         this.costo = costo;
         this.vida_maxima = vidaMaxima;
         this.vida = vidaMaxima;
         this.equipo = equipo;
-        this.modoMovimiento = modoMovimiento;
         this.modoSanacion = modoSanacion;
         this.ubicacion = new Ubicacion(posX, posY);
         this.danioARecibir = new DanioZonaPropia();
@@ -85,15 +83,8 @@ public abstract class Pieza {
         this.getUbicacion().setPosicionEnY(ubicacion.getPosicionEnY());
     }
 
-    public void moverA(Direccion direccion,Tablero tablero) throws NoSePuedeMoverException {
-        int nuevoX = this.getUbicacion().getPosicionEnX()+direccion.getDesplazamientoEnX();
-        int nuevoY = this.getUbicacion().getPosicionEnY()+direccion.getDesplazamientoEnY();
-        if (tablero.casillaEstaOcupada(nuevoX,nuevoY)){
-            throw new NoSePuedeMoverException();
-        }
-        tablero.desocuparCasilla(this.ubicacion.getPosicionEnX(),this.ubicacion.getPosicionEnY());
-        tablero.ocuparCasilla(this,nuevoX,nuevoY);
-        this.mover(new Ubicacion(nuevoX,nuevoY));
 
+    public boolean esContiguoAAlguno(Pieza pieza, Pieza pieza2){
+        return ubicacion.getDistanciaAOtroPunto(pieza.getUbicacion())<2 || ubicacion.getDistanciaAOtroPunto(pieza2.getUbicacion())<2;
     }
 }

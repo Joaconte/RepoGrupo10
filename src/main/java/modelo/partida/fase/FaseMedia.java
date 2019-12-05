@@ -5,6 +5,7 @@ import modelo.jugador.PiezaNoEsDeJugadorException;
 import modelo.jugador.UbicacionInvalidaException;
 import modelo.jugador.presupuesto.CompraInvalidaException;
 import modelo.jugador.presupuesto.PresupuestoAgotadoException;
+import modelo.partida.JugadorNoPuedeManipularEsaPiezaException;
 import modelo.pieza.Ubicacion;
 import modelo.pieza.ataque.PiezaAliadaNoAtacableException;
 import modelo.jugador.Jugador;
@@ -12,8 +13,8 @@ import modelo.pieza.UnidadEstaMuertaException;
 import modelo.pieza.ataque.DistanciaDeAtaqueInvalidaException;
 import modelo.pieza.ataque.PiezaAtacante;
 import modelo.pieza.Pieza;
-import modelo.pieza.movimiento.Direccion;
-import modelo.pieza.movimiento.NoSePuedeMoverException;
+import modelo.pieza.tipos.NoHayBatallonException;
+import modelo.pieza.tipos.NoSePuedeMoverException;
 import modelo.pieza.sanacion.CurandoAEnemigoException;
 import modelo.pieza.sanacion.UnidadNoSePuedeCurar;
 import modelo.pieza.tipos.Curandero;
@@ -66,14 +67,10 @@ public class FaseMedia implements FaseDePartida{
 
     }
 
-    public void moverBatallon(Tablero tableroDePartida , ArrayList<Ubicacion> ubicaciones, Direccion direccion ) throws JugadorYaRealizoLaAccionException {
+    public void moverBatallon(Jugador jugador, Tablero tableroDePartida , Ubicacion ubicacionInicial, Ubicacion ubicacionFinal ) throws JugadorYaRealizoLaAccionException, NoHayBatallonException, UbicacionInvalidaException, JugadorNoPuedeManipularEsaPiezaException {
         if(jugadorYaMovio) throw new JugadorYaRealizoLaAccionException();
-        tableroDePartida.moverBatallon(ubicaciones, direccion);
+        jugador.desplazarBatallon(tableroDePartida,ubicacionInicial,ubicacionFinal);
         jugadorYaMovio=true;
-    }
-
-    public boolean formanBatallon(Tablero tableroDePartida, ArrayList<Ubicacion> ubicaciones) {
-        return tableroDePartida.formanBatallon(ubicaciones);
     }
 
     @Override

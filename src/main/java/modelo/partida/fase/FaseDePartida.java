@@ -3,14 +3,15 @@ package modelo.partida.fase;
 import modelo.jugador.*;
 import modelo.jugador.presupuesto.CompraInvalidaException;
 import modelo.jugador.presupuesto.PresupuestoAgotadoException;
+import modelo.partida.JugadorNoPuedeManipularEsaPiezaException;
 import modelo.pieza.Ubicacion;
 import modelo.pieza.ataque.PiezaAliadaNoAtacableException;
 import modelo.pieza.UnidadEstaMuertaException;
 import modelo.pieza.ataque.DistanciaDeAtaqueInvalidaException;
 import modelo.pieza.ataque.PiezaAtacante;
 import modelo.pieza.Pieza;
-import modelo.pieza.movimiento.Direccion;
-import modelo.pieza.movimiento.NoSePuedeMoverException;
+import modelo.pieza.tipos.NoHayBatallonException;
+import modelo.pieza.tipos.NoSePuedeMoverException;
 import modelo.pieza.sanacion.CurandoAEnemigoException;
 import modelo.pieza.sanacion.UnidadNoSePuedeCurar;
 import modelo.pieza.tipos.Curandero;
@@ -39,7 +40,6 @@ public interface FaseDePartida{
 
     void moverUnidadEnTablero(Tablero tableroDePartida, Jugador jugadorEnTurno, Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) throws UbicacionInvalidaException, NoHayUnidadEnPosicionException, DesplazamientoInvalidoException, NoSePuedeMoverException, PiezaNoEsDeJugadorException, JugadorYaRealizoLaAccionException;
 
-    void moverBatallon(Tablero tableroDePartida, ArrayList<Ubicacion> ubicaciones, Direccion direccion) throws JugadorYaRealizoLaAccionException;
+    void moverBatallon(Jugador jugador, Tablero tableroDePartida, Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) throws JugadorYaRealizoLaAccionException, NoHayBatallonException, UbicacionInvalidaException, JugadorNoPuedeManipularEsaPiezaException;
 
-    boolean formanBatallon(Tablero tableroDePartida, ArrayList<Ubicacion> ubicaciones);
 }

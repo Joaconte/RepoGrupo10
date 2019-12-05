@@ -4,7 +4,6 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import modelo.pieza.ataque.DistanciaDeAtaqueInvalidaException;
 import modelo.pieza.ataque.PiezaAliadaNoAtacableException;
-import modelo.pieza.movimiento.NoSePuedeMoverException;
 import modelo.pieza.tipos.Catapulta;
 import modelo.tablero.Tablero;
 

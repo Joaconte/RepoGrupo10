@@ -15,8 +15,7 @@ import modelo.pieza.UnidadEstaMuertaException;
 import modelo.pieza.ataque.DistanciaDeAtaqueInvalidaException;
 import modelo.pieza.ataque.PiezaAliadaNoAtacableException;
 import modelo.pieza.ataque.PiezaAtacante;
-import modelo.pieza.movimiento.Direccion;
-import modelo.pieza.movimiento.NoSePuedeMoverException;
+import modelo.pieza.tipos.NoSePuedeMoverException;
 import modelo.pieza.sanacion.CurandoAEnemigoException;
 import modelo.pieza.sanacion.UnidadNoSePuedeCurar;
 import modelo.pieza.tipos.*;
@@ -67,19 +66,13 @@ public class Juego {
         partida.moverUnidad(ubicacionInicial, ubicacionFinal);
     }
 
-    public void moverBatallon( ArrayList<Ubicacion> ubicaciones, Direccion direccion ) throws JugadorYaRealizoLaAccionException {
-        partida.moverBatallon( ubicaciones, direccion);
+    public void moverBatallon( Ubicacion ubicacionInicial, Ubicacion direccion ) throws JugadorYaRealizoLaAccionException, NoHayBatallonException, UbicacionInvalidaException, JugadorNoPuedeManipularEsaPiezaException {
+        partida.moverBatallon( ubicacionInicial, direccion);
     }
 
-    public void moverBatallon(Batallon batallon, Direccion direccion,Tablero tablero) throws BatallonDisueltoException {
-        batallon.mover(tablero,direccion);
-    }
-    public boolean formanBatallon( ArrayList<Ubicacion> ubicaciones){
-        return partida.formanBatallon( ubicaciones);
-    }
 
-    public Batallon formarBatallon(ArrayList<Pieza> piezas) throws NoSirvenParaBatallonException {
-        return new Batallon(piezas); }
+    public void formarBatallon(ArrayList<Pieza> piezas) throws NoSirvenParaBatallonException, JugadorNoPuedeManipularEsaPiezaException {
+        partida.formanBatallon(piezas); }
 
     public void atacar (PiezaAtacante piezaAtacante, Pieza pieza) throws PiezaAliadaNoAtacableException, JugadorNoPuedeManipularEsaPiezaException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, JugadorYaRealizoLaAccionException {
         partida.atacarPieza(piezaAtacante,pieza);

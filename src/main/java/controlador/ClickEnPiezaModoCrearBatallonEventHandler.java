@@ -3,6 +3,7 @@ package controlador;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import modelo.partida.JugadorNoPuedeManipularEsaPiezaException;
 import modelo.pieza.Pieza;
 import modelo.pieza.tipos.NoSirvenParaBatallonException;
 import vista.VistaDeTablero;
@@ -35,7 +36,7 @@ public class ClickEnPiezaModoCrearBatallonEventHandler implements EventHandler<M
                 nuevoCandidato.getJuego().formarBatallon(batallon);
                 nuevoCandidato.setEtiquetaDeTexto("Batallon Creado.");
                 vistaDeTablero.tableroNormal();
-            } catch (NoSirvenParaBatallonException e) {
+            } catch (NoSirvenParaBatallonException | JugadorNoPuedeManipularEsaPiezaException e) {
                 vistaDeTablero.tableroNormal();
                 nuevoCandidato.setEtiquetaDeTexto("Piezas incompatibles a batallon.");
             }

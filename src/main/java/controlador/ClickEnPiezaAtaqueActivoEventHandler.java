@@ -78,9 +78,11 @@ public class ClickEnPiezaAtaqueActivoEventHandler implements EventHandler<MouseE
 
         }catch (PiezaAliadaNoAtacableException e){
             piezaClikeada.setEtiquetaDeTexto("Pieza Aliadas no se atacan.");
+            vistaDeTablero.tableroNormal();
         }
         catch (UnidadEstaMuertaException | JugadorNoPuedeManipularEsaPiezaException e){
             piezaClikeada.setEtiquetaDeTexto("Error con las piezas seleccionada.");
+            vistaDeTablero.tableroNormal();
         }
         catch (DistanciaDeAtaqueInvalidaException e){
             piezaClikeada.setEtiquetaDeTexto("La distancia de ataque es incorrecta.");
@@ -91,6 +93,6 @@ public class ClickEnPiezaAtaqueActivoEventHandler implements EventHandler<MouseE
             piezaClikeada.getEtiquetaDeTexto().setTextFill(Color.web("#FF0000"));
             vistaDeTablero.tableroNormal();
         }
-        vistaDeTablero.tableroNormal();
+
     }
 }

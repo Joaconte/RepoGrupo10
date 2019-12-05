@@ -1,4 +1,4 @@
-package modelo.pieza.movimiento;
+package modelo.pieza.tipos;
 
 public class NoSePuedeMoverException extends Exception {
     public NoSePuedeMoverException (){

@@ -1,14 +1,5 @@
 package modelo.pieza;
 
-import modelo.pieza.Ubicacion;
-import modelo.pieza.movimiento.*;
-import modelo.pieza.tipos.*;
-import org.junit.Test;
-import modelo.pieza.movimiento.NoSePuedeMoverException;
-import modelo.tablero.Tablero;
-
-import static org.junit.Assert.*;
-
 /*
 
 public class MovimientoTest {
