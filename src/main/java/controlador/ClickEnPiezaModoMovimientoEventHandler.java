@@ -11,6 +11,7 @@ import modelo.Juego;
 import modelo.jugador.PiezaNoEsDeJugadorException;
 import modelo.jugador.UbicacionInvalidaException;
 import modelo.partida.fase.JugadorYaRealizoLaAccionException;
+import modelo.partida.fase.PiezaYaMovioException;
 import modelo.pieza.Pieza;
 import modelo.pieza.Ubicacion;
 import modelo.pieza.movimiento.NoSePuedeMoverException;
@@ -48,7 +49,7 @@ public class ClickEnPiezaModoMovimientoEventHandler implements EventHandler<Mous
             this.etiquetaTexto.setTextFill(Color.web("#000000"));
             Audio.reproducirMovimientoAPie();
 
-        } catch (PiezaNoEsDeJugadorException | NoSePuedeMoverException | UbicacionInvalidaException | DesplazamientoInvalidoException | NoHayUnidadEnPosicionException | JugadorYaRealizoLaAccionException j) {
+        } catch (PiezaNoEsDeJugadorException | NoSePuedeMoverException | UbicacionInvalidaException | DesplazamientoInvalidoException | NoHayUnidadEnPosicionException | JugadorYaRealizoLaAccionException | PiezaYaMovioException j) {
             etiquetaTexto.setText(j.getMessage());
         }
         vistaDeTablero.tableroNormal();

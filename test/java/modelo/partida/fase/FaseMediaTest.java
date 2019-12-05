@@ -37,7 +37,7 @@ public class FaseMediaTest {
     }
 
     @Test (expected = JugadorYaRealizoLaAccionException.class)
-    public void test03FaseMediaNoDejaRepetirAtaques() throws PiezaAliadaNoAtacableException, JugadorYaRealizoLaAccionException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException {
+    public void test03FaseMediaNoDejaRepetirAtaques() throws PiezaAliadaNoAtacableException, JugadorYaRealizoLaAccionException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaYaAtacoException {
         FaseMedia miFaseMedia = new FaseMedia();
         Tablero tablero =  new Tablero();
         Jinete jinte = new Jinete(1,9,9);
@@ -49,7 +49,7 @@ public class FaseMediaTest {
     }
 
     @Test
-    public void test04FaseMediaDejaAtacarLaPrimeraVez() throws PiezaAliadaNoAtacableException, JugadorYaRealizoLaAccionException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException {
+    public void test04FaseMediaDejaAtacarLaPrimeraVez() throws PiezaAliadaNoAtacableException, JugadorYaRealizoLaAccionException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaYaAtacoException {
         FaseMedia miFaseMedia = new FaseMedia();
         Tablero tablero =  new Tablero();
         Jinete jinte = new Jinete(1,9,9);
@@ -63,7 +63,7 @@ public class FaseMediaTest {
     }
 
     @Test (expected = JugadorYaRealizoLaAccionException.class)
-    public void test05FaseMediaDejaAtacarYCurarEnUnTurno() throws PiezaAliadaNoAtacableException, JugadorYaRealizoLaAccionException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, CurandoAEnemigoException, CurandoCuraADistanciaCortaException, UnidadNoSePuedeCurar {
+    public void test05FaseMediaDejaAtacarYCurarEnUnTurno() throws PiezaAliadaNoAtacableException, JugadorYaRealizoLaAccionException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, CurandoAEnemigoException, CurandoCuraADistanciaCortaException, UnidadNoSePuedeCurar, PiezaYaAtacoException {
         FaseMedia miFaseMedia = new FaseMedia();
         Tablero tablero =  new Tablero();
         Jinete jinete = new Jinete(1,9,9);
@@ -79,7 +79,7 @@ public class FaseMediaTest {
     }
 
     @Test
-    public void test06FaseMediaDejaMoverLaPrimeraVez() throws NoSePuedeMoverException, PiezaNoEsDeJugadorException, NoHayUnidadEnPosicionException, UbicacionInvalidaException, JugadorYaRealizoLaAccionException, DesplazamientoInvalidoException {
+    public void test06FaseMediaDejaMoverLaPrimeraVez() throws NoSePuedeMoverException, PiezaNoEsDeJugadorException, NoHayUnidadEnPosicionException, UbicacionInvalidaException, JugadorYaRealizoLaAccionException, DesplazamientoInvalidoException, PiezaYaMovioException {
         Ubicacion ubicacionInicial = new Ubicacion(1,1);
         Tablero tablero = new Tablero();
         tablero.ocuparCasilla(new Jinete(1,1,1),1,1);
@@ -91,7 +91,7 @@ public class FaseMediaTest {
     }
 
     @Test (expected = JugadorYaRealizoLaAccionException.class)
-    public void test07FaseMediaNoDejaMoverDosVeces() throws NoSePuedeMoverException, PiezaNoEsDeJugadorException, NoHayUnidadEnPosicionException, UbicacionInvalidaException, JugadorYaRealizoLaAccionException, DesplazamientoInvalidoException {
+    public void test07FaseMediaNoDejaMoverDosVeces() throws NoSePuedeMoverException, PiezaNoEsDeJugadorException, NoHayUnidadEnPosicionException, UbicacionInvalidaException, JugadorYaRealizoLaAccionException, DesplazamientoInvalidoException, PiezaYaMovioException {
         Ubicacion ubicacionInicial = new Ubicacion(1,1);
         Tablero tablero = new Tablero();
         tablero.ocuparCasilla(new Jinete(1,1,1),1,1);
