@@ -14,6 +14,7 @@ import modelo.pieza.ataque.PiezaAtacante;
 import modelo.pieza.tipos.Curandero;
 import modelo.tablero.Tablero;
 
+import resources.sonidos.Audio;
 import vista.vistaPiezas.VistaUnidad;
 import java.util.ArrayList;
 import java.util.List;
@@ -79,7 +80,8 @@ public class VistaDeTablero extends Group {
         List <VistaUnidad> auxiliar = new ArrayList<>();
         listaDeUnidades.stream()
                 .filter(p->p.getPieza().getPuntosVida()==0)
-                .forEach(p-> casillaTabla[p.getPieza().getUbicacion().getPosicionEnX()][p.getPieza().getUbicacion().getPosicionEnY()].getChildren().clear());
+                .forEach(p-> {Audio.reproducirMuerte(p.getNombre());
+                    casillaTabla[p.getPieza().getUbicacion().getPosicionEnX()][p.getPieza().getUbicacion().getPosicionEnY()].getChildren().clear(); });
         listaDeUnidades.stream()
                 .filter(p->p.getPieza().getPuntosVida()>0)
                 .forEach(auxiliar::add);

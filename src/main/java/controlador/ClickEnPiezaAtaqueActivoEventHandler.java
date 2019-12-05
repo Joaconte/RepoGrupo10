@@ -15,6 +15,7 @@ import modelo.pieza.ataque.DistanciaDeAtaqueInvalidaException;
 import modelo.pieza.ataque.PiezaAliadaNoAtacableException;
 import modelo.pieza.ataque.PiezaAtacante;
 import vista.PantallaJuegoTerminado;
+import resources.sonidos.Audio;
 import vista.VistaDeTablero;
 import vista.vistaPiezas.VistaUnidad;
 
@@ -36,6 +37,9 @@ public class ClickEnPiezaAtaqueActivoEventHandler implements EventHandler<MouseE
 
     @Override
     public void handle(MouseEvent mouseEvent) {
+
+
+        piezaClikeada.getEtiquetaDeTexto().setTextFill(Color.web("#FF0000"));
         try {
             Juego juego = piezaClikeada.getJuego();
             vistaPiezaClikeada.getChildren().clear();
@@ -49,7 +53,10 @@ public class ClickEnPiezaAtaqueActivoEventHandler implements EventHandler<MouseE
             piezaClikeada.getEtiquetaDeTexto().setTextFill(Color.web("#336600"));
 
             vistaDeTablero.tableroNormal();
+            piezaClikeada.getJuego().actualizarTablero();
+
             vistaDeTablero.actualizarTableroPorMuertas();
+            Audio.reproducirAtaque(piezaAtacante.getSonidoAtaque());
 
 
             if(juego.jugadorUnoEsPerdedor() && !juego.jugadorDosEsPerdedor()){
@@ -71,13 +78,9 @@ public class ClickEnPiezaAtaqueActivoEventHandler implements EventHandler<MouseE
 
         }catch (PiezaAliadaNoAtacableException e){
             piezaClikeada.setEtiquetaDeTexto("Pieza Aliadas no se atacan.");
-            piezaClikeada.getEtiquetaDeTexto().setTextFill(Color.web("#FF0000"));
-            vistaDeTablero.tableroNormal();
         }
         catch (UnidadEstaMuertaException | JugadorNoPuedeManipularEsaPiezaException e){
             piezaClikeada.setEtiquetaDeTexto("Error con las piezas seleccionada.");
-            piezaClikeada.getEtiquetaDeTexto().setTextFill(Color.web("#FF0000"));
-            vistaDeTablero.tableroNormal();
         }
         catch (DistanciaDeAtaqueInvalidaException e){
             piezaClikeada.setEtiquetaDeTexto("La distancia de ataque es incorrecta.");
@@ -88,6 +91,6 @@ public class ClickEnPiezaAtaqueActivoEventHandler implements EventHandler<MouseE
             piezaClikeada.getEtiquetaDeTexto().setTextFill(Color.web("#FF0000"));
             vistaDeTablero.tableroNormal();
         }
-
+        vistaDeTablero.tableroNormal();
     }
 }

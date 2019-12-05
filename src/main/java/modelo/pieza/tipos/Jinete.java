@@ -20,6 +20,7 @@ public class Jinete extends PiezaAtacante {
     static final IModoMovimiento MOVIMIENTO = new SeMueveEnTodasDirecciones();
     static final IModoSanacion MODO_CURACION = new SanacionNormal();
     static final IModoAtaqueVariable ATAQUE = new AtaqueVariable();
+    String sonidoAtaque;
 
 
     public Jinete(int equipo, int posX, int posY){
@@ -46,9 +47,19 @@ public class Jinete extends PiezaAtacante {
     }
 
     public void setModo(long aliados, long enemigos){
-        if ((aliados>0) || enemigos==0){  ATAQUE.setModoDeAtaque(new AtaqueMedio()); }
-        else {ATAQUE.setModoDeAtaque(new AtaqueCuerpoACuerpo());}
+        if ((aliados>0) || enemigos==0){
+            ATAQUE.setModoDeAtaque(new AtaqueMedio());
+            sonidoAtaque = "flecha";
+        }
+        else {
+            ATAQUE.setModoDeAtaque(new AtaqueCuerpoACuerpo());
+            sonidoAtaque = "espada";
+        }
     }
+
+    @Override
+    public String getSonidoAtaque(){return sonidoAtaque;}
+
 
     @Override
     public boolean esRefuerzoDeJinete() {

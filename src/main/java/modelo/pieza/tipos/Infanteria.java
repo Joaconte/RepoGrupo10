@@ -54,6 +54,9 @@ public class Infanteria extends PiezaAtacante {
     }
 
     @Override
+    public String getSonidoAtaque(){return "espada";}
+
+    @Override
     public boolean esRefuerzoDeJinete() {
         return true;
     }

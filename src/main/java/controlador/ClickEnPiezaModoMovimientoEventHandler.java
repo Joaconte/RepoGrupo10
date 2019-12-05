@@ -16,6 +16,7 @@ import modelo.pieza.Ubicacion;
 import modelo.pieza.movimiento.NoSePuedeMoverException;
 import modelo.tablero.DesplazamientoInvalidoException;
 import modelo.tablero.casilla.NoHayUnidadEnPosicionException;
+import resources.sonidos.Audio;
 import vista.VistaDeTablero;
 import vista.vistaPiezas.VistaUnidad;
 
@@ -45,21 +46,12 @@ public class ClickEnPiezaModoMovimientoEventHandler implements EventHandler<Mous
             vistaDeTablero.actualizarUbicacion(ubicacionInicial,ubicacionFinal);
             etiquetaTexto.setText("Se movio correctamente");
             this.etiquetaTexto.setTextFill(Color.web("#000000"));
+            Audio.reproducirMovimientoAPie();
 
         } catch (PiezaNoEsDeJugadorException | NoSePuedeMoverException | UbicacionInvalidaException | DesplazamientoInvalidoException | NoHayUnidadEnPosicionException | JugadorYaRealizoLaAccionException j) {
             etiquetaTexto.setText(j.getMessage());
         }
-
         vistaDeTablero.tableroNormal();
         vistaDeTablero.restablecerTableroMovimiento();
     }
 }
-
-/*
-    @Override
-    public void handle(MouseEvent mouseEvent) {
-
-        if (movimientosActuales <= MOVIMIENTOS_POR_TURNO) {
-
-}
-*/

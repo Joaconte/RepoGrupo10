@@ -17,7 +17,7 @@ public class VistaUnidad extends Label{
     protected HBox barraDeOpcionesDeUnidad = new HBox();
     protected Label etiquetaDeTexto = new Label();
     protected Juego juego;
-    private  String nombre;
+    private String nombre;
 
     public VistaUnidad(Pieza pieza, VistaDeTablero vistaDeTablero, String nombre, Juego juego){
         this.juego=juego;
@@ -44,6 +44,8 @@ public class VistaUnidad extends Label{
     public Pieza getPieza() {
         return pieza;
     }
+
+    public String getNombre(){return nombre;}
 
     public VistaInformacionDeUnidad getVistaInformacion() {
         vistaDatos.actualizarDatosEnPartida();
