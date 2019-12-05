@@ -86,4 +86,9 @@ public abstract class Pieza {
         this.getUbicacion().setPosicionEnY(ubicacion.getPosicionEnY());
     }
 
+    public void mover(Direccion direccion){
+        int nuevoX = this.getUbicacion().getPosicionEnX()+direccion.getDesplazamientoEnX();
+        int nuevoY = this.getUbicacion().getPosicionEnY()+direccion.getDesplazamientoEnY();
+        this.ubicacion = new Ubicacion(nuevoX,nuevoY);
+    }
 }
