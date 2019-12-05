@@ -19,8 +19,7 @@ import modelo.pieza.movimiento.Direccion;
 import modelo.pieza.movimiento.NoSePuedeMoverException;
 import modelo.pieza.sanacion.CurandoAEnemigoException;
 import modelo.pieza.sanacion.UnidadNoSePuedeCurar;
-import modelo.pieza.tipos.Curandero;
-import modelo.pieza.tipos.CurandoCuraADistanciaCortaException;
+import modelo.pieza.tipos.*;
 import modelo.tablero.DesplazamientoInvalidoException;
 import modelo.tablero.Tablero;
 import modelo.tablero.casilla.NoHayUnidadEnPosicionException;
@@ -72,9 +71,15 @@ public class Juego {
         partida.moverBatallon( ubicaciones, direccion);
     }
 
+    public void moverBatallon(Batallon batallon, Direccion direccion,Tablero tablero) throws BatallonDisueltoException {
+        batallon.mover(tablero,direccion);
+    }
     public boolean formanBatallon( ArrayList<Ubicacion> ubicaciones){
         return partida.formanBatallon( ubicaciones);
     }
+
+    public Batallon formarBatallon(ArrayList<Pieza> piezas) throws NoSirvenParaBatallonException {
+        return new Batallon(piezas); }
 
     public void atacar (PiezaAtacante piezaAtacante, Pieza pieza) throws PiezaAliadaNoAtacableException, JugadorNoPuedeManipularEsaPiezaException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, JugadorYaRealizoLaAccionException {
         partida.atacarPieza(piezaAtacante,pieza);
