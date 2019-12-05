@@ -4,6 +4,7 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import modelo.pieza.Pieza;
+import modelo.pieza.tipos.NoSirvenParaBatallonException;
 import vista.VistaDeTablero;
 import vista.vistaPiezas.VistaUnidad;
 
@@ -30,8 +31,14 @@ public class ClickEnPiezaModoCrearBatallonEventHandler implements EventHandler<M
             batallon.add(nuevoCandidato.getPieza());
             vistaUnidadClickeada.getChildren().clear();
             vistaUnidadClickeada.getChildren().add(nuevoCandidato.getVistaInformacion());
-            nuevoCandidato.setEtiquetaDeTexto("Batallon Creado.");
-            vistaDeTablero.tableroNormal();
+            try {
+                nuevoCandidato.getJuego().formarBatallon(batallon);
+                nuevoCandidato.setEtiquetaDeTexto("Batallon Creado.");
+                vistaDeTablero.tableroNormal();
+            } catch (NoSirvenParaBatallonException e) {
+                vistaDeTablero.tableroNormal();
+                nuevoCandidato.setEtiquetaDeTexto("Piezas incompatibles a batallon.");
+            }
         }
         else {
             vistaUnidadClickeada.getChildren().clear();
