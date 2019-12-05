@@ -8,12 +8,14 @@ import modelo.jugador.presupuesto.CompraInvalidaException;
 import modelo.jugador.presupuesto.PresupuestoAgotadoException;
 import modelo.partida.JugadorNoPuedeManipularEsaPiezaException;
 import modelo.partida.Partida;
+import modelo.partida.fase.JugadorYaRealizoLaAccionException;
 import modelo.pieza.Pieza;
 import modelo.pieza.Ubicacion;
 import modelo.pieza.UnidadEstaMuertaException;
 import modelo.pieza.ataque.DistanciaDeAtaqueInvalidaException;
 import modelo.pieza.ataque.PiezaAliadaNoAtacableException;
 import modelo.pieza.ataque.PiezaAtacante;
+import modelo.pieza.movimiento.Direccion;
 import modelo.pieza.movimiento.NoSePuedeMoverException;
 import modelo.pieza.sanacion.CurandoAEnemigoException;
 import modelo.pieza.sanacion.UnidadNoSePuedeCurar;
@@ -62,11 +64,19 @@ public class Juego {
     public String getNombreDeJugadorDos() { return partida.getJugadorDos().getNombre();}
 
 
-    public void moverUnidad(Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) throws PiezaNoEsDeJugadorException, NoHayUnidadEnPosicionException, DesplazamientoInvalidoException, NoSePuedeMoverException, UbicacionInvalidaException {
+    public void moverUnidad(Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) throws PiezaNoEsDeJugadorException, NoHayUnidadEnPosicionException, DesplazamientoInvalidoException, NoSePuedeMoverException, UbicacionInvalidaException, JugadorYaRealizoLaAccionException {
         partida.moverUnidad(ubicacionInicial, ubicacionFinal);
     }
 
-    public void atacar (PiezaAtacante piezaAtacante, Pieza pieza) throws PiezaAliadaNoAtacableException, JugadorNoPuedeManipularEsaPiezaException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException {
+    public void moverBatallon( ArrayList<Ubicacion> ubicaciones, Direccion direccion ) throws JugadorYaRealizoLaAccionException {
+        partida.moverBatallon( ubicaciones, direccion);
+    }
+
+    public boolean formanBatallon( ArrayList<Ubicacion> ubicaciones){
+        return partida.formanBatallon( ubicaciones);
+    }
+
+    public void atacar (PiezaAtacante piezaAtacante, Pieza pieza) throws PiezaAliadaNoAtacableException, JugadorNoPuedeManipularEsaPiezaException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, JugadorYaRealizoLaAccionException {
         partida.atacarPieza(piezaAtacante,pieza);
     }
 
@@ -74,8 +84,17 @@ public class Juego {
         partida.actualizarTablero();
     }
 
-    public void curarAAliado(Curandero piezaCurandera, Pieza otraPieza) throws UnidadNoSePuedeCurar, CurandoCuraADistanciaCortaException, CurandoAEnemigoException {
+    public void curarAAliado(Curandero piezaCurandera, Pieza otraPieza) throws UnidadNoSePuedeCurar, CurandoCuraADistanciaCortaException, CurandoAEnemigoException, JugadorYaRealizoLaAccionException {
         partida.curarAAliado(piezaCurandera,otraPieza);
     }
+
+    public boolean jugadorUnoEsPerdedor(){
+        return partida.jugadorUnoEsPerdedor();
+    }
+
+    public boolean jugadorDosEsPerdedor(){
+        return partida.jugadorDosEsPerdedor();
+    }
+
 }
 

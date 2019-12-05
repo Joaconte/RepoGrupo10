@@ -3,14 +3,15 @@ package modelo.partida;
 import modelo.jugador.*;
 import modelo.jugador.presupuesto.CompraInvalidaException;
 import modelo.jugador.presupuesto.PresupuestoAgotadoException;
+import modelo.partida.fase.JugadorYaRealizoLaAccionException;
 import modelo.pieza.Ubicacion;
 import modelo.pieza.ataque.PiezaAliadaNoAtacableException;
 import modelo.pieza.UnidadEstaMuertaException;
 import modelo.pieza.ataque.DistanciaDeAtaqueInvalidaException;
 import modelo.pieza.ataque.PiezaAtacante;
-
 import modelo.partida.fase.FaseDePartida;
 import modelo.partida.fase.FaseInicial;
+import modelo.pieza.movimiento.Direccion;
 import modelo.pieza.movimiento.NoSePuedeMoverException;
 import modelo.pieza.sanacion.CurandoAEnemigoException;
 import modelo.pieza.sanacion.UnidadNoSePuedeCurar;
@@ -21,6 +22,7 @@ import modelo.tablero.Tablero;
 import modelo.pieza.Pieza;
 import modelo.tablero.casilla.NoHayUnidadEnPosicionException;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 
@@ -54,6 +56,9 @@ public class Partida {
 
     public int getPuntosJugadorEnTurno(){ return jugadorEnTurno.getPuntos();}
 
+    public Tablero getTableroDePartida() {
+        return tableroDePartida;
+    }
 
     //-----------SETTERS-----------//
 
@@ -68,7 +73,7 @@ public class Partida {
     //---------------Acciones de Turno------------//
 
 
-    public void atacarPieza(PiezaAtacante atacante, Pieza atacada) throws JugadorNoPuedeManipularEsaPiezaException, PiezaAliadaNoAtacableException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException {
+    public void atacarPieza(PiezaAtacante atacante, Pieza atacada) throws JugadorNoPuedeManipularEsaPiezaException, PiezaAliadaNoAtacableException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, JugadorYaRealizoLaAccionException {
         validarJugadorTurno(atacante);
         miFase.atacar(atacante, atacada, tableroDePartida);
     }
@@ -77,16 +82,28 @@ public class Partida {
         return miFase.crearPieza(jugadorEnTurno,tableroDePartida,nombreDeUnidad,posicionEnX,posicionEnY);
     }
 
-    public void moverUnidad(Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) throws PiezaNoEsDeJugadorException, NoHayUnidadEnPosicionException, DesplazamientoInvalidoException, NoSePuedeMoverException, UbicacionInvalidaException {
+    public void moverUnidad(Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) throws PiezaNoEsDeJugadorException, NoHayUnidadEnPosicionException, DesplazamientoInvalidoException, NoSePuedeMoverException, UbicacionInvalidaException, JugadorYaRealizoLaAccionException {
         miFase.moverUnidadEnTablero(tableroDePartida, jugadorEnTurno, ubicacionInicial,ubicacionFinal);
     }
 
+
+    public void curarAAliado(Curandero piezaCurandera, Pieza otraPieza) throws CurandoAEnemigoException, CurandoCuraADistanciaCortaException, UnidadNoSePuedeCurar, JugadorYaRealizoLaAccionException {
+        miFase.curarAAliado(piezaCurandera,otraPieza);
+    }
+
+    public void moverBatallon( ArrayList<Ubicacion> ubicaciones, Direccion direccion ) throws JugadorYaRealizoLaAccionException {
+        miFase.moverBatallon(tableroDePartida, ubicaciones, direccion);
+    }
+
+    public boolean formanBatallon(ArrayList<Ubicacion> ubicaciones) {
+        return miFase.formanBatallon(tableroDePartida, ubicaciones);
+    }
 
     //---------------Metodos de Fase------------//
 
     public void pasarTurno() throws EjercitoIncompletoException {
         miFase.finalizarTurno(jugadorEnTurno);
-        if (jugadorEnTurno.getNombre()==jugadorUno.getNombre()) setJugadorEnTurno(jugadorDos);
+        if (jugadorEnTurno.getNombre().equals(jugadorUno.getNombre())) setJugadorEnTurno(jugadorDos);
         else setJugadorEnTurno(jugadorUno);
         miFase = miFase.retornarProximaFase();
     }
@@ -96,10 +113,16 @@ public class Partida {
     }
 
 
+
     //---------------Validaciones-Actualizaciones-----------
 
     void validarJugadorTurno(Pieza piezaEnAccion)throws JugadorNoPuedeManipularEsaPiezaException {
         if(piezaEnAccion.getEquipo() != jugadorEnTurno.getNumeroDeJugador()){ throw new JugadorNoPuedeManipularEsaPiezaException();}
+    }
+
+    public void actualizarTablero() {
+        jugadorDos.actualizarEstadoTropas(tableroDePartida);
+        jugadorUno.actualizarEstadoTropas(tableroDePartida);
     }
 
     //---------------Metodos de Jugadores------------
@@ -126,20 +149,14 @@ public class Partida {
         }
     }
 
-    public Tablero getTableroDePartida() {
-        return tableroDePartida;
+     public boolean jugadorDosEsPerdedor(){
+        return jugadorDos.jugadorEsPerdedor();
+     }
+
+    public boolean jugadorUnoEsPerdedor(){
+        return jugadorUno.jugadorEsPerdedor();
     }
 
-
-    public void actualizarTablero() {
-        jugadorDos.actualizarEstadoTropas(tableroDePartida);
-        jugadorUno.actualizarEstadoTropas(tableroDePartida);
-    }
-
-
-    public void curarAAliado(Curandero piezaCurandera, Pieza otraPieza) throws CurandoAEnemigoException, CurandoCuraADistanciaCortaException, UnidadNoSePuedeCurar {
-        miFase.curarAAliado(piezaCurandera,otraPieza);
-    }
 }
 
 

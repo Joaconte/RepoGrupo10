@@ -51,8 +51,12 @@ public class Audio {
         reproducirEfecto(rutaSonido+"/interfaz/"+nombre+".wav");
     }
 
-    public static void reproducirMovimiento(String nombre){
-        reproducirEfecto(rutaSonido+"/movimiento/"+nombre+".wav");
+    public static void reproducirMovimientoJinete(){
+        reproducirEfecto(rutaSonido+"/movimiento/cabalgada.wav");
+    }
+
+    public static void reproducirMovimientoAPie() {
+        reproducirEfecto(rutaSonido+"/movimiento/pasos1.wav");
     }
 
     public static void reproducirMuerte(String nombre){

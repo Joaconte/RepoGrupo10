@@ -33,7 +33,7 @@ public class PantallaFaseInicialPartida extends HBox {
         this.etiquetaComunicacion = new Label("Desplazate en el tablero para posicionar piezas.");
         this.etiquetaPresupuestoDelJugador = new EtiquetaPresupuestoJugador( juego );
         this.etiquetaDeJugadorEnTurno = new EtiquetaTurnoJugador( juego );
-        this.vistaDeTablero = new VistaDeTablero(juego.getTablero());
+        this.vistaDeTablero = new VistaDeTablero(juego.getTablero(),escenarioPrincipal);
         this.ubicacion = vistaDeTablero.getUbicacionDelCursor();
         this.botoneraPiezasACrear = new ContenedorElegirPieza(vistaDeTablero, ubicacion, etiquetaPresupuestoDelJugador,etiquetaComunicacion);
         this.botonConfirmarEjercito = new BotonConfirmarEjercito(etiquetaDeJugadorEnTurno,etiquetaPresupuestoDelJugador,juego,etiquetaComunicacion,escenarioPrincipal,vistaDeTablero);

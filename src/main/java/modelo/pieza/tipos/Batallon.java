@@ -22,11 +22,6 @@ public class Batallon {
 
     }
 
-    public void atacar(Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
-        /* ataca solo 1 o todos los que tengan un enemigo a rango*/
-
-    }
-
     public String getNombre() {
         return "Batallon";
     }
@@ -51,6 +46,9 @@ public class Batallon {
             try {
                 soldado.mover(direccion);
             } catch (Exception ignore) { }
+        }
+        if (!this.siguenContiguos()){
+            throw new BatallonDisueltoException();
         }
     }
         /* ACA SE DISUELVE EL GRUPO DE SOLDADOS ? */

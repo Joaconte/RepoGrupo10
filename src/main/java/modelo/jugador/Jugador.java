@@ -4,7 +4,6 @@ import modelo.jugador.presupuesto.CompraInvalidaException;
 import modelo.jugador.presupuesto.PresupuestoAgotadoException;
 import modelo.pieza.Pieza;
 import modelo.pieza.Ubicacion;
-import modelo.pieza.movimiento.NoSePuedeMoverException;
 import modelo.tablero.Tablero;
 
 public class Jugador {
@@ -33,9 +32,6 @@ public class Jugador {
     public Sector getSector(){
         return sector;
     }
-    public int getTamanioDelEjercito() {
-        return this.ejercito.getTamanio();
-    }
     public String getNombre(){ return nombre;}
     public int getPuntos(){ return ejercito.getPresupuesto();}
 
@@ -55,10 +51,11 @@ public class Jugador {
     }
 
 
-    public boolean piezaEsDeJugador(Ubicacion ubicacionInicial) {
-        return ejercito.piezaEsDeJugador(ubicacionInicial);
+    public boolean jugadorControlaUbicacion(Ubicacion ubicacionInicial) {
+        return ejercito.ejercitoControlaUbicacion(ubicacionInicial);
     }
 
+    public boolean jugadorEsPerdedor(){ return ejercito.estaDestruido(); }
 
     public void actualizarEstadoTropas(Tablero tableroDePartida) {
         ejercito.actualizarEstadoTropas(tableroDePartida);
