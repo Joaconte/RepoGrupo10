@@ -34,6 +34,7 @@ public abstract class BotonAgregarPiezaEventHandler implements EventHandler<Acti
     @Override
     public void handle(ActionEvent actionEvent) {
         try {
+            // multiples violaciones del encapsulamiento de Ubicacion
             int x = ubicacion.getPosicionEnX();
             int y = ubicacion.getPosicionEnY();
             crearPiezaYAgregarATablero(x, y, vistaDeTablero);
