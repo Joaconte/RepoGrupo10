@@ -95,7 +95,8 @@ public class FaseMedia implements FaseDePartida{
 
     public boolean ubicacionYaHizoAccion (Ubicacion ubicacion, ArrayList<Ubicacion> ubicaciones){
         for (int j = 0; j < ubicaciones.size(); j++)
-            return (sonLaMismaUbicacion(ubicaciones.get(j), ubicacion));
+            if (sonLaMismaUbicacion(ubicaciones.get(j), ubicacion))
+                return true;
         return false;
     }
 
