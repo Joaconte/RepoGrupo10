@@ -44,7 +44,7 @@ public class Batallon {
         }
         for (Pieza soldado : soldados) {
             try {
-                soldado.mover(direccion);
+                soldado.moverA(direccion,tablero);
             } catch (Exception ignore) { }
         }
         if (!this.siguenContiguos()){

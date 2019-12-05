@@ -2,13 +2,16 @@ package vista.vistaPiezas;
 
 import javafx.geometry.Pos;
 import modelo.Juego;
+import modelo.pieza.Pieza;
 import modelo.pieza.ataque.PiezaAtacante;
 import vista.VistaDeTablero;
 import vista.fasesPartida.faseMediaPartida.botonesFaseMedia.BotonAtacar;
+import vista.fasesPartida.faseMediaPartida.botonesFaseMedia.BotonCrearBatallon;
 import vista.fasesPartida.faseMediaPartida.botonesFaseMedia.BotonMover;
 
-public class VistaUnidadAtacante extends VistaUnidad{
+import java.util.ArrayList;
 
+public class VistaUnidadAtacante extends VistaUnidad{
     protected PiezaAtacante piezaAtacante;
 
 
@@ -30,7 +33,7 @@ public class VistaUnidadAtacante extends VistaUnidad{
         etiquetaDeTexto.setText("");
         barraDeOpcionesDeUnidad.getChildren().add(new BotonAtacar(piezaAtacante,etiquetaDeTexto,vistaDeTablero,barraDeOpcionesDeUnidad));
         barraDeOpcionesDeUnidad.getChildren().add(new BotonMover(this,etiquetaDeTexto,vistaDeTablero,barraDeOpcionesDeUnidad));
-
+        barraDeOpcionesDeUnidad.getChildren().add(new BotonCrearBatallon(piezaAtacante,etiquetaDeTexto,vistaDeTablero,barraDeOpcionesDeUnidad));
 
     }
 

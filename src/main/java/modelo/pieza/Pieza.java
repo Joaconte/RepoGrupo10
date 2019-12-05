@@ -84,9 +84,15 @@ public abstract class Pieza {
         this.getUbicacion().setPosicionEnY(ubicacion.getPosicionEnY());
     }
 
-    public void mover(Direccion direccion){
+    public void moverA(Direccion direccion,Tablero tablero) throws NoSePuedeMoverException {
         int nuevoX = this.getUbicacion().getPosicionEnX()+direccion.getDesplazamientoEnX();
         int nuevoY = this.getUbicacion().getPosicionEnY()+direccion.getDesplazamientoEnY();
-        this.ubicacion = new Ubicacion(nuevoX,nuevoY);
+        if (tablero.casillaEstaOcupada(nuevoX,nuevoY)){
+            throw new NoSePuedeMoverException();
+        }
+        tablero.desocuparCasilla(this.ubicacion.getPosicionEnX(),this.ubicacion.getPosicionEnY());
+        tablero.ocuparCasilla(this,nuevoX,nuevoY);
+        this.mover(new Ubicacion(nuevoX,nuevoY));
+
     }
 }
