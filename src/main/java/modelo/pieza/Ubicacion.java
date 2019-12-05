@@ -32,4 +32,7 @@ public class Ubicacion {
         return Math.max(posibleDistancia, posibleDistancia2);
     }
 
+    public Ubicacion desplazar(int despX, int despY) {
+        return new Ubicacion(this.posicionEnX + despX, this.posicionEnX + despY);
+    }
 }

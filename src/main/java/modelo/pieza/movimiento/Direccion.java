@@ -1,5 +1,7 @@
 package modelo.pieza.movimiento;
 
+import modelo.pieza.Ubicacion;
+
 public abstract class Direccion {
     private int desplazamientoEnX;
     private int desplazamientoEnY;
@@ -17,5 +19,7 @@ public abstract class Direccion {
         return desplazamientoEnY;
     }
 
-
+    public Ubicacion mover(Ubicacion ubicacion) {
+        return ubicacion.desplazar(this.desplazamientoEnX, this.desplazamientoEnY);
+    }
 }

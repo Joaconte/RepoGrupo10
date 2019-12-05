@@ -86,6 +86,8 @@ public abstract class Pieza {
     }
 
     public void moverA(Direccion direccion,Tablero tablero) throws NoSePuedeMoverException {
+        // Ubicacion nuevaUbicacion = direccion.mover(this.getUbicacion());
+
         int nuevoX = this.getUbicacion().getPosicionEnX()+direccion.getDesplazamientoEnX();
         int nuevoY = this.getUbicacion().getPosicionEnY()+direccion.getDesplazamientoEnY();
         if (tablero.casillaEstaOcupada(nuevoX,nuevoY)){

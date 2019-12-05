@@ -24,6 +24,8 @@ public class AnalizadorDeBatallon {
             Pieza p1 = piezas.get(0);
             Pieza p2 = piezas.get(1);
             Pieza p3 = piezas.get(2);
+
+            // uso de reflexion
             return(p1.getClass() == Infanteria.class)&(p2.getClass()== Infanteria.class)&(p3.getClass()== Infanteria.class);
         } else {
             return false;
