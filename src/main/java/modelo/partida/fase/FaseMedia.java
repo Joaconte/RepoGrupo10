@@ -26,15 +26,17 @@ import java.util.ArrayList;
 
 public class FaseMedia implements FaseDePartida{
 
-    private boolean jugadorYaAtacoOCuro = false;
-    private boolean jugadorYaMovio = false;
+    private static int ATAQUES_MAXIMOS = 3;
+    private static int MOVIMIENTOS_MAXIMOS = 2;
+    private int ataquesDeJugador;
+    private int movimientosDeJugador;
 
 
     //Metodo que permite indicar que el jugador termina con las acciones de su turno.
     @Override
     public void finalizarTurno(Jugador jugadorEnTurno){
-        jugadorYaAtacoOCuro=false;
-        jugadorYaMovio = false;
+        ataquesDeJugador = 0;
+        movimientosDeJugador = 0;
     }
 
     @Override
@@ -45,31 +47,31 @@ public class FaseMedia implements FaseDePartida{
     //Ataques o cura
     @Override
     public void atacar(PiezaAtacante atacante, Pieza atacada, Tablero tablero) throws JugadorYaRealizoLaAccionException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
-        if(jugadorYaAtacoOCuro) throw new JugadorYaRealizoLaAccionException();
+        if(ataquesDeJugador == ATAQUES_MAXIMOS) throw new JugadorYaRealizoLaAccionException();
         atacante.atacar(atacada,tablero);
-        jugadorYaAtacoOCuro=true;
+        ataquesDeJugador += 1;
     }
 
     @Override
     public void curarAAliado(Curandero piezaCurandera, Pieza otraPieza) throws UnidadNoSePuedeCurar, CurandoCuraADistanciaCortaException, CurandoAEnemigoException, JugadorYaRealizoLaAccionException {
-        if(jugadorYaAtacoOCuro) throw new JugadorYaRealizoLaAccionException();
+        if(ataquesDeJugador == ATAQUES_MAXIMOS) throw new JugadorYaRealizoLaAccionException();
         piezaCurandera.curarAAliado(otraPieza);
-        jugadorYaAtacoOCuro=true;
+        ataquesDeJugador +=1;
     }
 
     @Override
     public void moverUnidadEnTablero(Tablero tableroDePartida, Jugador jugadorEnTurno, Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) throws UbicacionInvalidaException, NoHayUnidadEnPosicionException, DesplazamientoInvalidoException, NoSePuedeMoverException, PiezaNoEsDeJugadorException, JugadorYaRealizoLaAccionException {
-        if(jugadorYaMovio) throw new JugadorYaRealizoLaAccionException();
+        if(movimientosDeJugador == MOVIMIENTOS_MAXIMOS) throw new JugadorYaRealizoLaAccionException();
         if(!jugadorEnTurno.jugadorControlaUbicacion(ubicacionInicial)) throw new PiezaNoEsDeJugadorException();
         tableroDePartida.moverUnidad(ubicacionInicial, ubicacionFinal);
-        jugadorYaMovio=true;
+        movimientosDeJugador += 1;
 
     }
 
     public void moverBatallon(Tablero tableroDePartida , ArrayList<Ubicacion> ubicaciones, Direccion direccion ) throws JugadorYaRealizoLaAccionException {
-        if(jugadorYaMovio) throw new JugadorYaRealizoLaAccionException();
+        if(movimientosDeJugador == MOVIMIENTOS_MAXIMOS) throw new JugadorYaRealizoLaAccionException();
         tableroDePartida.moverBatallon(ubicaciones, direccion);
-        jugadorYaMovio=true;
+        movimientosDeJugador += 1;
     }
 
     public boolean formanBatallon(Tablero tableroDePartida, ArrayList<Ubicacion> ubicaciones) {

@@ -87,7 +87,7 @@ public class ClickEnPiezaAtaqueActivoEventHandler implements EventHandler<MouseE
             piezaClikeada.getEtiquetaDeTexto().setTextFill(Color.web("#FF0000"));
             vistaDeTablero.tableroNormal();
         } catch (JugadorYaRealizoLaAccionException e) {
-            piezaClikeada.setEtiquetaDeTexto("Solo un ataque o cura por turno.");
+            piezaClikeada.setEtiquetaDeTexto("Solo 3 ataques o curas por turno.");
             piezaClikeada.getEtiquetaDeTexto().setTextFill(Color.web("#FF0000"));
             vistaDeTablero.tableroNormal();
         }
