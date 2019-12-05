@@ -9,6 +9,7 @@ import static org.junit.Assert.assertFalse;
 import modelo.jugador.presupuesto.CompraInvalidaException;
 import modelo.jugador.presupuesto.PresupuestoAgotadoException;
 
+import modelo.partida.fase.JugadorYaRealizoLaAccionException;
 import modelo.pieza.Ubicacion;
 import modelo.pieza.movimiento.NoSePuedeMoverException;
 import modelo.tablero.DesplazamientoInvalidoException;
@@ -124,28 +125,4 @@ public class PartidaTest {
         assertEquals(miPartida.getJugadorEnTurno(),jugador1);
     }
 
-    @Test
-    public void test08PartidaMueveUnidadSinSaltoDeExcepciones() throws  UbicacionInvalidaException, PresupuestoAgotadoException, CompraInvalidaException, PiezaFueraDeSectorException, NoHayUnidadEnPosicionException, PiezaNoEsDeJugadorException, DesplazamientoInvalidoException, NoSePuedeMoverException {
-
-        Partida miPartida = new Partida();
-        miPartida.agregarJugadores("pepe", "jose");
-
-        Ubicacion ubicacion1= new Ubicacion(0,0);
-        miPartida.crearPieza("Jinete", 0 ,0);
-        miPartida.crearPieza("Jinete", 4 ,4);
-        miPartida.crearPieza("Jinete", 4 ,6);
-
-        Ubicacion ubicacion2 = new Ubicacion(1,1);
-        Ubicacion ubicacion3 = new Ubicacion(2,2);
-        Ubicacion ubicacion4 = new Ubicacion(3,3);
-        Ubicacion ubicacion5 = new Ubicacion(4,4);
-
-        miPartida.moverUnidad(ubicacion1, ubicacion2);
-
-        miPartida.moverUnidad(ubicacion2, ubicacion3);
-
-        miPartida.moverUnidad(ubicacion3, ubicacion4);
-
-        miPartida.moverUnidad(ubicacion4, ubicacion5);
-    }
 }

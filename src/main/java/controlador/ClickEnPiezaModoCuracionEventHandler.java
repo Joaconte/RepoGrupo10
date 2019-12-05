@@ -4,6 +4,7 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import modelo.partida.fase.JugadorYaRealizoLaAccionException;
 import modelo.pieza.sanacion.CurandoAEnemigoException;
 import modelo.pieza.sanacion.UnidadNoSePuedeCurar;
 import modelo.pieza.tipos.Curandero;
@@ -47,6 +48,10 @@ public class ClickEnPiezaModoCuracionEventHandler implements EventHandler<MouseE
             vistaDeTablero.tableroNormal();
         } catch (CurandoAEnemigoException e) {
             piezaClikeada.setEtiquetaDeTexto("No se puede curar a enemigos.");
+            piezaClikeada.getEtiquetaDeTexto().setTextFill(Color.web("#FF0000"));
+            vistaDeTablero.tableroNormal();
+        } catch (JugadorYaRealizoLaAccionException e) {
+            piezaClikeada.setEtiquetaDeTexto("Solo un ataque o cura por turno.");
             piezaClikeada.getEtiquetaDeTexto().setTextFill(Color.web("#FF0000"));
             vistaDeTablero.tableroNormal();
         }

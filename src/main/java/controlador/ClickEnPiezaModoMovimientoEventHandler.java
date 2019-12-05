@@ -10,6 +10,7 @@ import javafx.scene.shape.Rectangle;
 import modelo.Juego;
 import modelo.jugador.PiezaNoEsDeJugadorException;
 import modelo.jugador.UbicacionInvalidaException;
+import modelo.partida.fase.JugadorYaRealizoLaAccionException;
 import modelo.pieza.Pieza;
 import modelo.pieza.Ubicacion;
 import modelo.pieza.movimiento.NoSePuedeMoverException;
@@ -45,7 +46,7 @@ public class ClickEnPiezaModoMovimientoEventHandler implements EventHandler<Mous
             etiquetaTexto.setText("Se movio correctamente");
             this.etiquetaTexto.setTextFill(Color.web("#000000"));
 
-        } catch (PiezaNoEsDeJugadorException | NoSePuedeMoverException | UbicacionInvalidaException |DesplazamientoInvalidoException | NoHayUnidadEnPosicionException j) {
+        } catch (PiezaNoEsDeJugadorException | NoSePuedeMoverException | UbicacionInvalidaException | DesplazamientoInvalidoException | NoHayUnidadEnPosicionException | JugadorYaRealizoLaAccionException j) {
             etiquetaTexto.setText(j.getMessage());
         }
 

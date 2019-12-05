@@ -3,12 +3,12 @@ package modelo.partida;
 import modelo.jugador.*;
 import modelo.jugador.presupuesto.CompraInvalidaException;
 import modelo.jugador.presupuesto.PresupuestoAgotadoException;
+import modelo.partida.fase.JugadorYaRealizoLaAccionException;
 import modelo.pieza.Ubicacion;
 import modelo.pieza.ataque.PiezaAliadaNoAtacableException;
 import modelo.pieza.UnidadEstaMuertaException;
 import modelo.pieza.ataque.DistanciaDeAtaqueInvalidaException;
 import modelo.pieza.ataque.PiezaAtacante;
-
 import modelo.partida.fase.FaseDePartida;
 import modelo.partida.fase.FaseInicial;
 import modelo.pieza.movimiento.Direccion;
@@ -73,7 +73,7 @@ public class Partida {
     //---------------Acciones de Turno------------//
 
 
-    public void atacarPieza(PiezaAtacante atacante, Pieza atacada) throws JugadorNoPuedeManipularEsaPiezaException, PiezaAliadaNoAtacableException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException {
+    public void atacarPieza(PiezaAtacante atacante, Pieza atacada) throws JugadorNoPuedeManipularEsaPiezaException, PiezaAliadaNoAtacableException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, JugadorYaRealizoLaAccionException {
         validarJugadorTurno(atacante);
         miFase.atacar(atacante, atacada, tableroDePartida);
     }
@@ -82,16 +82,16 @@ public class Partida {
         return miFase.crearPieza(jugadorEnTurno,tableroDePartida,nombreDeUnidad,posicionEnX,posicionEnY);
     }
 
-    public void moverUnidad(Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) throws PiezaNoEsDeJugadorException, NoHayUnidadEnPosicionException, DesplazamientoInvalidoException, NoSePuedeMoverException, UbicacionInvalidaException {
+    public void moverUnidad(Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) throws PiezaNoEsDeJugadorException, NoHayUnidadEnPosicionException, DesplazamientoInvalidoException, NoSePuedeMoverException, UbicacionInvalidaException, JugadorYaRealizoLaAccionException {
         miFase.moverUnidadEnTablero(tableroDePartida, jugadorEnTurno, ubicacionInicial,ubicacionFinal);
     }
 
 
-    public void curarAAliado(Curandero piezaCurandera, Pieza otraPieza) throws CurandoAEnemigoException, CurandoCuraADistanciaCortaException, UnidadNoSePuedeCurar {
+    public void curarAAliado(Curandero piezaCurandera, Pieza otraPieza) throws CurandoAEnemigoException, CurandoCuraADistanciaCortaException, UnidadNoSePuedeCurar, JugadorYaRealizoLaAccionException {
         miFase.curarAAliado(piezaCurandera,otraPieza);
     }
 
-    public void moverBatallon( ArrayList<Ubicacion> ubicaciones, Direccion direccion ){
+    public void moverBatallon( ArrayList<Ubicacion> ubicaciones, Direccion direccion ) throws JugadorYaRealizoLaAccionException {
         miFase.moverBatallon(tableroDePartida, ubicaciones, direccion);
     }
 
