@@ -58,8 +58,9 @@ public abstract class Pieza {
 
     // METODOS
 
-    public void evaluarZonaDeDanio(Sector sector) {
-        if (sector.esDelSector(ubicacion.getPosicionEnX())) { this.danioARecibir = new DanioZonaEnemiga(); }
+    public void recibirPenalizacion() {
+        Sector sector = new Sector(equipo);
+        if (!sector.esDelSector(ubicacion.getPosicionEnY())) { this.danioARecibir = new DanioZonaEnemiga(); }
         else this.danioARecibir = new DanioZonaPropia();
     }
 

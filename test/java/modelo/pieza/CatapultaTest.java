@@ -91,7 +91,7 @@ public class CatapultaTest {
         Mockito.when(tablero.getPiezasAdycentesInfinitas(atacada.getUbicacion())).thenReturn(lista); //Probado en modelo.tablero
 
         atacante.atacar(atacada,tablero);
-        assertEquals(vidaAntesDelAtaque-20,atacada.getPuntosVida(),0);
+        assertEquals(vidaAntesDelAtaque-20,atacada.getPuntosVida(),1);
     }
 
     @Test
@@ -119,12 +119,12 @@ public class CatapultaTest {
 
         atacante.atacar(atacada,tablero);
 
-        assertEquals(vidaAntesDelAtaque-20,atacadaPorAdyacente5.getPuntosVida(),0);
-        assertEquals(vidaAntesDelAtaque-20,atacadaPorAdyacente4.getPuntosVida(),0);
-        assertEquals(vidaAntesDelAtaque-20,atacada.getPuntosVida(),0);
-        assertEquals(vidaAntesDelAtaque-20,atacadaPorAdyacente1.getPuntosVida(),0);
-        assertEquals(vidaAntesDelAtaque-20,atacadaPorAdyacente2.getPuntosVida(),0);
-        assertEquals(vidaAntesDelAtaque-20,atacadaPorAdyacente3.getPuntosVida(),0);
+        assertEquals(vidaAntesDelAtaque-20,atacadaPorAdyacente5.getPuntosVida(),1);
+        assertEquals(vidaAntesDelAtaque-20,atacadaPorAdyacente4.getPuntosVida(),1);
+        assertEquals(vidaAntesDelAtaque-20,atacada.getPuntosVida(),1);
+        assertEquals(vidaAntesDelAtaque-20,atacadaPorAdyacente1.getPuntosVida(),1);
+        assertEquals(vidaAntesDelAtaque-20,atacadaPorAdyacente2.getPuntosVida(),1);
+        assertEquals(vidaAntesDelAtaque-20,atacadaPorAdyacente3.getPuntosVida(),1);
 
 
     }

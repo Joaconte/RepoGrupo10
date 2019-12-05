@@ -9,8 +9,6 @@ public class AtaqueADistanciaMasivo extends AtaqueADistancia  implements IModoAt
 
     @Override
     public void atacarEnMasa(PiezaAtacante miUnidad, Pieza piezaAtacada, List<Pieza> piezas) throws DistanciaDeAtaqueInvalidaException, UnidadEstaMuertaException {
-
-
         double vidaAntesDelAtaque= piezaAtacada.getPuntosVida();
         super.atacar(miUnidad, piezaAtacada);
         double danioAReplicar = vidaAntesDelAtaque - piezaAtacada.getPuntosVida();

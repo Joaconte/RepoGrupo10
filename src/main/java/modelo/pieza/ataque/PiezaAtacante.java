@@ -1,7 +1,6 @@
 package modelo.pieza.ataque;
 
 import modelo.pieza.Pieza;
-import modelo.pieza.Ubicacion;
 import modelo.pieza.UnidadEstaMuertaException;
 import modelo.pieza.movimiento.IModoMovimiento;
 import modelo.pieza.sanacion.IModoSanacion;

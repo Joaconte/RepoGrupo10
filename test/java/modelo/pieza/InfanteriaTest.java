@@ -79,7 +79,7 @@ public class InfanteriaTest {
 
         //--------------Ataque en concreto----------------//
         atacante.atacar(enemigoAtacado, Mockito.mock(Tablero.class));
-        assertEquals(vidaAntesDelAtaque-10, enemigoAtacado.getPuntosVida(),00);
+        assertEquals(vidaAntesDelAtaque-10, enemigoAtacado.getPuntosVida(),1);
 
     }
 

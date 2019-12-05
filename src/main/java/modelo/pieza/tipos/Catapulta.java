@@ -41,9 +41,6 @@ public class Catapulta extends PiezaAtacante {
     }
 
     @Override
-    public void evaluarZonaDeDanio(Sector sector){}
-
-    @Override
     public boolean esRefuerzoDeJinete() {
         return false;
     }

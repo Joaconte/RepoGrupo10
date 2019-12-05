@@ -29,7 +29,7 @@ public class SectorTest {
     }
 
     @Test
-    public void test03PosicionEnColumna12NoEstaEnSectorJugadorNumemor1(){
+    public void test03PosicionEnFila12NoEstaEnSectorJugadorNumemor1(){
 
         Sector sector = new Sector(1 );
 
@@ -37,7 +37,7 @@ public class SectorTest {
     }
 
     @Test
-    public void test04PosicionEnColumna12SiEstaEnSectorJugadorNumemor2(){
+    public void test04PosicionEnFila12SiEstaEnSectorJugadorNumemor2(){
 
         Sector sector = new Sector(2 );
 
