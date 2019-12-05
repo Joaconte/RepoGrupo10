@@ -59,7 +59,7 @@ public class FaseMediaTest {
 
         double vida = piezaAtacada.getPuntosVida();
         miFaseMedia.atacar(jinte,piezaAtacada, tablero);
-        assertEquals(vida-15,piezaAtacada.getPuntosVida(),0);
+        assertEquals(vida-15,piezaAtacada.getPuntosVida(),1);
     }
 
     @Test (expected = JugadorYaRealizoLaAccionException.class)

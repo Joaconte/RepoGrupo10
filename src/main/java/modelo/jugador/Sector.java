@@ -21,8 +21,8 @@ public class Sector {
         return ultimaFila;
     }
 
-    public boolean esDelSector(int numColumna){
-        return (primeraFila<=numColumna && numColumna<=ultimaFila);
+    public boolean esDelSector(int numeroFila){
+        return (primeraFila<=numeroFila && numeroFila<=ultimaFila);
     }
 }
 

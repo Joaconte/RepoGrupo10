@@ -47,7 +47,7 @@ public class JineteTest {
 
         //----------Ataque ------------------
         jineteAtacante.atacar(oponente,tablero);
-        assertEquals(vidaAntesDelAtaque-15,oponente.getPuntosVida(),0);
+        assertEquals(vidaAntesDelAtaque-15,oponente.getPuntosVida(),1);
     }
 
     @Test (expected = DistanciaDeAtaqueInvalidaException.class)
@@ -102,7 +102,7 @@ public class JineteTest {
 
         //----------Ataque ------------------
         jinete.atacar(oponenteCercano,tablero);
-        assertEquals(vidaAntesDelAtaque-5,oponenteCercano.getPuntosVida(),0);
+        assertEquals(vidaAntesDelAtaque-5,oponenteCercano.getPuntosVida(),1);
     }
 
     @Test(expected= DistanciaDeAtaqueInvalidaException.class)
@@ -150,7 +150,7 @@ public class JineteTest {
 
         //----------Ataque ------------------
         jinete.atacar(jineteADistancia,tablero);
-        assertEquals(vidaAntesDelAtaque-15,jineteADistancia.getPuntosVida(),0);
+        assertEquals(vidaAntesDelAtaque-15,jineteADistancia.getPuntosVida(),1);
     }
 
     @Test (expected = PiezaAliadaNoAtacableException.class)
