@@ -9,6 +9,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import modelo.pieza.Pieza;
 import modelo.pieza.Ubicacion;
 import modelo.pieza.ataque.PiezaAtacante;
 import modelo.pieza.tipos.Curandero;
@@ -134,4 +135,8 @@ public class VistaDeTablero extends Group {
 
     public Tablero getTablero(){ return tablero;}
 
+    public void tableroEnModoArmarBatallon(ArrayList<Pieza> piezas) {
+        listaDeUnidades.forEach(p->p.setOnMouseClicked(new ClickEnPiezaModoCrearBatallonEventHandler(vistaUnidadClikeada,p,piezas,this)));
+
+    }
 }

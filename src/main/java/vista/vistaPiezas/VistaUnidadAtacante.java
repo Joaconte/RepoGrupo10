@@ -33,7 +33,6 @@ public class VistaUnidadAtacante extends VistaUnidad{
         etiquetaDeTexto.setText("");
         barraDeOpcionesDeUnidad.getChildren().add(new BotonAtacar(piezaAtacante,etiquetaDeTexto,vistaDeTablero,barraDeOpcionesDeUnidad));
         barraDeOpcionesDeUnidad.getChildren().add(new BotonMover(this,etiquetaDeTexto,vistaDeTablero,barraDeOpcionesDeUnidad));
-        barraDeOpcionesDeUnidad.getChildren().add(new BotonCrearBatallon(piezaAtacante,etiquetaDeTexto,vistaDeTablero,barraDeOpcionesDeUnidad));
 
     }
 

@@ -29,9 +29,9 @@ public class BotonCrearBatallonEventHandler implements EventHandler<ActionEvent>
 
     @Override
     public void handle(ActionEvent event) {
-        this.comunicador.setText("Clickea a 2 soldados de infanteria para armar el batallon.");
+        this.comunicador.setText("Clickea a 2 soldados de infanteria más.");
         this.comunicador.setTextFill(Color.web("#336600"));
-        //vistaDeTablero.tableroEnModoArmarBatallon(pieza);
+        vistaDeTablero.tableroEnModoArmarBatallon(batallon);
         barra.setVisible(false);
         Audio.reproducirInterfaz("click");
     }
