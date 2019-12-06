@@ -77,7 +77,7 @@ public class Tablero {
     }
 
     public boolean existePosicion(int fila, int columna){
-        return fila<FILAS && 0<=fila && columna<COLUMNAS && columna<=0;
+        return (fila<FILAS && 0<=fila) && (columna<COLUMNAS && columna>=0);
     }
 
     private ArrayList<Casilla> getCasillasEntreRangos(Ubicacion ubicacion, int radioInicial, int radioFinal){

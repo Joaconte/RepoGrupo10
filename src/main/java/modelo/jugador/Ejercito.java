@@ -12,15 +12,17 @@ import modelo.pieza.tipos.NoSirvenParaBatallonException;
 import modelo.tablero.Tablero;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.stream.Collectors;
 
 public class Ejercito{
 
-    private ArrayList<Pieza> piezas = new ArrayList<Pieza>();
+    private ArrayList<Pieza> piezas = new ArrayList<>();
     private int numeroDeEjercito;
     private EstadoPresupuestoDeEjercito presupuesto;
-    private ArrayList<Batallon> batallones = new ArrayList<Batallon>();
+    private ArrayList<Batallon> batallones = new ArrayList<>();
 
 
     //---------Inicializacion---------//
@@ -50,12 +52,11 @@ public class Ejercito{
 
     public boolean dominaEstaUbicacion(Ubicacion ubicacionInicial ) {
 
-        for (int i=0; i< piezas.size(); i++){
-            Pieza pieza = piezas.get(i);
+        for (Pieza pieza : piezas) {
             int posX = pieza.getUbicacion().getPosicionEnX();
             int posY = pieza.getUbicacion().getPosicionEnY();
             if ((posX == ubicacionInicial.getPosicionEnX()) && (posY == ubicacionInicial.getPosicionEnY()))
-            return true;
+                return true;
         }
         return false;
     }
@@ -67,9 +68,9 @@ public class Ejercito{
     public boolean estaDestruido(){ return piezas.size()==0; }
 
     public void removerBajas(Tablero tableroDePartida) {
-        piezas.stream().filter(Objects::nonNull).filter(p->(p.getPuntosVida()==0)).forEach(p->{ tableroDePartida.desocuparCasilla(p.getUbicacion().getPosicionEnX(),p.getUbicacion().getPosicionEnY());});
+        piezas.stream().filter(Objects::nonNull).filter(p->(p.getPuntosVida()==0)).forEach(p-> tableroDePartida.desocuparCasilla(p.getUbicacion().getPosicionEnX(),p.getUbicacion().getPosicionEnY()));
         ArrayList <Pieza> auxiliar = new ArrayList<>();
-        piezas.stream().filter(pieza -> pieza.getPuntosVida()>0).forEach(p->auxiliar.add(p));
+        piezas.stream().filter(pieza -> pieza.getPuntosVida()>0).forEach(auxiliar::add);
         piezas.clear();
         piezas.addAll(auxiliar);
     }
@@ -88,11 +89,14 @@ public class Ejercito{
         validarBatallon (ubicacionInicial);
         if (tablero.casillaEstaOcupada(ubicacionFinal.getPosicionEnX(),ubicacionFinal.getPosicionEnY())) throw new UbicacionInvalidaException();
         batallones.stream().filter(batallon -> batallon.contiene(ubicacionInicial)).forEach(batallon -> batallon.desplazaBatallonEnOrden(tablero,ubicacionInicial,ubicacionFinal));
-        batallones.stream().filter(batallon -> batallon.contiene(ubicacionFinal)).filter(batallon -> !batallon.siguenContiguos()).forEach(batallon->batallones.remove(batallon));
+
+        List<Batallon> list = batallones.stream().filter(batallon -> batallon.contiene(ubicacionFinal)).filter(batallon -> !batallon.siguenContiguos()).collect(Collectors.toList());
+        if (list.size()==1) batallones.remove(list.get(0));
     }
 
     private void disolverViejoBatallon(Ubicacion ubicacion){
-         batallones.stream().filter(batallon -> batallon.contiene(ubicacion)).forEach(batallon -> batallones.remove(batallon));
+        List<Batallon> list =  batallones.stream().filter(batallon -> batallon.contiene(ubicacion)).collect(Collectors.toList());
+        if (list.size()==1) batallones.remove(list.get(0));
     }
 
     private void validarBatallon (Ubicacion ubicacion) throws NoHayBatallonException {

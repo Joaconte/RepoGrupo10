@@ -39,11 +39,10 @@ public class AnalizadorDeBatallon {
     }
 
     public boolean noHayRepeticiones(ArrayList<Pieza> piezas){
-        Pieza pieza = piezas.get(0);
-        piezas.remove(0);
-        if (piezas.contains(pieza)) return true;
-        pieza = piezas.get(0);
-        return (piezas.contains(pieza));
+        Pieza p1 = piezas.get(0);
+        Pieza p2 = piezas.get(1);
+        Pieza p3 = piezas.get(2);
+        return p1 != p2 && p1 != p3 && p2 != p3;
     }
 
     public boolean sonAliadosDeInfanteria(ArrayList<Pieza> piezas){

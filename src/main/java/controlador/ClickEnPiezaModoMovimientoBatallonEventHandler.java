@@ -42,12 +42,13 @@ public class ClickEnPiezaModoMovimientoBatallonEventHandler implements EventHand
         try {
             juego.moverBatallon(ubicacionInicial, ubicacionFinal);
             vistaDeTablero.actualizarUbicaciones();
-            etiquetaTexto.setText("Se movio correctamente");
+            etiquetaTexto.setText("Batallon movido");
             this.etiquetaTexto.setTextFill(Color.web("#000000"));
             Audio.reproducirMovimientoAPie();
 
         } catch (NoHayBatallonException | JugadorNoPuedeManipularEsaPiezaException | JugadorYaRealizoLaAccionException | UbicacionInvalidaException j) {
             etiquetaTexto.setText(j.getMessage());
+            vistaDeTablero.tableroNormal();
         }
         vistaDeTablero.tableroNormal();
         vistaDeTablero.restablecerTableroMovimiento();

@@ -22,39 +22,36 @@ public class Batallon {
     }
 
     public ArrayList<Pieza> ordenarMovimiento(Tablero tablero, Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) {
-        ArrayList<Pieza> ordenados = new ArrayList<>();
-        ArrayList<Pieza> soldadosSeguidores = new ArrayList<>(soldados);
+
+        ArrayList<Pieza> soldados = new ArrayList<>(this.soldados);
+        ArrayList<Pieza> listadoAuxiliar = new ArrayList<>();
 
         int variacionX = ubicacionFinal.getPosicionEnX() - ubicacionInicial.getPosicionEnX();
-        int variacionY = ubicacionFinal.getPosicionEnY() - ubicacionInicial.getPosicionEnX();
+        int variacionY = ubicacionFinal.getPosicionEnY() - ubicacionInicial.getPosicionEnY();
 
-        //Saco al elegido como primero.
-        soldadosSeguidores.stream()
-                .filter(p -> (p.getUbicacion().getPosicionEnX() == ubicacionFinal.getPosicionEnX()) && (p.getUbicacion().getPosicionEnY() == ubicacionFinal.getPosicionEnY()))
-                .forEach(p -> {
-                    soldadosSeguidores.remove(p);
-                    ordenados.add(p);
-                });
-        //Saco el que es imposible mover (no existe direccion)
-        soldadosSeguidores.stream()
-                .filter(p -> !tablero.existePosicion(p.getUbicacion().getPosicionEnY() + variacionY, p.getUbicacion().getPosicionEnX() + variacionX))
-                .forEach(soldadosSeguidores::remove);
-        //Ordeno
-        soldadosSeguidores.stream()
-                .filter(p -> tablero.casillaEstaOcupada(p.getUbicacion().getPosicionEnY() + variacionY, p.getUbicacion().getPosicionEnX() + variacionX))
-                .forEach(p -> {
-                    soldadosSeguidores.remove(p);
-                    soldadosSeguidores.add(p);
-                });
-        ordenados.addAll(soldadosSeguidores);
-        return ordenados;
+        //Saco al elegido como primero. (Puede ser cualquiera de los 3)
+        soldados.stream().filter(p -> p.getUbicacion().esIgual(ubicacionInicial)).forEach(listadoAuxiliar::add);
+        soldados.remove(listadoAuxiliar.get(0));
+
+        //quito los que se mueven a direcciones inexistentes. (diagonales)
+        soldados.stream().filter(p->tablero.existePosicion(p.getUbicacion().getPosicionEnY()+variacionY,p.getUbicacion().getPosicionEnX()+variacionX)==true)
+                .forEach(p->listadoAuxiliar.add(p));
+        soldados.clear();
+        soldados.add(listadoAuxiliar.get(0));
+        listadoAuxiliar.remove(0);
+
+
+        listadoAuxiliar.stream().filter(p->( tablero.casillaEstaOcupada(p.getUbicacion().getPosicionEnX()+variacionX,p.getUbicacion().getPosicionEnY()+variacionY) == false))
+                .forEach(soldados::add);
+        listadoAuxiliar.stream().filter(p ->! soldados.contains(p)).forEach(soldados::add);
+        return soldados;
     }
 
     public void desplazaBatallonEnOrden(Tablero tablero, Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) {
         ArrayList<Pieza> ordenValido = ordenarMovimiento(tablero, ubicacionInicial, ubicacionFinal);
 
         int variacionX = ubicacionFinal.getPosicionEnX() - ubicacionInicial.getPosicionEnX();
-        int variacionY = ubicacionFinal.getPosicionEnY() - ubicacionInicial.getPosicionEnX();
+        int variacionY = ubicacionFinal.getPosicionEnY() - ubicacionInicial.getPosicionEnY();
 
         ordenValido.forEach(p -> {
             if (!tablero.casillaEstaOcupada(p.getUbicacion().getPosicionEnX() + variacionX, p.getUbicacion().getPosicionEnY() + variacionY)) {

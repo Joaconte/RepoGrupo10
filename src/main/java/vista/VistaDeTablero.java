@@ -151,12 +151,21 @@ public class VistaDeTablero extends Group {
         }
     }
 
+
+    private void vaciarPaneles(){
+        for (int i = 0; i < tablero.getColumnas(); i++) {
+            for (int j = 0; j < tablero.getFilas(); j++) {
+                casillaTabla[i][j].getChildren().clear();
+                }
+            }
+        }
+
+
     public void actualizarUbicaciones() {
-        VistaDeTablero vistaAuxiliar = new VistaDeTablero(tablero, stage);
-        listaDeUnidades.forEach(p->vistaAuxiliar.agregarUnidad(p, p.getPieza().getUbicacion().getPosicionEnX(),  p.getPieza().getUbicacion().getPosicionEnY()));
-        GridPane gridPane = vistaAuxiliar.getContenedorTabla();
-        this.getChildren().clear();
-        this.getChildren().add(gridPane);
+        vaciarPaneles();
+        listaDeUnidades.forEach(p->{
+            casillaTabla[p.getPieza().getUbicacion().getPosicionEnX()][p.getPieza().getUbicacion().getPosicionEnY()].getChildren().add(p);
+        });
 
     }
 }

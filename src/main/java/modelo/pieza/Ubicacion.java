@@ -18,6 +18,8 @@ public class Ubicacion {
         return posicionEnY;
     }
 
+    public boolean esIgual(Ubicacion ubicacion) { return (this.posicionEnX==ubicacion.getPosicionEnX() && this.posicionEnY==ubicacion.getPosicionEnY()); }
+
     public void setPosicionEnX(int x){
         posicionEnX = x; }
 
