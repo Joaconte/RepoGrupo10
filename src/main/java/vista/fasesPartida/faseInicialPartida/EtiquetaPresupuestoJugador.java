@@ -8,6 +8,7 @@ import modelo.Juego;
 public class EtiquetaPresupuestoJugador {
 
     public Label etiqueta;
+    // deberia ser privado
     public Juego juego;
 
     public EtiquetaPresupuestoJugador(Juego juego){

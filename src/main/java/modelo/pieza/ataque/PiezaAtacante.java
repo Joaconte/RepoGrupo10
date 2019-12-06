@@ -6,6 +6,7 @@ import modelo.pieza.sanacion.IModoSanacion;
 import modelo.tablero.Tablero;
 
 public abstract class PiezaAtacante extends Pieza {
+    // atributos que pueden ser redundantes para las clases derivadas
     private int danioCuerpoCuerpo;
     private int danioDistanciaLejana;
     private int danioMedio;

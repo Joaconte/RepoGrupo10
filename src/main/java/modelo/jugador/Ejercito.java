@@ -55,6 +55,12 @@ public class Ejercito{
         for (Pieza pieza : piezas) {
             int posX = pieza.getUbicacion().getPosicionEnX();
             int posY = pieza.getUbicacion().getPosicionEnY();
+        }
+        // ruptura de encapsulamiento
+        for (int i=0; i< piezas.size(); i++){
+        Pieza pieza = piezas.get(i);
+        int posX = pieza.getUbicacion().getPosicionEnX();
+        int posY = pieza.getUbicacion().getPosicionEnY();
             if ((posX == ubicacionInicial.getPosicionEnX()) && (posY == ubicacionInicial.getPosicionEnY()))
                 return true;
         }
@@ -67,8 +73,11 @@ public class Ejercito{
 
     public boolean estaDestruido(){ return piezas.size()==0; }
 
-    public void removerBajas(Tablero tableroDePartida) {
-        piezas.stream().filter(Objects::nonNull).filter(p->(p.getPuntosVida()==0)).forEach(p-> tableroDePartida.desocuparCasilla(p.getUbicacion().getPosicionEnX(),p.getUbicacion().getPosicionEnY()));
+
+    // responsabilidad ajena a Ejercito
+
+    public void actualizarEstadoTropas(Tablero tableroDePartida) {
+        piezas.stream().filter(Objects::nonNull).filter(p->(p.getPuntosVida()==0)).forEach(p->{ tableroDePartida.desocuparCasilla(p.getUbicacion().getPosicionEnX(),p.getUbicacion().getPosicionEnY());});
         ArrayList <Pieza> auxiliar = new ArrayList<>();
         piezas.stream().filter(pieza -> pieza.getPuntosVida()>0).forEach(auxiliar::add);
         piezas.clear();

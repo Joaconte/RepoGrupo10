@@ -89,7 +89,7 @@ public class BatallonTest {
         tablero.ocuparCasilla(pieza2,1,0);
         tablero.ocuparCasilla(pieza3,1,1);
         batallon.desplazaBatallonEnOrden(tablero,ubicacionInicialDelQueComanda,ubicacionFinalHaciaArriba);
-        
+
         assertTrue(pieza1.getUbicacion().esIgual(ubicacionFinalHaciaArriba));
       }
 

@@ -63,7 +63,7 @@ public class Jugador {
     public boolean jugadorEsPerdedor(){ return ejercito.estaDestruido(); }
 
     public void actualizarEstadoTropas(Tablero tableroDePartida) {
-        ejercito.removerBajas(tableroDePartida);
+        ejercito.actualizarEstadoTropas(tableroDePartida);
     }
 
     public void formanBatallon(ArrayList<Pieza> piezas) throws NoSirvenParaBatallonException {
