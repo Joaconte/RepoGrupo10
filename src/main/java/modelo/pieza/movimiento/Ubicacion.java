@@ -1,4 +1,4 @@
-package modelo.pieza;
+package modelo.pieza.movimiento;
 
 public class Ubicacion {
 
@@ -20,21 +20,26 @@ public class Ubicacion {
 
     public boolean esIgual(Ubicacion ubicacion) { return (this.posicionEnX==ubicacion.getPosicionEnX() && this.posicionEnY==ubicacion.getPosicionEnY()); }
 
-    public void setPosicionEnX(int x){
-        posicionEnX = x; }
 
-    public void setPosicionEnY(int y){
-        posicionEnY = y; }
-
-    public int getDistanciaAOtroPunto(Ubicacion otraUbicacion){
-        int otraPosEnY = otraUbicacion.getPosicionEnY();
-        int otraPosEnX = otraUbicacion.getPosicionEnX();
+    public int getDistanciaAOtroPunto(int otraPosEnX, int otraPosEnY) {
         int posibleDistancia = Math.max (posicionEnX-otraPosEnX, otraPosEnX-posicionEnX);
         int posibleDistancia2 = Math.max(posicionEnY-otraPosEnY, otraPosEnY-posicionEnY);
         return Math.max(posibleDistancia, posibleDistancia2);
     }
 
-    public Ubicacion desplazar(int despX, int despY) {
-        return new Ubicacion(this.posicionEnX + despX, this.posicionEnX + despY);
+    public Ubicacion desplazarA(int posFinalX, int posFinalY) {
+        return new Ubicacion(posFinalX,posFinalY);
+    }
+
+    public int getDistanciaAOtroPunto(Ubicacion ubicacion) {
+        return ubicacion.getDistanciaAOtroPunto(posicionEnX,posicionEnY);
+    }
+
+    public int getVariacionEnX(int posicionX) {
+        return posicionX - this.posicionEnX;
+    }
+
+    public int getVariacionEnY(int posicionY) {
+        return posicionY - this.posicionEnY;
     }
 }

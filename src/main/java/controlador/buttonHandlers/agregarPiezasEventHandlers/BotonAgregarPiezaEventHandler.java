@@ -9,22 +9,19 @@ import modelo.jugador.UbicacionInvalidaException;
 import modelo.jugador.presupuesto.CompraInvalidaException;
 import modelo.jugador.presupuesto.PresupuestoAgotadoException;
 import modelo.pieza.Pieza;
-import modelo.pieza.Ubicacion;
 import resources.sonidos.Audio;
 import vista.VistaDeTablero;
 import vista.fasesPartida.faseInicialPartida.EtiquetaPresupuestoJugador;
 
 public abstract class BotonAgregarPiezaEventHandler implements EventHandler<ActionEvent> {
 
-    private Ubicacion ubicacion;
     private Label textoComunicador;
     protected VistaDeTablero vistaDeTablero;
     protected EtiquetaPresupuestoJugador etiquetaPuntos;
     private String nombre;
 
-    public BotonAgregarPiezaEventHandler(Ubicacion ubicacion, VistaDeTablero vistaDeTablero, EtiquetaPresupuestoJugador etiquetaPuntos, String nombre, Label etiquetaComunicadora) {
+    public BotonAgregarPiezaEventHandler( VistaDeTablero vistaDeTablero, EtiquetaPresupuestoJugador etiquetaPuntos, String nombre, Label etiquetaComunicadora) {
 
-        this.ubicacion = ubicacion;
         textoComunicador = etiquetaComunicadora;
         this.vistaDeTablero = vistaDeTablero;
         this.etiquetaPuntos= etiquetaPuntos;
@@ -34,10 +31,7 @@ public abstract class BotonAgregarPiezaEventHandler implements EventHandler<Acti
     @Override
     public void handle(ActionEvent actionEvent) {
         try {
-            // multiples violaciones del encapsulamiento de Ubicacion
-            int x = ubicacion.getPosicionEnX();
-            int y = ubicacion.getPosicionEnY();
-            crearPiezaYAgregarATablero(x, y, vistaDeTablero);
+            crearPiezaYAgregarATablero(vistaDeTablero.getUbicacionDelCursorX(), vistaDeTablero.getUbicacionDelCursorY());
             etiquetaPuntos.actualizarEtiqueta();
 
         } catch (NumberFormatException e) {
@@ -48,7 +42,7 @@ public abstract class BotonAgregarPiezaEventHandler implements EventHandler<Acti
 
     }
 
-    public void crearPiezaYAgregarATablero(int x, int y, VistaDeTablero vistaDeTablero){
+    public void crearPiezaYAgregarATablero(int x, int y){
         try {
             agregarPiezaATablero( etiquetaPuntos.juego.crearPieza(nombre, x, y));
             this.textoComunicador.setText("Tropa agregada con exito");

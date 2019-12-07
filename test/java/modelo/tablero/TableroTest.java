@@ -1,6 +1,6 @@
 package modelo.tablero;
 
-import modelo.pieza.Ubicacion;
+import modelo.pieza.movimiento.Ubicacion;
 import modelo.pieza.tipos.Jinete;
 import org.mockito.Mockito;
 import modelo.pieza.Pieza;

@@ -7,13 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Columna {
-    private int numeroCasillasPorColumna;
-    private int numeroColumna;
     private List<Casilla> columna = new ArrayList<Casilla>();
 
-    public Columna(int numeroColumna, int numeroCasillasPorColumna){
-        this.numeroColumna = numeroColumna;
-        this.numeroCasillasPorColumna = numeroCasillasPorColumna;
+    public Columna( int numeroCasillasPorColumna){
         for (int numeroDeCasilla=0; numeroDeCasilla<(numeroCasillasPorColumna); numeroDeCasilla++)
             columna.add(new Casilla());
     }
@@ -40,6 +36,7 @@ public class Columna {
     public Casilla getCasilla(int numeroDeLaFila){
         return columna.get(numeroDeLaFila);
     }
+
 
 }
 

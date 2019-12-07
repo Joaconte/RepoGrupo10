@@ -5,12 +5,18 @@ import modelo.pieza.UnidadEstaMuertaException;
 
 
 public class AtaqueCuerpoACuerpo implements IModoAtaque {
+    private int danioDeAtaque;
+    public AtaqueCuerpoACuerpo(int danioCuerpo) {
+        this.danioDeAtaque=danioCuerpo;
+    }
+
     @Override
     public void atacar(PiezaAtacante miUnidad, Pieza otraUnidad) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException {
         otraUnidad.recibirPenalizacion();
         int distancia = miUnidad.getDistanciaAOtraPieza(otraUnidad);
-        if (distancia < 1 || distancia > 2){throw new DistanciaDeAtaqueInvalidaException();}
-        otraUnidad.recibirDanio(miUnidad.getDanioCuerpoCuerpo());
+        RangoAtaque rangoAtaque = new RangoAtaque(distancia);
+        if (!rangoAtaque.esRangoCuerpoCuerpo()){throw new DistanciaDeAtaqueInvalidaException();}
+        otraUnidad.recibirDanio(danioDeAtaque);
     }
 
 }

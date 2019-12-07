@@ -1,11 +1,9 @@
 package modelo.tablero;
 
-import modelo.jugador.UbicacionInvalidaException;
 import modelo.pieza.Pieza;
-import modelo.pieza.Ubicacion;
+import modelo.pieza.movimiento.Ubicacion;
 import modelo.pieza.tipos.NoSePuedeMoverException;
 import modelo.tablero.casilla.Casilla;
-import modelo.tablero.casilla.NoHayUnidadEnPosicionException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,10 +17,28 @@ public class Tablero {
 
     public Tablero(){
         for (int numeroDeColumna=0; numeroDeColumna<(COLUMNAS); numeroDeColumna++)
-            columnas.add(new Columna(numeroDeColumna, FILAS));
+            columnas.add(new Columna(FILAS));
     }
 
-    public Pieza getUnidad(int x, int y) throws NoHayUnidadEnPosicionException { return columnas.get(x).getCasilla(y).getContenido();}
+    public void moverUnidad(Pieza pieza, int posFinalX, int posFinalY) throws DesplazamientoInvalidoException {
+        if (!existePosicion(posFinalX,posFinalY)){throw new DesplazamientoInvalidoException();}
+        if (!pieza.sePuederMoverA(posFinalX,posFinalY)){throw new DesplazamientoInvalidoException();}
+        movimiento (pieza,posFinalX,posFinalY);
+    }
+
+    public void moverBatallon(ArrayList<Integer> ubicacionX, ArrayList<Integer> ubicacionY,ArrayList<Pieza> pieza) throws NoSePuedeMoverException {
+        for (int i=0; i<pieza.size() ; i++){
+            if (!casillaEstaOcupada(ubicacionX.get(i),ubicacionY.get(i)) && existePosicion(ubicacionX.get(i),ubicacionY.get(i))){
+                movimiento(pieza.get(i),ubicacionX.get(i),ubicacionY.get(i));
+                pieza.get(i).mover(ubicacionX.get(i),ubicacionY.get(i));
+            }
+        }
+    }
+
+    private void movimiento (Pieza pieza, int posFinalX, int posFinalY){
+        desocuparCasilla(pieza.getPosicionEnColumnaQueOcupa(), pieza.getPosicionEnFilaQueOcupa());
+        ocuparCasilla(pieza, posFinalX, posFinalY);
+    }
 
     public void ocuparCasilla(Pieza pieza, int numeroDeColumna, int numeroDeFila){
         Columna unaColumna = columnas.get(numeroDeColumna);
@@ -34,38 +50,12 @@ public class Tablero {
         unaColumna.desocuparCasilla(numeroDeFila);
     }
 
-
-    public void moverUnidad(Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) throws NoHayUnidadEnPosicionException, DesplazamientoInvalidoException, UbicacionInvalidaException, NoSePuedeMoverException {
-
-        if (columnas.get(ubicacionFinal.getPosicionEnX()).getCasilla(ubicacionFinal.getPosicionEnY()).estaOcupada())
-            throw new UbicacionInvalidaException();
-
-        else if (desplazamientoEsValido( ubicacionInicial, ubicacionFinal )) {
-
-            Pieza pieza = getUnidad(ubicacionInicial.getPosicionEnX(), ubicacionInicial.getPosicionEnY());
-            desocuparCasilla(ubicacionInicial.getPosicionEnX(), ubicacionInicial.getPosicionEnY());
-            ocuparCasilla(pieza, ubicacionFinal.getPosicionEnX(), ubicacionFinal.getPosicionEnY());
-            pieza.mover(ubicacionFinal);
-        }
-
-        else throw new DesplazamientoInvalidoException();
-    }
-
-    private boolean desplazamientoEsValido(Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) {
-
-        int desplazamientoEnX = Math.abs(ubicacionInicial.getPosicionEnX() - ubicacionFinal.getPosicionEnX());
-        int desplazamientoEnY = Math.abs(ubicacionInicial.getPosicionEnY() - ubicacionFinal.getPosicionEnY());
-        return ((desplazamientoEnX < 2) && (desplazamientoEnY < 2));
-    }
-
-
     public int getTamanio(){
         return FILAS * COLUMNAS;
     }
 
     public int getFilas(){ return FILAS;}
     public int getColumnas(){ return COLUMNAS;}
-
 
     public int getCantidadColumnasCreadas(){
         return columnas.size();
@@ -172,6 +162,8 @@ public class Tablero {
                              });
         return piezas;
     }
+
+
 
 }
 

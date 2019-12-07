@@ -14,18 +14,17 @@ public class Jinete extends PiezaAtacante {
     static final int VIDA_MAXIMA = 100;
     static final int DANIO_CUERPO = 5;
     static final int DANIO_MEDIO =15;
-    static final int DANIO_DISTANCIA = 0;
     static final IModoSanacion MODO_CURACION = new SanacionNormal();
     static final IModoAtaqueVariable ATAQUE = new AtaqueVariable();
     String sonidoAtaque;
 
 
     public Jinete(int equipo, int posX, int posY){
-        super(COSTO, VIDA_MAXIMA, equipo,   MODO_CURACION, ATAQUE,DANIO_CUERPO, DANIO_MEDIO,DANIO_DISTANCIA, posX, posY);
+        super(COSTO, VIDA_MAXIMA, equipo,   MODO_CURACION, ATAQUE,posX, posY);
     }
 
     public Jinete(){
-        super(COSTO, VIDA_MAXIMA, 0,   MODO_CURACION, ATAQUE,DANIO_CUERPO, DANIO_MEDIO,DANIO_DISTANCIA, 0, 0);
+        super(COSTO, VIDA_MAXIMA, 0,   MODO_CURACION, ATAQUE, 0, 0);
     }
 
 
@@ -45,11 +44,11 @@ public class Jinete extends PiezaAtacante {
 
     public void setModo(long aliados, long enemigos){
         if ((aliados>0) || enemigos==0){
-            ATAQUE.setModoDeAtaque(new AtaqueMedio());
+            ATAQUE.setModoDeAtaque(new AtaqueMedio(DANIO_MEDIO));
             sonidoAtaque = "flecha";
         }
         else {
-            ATAQUE.setModoDeAtaque(new AtaqueCuerpoACuerpo());
+            ATAQUE.setModoDeAtaque(new AtaqueCuerpoACuerpo(DANIO_CUERPO));
             sonidoAtaque = "espada";
         }
     }
@@ -60,6 +59,16 @@ public class Jinete extends PiezaAtacante {
 
     @Override
     public boolean esRefuerzoDeJinete() {
+        return false;
+    }
+
+    @Override
+    public boolean sePuederMoverA(int posFinalX, int posFinalY) {
+        return CAPACIDAD_DESPLAZAMIENTO == ubicacion.getDistanciaAOtroPunto(posFinalX,posFinalY);
+    }
+
+    @Override
+    public boolean puedeTenerBatallon() {
         return false;
     }
 }

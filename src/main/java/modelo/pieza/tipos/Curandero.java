@@ -28,4 +28,15 @@ public class Curandero extends Pieza {
     public boolean esRefuerzoDeJinete() {
         return false;
     }
+
+    @Override
+    public boolean sePuederMoverA(int posFinalX, int posFinalY) {
+        return CAPACIDAD_DESPLAZAMIENTO == ubicacion.getDistanciaAOtroPunto(posFinalX,posFinalY);
+    }
+
+    @Override
+    public boolean puedeTenerBatallon() {
+        return false;
+    }
+
 }

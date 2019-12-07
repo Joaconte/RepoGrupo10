@@ -2,7 +2,6 @@ package controlador.buttonHandlers.agregarPiezasEventHandlers;
 
 import javafx.scene.control.Label;
 import modelo.pieza.Pieza;
-import modelo.pieza.Ubicacion;
 import modelo.pieza.tipos.Catapulta;
 import vista.VistaDeTablero;
 import vista.fasesPartida.faseInicialPartida.EtiquetaPresupuestoJugador;
@@ -11,8 +10,8 @@ import vista.vistaPiezas.VistaUnidadCatapulta;
 
 public class BotonAgregarCatapultaEventHandler extends BotonAgregarPiezaEventHandler {
 
-    public BotonAgregarCatapultaEventHandler(Ubicacion ubicacion, VistaDeTablero vistaDeTablero, EtiquetaPresupuestoJugador etiquetaPuntos, Label etiquteComunicadora) {
-        super( ubicacion, vistaDeTablero, etiquetaPuntos, "Catapulta", etiquteComunicadora);
+    public BotonAgregarCatapultaEventHandler( VistaDeTablero vistaDeTablero, EtiquetaPresupuestoJugador etiquetaPuntos, Label etiquteComunicadora) {
+        super(vistaDeTablero, etiquetaPuntos, "Catapulta", etiquteComunicadora);
     }
 
     @Override

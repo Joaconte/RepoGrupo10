@@ -5,11 +5,10 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import modelo.Juego;
-import modelo.jugador.PiezaNoEsDeJugadorException;
 import modelo.jugador.UbicacionInvalidaException;
+import modelo.partida.JugadorNoPuedeManipularEsaPiezaException;
 import modelo.partida.fase.JugadorYaRealizoLaAccionException;
 import modelo.partida.fase.PiezaYaMovioException;
-import modelo.pieza.Ubicacion;
 import modelo.pieza.tipos.NoSePuedeMoverException;
 import modelo.tablero.DesplazamientoInvalidoException;
 import modelo.tablero.casilla.NoHayUnidadEnPosicionException;
@@ -19,18 +18,20 @@ import vista.vistaPiezas.VistaUnidad;
 
 public class ClickEnPiezaModoMovimientoEventHandler implements EventHandler<MouseEvent> {
 
-    private Ubicacion ubicacionFinal;
-    private Ubicacion ubicacionInicial;
+    private  int ubicacionFinalX;
+    private  int ubicacionFinalY;
     private Label etiquetaTexto;
     private VistaDeTablero vistaDeTablero;
     private Juego juego;
+    private VistaUnidad vistaDeUnidad;
 
     public ClickEnPiezaModoMovimientoEventHandler(int i, int j, VistaDeTablero vistaDeTablero, VistaUnidad vistaUnidad, Label etiquetaTexto) {
-        this.ubicacionFinal = new Ubicacion(i,j);
-        this.ubicacionInicial = vistaUnidad.getPieza().getUbicacion();
+        this.ubicacionFinalX = i;
+        this.ubicacionFinalY=j;
         this.vistaDeTablero = vistaDeTablero;
         this.etiquetaTexto= etiquetaTexto;
         this.juego = vistaUnidad.getJuego();
+        this.vistaDeUnidad=vistaUnidad;
     }
 
     @Override
@@ -39,17 +40,19 @@ public class ClickEnPiezaModoMovimientoEventHandler implements EventHandler<Mous
 
         this.etiquetaTexto.setTextFill(Color.web("#FF0000"));
         try {
-            juego.moverUnidad(ubicacionInicial, ubicacionFinal);
-            vistaDeTablero.actualizarUbicacion(ubicacionInicial,ubicacionFinal);
+            juego.moverUnidad(vistaDeUnidad.getPieza() ,ubicacionFinalX, ubicacionFinalY);
+            vistaDeTablero.actualizarUbicaciones();
             etiquetaTexto.setText("Se movio correctamente");
             this.etiquetaTexto.setTextFill(Color.web("#000000"));
             Audio.reproducirMovimientoAPie();
 
 
-       } catch (NoSePuedeMoverException | NoHayUnidadEnPosicionException | PiezaNoEsDeJugadorException | DesplazamientoInvalidoException e) {
+       } catch (NoSePuedeMoverException | NoHayUnidadEnPosicionException | DesplazamientoInvalidoException e) {
             etiquetaTexto.setText(e.getMessage());
         } catch (UbicacionInvalidaException | JugadorYaRealizoLaAccionException | PiezaYaMovioException e) {
             etiquetaTexto.setText(e.getMessage());
+        } catch (JugadorNoPuedeManipularEsaPiezaException e) {
+            e.printStackTrace();
         }
         vistaDeTablero.tableroNormal();
         vistaDeTablero.restablecerTableroMovimiento();

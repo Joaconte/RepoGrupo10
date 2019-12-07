@@ -4,26 +4,26 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import modelo.pieza.Ubicacion;
 import resources.sonidos.Audio;
+import vista.VistaDeTablero;
 
 public class ClickEnZonaEventHandler implements EventHandler<MouseEvent> {
     private Node nodoAMover;
     private Node nodoDireccion;
-    private Ubicacion ubicacion;
+    private VistaDeTablero vistaDeTablero;
 
-    public ClickEnZonaEventHandler(Node rectanguloDeMovimiento, Node panel, Ubicacion ubicacion) {
+    public ClickEnZonaEventHandler(Node rectanguloDeMovimiento, Node panel, VistaDeTablero vistaDeTablero) {
         this.nodoAMover =rectanguloDeMovimiento;
         this.nodoDireccion = panel;
-        this.ubicacion = ubicacion;
+        this.vistaDeTablero=vistaDeTablero;
     }
 
     @Override
     public void handle(MouseEvent mouseEvent) {
         GridPane.setColumnIndex(nodoAMover,GridPane.getColumnIndex(nodoDireccion));
         GridPane.setRowIndex(nodoAMover,GridPane.getRowIndex(nodoDireccion));
-        ubicacion.setPosicionEnX(GridPane.getColumnIndex(nodoAMover));
-        ubicacion.setPosicionEnY(GridPane.getRowIndex(nodoAMover));
+        vistaDeTablero.setUbicacionClik(GridPane.getColumnIndex(nodoDireccion),GridPane.getRowIndex(nodoDireccion));
+
         Audio.reproducirInterfaz("click");
     }
 }

@@ -10,7 +10,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import modelo.pieza.Pieza;
-import modelo.pieza.Ubicacion;
 import modelo.pieza.ataque.PiezaAtacante;
 import modelo.pieza.tipos.Curandero;
 import modelo.tablero.Tablero;
@@ -32,16 +31,16 @@ public class VistaDeTablero extends Group {
     private Rectangle rectanguloDeMovimiento = new Rectangle(45,45,Color.rgb(0,0,0,0.4));
     private GridPane contenedorTabla;
     private Pane[][] casillaTabla;
-    private Ubicacion ubicacionDelCursor;
     private VBox vistaUnidadClikeada = new VBox();
     private List<VistaUnidad> listaDeUnidades = new ArrayList<>();
+    int ubicacionDelCursorX;
+    int ubicacionDelCursorY;
 
 
     public VistaDeTablero(Tablero tablero, Stage stage){
 
         this.stage=stage;
         this.tablero = tablero;
-        this.ubicacionDelCursor =new Ubicacion(9,9);
         contenedorTabla = new GridPane();
         anchura = anchuraCelda * tablero.getColumnas();
         altura = alturaCelda * tablero.getFilas();
@@ -60,9 +59,7 @@ public class VistaDeTablero extends Group {
         this.getChildren().add(contenedorTabla);
     }
 
-    public GridPane getContenedorTabla(){return contenedorTabla;}
 
-    public Ubicacion getUbicacionDelCursor(){return ubicacionDelCursor;}
 
     public VBox getVistaDePiezaClikeada(){return vistaUnidadClikeada;}
 
@@ -70,7 +67,7 @@ public class VistaDeTablero extends Group {
         for (int i = 0; i < tablero.getColumnas(); i++) {
             for (int j = 0; j < tablero.getFilas(); j++) {
                 Pane v = new Pane();
-                v.setOnMouseClicked(new ClickEnZonaEventHandler(rectanguloDeMovimiento,v, ubicacionDelCursor));
+                v.setOnMouseClicked(new ClickEnZonaEventHandler(rectanguloDeMovimiento,v, this));
                 v.setMinHeight(this.alturaCelda);
                 v.setMinWidth(this.anchuraCelda);
                 casillaTabla[i][j] = v;
@@ -84,7 +81,7 @@ public class VistaDeTablero extends Group {
         listaDeUnidades.stream()
                 .filter(p->p.getPieza().getPuntosVida()==0)
                 .forEach(p-> {Audio.reproducirMuerte(p.getNombre());
-                    casillaTabla[p.getPieza().getUbicacion().getPosicionEnX()][p.getPieza().getUbicacion().getPosicionEnY()].getChildren().clear(); });
+                    casillaTabla[p.getPieza().getPosicionEnColumnaQueOcupa()][p.getPieza().getPosicionEnColumnaQueOcupa()].getChildren().clear(); });
         listaDeUnidades.stream()
                 .filter(p->p.getPieza().getPuntosVida()>0)
                 .forEach(auxiliar::add);
@@ -92,12 +89,6 @@ public class VistaDeTablero extends Group {
         listaDeUnidades.addAll(auxiliar);
     }
 
-    public void actualizarUbicacion(Ubicacion vieja, Ubicacion nueva){
-        casillaTabla[vieja.getPosicionEnX()][vieja.getPosicionEnY()].getChildren().clear();
-        listaDeUnidades.stream()
-                .filter(p->(p.getPieza().getUbicacion().getPosicionEnY()== nueva.getPosicionEnY() && p.getPieza().getUbicacion().getPosicionEnX()==nueva.getPosicionEnX()))
-                .forEach(p->casillaTabla[nueva.getPosicionEnX()][nueva.getPosicionEnY()].getChildren().add(p));
-    }
 
     public void agregarUnidad(VistaUnidad etiquetaUnidad, int x, int y){
         casillaTabla[x][y].getChildren().add(0, etiquetaUnidad);
@@ -130,7 +121,7 @@ public class VistaDeTablero extends Group {
         rectanguloDeMovimiento.setVisible(true);
         for (int i = 0; i < tablero.getColumnas(); i++) {
             for (int j = 0; j < tablero.getFilas(); j++) {
-                casillaTabla[i][j].setOnMouseClicked(new ClickEnZonaEventHandler(rectanguloDeMovimiento,casillaTabla[i][j], ubicacionDelCursor));
+                casillaTabla[i][j].setOnMouseClicked(new ClickEnZonaEventHandler(rectanguloDeMovimiento,casillaTabla[i][j], this));
             }
         }
     }
@@ -163,9 +154,18 @@ public class VistaDeTablero extends Group {
 
     public void actualizarUbicaciones() {
         vaciarPaneles();
-        listaDeUnidades.forEach(p->{
-            casillaTabla[p.getPieza().getUbicacion().getPosicionEnX()][p.getPieza().getUbicacion().getPosicionEnY()].getChildren().add(p);
-        });
+        listaDeUnidades.forEach(p-> casillaTabla[p.getPieza().getPosicionEnColumnaQueOcupa()][p.getPieza().getPosicionEnFilaQueOcupa()].getChildren().add(p));
 
+    }
+
+    public void setUbicacionClik(Integer columnIndex, Integer rowIndex) {
+        ubicacionDelCursorX=columnIndex;
+        ubicacionDelCursorY=rowIndex;
+    }
+    public int getUbicacionDelCursorX(){
+        return ubicacionDelCursorX;
+    }
+    public int getUbicacionDelCursorY(){
+        return ubicacionDelCursorY;
     }
 }

@@ -1,5 +1,6 @@
 package modelo.pieza;
 
+import modelo.pieza.movimiento.Ubicacion;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 

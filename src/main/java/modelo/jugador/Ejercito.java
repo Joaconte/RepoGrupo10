@@ -5,17 +5,13 @@ import modelo.jugador.presupuesto.PresupuestoAgotadoException;
 import modelo.pieza.Pieza;
 import modelo.jugador.presupuesto.EstadoPresupuestoDeEjercito;
 import modelo.jugador.presupuesto.EstadoPresupuestoNoAgotado;
-import modelo.pieza.Ubicacion;
 import modelo.pieza.tipos.Batallon;
+import modelo.pieza.tipos.Infanteria;
 import modelo.pieza.tipos.NoHayBatallonException;
 import modelo.pieza.tipos.NoSirvenParaBatallonException;
-import modelo.tablero.Tablero;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.stream.Collectors;
 
 public class Ejercito{
 
@@ -48,24 +44,8 @@ public class Ejercito{
         return piezaComprada;
     }
 
-    //-----------Estados del Batallon-----------//
+    //-----------Estados del Ejercito-----------//
 
-    public boolean dominaEstaUbicacion(Ubicacion ubicacionInicial ) {
-
-        for (Pieza pieza : piezas) {
-            int posX = pieza.getUbicacion().getPosicionEnX();
-            int posY = pieza.getUbicacion().getPosicionEnY();
-        }
-        // ruptura de encapsulamiento
-        for (int i=0; i< piezas.size(); i++){
-        Pieza pieza = piezas.get(i);
-        int posX = pieza.getUbicacion().getPosicionEnX();
-        int posY = pieza.getUbicacion().getPosicionEnY();
-            if ((posX == ubicacionInicial.getPosicionEnX()) && (posY == ubicacionInicial.getPosicionEnY()))
-                return true;
-        }
-        return false;
-    }
 
     public boolean estaCompleto() {
         return presupuesto.estaAgotado();
@@ -73,11 +53,7 @@ public class Ejercito{
 
     public boolean estaDestruido(){ return piezas.size()==0; }
 
-
-    // responsabilidad ajena a Ejercito
-
-    public void actualizarEstadoTropas(Tablero tableroDePartida) {
-        piezas.stream().filter(Objects::nonNull).filter(p->(p.getPuntosVida()==0)).forEach(p->{ tableroDePartida.desocuparCasilla(p.getUbicacion().getPosicionEnX(),p.getUbicacion().getPosicionEnY());});
+    public void actualizarEstadoTropas() {
         ArrayList <Pieza> auxiliar = new ArrayList<>();
         piezas.stream().filter(pieza -> pieza.getPuntosVida()>0).forEach(auxiliar::add);
         piezas.clear();
@@ -85,37 +61,34 @@ public class Ejercito{
     }
 
 
-
     //---------Batallon-----------//
 
     public void agregarBatallon(ArrayList<Pieza> batallonNuevo) throws NoSirvenParaBatallonException {
-        batallonNuevo.forEach(p->disolverViejoBatallon(p.getUbicacion()));
         Batallon nuevoBatallon=new Batallon(batallonNuevo);
+        disolverSusViejosBatallones(batallonNuevo);
         batallones.add(nuevoBatallon);
     }
 
-    public void desplazarBatallon(Tablero tablero, Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) throws UbicacionInvalidaException, NoHayBatallonException {
-        validarBatallon (ubicacionInicial);
-        if (tablero.casillaEstaOcupada(ubicacionFinal.getPosicionEnX(),ubicacionFinal.getPosicionEnY())) throw new UbicacionInvalidaException();
-        batallones.stream().filter(batallon -> batallon.contiene(ubicacionInicial)).forEach(batallon -> batallon.desplazaBatallonEnOrden(tablero,ubicacionInicial,ubicacionFinal));
+    private void disolverSusViejosBatallones(ArrayList<Pieza> batallonNuevo){
 
-        List<Batallon> list = batallones.stream().filter(batallon -> batallon.contiene(ubicacionFinal)).filter(batallon -> !batallon.siguenContiguos()).collect(Collectors.toList());
-        if (list.size()==1) batallones.remove(list.get(0));
+       ArrayList<Batallon> listaAuxiliar = new ArrayList<>();
+       batallones.stream().filter(batallon -> batallon.contiene(batallonNuevo.get(0))|| batallon.contiene(batallonNuevo.get(1))||batallon.contiene(batallonNuevo.get(2)))
+               .forEach(listaAuxiliar::add);
+       listaAuxiliar.forEach(p-> batallones.remove(p));
     }
 
-    private void disolverViejoBatallon(Ubicacion ubicacion){
-        List<Batallon> list =  batallones.stream().filter(batallon -> batallon.contiene(ubicacion)).collect(Collectors.toList());
-        if (list.size()==1) batallones.remove(list.get(0));
-    }
-
-    private void validarBatallon (Ubicacion ubicacion) throws NoHayBatallonException {
+    private boolean estaEnUnBatallonValido(Pieza infante) throws NoHayBatallonException {
         AtomicBoolean siguenContiguos = new AtomicBoolean(false);
-        batallones.stream().filter(batallon -> batallon.contiene(ubicacion)).forEach(batallon -> {if (batallon.siguenContiguos()) {siguenContiguos.set(true);}});
-        if ( !siguenContiguos.get()) throw new NoHayBatallonException(); //porque un soldado PUEDE moverse solo o en battallon
+        batallones.stream().filter(batallon -> batallon.contiene(infante)).forEach(batallon -> {if (batallon.siguenContiguos()) {siguenContiguos.set(true);}});
+        return siguenContiguos.get(); //porque un soldado PUEDE moverse solo o en battallon
+    }
+
+    public void ordenarTropas(ArrayList<Pieza> piezas, ArrayList<Integer> ubicacionesX, ArrayList<Integer> ubicacionesY, int posicionXFinal, int posicionYFinal) throws NoHayBatallonException {
+        if ( !this.estaEnUnBatallonValido(piezas.get(0))) throw new NoHayBatallonException(); //porque un soldado PUEDE moverse solo o en battallon
+        batallones.stream().filter(batallon -> batallon.contiene(piezas.get(0))).forEach(batallon -> batallon.ordenarFormacion(piezas, ubicacionesX,ubicacionesY,posicionXFinal,posicionYFinal));
 
     }
 }
-
 
 
 

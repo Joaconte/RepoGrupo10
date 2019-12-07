@@ -8,17 +8,15 @@ public class Infanteria extends PiezaAtacante {
     static final int COSTO = 1;
     static final int VIDA_MAXIMA = 100;
     static final int DANIO_CUERPO = 10;
-    static final int DANIO_MEDIO = 0;
-    static final int DANIO_DISTANCIA = 0;
-    static final IModoAtaque ATAQUE = new AtaqueCuerpoACuerpo();
+    static final IModoAtaque ATAQUE = new AtaqueCuerpoACuerpo(DANIO_CUERPO);
     static final IModoSanacion MODO_CURACION = new SanacionNormal();
 
     public Infanteria(int equipo,int posX, int posY){
-        super(COSTO, VIDA_MAXIMA, equipo, MODO_CURACION, ATAQUE, DANIO_CUERPO, DANIO_MEDIO, DANIO_DISTANCIA, posX, posY);
+        super(COSTO, VIDA_MAXIMA, equipo, MODO_CURACION, ATAQUE, posX, posY);
     }
 
     public Infanteria(){
-        super(COSTO, VIDA_MAXIMA, 0, MODO_CURACION, ATAQUE, DANIO_CUERPO, DANIO_MEDIO, DANIO_DISTANCIA, 0, 0);
+        super(COSTO, VIDA_MAXIMA, 0, MODO_CURACION, ATAQUE, 0, 0);
     }
 
 
@@ -27,6 +25,16 @@ public class Infanteria extends PiezaAtacante {
 
     @Override
     public boolean esRefuerzoDeJinete() {
+        return true;
+    }
+
+    @Override
+    public boolean sePuederMoverA(int posFinalX, int posFinalY) {
+        return CAPACIDAD_DESPLAZAMIENTO == ubicacion.getDistanciaAOtroPunto(posFinalX,posFinalY);
+    }
+
+    @Override
+    public boolean puedeTenerBatallon() {
         return true;
     }
 }

@@ -1,22 +1,16 @@
 package modelo;
 
-import modelo.jugador.EjercitoIncompletoException;
-import modelo.jugador.PiezaFueraDeSectorException;
-import modelo.jugador.PiezaNoEsDeJugadorException;
-import modelo.jugador.UbicacionInvalidaException;
+import modelo.jugador.*;
 import modelo.jugador.presupuesto.CompraInvalidaException;
 import modelo.jugador.presupuesto.PresupuestoAgotadoException;
-import modelo.partida.JugadorNoPuedeManipularEsaPiezaException;
-import modelo.partida.Partida;
-import modelo.partida.fase.JugadorYaRealizoLaAccionException;
-import modelo.partida.fase.PiezaYaAtacoException;
-import modelo.partida.fase.PiezaYaMovioException;
-import modelo.pieza.Pieza;
-import modelo.pieza.Ubicacion;
+import modelo.partida.*;
+import modelo.partida.fase.*;
+import modelo.pieza.*;
 import modelo.pieza.UnidadEstaMuertaException;
 import modelo.pieza.ataque.DistanciaDeAtaqueInvalidaException;
 import modelo.pieza.ataque.PiezaAliadaNoAtacableException;
 import modelo.pieza.ataque.PiezaAtacante;
+import modelo.pieza.movimiento.Ubicacion;
 import modelo.pieza.tipos.NoSePuedeMoverException;
 import modelo.pieza.sanacion.CurandoAEnemigoException;
 import modelo.pieza.sanacion.UnidadNoSePuedeCurar;
@@ -64,16 +58,13 @@ public class Juego {
     public String getNombreDeJugadorDos() { return partida.getJugadorDos().getNombre();}
 
 
-    public void moverUnidad(Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) throws PiezaNoEsDeJugadorException, NoHayUnidadEnPosicionException, DesplazamientoInvalidoException, NoSePuedeMoverException, UbicacionInvalidaException, JugadorYaRealizoLaAccionException, PiezaYaMovioException {
-        partida.moverUnidad(ubicacionInicial, ubicacionFinal);
+    public void moverUnidad(Pieza pieza, int posicionXFinal, int posicionYFinal) throws NoHayUnidadEnPosicionException, DesplazamientoInvalidoException, NoSePuedeMoverException, UbicacionInvalidaException, JugadorYaRealizoLaAccionException, PiezaYaMovioException, JugadorNoPuedeManipularEsaPiezaException {
+        partida.moverUnidad(pieza, posicionXFinal, posicionYFinal);
     }
 
-
-    public void moverBatallon( Ubicacion ubicacionInicial, Ubicacion direccion ) throws JugadorYaRealizoLaAccionException, NoHayBatallonException, UbicacionInvalidaException, JugadorNoPuedeManipularEsaPiezaException {
-        partida.moverBatallon( ubicacionInicial, direccion);
-
+    public void moverBatallon( Infanteria infante, int posicionXFinal, int posicionYFinal ) throws JugadorYaRealizoLaAccionException, NoHayBatallonException, UbicacionInvalidaException, JugadorNoPuedeManipularEsaPiezaException, DesplazamientoInvalidoException, NoSePuedeMoverException {
+        partida.moverBatallon( infante, posicionXFinal,posicionYFinal);
     }
-
 
     public void formarBatallon(ArrayList<Pieza> piezas) throws NoSirvenParaBatallonException, JugadorNoPuedeManipularEsaPiezaException {
         partida.formanBatallon(piezas); }

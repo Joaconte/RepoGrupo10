@@ -1,24 +1,22 @@
 package modelo.partida;
 
-import modelo.jugador.*;
+import modelo.jugador.EjercitoIncompletoException;
+import modelo.jugador.Jugador;
+import modelo.jugador.PiezaFueraDeSectorException;
+import modelo.jugador.UbicacionInvalidaException;
 import modelo.jugador.presupuesto.CompraInvalidaException;
 import modelo.jugador.presupuesto.PresupuestoAgotadoException;
 import modelo.partida.fase.*;
-import modelo.pieza.Ubicacion;
-import modelo.pieza.ataque.PiezaAliadaNoAtacableException;
+import modelo.pieza.Pieza;
 import modelo.pieza.UnidadEstaMuertaException;
 import modelo.pieza.ataque.DistanciaDeAtaqueInvalidaException;
+import modelo.pieza.ataque.PiezaAliadaNoAtacableException;
 import modelo.pieza.ataque.PiezaAtacante;
-
-import modelo.partida.fase.FaseDePartida;
-import modelo.partida.fase.FaseInicial;
-import modelo.pieza.tipos.*;
-
 import modelo.pieza.sanacion.CurandoAEnemigoException;
 import modelo.pieza.sanacion.UnidadNoSePuedeCurar;
+import modelo.pieza.tipos.*;
 import modelo.tablero.DesplazamientoInvalidoException;
 import modelo.tablero.Tablero;
-import modelo.pieza.Pieza;
 import modelo.tablero.casilla.NoHayUnidadEnPosicionException;
 
 import java.util.ArrayList;
@@ -73,7 +71,7 @@ public class Partida {
 
 
     public void atacarPieza(PiezaAtacante atacante, Pieza atacada) throws JugadorNoPuedeManipularEsaPiezaException, PiezaAliadaNoAtacableException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, JugadorYaRealizoLaAccionException, PiezaYaAtacoException {
-        validarJugadorTurno(atacante);
+        if(!jugadorEnTurno.esTuPieza(atacante)){ throw new JugadorNoPuedeManipularEsaPiezaException();}
         miFase.atacar(atacante, atacada, tableroDePartida);
     }
 
@@ -81,8 +79,9 @@ public class Partida {
         return miFase.crearPieza(jugadorEnTurno,tableroDePartida,nombreDeUnidad,posicionEnX,posicionEnY);
     }
 
-    public void moverUnidad(Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) throws PiezaNoEsDeJugadorException, NoHayUnidadEnPosicionException, DesplazamientoInvalidoException, NoSePuedeMoverException, UbicacionInvalidaException, JugadorYaRealizoLaAccionException, PiezaYaMovioException {
-        miFase.moverUnidadEnTablero(tableroDePartida, jugadorEnTurno, ubicacionInicial,ubicacionFinal);
+    public void moverUnidad(Pieza pieza, int posicionXFinal, int posicionYFinal) throws NoHayUnidadEnPosicionException, DesplazamientoInvalidoException, NoSePuedeMoverException, UbicacionInvalidaException, JugadorYaRealizoLaAccionException, PiezaYaMovioException, JugadorNoPuedeManipularEsaPiezaException {
+        if(!jugadorEnTurno.esTuPieza(pieza)){ throw new JugadorNoPuedeManipularEsaPiezaException();}
+        miFase.moverUnidadEnTablero(tableroDePartida, pieza, posicionXFinal, posicionYFinal);
     }
 
 
@@ -91,13 +90,14 @@ public class Partida {
     }
 
 
-    public void moverBatallon( Ubicacion ubicacionInicial, Ubicacion ubicacionFinal ) throws JugadorYaRealizoLaAccionException, NoHayBatallonException, UbicacionInvalidaException, JugadorNoPuedeManipularEsaPiezaException {
-        miFase.moverBatallon(jugadorEnTurno, tableroDePartida, ubicacionInicial, ubicacionFinal);
+    public void moverBatallon( Infanteria infante, int posicionXFinal, int posicionYFinal ) throws JugadorYaRealizoLaAccionException, NoHayBatallonException, UbicacionInvalidaException, JugadorNoPuedeManipularEsaPiezaException, DesplazamientoInvalidoException, NoSePuedeMoverException {
+        if(!jugadorEnTurno.esTuPieza(infante)){ throw new JugadorNoPuedeManipularEsaPiezaException();}
+        miFase.moverBatallon(jugadorEnTurno, tableroDePartida, infante, posicionXFinal,posicionYFinal);
 
     }
 
     public void formanBatallon(ArrayList<Pieza> piezas) throws JugadorNoPuedeManipularEsaPiezaException, NoSirvenParaBatallonException {
-        validarJugadorTurno(piezas.get(0)); //ballaton valida el resto
+        if(!jugadorEnTurno.esTuPieza(piezas.get(0))){ throw new JugadorNoPuedeManipularEsaPiezaException();}
         jugadorEnTurno.formanBatallon(piezas);
     }
 
@@ -118,13 +118,11 @@ public class Partida {
 
     //---------------Validaciones-Actualizaciones-----------
 
-    void validarJugadorTurno(Pieza piezaEnAccion)throws JugadorNoPuedeManipularEsaPiezaException {
-        if(piezaEnAccion.getEquipo() != jugadorEnTurno.getNumeroDeJugador()){ throw new JugadorNoPuedeManipularEsaPiezaException();}
-    }
+
 
     public void actualizarTablero() {
-        jugadorDos.actualizarEstadoTropas(tableroDePartida);
-        jugadorUno.actualizarEstadoTropas(tableroDePartida);
+        jugadorDos.actualizarEstadoTropas();
+        jugadorUno.actualizarEstadoTropas();
     }
 
     //---------------Metodos de Jugadores------------

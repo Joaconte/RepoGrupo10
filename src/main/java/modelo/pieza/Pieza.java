@@ -1,10 +1,13 @@
 package modelo.pieza;
 
 import modelo.jugador.Sector;
+import modelo.pieza.movimiento.Ubicacion;
 import modelo.pieza.recibirDanio.*;
 import modelo.pieza.sanacion.*;
 import modelo.pieza.tipos.NoSePuedeMoverException;
-import modelo.tablero.Tablero;
+
+import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public abstract class Pieza {
     private int costo;
@@ -15,6 +18,7 @@ public abstract class Pieza {
     // strategy pattern
     private ICalculadorDeDanio danioARecibir;
     private IModoSanacion modoSanacion;
+    protected static final int CAPACIDAD_DESPLAZAMIENTO = 1;
 
     // Constructores
     public Pieza(int costo, int vidaMaxima, int equipo, IModoSanacion modoSanacion, int posX, int posY) {
@@ -41,11 +45,6 @@ public abstract class Pieza {
         return ubicacion;
     }
 
-    public void setUbicacion(int x, int y){
-            this.ubicacion.setPosicionEnX(x);
-            this.ubicacion.setPosicionEnY(y);
-    }
-
     public int getEquipo(){ return equipo;}
 
     public int getCosto(){ return costo;}
@@ -62,9 +61,18 @@ public abstract class Pieza {
         else this.danioARecibir = new DanioZonaPropia();
     }
 
-    public int getDistanciaAOtraPieza(Pieza pieza) {
-        return ubicacion.getDistanciaAOtroPunto(pieza.getUbicacion());
+
+    public int getDistanciaAOtraPieza(Pieza pieza) { //Mantiene encapsulamiento o es exceso?
+        return pieza.getDistanciaAUbicacion(ubicacion);
     }
+    public int getDistanciaAUbicacion(Ubicacion ubicacionOtra){
+        return this.ubicacion.getDistanciaAOtroPunto(ubicacionOtra);
+    }
+
+    public int getDistanciaAOtroPunto(int posicionXFinal, int posicionYFinal){
+        return ubicacion.getDistanciaAOtroPunto(posicionXFinal,posicionYFinal);
+    }
+
 
     public void recibirDanio(double danioBase) throws UnidadEstaMuertaException {
         if (vida<=0) throw new UnidadEstaMuertaException();
@@ -76,15 +84,44 @@ public abstract class Pieza {
         vida += modoSanacion.restaurarPuntosDeVida(puntos);
         vida = Math.min(vida, vida_maxima);
     }
+
     public abstract boolean esRefuerzoDeJinete();
 
-    public void mover(Ubicacion ubicacion) throws NoSePuedeMoverException {
-        this.getUbicacion().setPosicionEnX(ubicacion.getPosicionEnX());
-        this.getUbicacion().setPosicionEnY(ubicacion.getPosicionEnY());
-    }
-
-
     public boolean esContiguoAAlguno(Pieza pieza, Pieza pieza2){
-        return ubicacion.getDistanciaAOtroPunto(pieza.getUbicacion())<2 || ubicacion.getDistanciaAOtroPunto(pieza2.getUbicacion())<2;
+        return getDistanciaAOtraPieza(pieza)<2 || getDistanciaAOtraPieza(pieza2)<2;
     }
+
+    public boolean esDelEquipo(int numeroDeJugador){return numeroDeJugador==equipo;}
+
+    public abstract boolean sePuederMoverA(int posFinalX, int posFinalY);
+
+    public void mover(int posFinalX, int posFinalY) throws NoSePuedeMoverException {
+        ubicacion= ubicacion.desplazarA(posFinalX,posFinalY);
+    }
+
+    public abstract boolean puedeTenerBatallon();
+
+    public int darCambioDePosicionEnXQueNecesitaParaMoverseA(int posicionX){return ubicacion.getVariacionEnX(posicionX);}
+
+    public  int darCambioDePosicionEnYQueNecesitaParaMoverseA(int posicionY){return ubicacion.getVariacionEnY(posicionY);}
+
+    public boolean chocariaCon(ArrayList<Pieza> listadoDeSoldados, int variacionX, int variacionY){
+        Ubicacion ubicacionTentativa = ubicacion.desplazarA(variacionX,variacionY);
+        AtomicBoolean choca = new AtomicBoolean(false);
+        listadoDeSoldados.stream().filter(p->p.getDistanciaAUbicacion(ubicacionTentativa)==0).forEach(p->choca.set(true));
+        return choca.get();
+    }
+
+    public int getPosicionEnColumnaQueOcupa(){
+        return ubicacion.getPosicionEnX();
+    }
+
+    public int getPosicionEnFilaQueOcupa(){
+        return ubicacion.getPosicionEnY();
+    }
+
+    public boolean estaEnElLugar(Pieza pieza ){
+        return getDistanciaAOtraPieza(pieza)==0;
+    };
+
 }

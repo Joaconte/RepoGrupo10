@@ -7,16 +7,14 @@ import modelo.jugador.PiezaFueraDeSectorException;
 import modelo.jugador.UbicacionInvalidaException;
 import modelo.jugador.presupuesto.CompraInvalidaException;
 import modelo.jugador.presupuesto.PresupuestoAgotadoException;
-import modelo.pieza.Ubicacion;
-import modelo.pieza.ataque.PiezaAtacante;
+import modelo.partida.JugadorNoPuedeManipularEsaPiezaException;
 import modelo.pieza.Pieza;
-import modelo.pieza.sanacion.CurandoAEnemigoException;
-import modelo.pieza.sanacion.UnidadNoSePuedeCurar;
+import modelo.pieza.ataque.PiezaAtacante;
+import modelo.pieza.movimiento.Ubicacion;
 import modelo.pieza.tipos.Curandero;
-import modelo.pieza.tipos.CurandoCuraADistanciaCortaException;
+import modelo.pieza.tipos.Infanteria;
+import modelo.pieza.tipos.NoHayBatallonException;
 import modelo.tablero.Tablero;
-
-import java.util.ArrayList;
 
 public class FaseInicial implements FaseDePartida{
 
@@ -53,19 +51,21 @@ public class FaseInicial implements FaseDePartida{
     }
 
     @Override
-    public void curarAAliado(Curandero piezaCurandera, Pieza otraPieza) throws UnidadNoSePuedeCurar, CurandoCuraADistanciaCortaException, CurandoAEnemigoException {
+    public void curarAAliado(Curandero piezaCurandera, Pieza otraPieza){
 
     }
 
     @Override
-    public void moverUnidadEnTablero(Tablero tableroDePartida, Jugador jugadorEnTurno, Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) {
+    public void moverUnidadEnTablero(Tablero tableroDePartida, Pieza pieza, int posXFin, int posYFin) {
 
     }
 
     @Override
-    public void moverBatallon(Jugador jugador, Tablero tableroDePartida, Ubicacion ubicacionInicial, Ubicacion ubicacionFinal) {
+    public void moverBatallon(Jugador jugadorEnTurno, Tablero tableroDePartida, Infanteria infante, int posicionXFinal, int posicionYFinal) {
 
     }
+
+
 
 
 

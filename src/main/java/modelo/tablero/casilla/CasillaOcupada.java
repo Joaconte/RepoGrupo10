@@ -30,5 +30,6 @@ public class CasillaOcupada implements EstadoCasilla{
         return pieza;
     }
 
+
 }
 
