@@ -20,6 +20,10 @@ public class Tablero {
             columnas.add(new Columna(FILAS));
     }
 
+    public void removerTropasMuertas(){
+        columnas.forEach(columna->columna.removerTropasMuertas());
+    }
+
     public void moverUnidad(Pieza pieza, int posFinalX, int posFinalY) throws DesplazamientoInvalidoException {
         if (!existePosicion(posFinalX,posFinalY)){throw new DesplazamientoInvalidoException();}
         if (!pieza.sePuederMoverA(posFinalX,posFinalY)){throw new DesplazamientoInvalidoException();}
@@ -28,7 +32,7 @@ public class Tablero {
 
     public void moverBatallon(ArrayList<Integer> ubicacionX, ArrayList<Integer> ubicacionY,ArrayList<Pieza> pieza) throws NoSePuedeMoverException {
         for (int i=0; i<pieza.size() ; i++){
-            if (!casillaEstaOcupada(ubicacionX.get(i),ubicacionY.get(i)) && existePosicion(ubicacionX.get(i),ubicacionY.get(i))){
+            if (existePosicion(ubicacionX.get(i),ubicacionY.get(i) )&& !casillaEstaOcupada(ubicacionX.get(i),ubicacionY.get(i))){
                 movimiento(pieza.get(i),ubicacionX.get(i),ubicacionY.get(i));
                 pieza.get(i).mover(ubicacionX.get(i),ubicacionY.get(i));
             }

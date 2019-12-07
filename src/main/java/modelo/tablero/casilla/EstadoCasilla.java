@@ -8,4 +8,6 @@ public interface EstadoCasilla {
     EstadoCasilla ocuparCasilla(Pieza pieza);
     EstadoCasilla desocuparCasilla();
     Pieza getContenido();
+
+    EstadoCasilla sinTropasMuertas();
 }

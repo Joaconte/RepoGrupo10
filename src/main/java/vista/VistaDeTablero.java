@@ -46,6 +46,8 @@ public class VistaDeTablero extends Group {
         altura = alturaCelda * tablero.getFilas();
         casillaTabla = new Pane[anchura][altura];
         contenedorTabla.add(rectanguloDeMovimiento,9,9);
+        ubicacionDelCursorY=9;
+        ubicacionDelCursorX=9;
 
         crearPanelesPorDefecto();
 
@@ -79,7 +81,7 @@ public class VistaDeTablero extends Group {
     public void actualizarTableroPorMuertas(){
         List <VistaUnidad> auxiliar = new ArrayList<>();
         listaDeUnidades.stream()
-                .filter(p->p.getPieza().getPuntosVida()==0)
+                .filter(p->!p.getPieza().estaViva())
                 .forEach(p-> {Audio.reproducirMuerte(p.getNombre());
                     casillaTabla[p.getPieza().getPosicionEnColumnaQueOcupa()][p.getPieza().getPosicionEnColumnaQueOcupa()].getChildren().clear(); });
         listaDeUnidades.stream()

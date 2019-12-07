@@ -124,4 +124,6 @@ public abstract class Pieza {
         return getDistanciaAOtraPieza(pieza)==0;
     };
 
+    public boolean estaViva(){ return vida>0;}
+
 }

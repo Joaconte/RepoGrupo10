@@ -21,5 +21,8 @@ public  class  Casilla {
 
     public Pieza getContenido() { return estadoCasilla.getContenido(); }
 
+    public void removerTropasMuertas() {
+        estadoCasilla = estadoCasilla.sinTropasMuertas();
+    }
 }
 

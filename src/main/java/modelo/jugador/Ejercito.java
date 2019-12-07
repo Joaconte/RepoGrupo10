@@ -51,13 +51,11 @@ public class Ejercito{
         return presupuesto.estaAgotado();
     }
 
-    public boolean estaDestruido(){ return piezas.size()==0; }
 
-    public void actualizarEstadoTropas() {
+    public boolean  estaDestruido() {
         ArrayList <Pieza> auxiliar = new ArrayList<>();
-        piezas.stream().filter(pieza -> pieza.getPuntosVida()>0).forEach(auxiliar::add);
-        piezas.clear();
-        piezas.addAll(auxiliar);
+        piezas.stream().filter(pieza -> !pieza.estaViva()).forEach(auxiliar::add);
+        return auxiliar.size()==piezas.size();
     }
 
 
@@ -70,23 +68,22 @@ public class Ejercito{
     }
 
     private void disolverSusViejosBatallones(ArrayList<Pieza> batallonNuevo){
-
        ArrayList<Batallon> listaAuxiliar = new ArrayList<>();
        batallones.stream().filter(batallon -> batallon.contiene(batallonNuevo.get(0))|| batallon.contiene(batallonNuevo.get(1))||batallon.contiene(batallonNuevo.get(2)))
                .forEach(listaAuxiliar::add);
        listaAuxiliar.forEach(p-> batallones.remove(p));
     }
 
-    private boolean estaEnUnBatallonValido(Pieza infante) throws NoHayBatallonException {
-        AtomicBoolean siguenContiguos = new AtomicBoolean(false);
-        batallones.stream().filter(batallon -> batallon.contiene(infante)).forEach(batallon -> {if (batallon.siguenContiguos()) {siguenContiguos.set(true);}});
-        return siguenContiguos.get(); //porque un soldado PUEDE moverse solo o en battallon
+    private void actualizarBatallones (){ //Pieza puede moverse sola tambien. Se disuelve no solo despues del movimiento del batallon.
+        ArrayList<Batallon> listaAuxiliar = new ArrayList<>();
+        batallones.stream().filter(p->!p.siguenContiguos()).forEach(listaAuxiliar::add);
+        listaAuxiliar.stream().filter(batallon -> batallones.contains(batallon)).forEach(batallon -> batallones.remove(batallon));
     }
 
     public void ordenarTropas(ArrayList<Pieza> piezas, ArrayList<Integer> ubicacionesX, ArrayList<Integer> ubicacionesY, int posicionXFinal, int posicionYFinal) throws NoHayBatallonException {
-        if ( !this.estaEnUnBatallonValido(piezas.get(0))) throw new NoHayBatallonException(); //porque un soldado PUEDE moverse solo o en battallon
+        actualizarBatallones();
         batallones.stream().filter(batallon -> batallon.contiene(piezas.get(0))).forEach(batallon -> batallon.ordenarFormacion(piezas, ubicacionesX,ubicacionesY,posicionXFinal,posicionYFinal));
-
+        if(piezas.size()!=3){ throw new NoHayBatallonException();}
     }
 }
 

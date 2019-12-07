@@ -47,14 +47,13 @@ public class ClickEnPiezaModoMovimientoEventHandler implements EventHandler<Mous
             Audio.reproducirMovimientoAPie();
 
 
-       } catch (NoSePuedeMoverException | NoHayUnidadEnPosicionException | DesplazamientoInvalidoException e) {
+       } catch (NoSePuedeMoverException | JugadorNoPuedeManipularEsaPiezaException| NoHayUnidadEnPosicionException | DesplazamientoInvalidoException | UbicacionInvalidaException | JugadorYaRealizoLaAccionException | PiezaYaMovioException e) {
             etiquetaTexto.setText(e.getMessage());
-        } catch (UbicacionInvalidaException | JugadorYaRealizoLaAccionException | PiezaYaMovioException e) {
-            etiquetaTexto.setText(e.getMessage());
-        } catch (JugadorNoPuedeManipularEsaPiezaException e) {
-            e.printStackTrace();
         }
-        vistaDeTablero.tableroNormal();
-        vistaDeTablero.restablecerTableroMovimiento();
+        finally {
+            vistaDeTablero.tableroNormal();
+            vistaDeTablero.restablecerTableroMovimiento();
+        }
+
     }
 }

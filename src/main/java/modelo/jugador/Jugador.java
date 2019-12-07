@@ -59,9 +59,6 @@ public class Jugador {
 
     public boolean jugadorEsPerdedor(){ return ejercito.estaDestruido(); }
 
-    public void actualizarEstadoTropas() {
-        ejercito.actualizarEstadoTropas();
-    }
 
     public void formanBatallon(ArrayList<Pieza> piezas) throws NoSirvenParaBatallonException {
         ejercito.agregarBatallon(piezas);

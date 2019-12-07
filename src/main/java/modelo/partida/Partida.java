@@ -121,8 +121,7 @@ public class Partida {
 
 
     public void actualizarTablero() {
-        jugadorDos.actualizarEstadoTropas();
-        jugadorUno.actualizarEstadoTropas();
+        tableroDePartida.removerTropasMuertas();
     }
 
     //---------------Metodos de Jugadores------------

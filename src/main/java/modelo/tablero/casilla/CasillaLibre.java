@@ -22,5 +22,10 @@ public class CasillaLibre implements EstadoCasilla {
     @Override
     public Pieza getContenido(){ return null; }
 
+    @Override
+    public EstadoCasilla sinTropasMuertas() {
+        return this;
+    }
+
 
 }

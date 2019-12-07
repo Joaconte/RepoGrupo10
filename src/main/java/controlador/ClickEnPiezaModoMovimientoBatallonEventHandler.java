@@ -45,15 +45,14 @@ public class ClickEnPiezaModoMovimientoBatallonEventHandler implements EventHand
             this.etiquetaTexto.setTextFill(Color.web("#000000"));
             Audio.reproducirMovimientoAPie();
 
-        } catch (NoHayBatallonException | JugadorNoPuedeManipularEsaPiezaException | JugadorYaRealizoLaAccionException | UbicacionInvalidaException j) {
+        } catch (DesplazamientoInvalidoException | NoSePuedeMoverException | NoHayBatallonException | JugadorNoPuedeManipularEsaPiezaException | JugadorYaRealizoLaAccionException | UbicacionInvalidaException j) {
             etiquetaTexto.setText(j.getMessage());
             vistaDeTablero.tableroNormal();
-        } catch (DesplazamientoInvalidoException e) {
-            e.printStackTrace();
-        } catch (NoSePuedeMoverException e) {
-            e.printStackTrace();
         }
-        vistaDeTablero.tableroNormal();
-        vistaDeTablero.restablecerTableroMovimiento();
+        finally {
+            vistaDeTablero.tableroNormal();
+            vistaDeTablero.restablecerTableroMovimiento();
+        }
+
     }
 }

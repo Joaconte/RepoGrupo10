@@ -38,5 +38,8 @@ public class Columna {
     }
 
 
+    public void removerTropasMuertas() {
+        columna.stream().filter(casilla -> casilla.estaOcupada()).forEach(casilla->casilla.removerTropasMuertas());
+    }
 }
 
