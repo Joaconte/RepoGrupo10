@@ -34,25 +34,9 @@ public class TableroTest {
         assertFalse(tablero.casillaEstaOcupada(1, 1));
     }
 
-    @Test
-    public void test04ElEstadoDeUnaCasillaLibreALaQueOcupoPasaAOcupado(){
-        Tablero tablero = new Tablero();
-        Pieza pieza = Mockito.mock(Pieza.class);
-        tablero.ocuparCasilla(pieza, 3,4);
-        assertTrue(tablero.casillaEstaOcupada(3, 4));
-    }
 
     @Test
-    public void test05ElEstadoDeUnaCasillaALaQueOcupoPasaADesocupadaCuandoLaDesocupo(){
-        Tablero tablero = new Tablero();
-        Pieza pieza = Mockito.mock(Pieza.class);
-        tablero.ocuparCasilla(pieza, 1,1);
-        tablero.desocuparCasilla(1,1);
-        assertFalse(tablero.casillaEstaOcupada(1, 1));
-    }
-
-    @Test
-    public void test06TableroEncuentra6PiezasAdyacenctesAPosicionDadaEIgnoraLasPosicionesANoAdyacentes(){
+    public void test04TableroEncuentra6PiezasAdyacenctesAPosicionDadaEIgnoraLasPosicionesANoAdyacentes(){
 
         Tablero tablero = new Tablero();
 
@@ -81,7 +65,7 @@ public class TableroTest {
     }
 
     @Test
-    public void test07TableroEncuentra8PiezasAdyacentesQueFormanUnCuadradoYNoCuentaDeMas(){
+    public void test05TableroEncuentra8PiezasAdyacentesQueFormanUnCuadradoYNoCuentaDeMas(){
         Tablero tablero = new Tablero();
 
         Jinete pieza = Mockito.mock(Jinete.class);
@@ -104,7 +88,7 @@ public class TableroTest {
     }
 
     @Test
-    public void test08TableroEncuentra2PiezasAdyacentesNoHayProblemaEnEsquinas(){
+    public void test06TableroEncuentra2PiezasAdyacentesNoHayProblemaEnEsquinas(){
         Tablero tablero = new Tablero();
 
         Jinete pieza = Mockito.mock(Jinete.class);
@@ -122,7 +106,7 @@ public class TableroTest {
 
 
     @Test
-    public void test09TableroEncuentra8CasillerosAdyacenctesVacios(){
+    public void test07TableroEncuentra8CasillerosAdyacenctesVacios(){
 
         Tablero tablero = new Tablero();
 
@@ -139,7 +123,7 @@ public class TableroTest {
     }
 
     @Test
-    public void test10TableroEncuentra3CasillerosAdyacenctesVaciosNoHayProblemaEnEsquinas(){
+    public void test08TableroEncuentra3CasillerosAdyacenctesVaciosNoHayProblemaEnEsquinas(){
 
         Tablero tablero = new Tablero();
 
@@ -156,7 +140,7 @@ public class TableroTest {
     }
 
     @Test
-    public void test11TableroNoHaceBucleInfinitoAlBuscarPiezasDeFormaRecursivaYEncuentra4(){
+    public void test09TableroNoHaceBucleInfinitoAlBuscarPiezasDeFormaRecursivaYEncuentra4(){
 
         Tablero tablero = new Tablero();
 
@@ -196,7 +180,7 @@ public class TableroTest {
     }
 
     @Test
-    public void test12TableroBuscaPiezasDeFormaRecursivaYEncuentra8(){
+    public void test10TableroBuscaPiezasDeFormaRecursivaYEncuentra8(){
 
         Tablero tablero = new Tablero();
 
@@ -265,7 +249,7 @@ public class TableroTest {
 
 
     @Test
-    public void test13BusquedaEnRangoDosSoloEncuentraLasFichasEnRangoDosCorrectamente(){
+    public void test11BusquedaEnRangoDosSoloEncuentraLasFichasEnRangoDosCorrectamente(){
 
         Tablero tablero = new Tablero();
 

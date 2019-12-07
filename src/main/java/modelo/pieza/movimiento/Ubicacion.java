@@ -42,4 +42,8 @@ public class Ubicacion {
     public int getVariacionEnY(int posicionY) {
         return posicionY - this.posicionEnY;
     }
+
+    public Ubicacion desplazarPorVariacion(int variacionX, int variacionY) {
+        return new Ubicacion(posicionEnX + variacionX, posicionEnY + variacionY);
+    }
 }

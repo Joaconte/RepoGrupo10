@@ -3,6 +3,7 @@ package modelo.pieza;
 import modelo.pieza.movimiento.Ubicacion;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class UbicacionTest {
 
@@ -49,4 +50,38 @@ public class UbicacionTest {
         assertEquals(4,  ubicacion2.getDistanciaAOtroPunto(ubicacion1) );
     }
 
+    @Test
+    public void test06UbicacionCalculaBienVariacionAX() {
+        Ubicacion ubicacion1 = new Ubicacion(1, 2);
+        assertEquals(1, ubicacion1.getVariacionEnX(2) );
+    }
+
+    @Test
+    public void test07UbicacionCalculaBienVariacionAY() {
+        Ubicacion ubicacion1 = new Ubicacion(1, 2);
+
+        assertEquals(0, ubicacion1.getVariacionEnY(2) );
+        assertEquals(-1, ubicacion1.getVariacionEnY(1) );
+    }
+
+    @Test
+    public void test08UbicacionSabeSiEsLaMismaUbicacion() {
+        Ubicacion ubicacion1 = new Ubicacion(1, 2);
+
+        assertTrue(ubicacion1.esIgual(new Ubicacion(1,2)) );
+    }
+
+    @Test
+    public void test09UbicacionDesplazaCorrectamente() {
+        Ubicacion ubicacion1 = new Ubicacion(1, 2);
+        Ubicacion ubicacion2 = ubicacion1.desplazarA(2,2);
+        assertTrue(ubicacion2.esIgual(new Ubicacion(2,2)) );
+    }
+
+    @Test
+    public void test09UbicacionDesplazaCorrectamentePorVariacion() {
+        Ubicacion ubicacion1 = new Ubicacion(1, 2);
+        Ubicacion ubicacion2 = ubicacion1.desplazarPorVariacion(2,-2);
+        assertTrue(ubicacion2.esIgual(new Ubicacion(3,0)) );
+    }
 }

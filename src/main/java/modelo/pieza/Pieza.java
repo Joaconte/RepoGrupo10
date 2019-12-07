@@ -106,7 +106,7 @@ public abstract class Pieza {
     public  int darCambioDePosicionEnYQueNecesitaParaMoverseA(int posicionY){return ubicacion.getVariacionEnY(posicionY);}
 
     public boolean chocariaCon(ArrayList<Pieza> listadoDeSoldados, int variacionX, int variacionY){
-        Ubicacion ubicacionTentativa = ubicacion.desplazarA(variacionX,variacionY);
+        Ubicacion ubicacionTentativa = ubicacion.desplazarPorVariacion(variacionX,variacionY);
         AtomicBoolean choca = new AtomicBoolean(false);
         listadoDeSoldados.stream().filter(p->p.getDistanciaAUbicacion(ubicacionTentativa)==0).forEach(p->choca.set(true));
         return choca.get();
