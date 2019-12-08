@@ -81,7 +81,7 @@ public class VistaDeTablero extends Group {
     public void actualizarTableroPorMuertas(){
         List <VistaUnidad> auxiliar = new ArrayList<>();
         listaDeUnidades.stream()
-                .filter(p->!p.getPieza().estaViva())
+                .filter(p-> p.getPieza().estaMuerta())
                 .forEach(p-> {Audio.reproducirMuerte(p.getNombre());
                     casillaTabla[p.getPieza().getPosicionEnColumnaQueOcupa()][p.getPieza().getPosicionEnColumnaQueOcupa()].getChildren().clear(); });
         listaDeUnidades.stream()

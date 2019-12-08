@@ -6,9 +6,6 @@ import modelo.pieza.recibirDanio.*;
 import modelo.pieza.sanacion.*;
 import modelo.pieza.tipos.NoSePuedeMoverException;
 
-import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicBoolean;
-
 public abstract class Pieza {
     private int costo;
     private int vida_maxima;
@@ -119,8 +116,8 @@ public abstract class Pieza {
 
     public boolean estaEnElLugar(Pieza pieza ){
         return getDistanciaAOtraPieza(pieza)==0;
-    };
+    }
 
-    public boolean estaViva(){ return vida>0;}
+    public boolean estaMuerta(){ return !(vida > 0);}
 
 }

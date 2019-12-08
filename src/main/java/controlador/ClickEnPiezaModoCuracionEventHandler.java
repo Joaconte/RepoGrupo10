@@ -4,6 +4,7 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import modelo.partida.JugadorNoPuedeManipularEsaPiezaException;
 import modelo.partida.fase.JugadorYaRealizoLaAccionException;
 import modelo.partida.fase.PiezaYaAtacoException;
 import modelo.pieza.sanacion.CurandoAEnemigoException;
@@ -49,7 +50,7 @@ public class ClickEnPiezaModoCuracionEventHandler implements EventHandler<MouseE
             piezaClikeada.setEtiquetaDeTexto("No se puede curar a enemigos.");
         } catch (JugadorYaRealizoLaAccionException e) {
             piezaClikeada.setEtiquetaDeTexto("Solo 3 ataques o curas por turno.");
-        } catch (PiezaYaAtacoException e) {
+        } catch (PiezaYaAtacoException | JugadorNoPuedeManipularEsaPiezaException e) {
             piezaClikeada.setEtiquetaDeTexto(e.getMessage());
         }
         vistaDeTablero.tableroNormal();

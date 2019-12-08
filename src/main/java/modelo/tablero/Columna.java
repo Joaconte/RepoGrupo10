@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Columna {
-    private List<Casilla> columna = new ArrayList<Casilla>();
+    private List<Casilla> columna = new ArrayList<>();
 
     public Columna( int numeroCasillasPorColumna){
         for (int numeroDeCasilla=0; numeroDeCasilla<(numeroCasillasPorColumna); numeroDeCasilla++)
@@ -39,7 +39,7 @@ public class Columna {
 
 
     public void removerTropasMuertas() {
-        columna.stream().filter(casilla -> casilla.estaOcupada()).forEach(casilla->casilla.removerTropasMuertas());
+        columna.stream().filter(Casilla::estaOcupada).forEach(Casilla::removerTropasMuertas);
     }
 }
 

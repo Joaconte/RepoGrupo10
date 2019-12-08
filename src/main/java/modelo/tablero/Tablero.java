@@ -1,7 +1,6 @@
 package modelo.tablero;
 
 import modelo.pieza.Pieza;
-import modelo.pieza.movimiento.Ubicacion;
 import modelo.pieza.tipos.NoSePuedeMoverException;
 import modelo.tablero.casilla.Casilla;
 
@@ -59,6 +58,7 @@ public class Tablero {
     }
 
     public int getFilas(){ return FILAS;}
+
     public int getColumnas(){ return COLUMNAS;}
 
     public int getCantidadColumnasCreadas(){
@@ -127,7 +127,6 @@ public class Tablero {
 
         return listadoDeCasillas;
     }
-
 
     public List<Pieza> getPiezasAdyacentes(int posicionColumna, int posicionFila){
         return getPiezasEnRadio(posicionColumna,posicionFila, 1, 1);

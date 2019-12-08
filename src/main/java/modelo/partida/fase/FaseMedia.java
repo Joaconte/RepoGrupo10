@@ -1,26 +1,17 @@
 package modelo.partida.fase;
 
-import modelo.jugador.PiezaFueraDeSectorException;
-import modelo.jugador.PiezaNoEsDeJugadorException;
-import modelo.jugador.UbicacionInvalidaException;
-import modelo.jugador.presupuesto.CompraInvalidaException;
-import modelo.jugador.presupuesto.PresupuestoAgotadoException;
-import modelo.partida.JugadorNoPuedeManipularEsaPiezaException;
-import modelo.pieza.movimiento.Ubicacion;
-import modelo.pieza.ataque.PiezaAliadaNoAtacableException;
 import modelo.jugador.Jugador;
+import modelo.jugador.presupuesto.PresupuestoAgotadoException;
+import modelo.pieza.Pieza;
 import modelo.pieza.UnidadEstaMuertaException;
 import modelo.pieza.ataque.DistanciaDeAtaqueInvalidaException;
+import modelo.pieza.ataque.PiezaAliadaNoAtacableException;
 import modelo.pieza.ataque.PiezaAtacante;
-import modelo.pieza.Pieza;
-import modelo.pieza.tipos.*;
 import modelo.pieza.sanacion.CurandoAEnemigoException;
 import modelo.pieza.sanacion.UnidadNoSePuedeCurar;
+import modelo.pieza.tipos.*;
 import modelo.tablero.DesplazamientoInvalidoException;
 import modelo.tablero.Tablero;
-import modelo.tablero.casilla.NoHayUnidadEnPosicionException;
-
-import java.util.ArrayList;
 
 public class FaseMedia implements FaseDePartida{
 
@@ -44,21 +35,21 @@ public class FaseMedia implements FaseDePartida{
 
     //Ataques o cura
     @Override
-    public void atacar(PiezaAtacante atacante, Pieza atacada, Tablero tablero) throws JugadorYaRealizoLaAccionException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException, PiezaYaAtacoException {
+    public void atacar(PiezaAtacante atacante, Pieza atacada, Tablero tablero) throws JugadorYaRealizoLaAccionException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException {
         if(ataquesDeJugador == ATAQUES_MAXIMOS) throw new JugadorYaRealizoLaAccionException();
         atacante.atacar(atacada,tablero);
         ataquesDeJugador += 1;
     }
 
     @Override
-    public void curarAAliado(Curandero piezaCurandera, Pieza otraPieza) throws UnidadNoSePuedeCurar, CurandoCuraADistanciaCortaException, CurandoAEnemigoException, JugadorYaRealizoLaAccionException, PiezaYaAtacoException {
+    public void curarAAliado(Curandero piezaCurandera, Pieza otraPieza) throws UnidadNoSePuedeCurar, CurandoCuraADistanciaCortaException, CurandoAEnemigoException, JugadorYaRealizoLaAccionException {
         if(ataquesDeJugador == ATAQUES_MAXIMOS) throw new JugadorYaRealizoLaAccionException();
         piezaCurandera.curarAAliado(otraPieza);
         ataquesDeJugador +=1;
     }
 
     @Override
-    public void moverUnidadEnTablero(Tablero tableroDePartida, Pieza pieza, int posFinalX, int posFinalY) throws UbicacionInvalidaException, NoHayUnidadEnPosicionException, DesplazamientoInvalidoException, NoSePuedeMoverException,  JugadorYaRealizoLaAccionException, PiezaYaMovioException {
+    public void moverUnidadEnTablero(Tablero tableroDePartida, Pieza pieza, int posFinalX, int posFinalY) throws DesplazamientoInvalidoException, NoSePuedeMoverException,  JugadorYaRealizoLaAccionException {
         if(movimientosDeJugador == MOVIMIENTOS_MAXIMOS) throw new JugadorYaRealizoLaAccionException();
         tableroDePartida.moverUnidad(pieza, posFinalX, posFinalY);
         pieza.mover(posFinalX,posFinalY);
@@ -67,7 +58,7 @@ public class FaseMedia implements FaseDePartida{
     }
 
     @Override
-    public void moverBatallon(Jugador jugadorEnTurno, Tablero tableroDePartida, Infanteria infante, int posicionXFinal, int posicionYFinal) throws JugadorYaRealizoLaAccionException, NoHayBatallonException, UbicacionInvalidaException, JugadorNoPuedeManipularEsaPiezaException, DesplazamientoInvalidoException, NoSePuedeMoverException {
+    public void moverBatallon(Jugador jugadorEnTurno, Tablero tableroDePartida, Infanteria infante, int posicionXFinal, int posicionYFinal) throws JugadorYaRealizoLaAccionException, NoHayBatallonException, DesplazamientoInvalidoException, NoSePuedeMoverException {
         if(movimientosDeJugador == MOVIMIENTOS_MAXIMOS) throw new JugadorYaRealizoLaAccionException();
         jugadorEnTurno.desplazarBatallon(tableroDePartida,infante,posicionXFinal,posicionYFinal);
         movimientosDeJugador += 1;
@@ -80,7 +71,7 @@ public class FaseMedia implements FaseDePartida{
     }
 
     @Override
-    public Pieza crearPieza(Jugador jugadorEnTurno, Tablero tableroDePartida, String nombreDeUnidad, int posicionEnX, int posicionEnY) throws UbicacionInvalidaException, PresupuestoAgotadoException, CompraInvalidaException, PiezaFueraDeSectorException {
+    public Pieza crearPieza(Jugador jugadorEnTurno, Tablero tableroDePartida, String nombreDeUnidad, int posicionEnX, int posicionEnY) throws PresupuestoAgotadoException {
         throw new PresupuestoAgotadoException();
     }
 

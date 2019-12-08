@@ -6,12 +6,10 @@ import modelo.pieza.Pieza;
 import modelo.jugador.presupuesto.EstadoPresupuestoDeEjercito;
 import modelo.jugador.presupuesto.EstadoPresupuestoNoAgotado;
 import modelo.pieza.tipos.Batallon;
-import modelo.pieza.tipos.Infanteria;
 import modelo.pieza.tipos.NoHayBatallonException;
 import modelo.pieza.tipos.NoSirvenParaBatallonException;
 
 import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Ejercito{
 
@@ -54,7 +52,7 @@ public class Ejercito{
 
     public boolean  estaDestruido() {
         ArrayList <Pieza> auxiliar = new ArrayList<>();
-        piezas.stream().filter(pieza -> !pieza.estaViva()).forEach(auxiliar::add);
+        piezas.stream().filter(pieza -> pieza.estaMuerta()).forEach(auxiliar::add);
         return auxiliar.size()==piezas.size();
     }
 

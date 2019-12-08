@@ -65,6 +65,7 @@ public class Jinete extends PiezaAtacante {
     @Override
     public boolean sePuederMoverA(int posFinalX, int posFinalY) {
         return CAPACIDAD_DESPLAZAMIENTO == ubicacion.getDistanciaAOtroPunto(posFinalX,posFinalY);
+        //Deberia ser mayor al resto, tiene un caballo. Pero enunciado...
     }
 
     @Override

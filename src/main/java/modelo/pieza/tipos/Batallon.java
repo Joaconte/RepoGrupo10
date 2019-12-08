@@ -53,6 +53,7 @@ public class Batallon {
         });
 
     }
+
     public boolean chocariaCon(Pieza pieza, ArrayList<Pieza> listadoDeSoldados, int variacionX, int variacionY){
         Ubicacion ubicacionTentativa = pieza.darUbicacionTentativa(variacionX,variacionY);
         AtomicBoolean choca = new AtomicBoolean(false);

@@ -32,7 +32,7 @@ public class CasillaOcupada implements EstadoCasilla{
 
     @Override
     public EstadoCasilla sinTropasMuertas() {
-        if (!pieza.estaViva()) return new CasillaLibre();
+        if (pieza.estaMuerta()) return new CasillaLibre();
         return this;
     }
 
