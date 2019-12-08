@@ -96,28 +96,20 @@ public class TableroTest {
 
         //-----------Mocks Piezas------------------
         Jinete pieza1 = Mockito.mock(Jinete.class);
-        Ubicacion ubicacion = Mockito.mock(Ubicacion.class);
-        Mockito.when(ubicacion.getPosicionEnX()).thenReturn(0);
-        Mockito.when(ubicacion.getPosicionEnY()).thenReturn(0);
-        Mockito.when(pieza1.getUbicacion()).thenReturn(ubicacion);
+        Mockito.when(pieza1.getPosicionEnFilaQueOcupa()).thenReturn(0);
+        Mockito.when(pieza1.getPosicionEnColumnaQueOcupa()).thenReturn(0);
 
         Jinete pieza2 = Mockito.mock(Jinete.class);
-        Ubicacion ubicacionDos = Mockito.mock(Ubicacion.class);
-        Mockito.when(ubicacionDos.getPosicionEnX()).thenReturn(1);
-        Mockito.when(ubicacionDos.getPosicionEnY()).thenReturn(0);
-        Mockito.when(pieza2.getUbicacion()).thenReturn(ubicacionDos);
+        Mockito.when(pieza1.getPosicionEnFilaQueOcupa()).thenReturn(1);
+        Mockito.when(pieza1.getPosicionEnColumnaQueOcupa()).thenReturn(0);
 
         Jinete pieza3 = Mockito.mock(Jinete.class);
-        Ubicacion ubicacionTres = Mockito.mock(Ubicacion.class);
-        Mockito.when(ubicacionTres.getPosicionEnX()).thenReturn(0);
-        Mockito.when(ubicacionTres.getPosicionEnY()).thenReturn(1);
-        Mockito.when(pieza3.getUbicacion()).thenReturn(ubicacionTres);
+        Mockito.when(pieza1.getPosicionEnFilaQueOcupa()).thenReturn(0);
+        Mockito.when(pieza1.getPosicionEnColumnaQueOcupa()).thenReturn(1);
 
         Jinete pieza4 = Mockito.mock(Jinete.class);
-        Ubicacion ubicacionCuatro = Mockito.mock(Ubicacion.class);
-        Mockito.when(ubicacionCuatro.getPosicionEnX()).thenReturn(1);
-        Mockito.when(ubicacionCuatro.getPosicionEnY()).thenReturn(1);
-        Mockito.when(pieza4.getUbicacion()).thenReturn(ubicacionCuatro);
+        Mockito.when(pieza1.getPosicionEnFilaQueOcupa()).thenReturn(1);
+        Mockito.when(pieza1.getPosicionEnColumnaQueOcupa()).thenReturn(1);
 
         //-----------Ocupar Tablero------------------
 

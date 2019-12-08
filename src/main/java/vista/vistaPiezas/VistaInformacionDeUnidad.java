@@ -41,8 +41,8 @@ public class VistaInformacionDeUnidad extends VBox {
         datosActualizables.getChildren().clear();
         datosActualizables.setAlignment(Pos.CENTER);
         datosActualizables.getChildren().add(new Label("Unidad de Jugador " + pieza.getEquipo() ));
-        datosActualizables.getChildren().add(new Label("Columna: " + pieza.getUbicacion().getPosicionEnX() ));
-        datosActualizables.getChildren().add(new Label("Fila " +  pieza.getUbicacion().getPosicionEnY() ));
+        datosActualizables.getChildren().add(new Label("Columna: " + pieza.getPosicionEnColumnaQueOcupa() ));
+        datosActualizables.getChildren().add(new Label("Fila " +  pieza.getPosicionEnFilaQueOcupa() ));
         datosActualizables.getChildren().add((new Label("Vida restante: " + pieza.getPuntosVida())));
     }
 

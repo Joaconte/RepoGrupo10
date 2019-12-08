@@ -18,7 +18,7 @@ public class Ubicacion {
         return posicionEnY;
     }
 
-    public boolean esIgual(Ubicacion ubicacion) { return (this.posicionEnX==ubicacion.getPosicionEnX() && this.posicionEnY==ubicacion.getPosicionEnY()); }
+    public boolean esIgual(Ubicacion ubicacion) { return ubicacion.getDistanciaAOtroPunto(posicionEnX,posicionEnY)==0; }
 
 
     public int getDistanciaAOtroPunto(int otraPosEnX, int otraPosEnY) {
