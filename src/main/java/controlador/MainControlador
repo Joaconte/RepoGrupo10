@@ -5,7 +5,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
-import vista.CamposDeTexto;
+import vista.faseBienvenida.CamposDeTexto;
 import vista.VistaDeTablero;
 
 public class MainControlador implements EventHandler<KeyEvent> {

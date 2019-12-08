@@ -1,9 +1,7 @@
 package vista.faseBienvenida;
 
-import controlador.buttonHandlers.BotonAgregarJugadorEventHandler;
 import controlador.buttonHandlers.BotonIniciarPartidaEventHandler;
 import javafx.scene.control.Button;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import modelo.Juego;
 
