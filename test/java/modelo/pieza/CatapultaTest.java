@@ -43,7 +43,7 @@ public class CatapultaTest {
         Tablero tablero= Mockito.mock(Tablero.class);
         List<Pieza> lista = new ArrayList<>();
         lista.add(atacada);
-        Mockito.when(tablero.getPiezasAdycentesInfinitas(atacada.getUbicacion())).thenReturn(lista); //Probado en modelo.tablero
+        Mockito.when(tablero.getPiezasAdycentesInfinitas(atacada.getPosicionEnColumnaQueOcupa(),atacada.getPosicionEnFilaQueOcupa())).thenReturn(lista); //Probado en modelo.tablero
 
         atacante.atacar(atacada,tablero);
     }
@@ -57,7 +57,7 @@ public class CatapultaTest {
         Tablero tablero= Mockito.mock(Tablero.class);
         List<Pieza> lista = new ArrayList<>();
         lista.add(atacada);
-        Mockito.when(tablero.getPiezasAdycentesInfinitas(atacada.getUbicacion())).thenReturn(lista); //Probado en modelo.tablero
+        Mockito.when(tablero.getPiezasAdycentesInfinitas(atacada.getPosicionEnColumnaQueOcupa(),atacada.getPosicionEnFilaQueOcupa())).thenReturn(lista); //Probado en modelo.tablero
 
         atacante.atacar(atacada,tablero);
     }
@@ -72,7 +72,7 @@ public class CatapultaTest {
         Tablero tablero= Mockito.mock(Tablero.class);
         List<Pieza> lista = new ArrayList<>();
         lista.add(atacada);
-        Mockito.when(tablero.getPiezasAdycentesInfinitas(atacada.getUbicacion())).thenReturn(lista); //Probado en modelo.tablero
+        Mockito.when(tablero.getPiezasAdycentesInfinitas(atacada.getPosicionEnColumnaQueOcupa(),atacada.getPosicionEnFilaQueOcupa())).thenReturn(lista); //Probado en modelo.tablero
 
         atacante.atacar(atacada,tablero);
     }
@@ -87,7 +87,7 @@ public class CatapultaTest {
         Tablero tablero= Mockito.mock(Tablero.class);
         List<Pieza> lista = new ArrayList<>();
         lista.add(atacada);
-        Mockito.when(tablero.getPiezasAdycentesInfinitas(atacada.getUbicacion())).thenReturn(lista); //Probado en modelo.tablero
+        Mockito.when(tablero.getPiezasAdycentesInfinitas(atacada.getPosicionEnColumnaQueOcupa(),atacada.getPosicionEnFilaQueOcupa())).thenReturn(lista); //Probado en modelo.tablero
 
         atacante.atacar(atacada,tablero);
         assertEquals(vidaAntesDelAtaque-20,atacada.getPuntosVida(),1);
@@ -114,7 +114,7 @@ public class CatapultaTest {
         lista.add(atacadaPorAdyacente3);
         lista.add(atacadaPorAdyacente4);
         lista.add(atacadaPorAdyacente5);
-        Mockito.when(tablero.getPiezasAdycentesInfinitas(atacada.getUbicacion())).thenReturn(lista); //Probado en modelo.tablero
+        Mockito.when(tablero.getPiezasAdycentesInfinitas(atacada.getPosicionEnColumnaQueOcupa(),atacada.getPosicionEnFilaQueOcupa())).thenReturn(lista); //Probado en modelo.tablero
 
         atacante.atacar(atacada,tablero);
 

@@ -21,7 +21,7 @@ public class Tablero {
     }
 
     public void removerTropasMuertas(){
-        columnas.forEach(columna->columna.removerTropasMuertas());
+        columnas.forEach(Columna::removerTropasMuertas);
     }
 
     public void moverUnidad(Pieza pieza, int posFinalX, int posFinalY) throws DesplazamientoInvalidoException {
@@ -74,23 +74,20 @@ public class Tablero {
         return (fila<FILAS && 0<=fila) && (columna<COLUMNAS && columna>=0);
     }
 
-    private ArrayList<Casilla> getCasillasEntreRangos(Ubicacion ubicacion, int radioInicial, int radioFinal){
+    private ArrayList<Casilla> getCasillasEntreRangos(int posicionColumna, int posicionEnFila, int radioInicial, int radioFinal){
 
         ArrayList<Casilla> listadoDeCasillas = new ArrayList<>();
 
-        int posicionEnX = ubicacion.getPosicionEnX();
-        int posicionEnY = ubicacion.getPosicionEnY();
-
         //Problemas de borde
-        int inicioRadio1X = Math.max( 0, posicionEnX - radioInicial );
-        int finRadio1X = Math.min( 19, posicionEnX + radioInicial );
-        int inicioRadio2X = Math.max( 0, posicionEnX - radioFinal );
-        int finRadio2X = Math.min( 19, posicionEnX + radioFinal );
+        int inicioRadio1X = Math.max( 0, posicionColumna - radioInicial );
+        int finRadio1X = Math.min( 19, posicionColumna + radioInicial );
+        int inicioRadio2X = Math.max( 0, posicionColumna - radioFinal );
+        int finRadio2X = Math.min( 19, posicionColumna + radioFinal );
 
-        int inicioRadio1Y = Math.max( 0, posicionEnY - radioInicial );
-        int finRadio1Y = Math.min( 19, posicionEnY + radioInicial );
-        int inicioRadio2Y = Math.max( 0, posicionEnY - radioFinal );
-        int finRadio2Y = Math.min( 19, posicionEnY + radioFinal );
+        int inicioRadio1Y = Math.max( 0, posicionEnFila - radioInicial );
+        int finRadio1Y = Math.min( 19, posicionEnFila + radioInicial );
+        int inicioRadio2Y = Math.max( 0, posicionEnFila - radioFinal );
+        int finRadio2Y = Math.min( 19, posicionEnFila + radioFinal );
 
         for (int i = inicioRadio2X; i <= inicioRadio1X ; i++){
 
@@ -131,38 +128,32 @@ public class Tablero {
         return listadoDeCasillas;
     }
 
-    public List<Casilla> getCasillasVaciasAdyacentes(Ubicacion ubicacion) {
-        return this.getCasillasEntreRangos(ubicacion, 1, 1).stream()
-                .filter(c-> !c.estaOcupada())
-                .collect(Collectors.toList());
+
+    public List<Pieza> getPiezasAdyacentes(int posicionColumna, int posicionFila){
+        return getPiezasEnRadio(posicionColumna,posicionFila, 1, 1);
     }
 
-
-    public List<Pieza> getPiezasAdyacentes(Ubicacion ubicacion){
-        return getPiezasEnRadio(ubicacion, 1, 1);
+    public List<Pieza> getPiezasAdyacentesDentroDeRadio(int posicionColumna, int posicionFila, int radio){
+        return getPiezasEnRadio(posicionColumna,posicionFila, 1, radio);
     }
 
-    public List<Pieza> getPiezasAdyacentesDentroDeRadio(Ubicacion ubicacion, int radio){
-        return getPiezasEnRadio(ubicacion, 1, radio);
-    }
-
-    private List<Pieza> getPiezasEnRadio(Ubicacion ubicacion, int rangoInicial, int rangoFinal) {
-        return this.getCasillasEntreRangos(ubicacion, rangoInicial, rangoFinal).stream()
+    private List<Pieza> getPiezasEnRadio(int posicionColumna, int posicionFila, int rangoInicial, int rangoFinal) {
+        return this.getCasillasEntreRangos(posicionColumna,posicionFila, rangoInicial, rangoFinal).stream()
                 .filter(Casilla::estaOcupada)
                 .map(Casilla::getContenido)
                 .collect(Collectors.toList());
     }
 
-    public List<Pieza> getPiezasAdycentesInfinitas(Ubicacion ubicacion){
+    public List<Pieza> getPiezasAdycentesInfinitas(int posicionColumna, int posicionFila){
         ArrayList<Pieza> listaPiezas= new ArrayList<>();
-        return getPiezasAdycentesRecursivo(ubicacion, listaPiezas);
+        return getPiezasAdycentesRecursivo(posicionColumna,posicionFila, listaPiezas);
     }
 
-    public List<Pieza> getPiezasAdycentesRecursivo( Ubicacion ubicacion, ArrayList<Pieza> piezas ){
-        List<Pieza> nuevasPiezas = getPiezasAdyacentes(ubicacion);
+    public List<Pieza> getPiezasAdycentesRecursivo( int posicionColumna,int posicionFila, ArrayList<Pieza> piezas ){
+        List<Pieza> nuevasPiezas = getPiezasAdyacentes(posicionColumna,posicionFila);
         nuevasPiezas.stream().filter(pieza -> !piezas.contains(pieza))
                     .forEach(pieza->{ piezas.add(pieza);
-                                      getPiezasAdycentesRecursivo(pieza.getUbicacion(),piezas);
+                                      getPiezasAdycentesRecursivo(pieza.getPosicionEnColumnaQueOcupa(),pieza.getPosicionEnFilaQueOcupa(),piezas);
                              });
         return piezas;
     }

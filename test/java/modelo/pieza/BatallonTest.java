@@ -90,4 +90,5 @@ public class BatallonTest {
         assertEquals(1,(int)posicionesFinalesX.get(2));
         assertEquals(1,(int)posicionesFinalesY.get(2));
     }
+
 }
