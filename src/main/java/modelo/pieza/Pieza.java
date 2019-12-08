@@ -101,15 +101,12 @@ public abstract class Pieza {
 
     public abstract boolean puedeTenerBatallon();
 
-    public int darCambioDePosicionEnXQueNecesitaParaMoverseA(int posicionX){return ubicacion.getVariacionEnX(posicionX);}
+    public int darVariacionEnXPara(int unaPosicionEnX){return ubicacion.getVariacionEnX(unaPosicionEnX);}
 
-    public  int darCambioDePosicionEnYQueNecesitaParaMoverseA(int posicionY){return ubicacion.getVariacionEnY(posicionY);}
+    public  int darVariacionEnYPara(int unaPosicionEnY){return ubicacion.getVariacionEnY(unaPosicionEnY);}
 
-    public boolean chocariaCon(ArrayList<Pieza> listadoDeSoldados, int variacionX, int variacionY){
-        Ubicacion ubicacionTentativa = ubicacion.desplazarPorVariacion(variacionX,variacionY);
-        AtomicBoolean choca = new AtomicBoolean(false);
-        listadoDeSoldados.stream().filter(p->p.getDistanciaAUbicacion(ubicacionTentativa)==0).forEach(p->choca.set(true));
-        return choca.get();
+    public Ubicacion darUbicacionTentativa(int variacionX, int variacionY){
+        return ubicacion.desplazarPorVariacion(variacionX,variacionY);
     }
 
     public int getPosicionEnColumnaQueOcupa(){

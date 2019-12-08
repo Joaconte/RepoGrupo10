@@ -37,7 +37,7 @@ public class VistaUnidad extends Label{
         avatar.setFitHeight(45);
         avatar.setFitWidth(45);
         this.setGraphic(avatar);
-        vistaDeTablero.agregarUnidad(this, pieza.getUbicacion().getPosicionEnX(), pieza.getUbicacion().getPosicionEnY() );
+        vistaDeTablero.agregarUnidad(this, pieza.getPosicionEnColumnaQueOcupa(), pieza.getPosicionEnFilaQueOcupa() );
     }
 
 
