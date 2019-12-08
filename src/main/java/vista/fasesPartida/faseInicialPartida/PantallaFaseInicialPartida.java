@@ -1,52 +1,38 @@
 package vista.fasesPartida.faseInicialPartida;
 
-import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import modelo.Juego;
 import resources.sonidos.Audio;
 import vista.VistaDeTablero;
-import vista.fasesPartida.EtiquetaTurnoJugador;
-import vista.fasesPartida.faseInicialPartida.botonesAgregarPiezas.ContenedorElegirPieza;
 
 public class PantallaFaseInicialPartida extends HBox {
 
-    private VBox barraLateral;
-    private VistaDeTablero vistaDeTablero;
-    private EtiquetaTurnoJugador etiquetaDeJugadorEnTurno;
-    private EtiquetaPresupuestoJugador etiquetaPresupuestoDelJugador;
-    private ContenedorElegirPieza botoneraPiezasACrear;
-    private BotonConfirmarEjercito botonConfirmarEjercito;
-    private Label etiquetaComunicacion;
-
     public PantallaFaseInicialPartida(Juego juego, Stage escenarioPrincipal){
-        //Audio.reproducirCargaJugadores();
         Audio.reproducirMusica("registro");
-
-        this.setSpacing(10);
-
-        this.barraLateral = new VBox();
-        this.etiquetaComunicacion = new Label("Desplazate en el tablero para posicionar piezas.");
-        this.etiquetaPresupuestoDelJugador = new EtiquetaPresupuestoJugador( juego );
-        this.etiquetaDeJugadorEnTurno = new EtiquetaTurnoJugador( juego );
-        this.vistaDeTablero = new VistaDeTablero(juego.getTablero(),escenarioPrincipal);
-        this.botoneraPiezasACrear = new ContenedorElegirPieza(vistaDeTablero,  etiquetaPresupuestoDelJugador,etiquetaComunicacion);
-        this.botonConfirmarEjercito = new BotonConfirmarEjercito(etiquetaDeJugadorEnTurno,etiquetaPresupuestoDelJugador,juego,etiquetaComunicacion,escenarioPrincipal,vistaDeTablero);
-
+        escenarioPrincipal.setFullScreen(true);
+        this.setSpacing(15);
+        vistaDeFondo();
+        VistaDeTablero vistaDeTablero = new VistaDeTablero(juego.getTablero(), escenarioPrincipal);
+        BarraLateralOpciones barraLateral = new BarraLateralOpciones(juego, vistaDeTablero, escenarioPrincipal);
 
         this.getChildren().add(vistaDeTablero);
-        this.configurarBarraLateral();
         this.getChildren().add(barraLateral);
     }
 
-
-    private void configurarBarraLateral() {
-
-        barraLateral.setSpacing(15);
-        barraLateral.getChildren().addAll(etiquetaDeJugadorEnTurno.etiqueta, etiquetaPresupuestoDelJugador.etiqueta,etiquetaComunicacion);
-        barraLateral.getChildren().addAll( botoneraPiezasACrear, botonConfirmarEjercito);
+    private void vistaDeFondo(){
+        Image imangenMuro = new Image("resources/texturas/muro2.jpg");
+        Background fondoDeContenedor = new Background(new BackgroundImage(imangenMuro,
+                BackgroundRepeat.REPEAT,
+                BackgroundRepeat.REPEAT,
+                BackgroundPosition.DEFAULT,
+                new BackgroundSize(90, 90, false, false, false, false)));
+        this.setBackground(fondoDeContenedor);
     }
+
+
+
 
 
 }

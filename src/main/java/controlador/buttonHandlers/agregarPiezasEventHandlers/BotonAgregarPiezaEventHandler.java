@@ -2,8 +2,7 @@ package controlador.buttonHandlers.agregarPiezasEventHandlers;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Label;
-import javafx.scene.paint.Color;
+import modelo.Juego;
 import modelo.jugador.PiezaFueraDeSectorException;
 import modelo.jugador.UbicacionInvalidaException;
 import modelo.jugador.presupuesto.CompraInvalidaException;
@@ -11,32 +10,30 @@ import modelo.jugador.presupuesto.PresupuestoAgotadoException;
 import modelo.pieza.Pieza;
 import resources.sonidos.Audio;
 import vista.VistaDeTablero;
-import vista.fasesPartida.faseInicialPartida.EtiquetaPresupuestoJugador;
+import vista.fasesPartida.faseInicialPartida.BarraLateralOpciones;
 
 public abstract class BotonAgregarPiezaEventHandler implements EventHandler<ActionEvent> {
 
-    private Label textoComunicador;
     protected VistaDeTablero vistaDeTablero;
-    protected EtiquetaPresupuestoJugador etiquetaPuntos;
     private String nombre;
+    private BarraLateralOpciones vistaLateral;
+    private Juego juego;
 
-    public BotonAgregarPiezaEventHandler( VistaDeTablero vistaDeTablero, EtiquetaPresupuestoJugador etiquetaPuntos, String nombre, Label etiquetaComunicadora) {
+    public BotonAgregarPiezaEventHandler(VistaDeTablero vistaDeTablero, String nombre, BarraLateralOpciones vistaLateral, Juego juego) {
 
-        textoComunicador = etiquetaComunicadora;
+        this.juego=juego;
         this.vistaDeTablero = vistaDeTablero;
-        this.etiquetaPuntos= etiquetaPuntos;
         this.nombre = nombre;
+        this.vistaLateral=vistaLateral;
     }
 
     @Override
     public void handle(ActionEvent actionEvent) {
         try {
             crearPiezaYAgregarATablero(vistaDeTablero.getUbicacionDelCursorX(), vistaDeTablero.getUbicacionDelCursorY());
-            etiquetaPuntos.actualizarEtiqueta();
 
-        } catch (NumberFormatException e) {
-            this.textoComunicador.setText("Debe ingresar numeros");
-            this.textoComunicador.setTextFill(Color.web("#FF0000"));
+        } catch (Exception e) {
+            vistaLateral.vistaAlertas(e.getMessage());
             Audio.reproducirAlerta();
         }
 
@@ -44,27 +41,16 @@ public abstract class BotonAgregarPiezaEventHandler implements EventHandler<Acti
 
     public void crearPiezaYAgregarATablero(int x, int y){
         try {
-            agregarPiezaATablero( etiquetaPuntos.juego.crearPieza(nombre, x, y));
-            this.textoComunicador.setText("Tropa agregada con exito");
-            this.textoComunicador.setTextFill(Color.web("#336600"));
-
+            agregarPiezaATablero( juego.crearPieza(nombre, x, y),juego);
             Audio.reproducirCreacionUnidad(nombre.toLowerCase());
-
+            vistaLateral.vistaPuntosActualizada(nombre);
         }
-        catch ( PiezaFueraDeSectorException e){
-            this.textoComunicador.setText("Ubica la pieza en tu sector.");
-            this.textoComunicador.setTextFill(Color.web("#FF0000")); }
-        catch (PresupuestoAgotadoException e){
-            this.textoComunicador.setText("Ya puedes acabar tu turno.");
-            this.textoComunicador.setTextFill(Color.web("#FF0000")); }
-        catch (UbicacionInvalidaException e){
-            this.textoComunicador.setText("Ya hay una pieza en la casilla.");
-            this.textoComunicador.setTextFill(Color.web("#FF0000")); }
-        catch (CompraInvalidaException  e){
-            this.textoComunicador.setText("Presupuesto insuficiente para la pieza.");
-            this.textoComunicador.setTextFill(Color.web("#FF0000")); }
+        catch ( PiezaFueraDeSectorException e){ vistaLateral.vistaAlertas("Ubica la pieza en tu sector."); }
+        catch (PresupuestoAgotadoException e){ vistaLateral.vistaAlertas("Ya puedes acabar tu turno.");}
+        catch (UbicacionInvalidaException e){ vistaLateral.vistaAlertas("Casilla ocupada.");}
+        catch (CompraInvalidaException  e){ vistaLateral.vistaAlertas("Presupuesto insuficiente para la pieza.");}
     }
 
-    abstract void agregarPiezaATablero(Pieza pieza);
+    abstract void agregarPiezaATablero(Pieza pieza, Juego juego);
 
 }

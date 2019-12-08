@@ -28,7 +28,7 @@ public class VistaDeTablero extends Group {
     private int anchuraCelda = 45;
     private Stage stage;
     private Tablero tablero;
-    private Rectangle rectanguloDeMovimiento = new Rectangle(45,45,Color.rgb(0,0,0,0.4));
+    private Rectangle rectanguloDeMovimiento = new Rectangle(45,45,Color.rgb(0,0,0));
     private GridPane contenedorTabla;
     private Pane[][] casillaTabla;
     private VBox vistaUnidadClikeada = new VBox();
@@ -72,6 +72,12 @@ public class VistaDeTablero extends Group {
                 v.setOnMouseClicked(new ClickEnZonaEventHandler(rectanguloDeMovimiento,v, this));
                 v.setMinHeight(this.alturaCelda);
                 v.setMinWidth(this.anchuraCelda);
+                Background fondoDeContenedor = new Background(new BackgroundImage(new Image("resources/texturas/campo.jpg"),
+                        BackgroundRepeat.NO_REPEAT,
+                        BackgroundRepeat.NO_REPEAT,
+                        BackgroundPosition.CENTER,
+                        new BackgroundSize(42, 42, false, false, false, false)));
+                v.setBackground(fondoDeContenedor);
                 casillaTabla[i][j] = v;
                 contenedorTabla.add(v , i, j);
             }

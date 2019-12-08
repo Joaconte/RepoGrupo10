@@ -1,28 +1,34 @@
 package vista.fasesPartida.faseInicialPartida;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import modelo.Juego;
 
-public class EtiquetaPresupuestoJugador {
+public class EtiquetaPresupuestoJugador extends Label{
 
-    public Label etiqueta;
-    // deberia ser privado
-    public Juego juego;
+    private Juego juego;
 
     public EtiquetaPresupuestoJugador(Juego juego){
-
-        etiqueta = new Label();
+        super();
         this.juego = juego;
-        etiqueta.setFont(new Font( "Arial", 25));
-        etiqueta.setTextFill(Color.web("FFB900"));
+        this.setFont(new Font( "Arial", 25));
+        this.setTextFill(Color.web("FFB900"));
         actualizarEtiqueta();
+        this.setMinWidth(390);
+        this.setAlignment(Pos.CENTER);
+        this.setStyle("-fx-background-color: gray;");
     }
 
     public void actualizarEtiqueta(){
-
-        etiqueta.setText("Puntos : " + juego.getPuntosJugadorEnTurno());
+        this.setTextFill(Color.web("FFB900"));
+        this.setText("Puntos : " + juego.getPuntosJugadorEnTurno());
     }
 
+    public void actualizarEtiqueta(String texto,String color){
+        this.setText(texto);
+        this.setTextFill(Color.web(color));
+
+    }
 }

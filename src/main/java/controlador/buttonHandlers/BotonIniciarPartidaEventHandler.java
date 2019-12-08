@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import modelo.Juego;
 import resources.sonidos.Audio;
@@ -24,10 +25,10 @@ public class BotonIniciarPartidaEventHandler implements EventHandler<ActionEvent
     public void handle(ActionEvent actionEvent) {
 
         PantallaFaseInicialPartida pantallaFaseInicialPartida = new PantallaFaseInicialPartida(juego, escenarioPrincipal);
-        ScrollPane panelConBarrasDeMovimiento = new ScrollPane();
-        panelConBarrasDeMovimiento.setContent(pantallaFaseInicialPartida);
-        Scene escenaFaseInicial = new Scene (panelConBarrasDeMovimiento,1200,950);
+        ScrollPane barras = new ScrollPane(pantallaFaseInicialPartida);
+        Scene escenaFaseInicial = new Scene (barras);
         escenarioPrincipal.setScene(escenaFaseInicial);
+        escenarioPrincipal.setResizable(true);
         Audio.reproducirClick();
     }
 

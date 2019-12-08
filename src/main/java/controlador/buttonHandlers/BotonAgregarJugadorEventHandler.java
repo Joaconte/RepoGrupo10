@@ -2,7 +2,6 @@ package controlador.buttonHandlers;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import modelo.Juego;
 import vista.faseBienvenida.BotonIniciarPartida;
@@ -22,7 +21,6 @@ public class BotonAgregarJugadorEventHandler implements EventHandler<ActionEvent
         botonIniciarPartida=new BotonIniciarPartida(juego, stage);
         botonIniciarPartida.setDisable(true);
         botonIniciarPartida.setVisible(false);
-
     }
 
     @Override
@@ -35,27 +33,27 @@ public class BotonAgregarJugadorEventHandler implements EventHandler<ActionEvent
         if (jugadorUno.isEmpty() || jugadorDos.isEmpty()) {
             botonIniciarPartida.setDisable(true);
             botonIniciarPartida.setVisible(false);
-            menuDeCargaDeJugadores.comunicarEnEtiquetaUno("Ingresar dos nombres","#FF0000" );
-            menuDeCargaDeJugadores.comunicarEnEtiquetaDos("e iniciar la partida.","#FF0000");
+            menuDeCargaDeJugadores.vistaComunicadorUno("Ingresar dos nombres","#FF0000" );
+            menuDeCargaDeJugadores.vistaComunicadorDos("e iniciar la partida.","#FF0000");
 
         } else if (jugadorUno.equals(jugadorDos)) {
             botonIniciarPartida.setDisable(true);
             botonIniciarPartida.setVisible(false);
-            menuDeCargaDeJugadores.comunicarEnEtiquetaUno("Ingresar dos nombres distintos","#FF0000" );
-            menuDeCargaDeJugadores.comunicarEnEtiquetaDos("e iniciar la partida.","#FF0000");
+            menuDeCargaDeJugadores.vistaComunicadorUno("Ingresar dos nombres distintos","#FF0000" );
+            menuDeCargaDeJugadores.vistaComunicadorDos("e iniciar la partida.","#FF0000");
 
 
         } else if (jugadorUno.length() > 10 || jugadorDos.length() > 10 ) {
             botonIniciarPartida.setDisable(true);
             botonIniciarPartida.setVisible(false);
-            menuDeCargaDeJugadores.comunicarEnEtiquetaUno("Ingresar dos nombres de menos","#FF0000" );
-            menuDeCargaDeJugadores.comunicarEnEtiquetaDos("de 10 letras e iniciar la partida.","#FF0000");
+            menuDeCargaDeJugadores.vistaComunicadorUno("Ingresar dos nombres de menos","#FF0000" );
+            menuDeCargaDeJugadores.vistaComunicadorDos("de 10 letras e iniciar la partida.","#FF0000");
 
 
         } else {
 
-            menuDeCargaDeJugadores.comunicarEnEtiquetaUno("Jugador "+ jugadorUno + " agregado correctamente.","#336600" );
-            menuDeCargaDeJugadores.comunicarEnEtiquetaDos("Jugador "+ jugadorDos + " agregado correctamente.","#336600");
+            menuDeCargaDeJugadores.vistaComunicadorUno("Jugador "+ jugadorUno + " agregado correctamente.","#FFFFFF" );
+            menuDeCargaDeJugadores.vistaComunicadorDos("Jugador "+ jugadorDos + " agregado correctamente.","#FFFFFF");
             juego.agregarJugadores(jugadorUno, jugadorDos);
             botonIniciarPartida.setDisable(false);
             botonIniciarPartida.setVisible(true);

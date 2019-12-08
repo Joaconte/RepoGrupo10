@@ -23,14 +23,14 @@ public class PantallaBienvenida extends BorderPane {
                 BackgroundRepeat.REPEAT,
                 BackgroundRepeat.REPEAT,
                 BackgroundPosition.DEFAULT,
-                new BackgroundSize(70, 70, false, false, false, false)));
+                new BackgroundSize(90, 90, false, false, false, false)));
         this.setBackground(fondoDeContenedor);
 
     }
 
     private void setCentro(Juego juego, Stage escenarioPrincipal) {
         VBox menuVerticalDeInicio = new MenuCargaJugadores(juego, escenarioPrincipal);
-        menuVerticalDeInicio.setMaxWidth(400);
+        menuVerticalDeInicio.setMaxWidth(440);
         this.setCenter(menuVerticalDeInicio);
     }
 
@@ -43,7 +43,7 @@ public class PantallaBienvenida extends BorderPane {
         Label etiqueta = new Label ("AlgoChess");
         etiqueta.setAlignment(Pos.CENTER);
         etiqueta.setFont(Font.font("tahoma", FontWeight.EXTRA_BOLD, 48));
-        etiqueta.setTextFill(Color.rgb(0,0,0,0.5));
+        etiqueta.setTextFill(Color.rgb(255,255,255,0.8));
 
         barraArriba.getChildren().add(rectangle);
         barraArriba.getChildren().add(etiqueta);

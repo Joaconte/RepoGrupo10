@@ -1,50 +1,55 @@
 package vista.fasesPartida.faseInicialPartida.botonesAgregarPiezas;
 
 import javafx.geometry.Pos;
-import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import modelo.Juego;
+import modelo.pieza.Pieza;
 import modelo.pieza.tipos.Catapulta;
 import modelo.pieza.tipos.Curandero;
 import modelo.pieza.tipos.Infanteria;
 import modelo.pieza.tipos.Jinete;
 import vista.VistaDeTablero;
-import vista.fasesPartida.faseInicialPartida.EtiquetaPresupuestoJugador;
+import vista.fasesPartida.faseInicialPartida.BarraLateralOpciones;
 import vista.vistaPiezas.VistaInformacionDeUnidad;
 
 public class ContenedorElegirPieza extends GridPane {
-    public ContenedorElegirPieza(VistaDeTablero vistaDeTablero, EtiquetaPresupuestoJugador etiquetaPuntos, Label etiquteComunicadora){
 
-        VistaInformacionDeUnidad infanteria = new VistaInformacionDeUnidad("infanteria",new Infanteria());
-        VBox pieza1 = new VBox(5);
-        BotonAgregarInfanteria btnInfanteria = new BotonAgregarInfanteria(vistaDeTablero, etiquetaPuntos,etiquteComunicadora);
-        pieza1.getChildren().addAll(infanteria, btnInfanteria);
+    private BotonAgregarInfanteria btnInfanteria;
+    private BotonAgregarCurandero btnCurandero;
+    private  BotonAgregarJinete btnJinete;
+    private BotonAgregarCatapulta botonCatapulta;
 
-        VistaInformacionDeUnidad curandero = new VistaInformacionDeUnidad("curandero",new Curandero());
-        VBox pieza2 = new VBox(5);
-        BotonAgregarCurandero btnCurandero = new BotonAgregarCurandero( vistaDeTablero, etiquetaPuntos,etiquteComunicadora);
-        pieza2.getChildren().addAll(curandero, btnCurandero);
+    public ContenedorElegirPieza(VistaDeTablero vistaDeTablero, BarraLateralOpciones vistaLateral, Juego juego) {
 
-        VistaInformacionDeUnidad jinete = new VistaInformacionDeUnidad("jinete",new Jinete());
-        VBox pieza3 = new VBox(5);
-        BotonAgregarJinete btnJinete = new BotonAgregarJinete(vistaDeTablero, etiquetaPuntos, etiquteComunicadora);
-        pieza3.getChildren().addAll(jinete, btnJinete);
+        btnInfanteria = new BotonAgregarInfanteria(vistaDeTablero, vistaLateral, juego);
+        btnCurandero = new BotonAgregarCurandero(vistaDeTablero, vistaLateral, juego);
+        btnJinete = new BotonAgregarJinete(vistaDeTablero, vistaLateral, juego);
+        botonCatapulta = new BotonAgregarCatapulta(vistaDeTablero, vistaLateral, juego);
 
-        VistaInformacionDeUnidad catapulta = new VistaInformacionDeUnidad("catapulta",new Catapulta());
-        VBox pieza4 = new VBox(5);
-        BotonAgregarCatapulta botonCatapulta = new BotonAgregarCatapulta( vistaDeTablero, etiquetaPuntos,etiquteComunicadora);
-        pieza4.getChildren().addAll(catapulta, botonCatapulta);
+        cargarContenedor();
+    }
 
-        pieza1.setSpacing(10);
-        pieza2.setSpacing(10);
-        pieza3.setSpacing(10);
-        pieza4.setSpacing(10);
-
-        this.add(pieza1,0,0);
-        this.add(pieza2,0,1);
-        this.add(pieza3,1,0);
-        this.add(pieza4,1,1);
+    private void cargarContenedor(){
+        this.add(contenedorDePieza(btnInfanteria,"infanteria",new Infanteria()), 0, 0);
+        this.add(contenedorDePieza(btnCurandero,"curandero",new Curandero()), 0, 1);
+        this.add(contenedorDePieza(btnJinete,"jinete",new Jinete()), 1, 0);
+        this.add(contenedorDePieza(botonCatapulta,"catapulta",new Catapulta()), 1, 1);
         this.setAlignment(Pos.CENTER);
         this.autosize();
     }
+
+    private VBox contenedorDePieza(Button boton, String nombre, Pieza pieza) {
+        VistaInformacionDeUnidad vistaInformacion = new VistaInformacionDeUnidad(nombre, pieza);
+        vistaInformacion.setAlignment(Pos.CENTER);
+        VBox piezaVistaContenedor = new VBox(5);
+        vistaInformacion.setAlignment(Pos.CENTER);
+        piezaVistaContenedor.getChildren().addAll(vistaInformacion, boton);
+        piezaVistaContenedor.setSpacing(10);
+        piezaVistaContenedor.setStyle("-fx-background-color: gray;");
+        return piezaVistaContenedor;
+
+    }
+
 }

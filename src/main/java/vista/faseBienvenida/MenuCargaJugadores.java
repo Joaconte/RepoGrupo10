@@ -49,18 +49,16 @@ public class MenuCargaJugadores extends VBox {
         textoDos.setOnKeyPressed(textoEventHandler);
     }
 
-    public void comunicarEnEtiquetaUno(String texto, String color){
+    public void vistaComunicadorUno(String texto, String color){
         etiquetaUno.setTextFill(Paint.valueOf(color));
         etiquetaUno.setText(texto);
-        etiquetaUno.setFont(Font.font("Tahoma", FontWeight.BOLD,13));
-
+        etiquetaUno.setFont(Font.font("Tahoma", FontWeight.EXTRA_BOLD,15));
     }
 
-    public void comunicarEnEtiquetaDos(String texto, String color){
+    public void vistaComunicadorDos(String texto, String color){
         etiquetaDos.setTextFill(Paint.valueOf(color));
         etiquetaDos.setText(texto);
-        etiquetaDos.setFont(Font.font("Tahoma", FontWeight.BOLD,13));
-
+        etiquetaDos.setFont(Font.font("Tahoma", FontWeight.EXTRA_BOLD,15));
     }
 
     public String getCargadoEnTextoUno(){

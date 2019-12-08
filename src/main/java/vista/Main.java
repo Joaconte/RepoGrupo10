@@ -22,7 +22,6 @@ public class Main extends Application {
 
         PantallaBienvenida pantallaBienvenida = new PantallaBienvenida(escenarioPrincipal, juego);
 
-
         Audio.reproducirMusica("intro");
 
         Scene escenaDeJuego = new Scene(pantallaBienvenida, 550, 600);
