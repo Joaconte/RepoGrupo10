@@ -1,6 +1,7 @@
 package modelo.partida.fase;
 
 import modelo.jugador.Jugador;
+import modelo.jugador.UbicacionInvalidaException;
 import modelo.jugador.presupuesto.PresupuestoAgotadoException;
 import modelo.pieza.Pieza;
 import modelo.pieza.UnidadEstaMuertaException;
@@ -49,7 +50,7 @@ public class FaseMedia implements FaseDePartida{
     }
 
     @Override
-    public void moverUnidadEnTablero(Tablero tableroDePartida, Pieza pieza, int posFinalX, int posFinalY) throws DesplazamientoInvalidoException, NoSePuedeMoverException,  JugadorYaRealizoLaAccionException {
+    public void moverUnidadEnTablero(Tablero tableroDePartida, Pieza pieza, int posFinalX, int posFinalY) throws DesplazamientoInvalidoException, NoSePuedeMoverException, JugadorYaRealizoLaAccionException, UbicacionInvalidaException {
         if(movimientosDeJugador == MOVIMIENTOS_MAXIMOS) throw new JugadorYaRealizoLaAccionException();
         tableroDePartida.moverUnidad(pieza, posFinalX, posFinalY);
         pieza.mover(posFinalX,posFinalY);

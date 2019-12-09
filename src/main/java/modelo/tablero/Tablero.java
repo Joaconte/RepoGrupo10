@@ -1,5 +1,6 @@
 package modelo.tablero;
 
+import modelo.jugador.UbicacionInvalidaException;
 import modelo.pieza.Pieza;
 import modelo.pieza.tipos.NoSePuedeMoverException;
 import modelo.tablero.casilla.Casilla;
@@ -23,9 +24,11 @@ public class Tablero {
         columnas.forEach(Columna::removerTropasMuertas);
     }
 
-    public void moverUnidad(Pieza pieza, int posFinalX, int posFinalY) throws DesplazamientoInvalidoException {
+    public void moverUnidad(Pieza pieza, int posFinalX, int posFinalY) throws DesplazamientoInvalidoException, UbicacionInvalidaException {
         if (!existePosicion(posFinalX,posFinalY)){throw new DesplazamientoInvalidoException();}
+        if (casillaEstaOcupada(posFinalX,posFinalY)){throw new UbicacionInvalidaException(); }
         if (!pieza.sePuederMoverA(posFinalX,posFinalY)){throw new DesplazamientoInvalidoException();}
+
         movimiento (pieza,posFinalX,posFinalY);
     }
 
@@ -39,8 +42,8 @@ public class Tablero {
     }
 
     private void movimiento (Pieza pieza, int posFinalX, int posFinalY){
-        desocuparCasilla(pieza.getPosicionEnColumnaQueOcupa(), pieza.getPosicionEnFilaQueOcupa());
         ocuparCasilla(pieza, posFinalX, posFinalY);
+        desocuparCasilla(pieza.getPosicionEnColumnaQueOcupa(), pieza.getPosicionEnFilaQueOcupa());
     }
 
     public void ocuparCasilla(Pieza pieza, int numeroDeColumna, int numeroDeFila){

@@ -35,7 +35,7 @@ public class ClickEnPiezaModoCrearBatallonEventHandler implements EventHandler<M
                 nuevoCandidato.getJuego().formarBatallon(batallon);
                 vistaUnidadClickeada.vistaMensaje("Batallon Creado.");
             } catch (NoSirvenParaBatallonException | JugadorNoPuedeManipularEsaPiezaException e) {
-                vistaUnidadClickeada.vistaAlerta("Piezas incompatibles a batallon.");
+                vistaUnidadClickeada.vistaAlerta(e.getMessage());
             }
         }
         else {

@@ -36,18 +36,9 @@ public class ClickEnPiezaModoCuracionEventHandler implements EventHandler<MouseE
             vistaUnidadClikeada.vistaMensaje("Fue sanada con exito.");
             Audio.reproducirAtaque("heal");
 
-        } catch (UnidadNoSePuedeCurar unidadNoSePuedeCurar) {
-            vistaUnidadClikeada.vistaAlerta("Esta pieza no quiere ayuda.");
-        } catch (CurandoCuraADistanciaCortaException e) {
-            vistaUnidadClikeada.vistaAlerta("Distancia de curacion invalida.");
-        } catch (CurandoAEnemigoException e) {
-            vistaUnidadClikeada.vistaAlerta("No se puede curar a enemigos.");
-        } catch (JugadorYaRealizoLaAccionException e) {
-            vistaUnidadClikeada.vistaAlerta("Solo 3 ataques o curas por turno.");
-        } catch (PiezaYaAtacoException | JugadorNoPuedeManipularEsaPiezaException e) {
+        } catch (UnidadNoSePuedeCurar | CurandoCuraADistanciaCortaException | CurandoAEnemigoException | JugadorYaRealizoLaAccionException | PiezaYaAtacoException | JugadorNoPuedeManipularEsaPiezaException e) {
             vistaUnidadClikeada.vistaAlerta(e.getMessage());
-        }
-        finally {
+        } finally {
             vistaDeTablero.tableroFaseMediaNormalizado();
         }
     }
