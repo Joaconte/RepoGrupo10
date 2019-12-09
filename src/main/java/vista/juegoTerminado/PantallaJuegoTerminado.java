@@ -56,7 +56,7 @@ public class PantallaJuegoTerminado extends BorderPane {
         vBox.getChildren().add(new BarraMenu(escenario,juego));
         vBox.setSpacing(15);
 
-        Label etiqueta = new Label("¡Juego terminado! " + textoResultado + " Asi quedaron las estadisticas.");
+        Label etiqueta = new Label("¡Juego terminado! " + textoResultado + ". Asi quedaron las estadisticas.");
         etiqueta.setAlignment(Pos.CENTER);
         etiqueta.setFont(Font.font("tahoma", FontWeight.EXTRA_BOLD, 22));
         etiqueta.setTextFill(Color.rgb(243,156,4,0.8));
