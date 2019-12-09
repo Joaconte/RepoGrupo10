@@ -72,7 +72,7 @@ public class FaseMedia implements FaseDePartida{
     }
 
     @Override
-    public void moverBatallon(Jugador jugadorEnTurno, Tablero tableroDePartida, Infanteria infante, int posicionXFinal, int posicionYFinal) throws JugadorYaRealizoLaAccionException, NoHayBatallonException, DesplazamientoInvalidoException, NoSePuedeMoverException, PiezaYaMovioException {
+    public void moverBatallon(Jugador jugadorEnTurno, Tablero tableroDePartida, Infanteria infante, int posicionXFinal, int posicionYFinal) throws JugadorYaRealizoLaAccionException, NoHayBatallonException, DesplazamientoInvalidoException, NoSePuedeMoverException, PiezaYaMovioException, UbicacionInvalidaException {
         if(movimientosDeJugador == MOVIMIENTOS_MAXIMOS) throw new JugadorYaRealizoLaAccionException();
         if(piezaMovidas.contains(infante)) throw new PiezaYaMovioException();
         jugadorEnTurno.desplazarBatallon(tableroDePartida,infante,posicionXFinal,posicionYFinal);

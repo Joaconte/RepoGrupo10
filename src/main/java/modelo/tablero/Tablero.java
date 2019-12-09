@@ -32,7 +32,8 @@ public class Tablero {
         movimiento (pieza,posFinalX,posFinalY);
     }
 
-    public void moverBatallon(ArrayList<Integer> ubicacionX, ArrayList<Integer> ubicacionY,ArrayList<Pieza> pieza) throws NoSePuedeMoverException {
+    public void moverBatallon(ArrayList<Integer> ubicacionX, ArrayList<Integer> ubicacionY,ArrayList<Pieza> pieza) throws NoSePuedeMoverException, UbicacionInvalidaException {
+        if (casillaEstaOcupada(ubicacionX.get(0),ubicacionY.get(0))){throw new UbicacionInvalidaException(); }
         for (int i=0; i<pieza.size() ; i++){
             if (existePosicion(ubicacionX.get(i),ubicacionY.get(i) )&& !casillaEstaOcupada(ubicacionX.get(i),ubicacionY.get(i))){
                 movimiento(pieza.get(i),ubicacionX.get(i),ubicacionY.get(i));

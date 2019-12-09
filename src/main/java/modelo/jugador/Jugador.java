@@ -69,7 +69,7 @@ public class Jugador {
         return pieza.esDelEquipo(numeroDeJugador);
     }
 
-    public void desplazarBatallon(Tablero tableroDePartida, Infanteria infante, int posicionXFinal, int posicionYFinal) throws NoHayBatallonException, DesplazamientoInvalidoException, NoSePuedeMoverException {
+    public void desplazarBatallon(Tablero tableroDePartida, Infanteria infante, int posicionXFinal, int posicionYFinal) throws NoHayBatallonException, DesplazamientoInvalidoException, NoSePuedeMoverException, UbicacionInvalidaException {
         if (infante.sePuederMoverA(posicionXFinal,posicionYFinal)==false){throw new DesplazamientoInvalidoException();}
         ArrayList<Integer> ubicacionX = new ArrayList<>();
         ArrayList<Integer> ubicacionY = new ArrayList<>();
