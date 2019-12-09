@@ -36,7 +36,7 @@ public class BotonConfirmarEjercitoEventHandler implements EventHandler<ActionEv
                 PantallaFaseMediaPartida pantallaFaseMediaPartida = new PantallaFaseMediaPartida(vistaDeTablero, juego , escenarioPrincipal);
                 ScrollPane panelConBarrasDeMovimiento = new ScrollPane();
                 panelConBarrasDeMovimiento.setContent(pantallaFaseMediaPartida);
-                Scene escenaFaseInicial = new Scene (panelConBarrasDeMovimiento);
+                Scene escenaFaseInicial = new Scene (panelConBarrasDeMovimiento,1200,950);
                 escenarioPrincipal.setScene(escenaFaseInicial);
                 escenarioPrincipal.setResizable(true);
             }

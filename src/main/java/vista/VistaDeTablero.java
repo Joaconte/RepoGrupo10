@@ -33,6 +33,7 @@ public class VistaDeTablero extends Group {
     private Pane[][] casillaTabla;
     private VistaPiezaClikeada vistaUnidadClikeada = new VistaPiezaClikeada();
     private List<VistaUnidad> listaDeUnidades = new ArrayList<>();
+    private List<VistaUnidad> listaDeUnidadesBajas = new ArrayList<>();
     int ubicacionDelCursorX;
     int ubicacionDelCursorY;
 
@@ -83,13 +84,15 @@ public class VistaDeTablero extends Group {
     }
 
     public void actualizarTableroPorMuertas(){
+
         List <VistaUnidad> auxiliar = new ArrayList<>();
         listaDeUnidades.stream()
-                .filter(p-> p.getPieza().estaMuerta())
+                .filter(VistaUnidad::getEstaMuerta)
                 .forEach(p-> {Audio.reproducirMuerte(p.getNombre());
-                    casillaTabla[p.getPieza().getPosicionEnColumnaQueOcupa()][p.getPieza().getPosicionEnFilaQueOcupa()].getChildren().clear(); });
+                    listaDeUnidadesBajas.add(p);
+                    casillaTabla[p.getPosicionX()][p.getPosicionY()].getChildren().clear(); });
         listaDeUnidades.stream()
-                .filter(p->p.getPieza().getPuntosVida()>0)
+                .filter(p->!p.getEstaMuerta())
                 .forEach(auxiliar::add);
         listaDeUnidades.clear();
         listaDeUnidades.addAll(auxiliar);
@@ -176,6 +179,14 @@ public class VistaDeTablero extends Group {
 
     public void vistaComunicacion(String s) {
         vistaUnidadClikeada.vistaMensaje(s);
+    }
+
+    public List<VistaUnidad> getListaDeUnidades(){
+        return listaDeUnidades;
+    }
+
+    public List<VistaUnidad> getListaDeUnidadesBajas(){
+        return listaDeUnidadesBajas;
     }
 
 }

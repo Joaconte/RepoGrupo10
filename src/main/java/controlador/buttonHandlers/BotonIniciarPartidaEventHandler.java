@@ -26,7 +26,7 @@ public class BotonIniciarPartidaEventHandler implements EventHandler<ActionEvent
 
         PantallaFaseInicialPartida pantallaFaseInicialPartida = new PantallaFaseInicialPartida(juego, escenarioPrincipal);
         ScrollPane barras = new ScrollPane(pantallaFaseInicialPartida);
-        Scene escenaFaseInicial = new Scene (barras);
+        Scene escenaFaseInicial = new Scene (barras,1200,950);
         escenarioPrincipal.setScene(escenaFaseInicial);
         escenarioPrincipal.setResizable(true);
         Audio.reproducirClick();

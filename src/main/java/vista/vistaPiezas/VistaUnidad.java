@@ -18,6 +18,7 @@ public class VistaUnidad extends Label{
     protected VBox barraDeOpcionesDeUnidad = new VBox();
     protected Juego juego;
     private String nombre;
+    private  ImageView avatar;
 
     public VistaUnidad(Pieza pieza, VistaDeTablero vistaDeTablero, String nombre, Juego juego){
         this.juego=juego;
@@ -32,7 +33,7 @@ public class VistaUnidad extends Label{
 
     public void crearVistaEnTablero(){
         String equipo = String.valueOf(pieza.getEquipo());
-        ImageView avatar = new ImageView( "resources/texturas/" + nombre + equipo +".png");
+        avatar = new ImageView( "resources/texturas/" + nombre + equipo +".png");
         avatar.setScaleX(1);
         avatar.setScaleY(1);
         avatar.setFitHeight(45);
@@ -41,12 +42,22 @@ public class VistaUnidad extends Label{
         vistaDeTablero.agregarUnidad(this, pieza.getPosicionEnColumnaQueOcupa(), pieza.getPosicionEnFilaQueOcupa() );
     }
 
+    public ImageView getMiniAvatar(){
+        avatar.setScaleX(1);
+        avatar.setScaleY(1);
+        avatar.setFitHeight(27);
+        avatar.setFitWidth(27);
+        return avatar;}
 
     public Pieza getPieza() {
         return pieza;
     }
 
+    public Boolean getEstaMuerta() {return pieza.estaMuerta();}
+
     public String getNombre(){return nombre;}
+
+    public int getEquipo(){ return pieza.getEquipo();}
 
     public VistaInformacionDeUnidad getVistaInformacion() {
         vistaDatos.actualizarDatosEnPartida();
@@ -66,5 +77,11 @@ public class VistaUnidad extends Label{
 
     public void barraDeOpcionesNoVisible(){
         barraDeOpcionesDeUnidad.setVisible(false);
+    }
+
+    public int getPosicionX() { return pieza.getPosicionEnColumnaQueOcupa();
+    }
+
+    public int getPosicionY() {return pieza.getPosicionEnFilaQueOcupa();
     }
 }

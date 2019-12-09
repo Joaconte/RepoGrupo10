@@ -88,5 +88,8 @@ public class Juego {
         return partida.jugadorDosEsPerdedor();
     }
 
+    public void setPartida(){
+        partida=new Partida();
+    }
 }
 

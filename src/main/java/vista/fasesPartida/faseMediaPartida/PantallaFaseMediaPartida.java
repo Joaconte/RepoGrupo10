@@ -67,7 +67,7 @@ public class PantallaFaseMediaPartida extends BorderPane {
     }
 
     private void vistaArriba(Stage escenarioPrincipal){
-        this.setTop(new BarraMenu(escenarioPrincipal));
+        this.setTop(new BarraMenu(escenarioPrincipal, juego));
     }
 
     public void vistaNuevoTurno(){
