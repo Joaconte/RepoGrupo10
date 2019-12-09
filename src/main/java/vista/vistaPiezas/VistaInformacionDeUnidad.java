@@ -13,7 +13,6 @@ public class VistaInformacionDeUnidad extends VBox {
 
 
     private Pieza pieza;
-    private String nombre;
     public ImageView imagenDeUnidad;
     private VBox datosActualizables=new VBox();
 
@@ -21,7 +20,6 @@ public class VistaInformacionDeUnidad extends VBox {
     public VistaInformacionDeUnidad(String nombre, Pieza unidad){
 
         this.pieza = unidad;
-        this.nombre = nombre;
         String nombreArch = "resources/texturas/"+nombre+".png";
         Image imagen = new Image(nombreArch);
         this.imagenDeUnidad = new ImageView(imagen);

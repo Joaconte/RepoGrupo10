@@ -10,9 +10,9 @@ import vista.VistaDeTablero;
 
 public class BotonAtacar extends Button {
 
-    public BotonAtacar(PiezaAtacante piezaAtacante, Label comunicador, VistaDeTablero vistaDeTablero, HBox barraDeOpcionesDeUnidad){
+    public BotonAtacar(PiezaAtacante piezaAtacante,  VistaDeTablero vistaDeTablero, HBox barraDeOpcionesDeUnidad){
         super("Atacar");
-        this.setOnAction(new BotonAtacarEventHandler(piezaAtacante, comunicador, vistaDeTablero, barraDeOpcionesDeUnidad));
+        this.setOnAction(new BotonAtacarEventHandler(piezaAtacante, vistaDeTablero, barraDeOpcionesDeUnidad));
 
     }
 

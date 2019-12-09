@@ -1,4 +1,4 @@
-package vista.fasesPartida;
+package vista.fasesPartida.faseInicialPartida;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;

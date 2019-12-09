@@ -38,6 +38,7 @@ public class BotonConfirmarEjercitoEventHandler implements EventHandler<ActionEv
                 panelConBarrasDeMovimiento.setContent(pantallaFaseMediaPartida);
                 Scene escenaFaseInicial = new Scene (panelConBarrasDeMovimiento);
                 escenarioPrincipal.setScene(escenaFaseInicial);
+                escenarioPrincipal.setResizable(true);
             }
         }
         catch (EjercitoIncompletoException e){

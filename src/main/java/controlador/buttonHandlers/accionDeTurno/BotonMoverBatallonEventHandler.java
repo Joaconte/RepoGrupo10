@@ -13,14 +13,12 @@ import vista.vistaPiezas.VistaUnidadInfanteria;
 
 public class BotonMoverBatallonEventHandler implements EventHandler<ActionEvent> {
 
-    private Label etiquetaTexto;
     private VistaDeTablero vistaDeTablero;
     private HBox barraDeOpcionesDeUnidad;
     private VistaUnidad vistaUnidad;
 
 
-    public BotonMoverBatallonEventHandler(VistaUnidad vistaUnidad, Label etiquetaAlerta, VistaDeTablero vistaDeTablero, HBox barraDeOpcionesDeUnidad) {
-        this.etiquetaTexto=etiquetaAlerta;
+    public BotonMoverBatallonEventHandler(VistaUnidad vistaUnidad,VistaDeTablero vistaDeTablero, HBox barraDeOpcionesDeUnidad) {
         this.vistaDeTablero=vistaDeTablero;
         this.barraDeOpcionesDeUnidad=barraDeOpcionesDeUnidad;
         this.vistaUnidad = vistaUnidad;
@@ -29,9 +27,8 @@ public class BotonMoverBatallonEventHandler implements EventHandler<ActionEvent>
 
     @Override
     public void handle(ActionEvent event) {
-        etiquetaTexto.setText("Haga en la direccion a la que se movera");
-        etiquetaTexto.setTextFill(Color.web("#336600"));
-        vistaDeTablero.tableroEnModoMovimientoBatallon(vistaUnidad,etiquetaTexto);
+        vistaDeTablero.vistaComunicacion("Haga en la direccion a la que se movera");
+        vistaDeTablero.tableroEnModoMovimientoBatallon(vistaUnidad);
         barraDeOpcionesDeUnidad.setVisible(false);
         Audio.reproducirInterfaz("click");
     }

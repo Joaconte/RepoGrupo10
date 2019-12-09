@@ -3,7 +3,6 @@ package vista;
 
 import controlador.*;
 import javafx.scene.Group;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -13,9 +12,9 @@ import modelo.pieza.Pieza;
 import modelo.pieza.ataque.PiezaAtacante;
 import modelo.pieza.tipos.Curandero;
 import modelo.tablero.Tablero;
-
 import resources.sonidos.Audio;
 import vista.vistaPiezas.VistaUnidad;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +30,7 @@ public class VistaDeTablero extends Group {
     private Rectangle rectanguloDeMovimiento = new Rectangle(45,45,Color.rgb(0,0,0));
     private GridPane contenedorTabla;
     private Pane[][] casillaTabla;
-    private VBox vistaUnidadClikeada = new VBox();
+    private VistaPiezaClikeada vistaUnidadClikeada = new VistaPiezaClikeada();
     private List<VistaUnidad> listaDeUnidades = new ArrayList<>();
     int ubicacionDelCursorX;
     int ubicacionDelCursorY;
@@ -61,15 +60,13 @@ public class VistaDeTablero extends Group {
         this.getChildren().add(contenedorTabla);
     }
 
-
-
-    public VBox getVistaDePiezaClikeada(){return vistaUnidadClikeada;}
+    public VistaPiezaClikeada getVistaDePiezaClikeada(){return vistaUnidadClikeada;}
 
     public void crearPanelesPorDefecto(){
         for (int i = 0; i < tablero.getColumnas(); i++) {
             for (int j = 0; j < tablero.getFilas(); j++) {
                 Pane v = new Pane();
-                v.setOnMouseClicked(new ClickEnZonaEventHandler(rectanguloDeMovimiento,v, this));
+                v.setOnMouseClicked(new ClickEnZonaEventHandler(rectanguloDeMovimiento,v, this,vistaUnidadClikeada));
                 v.setMinHeight(this.alturaCelda);
                 v.setMinWidth(this.anchuraCelda);
                 Background fondoDeContenedor = new Background(new BackgroundImage(new Image("resources/texturas/campo.jpg"),
@@ -97,13 +94,12 @@ public class VistaDeTablero extends Group {
         listaDeUnidades.addAll(auxiliar);
     }
 
-
     public void agregarUnidad(VistaUnidad etiquetaUnidad, int x, int y){
         casillaTabla[x][y].getChildren().add(0, etiquetaUnidad);
         listaDeUnidades.add(etiquetaUnidad);
     }
 
-    public void tableroNormal(){
+    public void tableroFaseMediaNormalizado(){
         listaDeUnidades.forEach(p->p.setOnMouseClicked(new ClickEnPiezaEventHandler(vistaUnidadClikeada,p)));
     }
 
@@ -116,11 +112,11 @@ public class VistaDeTablero extends Group {
     }
 
 
-    public void tableroEnModoMovimiento(VistaUnidad vistaUnidad, Label etiquetaTexto){
+    public void tableroEnModoMovimiento(VistaUnidad vistaUnidad){
         rectanguloDeMovimiento.setVisible(false);
         for (int i = 0; i < tablero.getColumnas(); i++) {
             for (int j = 0; j < tablero.getFilas(); j++) {
-                casillaTabla[i][j].setOnMouseClicked(new ClickEnPiezaModoMovimientoEventHandler(i, j, this, vistaUnidad,etiquetaTexto));
+                casillaTabla[i][j].setOnMouseClicked(new ClickEnPiezaModoMovimientoEventHandler(i, j, this, vistaUnidad,vistaUnidadClikeada));
             }
         }
     }
@@ -129,7 +125,7 @@ public class VistaDeTablero extends Group {
         rectanguloDeMovimiento.setVisible(true);
         for (int i = 0; i < tablero.getColumnas(); i++) {
             for (int j = 0; j < tablero.getFilas(); j++) {
-                casillaTabla[i][j].setOnMouseClicked(new ClickEnZonaEventHandler(rectanguloDeMovimiento,casillaTabla[i][j], this));
+                casillaTabla[i][j].setOnMouseClicked(new ClickEnZonaEventHandler(rectanguloDeMovimiento,casillaTabla[i][j], this,vistaUnidadClikeada));
             }
         }
     }
@@ -141,11 +137,11 @@ public class VistaDeTablero extends Group {
 
     }
 
-    public void tableroEnModoMovimientoBatallon(VistaUnidad vistaUnidad, Label etiquetaTexto) {
+    public void tableroEnModoMovimientoBatallon(VistaUnidad vistaUnidad) {
         rectanguloDeMovimiento.setVisible(false);
         for (int i = 0; i < tablero.getColumnas(); i++) {
             for (int j = 0; j < tablero.getFilas(); j++) {
-                casillaTabla[i][j].setOnMouseClicked(new ClickEnPiezaModoMovimientoBatallonEventHandler(i, j, this, vistaUnidad,etiquetaTexto));
+                casillaTabla[i][j].setOnMouseClicked(new ClickEnPiezaModoMovimientoBatallonEventHandler(vistaUnidadClikeada,i, j, this, vistaUnidad));
             }
         }
     }
@@ -175,5 +171,13 @@ public class VistaDeTablero extends Group {
     }
     public int getUbicacionDelCursorY(){
         return ubicacionDelCursorY;
+    }
+
+    public void vistaNuevaAccionTurno() {
+        vistaUnidadClikeada.getChildren().clear();
+    }
+
+    public void vistaComunicacion(String s) {
+        vistaUnidadClikeada.vistaMensaje(s);
     }
 }

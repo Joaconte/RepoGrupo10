@@ -10,8 +10,8 @@ import vista.vistaPiezas.VistaUnidadInfanteria;
 
 public class BotonMoverBatallon extends Button {
 
-    public BotonMoverBatallon(VistaUnidadInfanteria vistaUnidadInfanteria, Label etiquetaDeTexto, VistaDeTablero vistaDeTablero, HBox barraDeOpcionesDeUnidad) {
+    public BotonMoverBatallon(VistaUnidadInfanteria vistaUnidadInfanteria, VistaDeTablero vistaDeTablero, HBox barraDeOpcionesDeUnidad) {
         super("Mover Batallon");
-        this.setOnAction(new BotonMoverBatallonEventHandler(vistaUnidadInfanteria,etiquetaDeTexto,vistaDeTablero,barraDeOpcionesDeUnidad));
+        this.setOnAction(new BotonMoverBatallonEventHandler(vistaUnidadInfanteria,vistaDeTablero,barraDeOpcionesDeUnidad));
     }
 }

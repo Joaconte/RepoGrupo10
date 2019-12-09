@@ -19,7 +19,6 @@ public class VistaUnidadAtacante extends VistaUnidad{
         super(piezaAtacante,vistaDeTablero,nombre, juego);
         this.piezaAtacante = piezaAtacante;
         barraDeOpcionesDeUnidad.setAlignment(Pos.CENTER);
-        vistaDatos.getChildren().add(etiquetaDeTexto);
         vistaDatos.getChildren().add(barraDeOpcionesDeUnidad);
     }
 
@@ -29,10 +28,10 @@ public class VistaUnidadAtacante extends VistaUnidad{
     }
 
     public void barraDeOpciones(){
+        actualizacionVistaDeOpciones();
         barraDeOpcionesDeUnidad.getChildren().clear();
-        etiquetaDeTexto.setText("");
-        barraDeOpcionesDeUnidad.getChildren().add(new BotonAtacar(piezaAtacante,etiquetaDeTexto,vistaDeTablero,barraDeOpcionesDeUnidad));
-        barraDeOpcionesDeUnidad.getChildren().add(new BotonMover(this,etiquetaDeTexto,vistaDeTablero,barraDeOpcionesDeUnidad));
+        barraDeOpcionesDeUnidad.getChildren().add(new BotonAtacar(piezaAtacante,vistaDeTablero,barraDeOpcionesDeUnidad));
+        barraDeOpcionesDeUnidad.getChildren().add(new BotonMover(this,vistaDeTablero,barraDeOpcionesDeUnidad));
 
     }
 

@@ -12,14 +12,12 @@ import vista.VistaDeTablero;
 
 
 public class BotonAtacarEventHandler implements EventHandler<ActionEvent> {
-private Label comunicador;
 private VistaDeTablero vistaDeTablero;
 private PiezaAtacante piezaAtacante;
 private HBox barra;
 
 
-    public BotonAtacarEventHandler(PiezaAtacante piezaAtacante, Label comunicador, VistaDeTablero vistaDeTablero, HBox barraDeOpcionesDeUnidad){
-    this.comunicador = comunicador;
+    public BotonAtacarEventHandler(PiezaAtacante piezaAtacante,  VistaDeTablero vistaDeTablero, HBox barraDeOpcionesDeUnidad){
     this.vistaDeTablero = vistaDeTablero;
     this.piezaAtacante = piezaAtacante;
     this.barra = barraDeOpcionesDeUnidad;
@@ -27,8 +25,7 @@ private HBox barra;
 
     @Override
     public void handle(ActionEvent event) {
-        this.comunicador.setText("Haga click a la pieza a la que desea atacar");
-        this.comunicador.setTextFill(Color.web("#336600"));
+        vistaDeTablero.vistaComunicacion("Haga click a la pieza a la que desea atacar");
         vistaDeTablero.tableroEnModoAtaque(piezaAtacante);
         barra.setVisible(false);
         Audio.reproducirInterfaz("click");

@@ -15,7 +15,6 @@ public class VistaUnidad extends Label{
     protected VistaInformacionDeUnidad vistaDatos;
     protected VistaDeTablero vistaDeTablero;
     protected HBox barraDeOpcionesDeUnidad = new HBox();
-    protected Label etiquetaDeTexto = new Label();
     protected Juego juego;
     private String nombre;
 
@@ -52,10 +51,9 @@ public class VistaUnidad extends Label{
         return vistaDatos;
     }
 
-
     public Juego getJuego (){return juego;}
 
-    public void visibilidadDeOpcionesPorTurno(){
+    public void actualizacionVistaDeOpciones(){
         if (juego.estaEnTurno(pieza.getEquipo()))
         barraDeOpcionesDeUnidad.setVisible(true);
         else barraDeOpcionesDeUnidad.setVisible(false);
@@ -63,7 +61,8 @@ public class VistaUnidad extends Label{
 
     public void barraDeOpciones(){
     }
-    public void setEtiquetaDeTexto(String mensaje){ etiquetaDeTexto.setText(mensaje);}
-    public Label getEtiquetaDeTexto(){return etiquetaDeTexto;}
 
+    public void barraDeOpcionesNoVisible(){
+        barraDeOpcionesDeUnidad.setVisible(false);
+    }
 }

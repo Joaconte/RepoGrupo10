@@ -1,9 +1,7 @@
 package controlador;
 
 import javafx.event.EventHandler;
-import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
 import modelo.Juego;
 import modelo.jugador.UbicacionInvalidaException;
 import modelo.partida.JugadorNoPuedeManipularEsaPiezaException;
@@ -14,43 +12,41 @@ import modelo.pieza.tipos.NoSePuedeMoverException;
 import modelo.tablero.DesplazamientoInvalidoException;
 import resources.sonidos.Audio;
 import vista.VistaDeTablero;
+import vista.VistaPiezaClikeada;
 import vista.vistaPiezas.VistaUnidad;
 
 public class ClickEnPiezaModoMovimientoBatallonEventHandler implements EventHandler<MouseEvent> {
-    private Label etiquetaTexto;
     private VistaDeTablero vistaDeTablero;
     private Juego juego;
     private int ubicacionFinalX;
     private int ubicacionFinalY;
     private VistaUnidad vistaDeUnidad;
+    private VistaPiezaClikeada vistaUnidadClikeada;
 
-    public ClickEnPiezaModoMovimientoBatallonEventHandler(int i, int j, VistaDeTablero vistaDeTablero, VistaUnidad vistaUnidad, Label etiquetaTexto) {
+    public ClickEnPiezaModoMovimientoBatallonEventHandler(VistaPiezaClikeada  vistaUnidadClikeada, int i, int j, VistaDeTablero vistaDeTablero, VistaUnidad vistaUnidad) {
         this.ubicacionFinalX = i;
         this.ubicacionFinalY = j;
         this.vistaDeTablero = vistaDeTablero;
         this.vistaDeUnidad =vistaUnidad;
-        this.etiquetaTexto= etiquetaTexto;
+        this.vistaUnidadClikeada=vistaUnidadClikeada;
         this.juego = vistaUnidad.getJuego();
 
     }
 
     @Override
     public void handle(MouseEvent mouseEvent) {
-
-        this.etiquetaTexto.setTextFill(Color.web("#FF0000"));
+        vistaDeUnidad.barraDeOpcionesNoVisible();
+        vistaUnidadClikeada.vistaActualizada(vistaDeUnidad.getVistaInformacion());
         try {
             juego.moverBatallon((Infanteria) vistaDeUnidad.getPieza(),ubicacionFinalX,ubicacionFinalY);
             vistaDeTablero.actualizarUbicaciones();
-            etiquetaTexto.setText("Batallon movido");
-            this.etiquetaTexto.setTextFill(Color.web("#000000"));
+            vistaUnidadClikeada.vistaMensaje("Batallon Movido.");
             Audio.reproducirMovimientoAPie();
 
         } catch (DesplazamientoInvalidoException | NoSePuedeMoverException | NoHayBatallonException | JugadorNoPuedeManipularEsaPiezaException | JugadorYaRealizoLaAccionException | UbicacionInvalidaException j) {
-            etiquetaTexto.setText(j.getMessage());
-            vistaDeTablero.tableroNormal();
-        }
+            vistaUnidadClikeada.vistaAlerta(j.getMessage()); }
         finally {
-            vistaDeTablero.tableroNormal();
+            vistaDeTablero.tableroFaseMediaNormalizado();
             vistaDeTablero.restablecerTableroMovimiento();
         }
 

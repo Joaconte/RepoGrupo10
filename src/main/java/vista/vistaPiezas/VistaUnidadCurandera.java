@@ -14,15 +14,14 @@ public class VistaUnidadCurandera extends VistaUnidad {
         super(pieza, vistaDeTablero, nombre, juego);
         curandero = pieza;
         barraDeOpcionesDeUnidad.setAlignment(Pos.CENTER);
-        vistaDatos.getChildren().add(etiquetaDeTexto);
         vistaDatos.getChildren().add(barraDeOpcionesDeUnidad);
     }
 
     public void barraDeOpciones() {
+        actualizacionVistaDeOpciones();
         barraDeOpcionesDeUnidad.getChildren().clear();
-        etiquetaDeTexto.setText("");
-        barraDeOpcionesDeUnidad.getChildren().add(new BotonCurar(curandero, etiquetaDeTexto, vistaDeTablero, barraDeOpcionesDeUnidad));
-        barraDeOpcionesDeUnidad.getChildren().add(new BotonMover(this,etiquetaDeTexto,vistaDeTablero,barraDeOpcionesDeUnidad));
+        barraDeOpcionesDeUnidad.getChildren().add(new BotonCurar(curandero, vistaDeTablero, barraDeOpcionesDeUnidad));
+        barraDeOpcionesDeUnidad.getChildren().add(new BotonMover(this,vistaDeTablero,barraDeOpcionesDeUnidad));
 
     }
 

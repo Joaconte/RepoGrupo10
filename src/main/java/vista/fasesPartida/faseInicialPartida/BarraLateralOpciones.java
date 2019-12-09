@@ -7,7 +7,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import modelo.Juego;
 import vista.VistaDeTablero;
-import vista.fasesPartida.EtiquetaTurnoJugador;
 import vista.fasesPartida.faseInicialPartida.botonesAgregarPiezas.ContenedorElegirPieza;
 
 public class BarraLateralOpciones extends VBox {

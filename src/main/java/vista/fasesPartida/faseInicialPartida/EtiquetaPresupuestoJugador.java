@@ -26,9 +26,5 @@ public class EtiquetaPresupuestoJugador extends Label{
         this.setText("Puntos : " + juego.getPuntosJugadorEnTurno());
     }
 
-    public void actualizarEtiqueta(String texto,String color){
-        this.setText(texto);
-        this.setTextFill(Color.web(color));
 
-    }
 }

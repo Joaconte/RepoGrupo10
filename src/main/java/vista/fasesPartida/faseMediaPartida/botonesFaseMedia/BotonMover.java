@@ -9,9 +9,9 @@ import vista.vistaPiezas.VistaUnidad;
 
 public class BotonMover extends Button {
 
-    public BotonMover(VistaUnidad vistaUnidad, Label etiquetaDeTexto, VistaDeTablero vistaDeTablero, HBox barraDeOpcionesDeUnidad) {
+    public BotonMover(VistaUnidad vistaUnidad, VistaDeTablero vistaDeTablero, HBox barraDeOpcionesDeUnidad) {
         super("Mover");
-        this.setOnAction(new BotonMoverEventHandler(vistaUnidad, etiquetaDeTexto, vistaDeTablero, barraDeOpcionesDeUnidad));
+        this.setOnAction(new BotonMoverEventHandler(vistaUnidad,  vistaDeTablero, barraDeOpcionesDeUnidad));
 
     }
 }

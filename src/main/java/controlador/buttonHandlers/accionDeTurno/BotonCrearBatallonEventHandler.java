@@ -15,12 +15,10 @@ import java.util.ArrayList;
 public class BotonCrearBatallonEventHandler implements EventHandler<ActionEvent> {
     ArrayList<Pieza> batallon = new ArrayList<Pieza>();
     private PiezaAtacante pieza;
-    private Label comunicador;
     private VistaDeTablero vistaDeTablero;
     private HBox barra;
 
-    public BotonCrearBatallonEventHandler(PiezaAtacante pieza,Label comunicador, VistaDeTablero vistaDeTablero, HBox barraDeOpcionesDeUnidad) {
-        this.comunicador = comunicador;
+    public BotonCrearBatallonEventHandler(PiezaAtacante pieza, VistaDeTablero vistaDeTablero, HBox barraDeOpcionesDeUnidad) {
         this.vistaDeTablero = vistaDeTablero;
         this.batallon.add(pieza);
         this.pieza = pieza;
@@ -29,8 +27,7 @@ public class BotonCrearBatallonEventHandler implements EventHandler<ActionEvent>
 
     @Override
     public void handle(ActionEvent event) {
-        this.comunicador.setText("Clickea a 2 soldados de infanteria más.");
-        this.comunicador.setTextFill(Color.web("#336600"));
+        vistaDeTablero.vistaComunicacion("Clickea a 2 soldados de infanteria más.");
         vistaDeTablero.tableroEnModoArmarBatallon(batallon);
         barra.setVisible(false);
         Audio.reproducirInterfaz("click");

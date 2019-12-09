@@ -11,8 +11,8 @@ import vista.fasesPartida.faseMediaPartida.BarraDeJugador;
 import java.util.ArrayList;
 
 public class BotonCrearBatallon extends Button {
-    public BotonCrearBatallon(PiezaAtacante primerClikeada, Label comunicador, VistaDeTablero vistaDeTablero, HBox barraDeOpcionesDeUnidad){
+    public BotonCrearBatallon(PiezaAtacante primerClikeada,  VistaDeTablero vistaDeTablero, HBox barraDeOpcionesDeUnidad){
         super("Crear Batallon");
-        this.setOnAction(new BotonCrearBatallonEventHandler(primerClikeada,comunicador,vistaDeTablero,barraDeOpcionesDeUnidad));
+        this.setOnAction(new BotonCrearBatallonEventHandler(primerClikeada,vistaDeTablero,barraDeOpcionesDeUnidad));
     }
 }

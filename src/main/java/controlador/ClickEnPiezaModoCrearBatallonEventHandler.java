@@ -2,23 +2,23 @@ package controlador;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
 import modelo.partida.JugadorNoPuedeManipularEsaPiezaException;
 import modelo.pieza.Pieza;
 import modelo.pieza.tipos.NoSirvenParaBatallonException;
 import vista.VistaDeTablero;
+import vista.VistaPiezaClikeada;
 import vista.vistaPiezas.VistaUnidad;
 
 import java.util.ArrayList;
 
 public class ClickEnPiezaModoCrearBatallonEventHandler implements EventHandler<MouseEvent> {
 
-    private VBox vistaUnidadClickeada;
+    private VistaPiezaClikeada  vistaUnidadClickeada;
     private VistaUnidad nuevoCandidato;
     private ArrayList<Pieza> batallon;
     private VistaDeTablero vistaDeTablero;
 
-    public ClickEnPiezaModoCrearBatallonEventHandler(VBox vistaUnidadClikeada, VistaUnidad p, ArrayList<Pieza> piezas, VistaDeTablero vistaDeTablero) {
+    public ClickEnPiezaModoCrearBatallonEventHandler(VistaPiezaClikeada vistaUnidadClikeada, VistaUnidad p, ArrayList<Pieza> piezas, VistaDeTablero vistaDeTablero) {
         this.batallon = piezas;
         this.nuevoCandidato = p;
         this.vistaUnidadClickeada = vistaUnidadClikeada;
@@ -27,24 +27,19 @@ public class ClickEnPiezaModoCrearBatallonEventHandler implements EventHandler<M
 
     @Override
     public void handle(MouseEvent mouseEvent) {
+        vistaUnidadClickeada.vistaActualizada(nuevoCandidato.getVistaInformacion());
         if (batallon.size()==2){
-            //TODO
             batallon.add(nuevoCandidato.getPieza());
-            vistaUnidadClickeada.getChildren().clear();
-            vistaUnidadClickeada.getChildren().add(nuevoCandidato.getVistaInformacion());
+            vistaDeTablero.tableroFaseMediaNormalizado();
             try {
                 nuevoCandidato.getJuego().formarBatallon(batallon);
-                nuevoCandidato.setEtiquetaDeTexto("Batallon Creado.");
-                vistaDeTablero.tableroNormal();
+                vistaUnidadClickeada.vistaMensaje("Batallon Creado.");
             } catch (NoSirvenParaBatallonException | JugadorNoPuedeManipularEsaPiezaException e) {
-                vistaDeTablero.tableroNormal();
-                nuevoCandidato.setEtiquetaDeTexto("Piezas incompatibles a batallon.");
+                vistaUnidadClickeada.vistaAlerta("Piezas incompatibles a batallon.");
             }
         }
         else {
-            vistaUnidadClickeada.getChildren().clear();
-            vistaUnidadClickeada.getChildren().add(nuevoCandidato.getVistaInformacion());
-            nuevoCandidato.setEtiquetaDeTexto("Elije a otra pieza mas.");
+            vistaUnidadClickeada.vistaMensaje("Elije a otra pieza mas.");
             batallon.add(nuevoCandidato.getPieza());
             vistaDeTablero.tableroEnModoArmarBatallon(batallon);
         }

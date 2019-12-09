@@ -17,8 +17,8 @@ public class VistaUnidadInfanteria extends VistaUnidadAtacante {
 
     public void barraDeOpciones() {
         super.barraDeOpciones();
-        barraDeOpcionesDeUnidad.getChildren().add(new BotonCrearBatallon(piezaAtacante,etiquetaDeTexto,vistaDeTablero,barraDeOpcionesDeUnidad));
-        barraDeOpcionesDeUnidad.getChildren().add(new BotonMoverBatallon(this,etiquetaDeTexto,vistaDeTablero,barraDeOpcionesDeUnidad));
+        barraDeOpcionesDeUnidad.getChildren().add(new BotonCrearBatallon(piezaAtacante,vistaDeTablero,barraDeOpcionesDeUnidad));
+        barraDeOpcionesDeUnidad.getChildren().add(new BotonMoverBatallon(this,vistaDeTablero,barraDeOpcionesDeUnidad));
 
     }
 
