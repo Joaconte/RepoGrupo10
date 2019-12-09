@@ -1,4 +1,4 @@
-package vista;
+package vista.fasesPartida.faseMediaPartida;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -8,16 +8,19 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import vista.vistaPiezas.VistaInformacionDeUnidad;
+import vista.vistaPiezas.VistaUnidad;
 
 public class VistaPiezaClikeada extends VBox {
 
     private Label comunicador;
     private Label posiciones;
     private VBox datosDePieza;
+    private VistaUnidad ultimaVistaUnidadConBotonesActivos;
 
     public VistaPiezaClikeada(){
         super();
         etiquetasDeTextoVista();
+        this.setMinHeight(600);
 
         this.getChildren().addAll(comunicador,posiciones);
         datosDePieza= new VBox();
@@ -27,23 +30,39 @@ public class VistaPiezaClikeada extends VBox {
 
     }
 
+    public void vistaActualizada(VistaUnidad vistaUnidad) {
+        datosDePieza.getChildren().clear();
+        ultimaVistaUnidadConBotonesActivos =vistaUnidad; //Sirve para que en el cambio de turno no queden botones activos.
+        vistaUnidad.barraDeOpciones();
+        VistaInformacionDeUnidad vistaInformacion = vistaUnidad.getVistaInformacion();
+        vistaInformacion.actualizarDatosEnPartida();
+        datosDePieza.getChildren().add(vistaInformacion);
+    }
+
+    //Cuando formo batallon le desactivo los botones a TODAS.
     public void vistaActualizada(VistaInformacionDeUnidad vistaInformacion) {
         datosDePieza.getChildren().clear();
         vistaInformacion.actualizarDatosEnPartida();
         datosDePieza.getChildren().add(vistaInformacion);
     }
 
-    private void etiquetasDeTextoVista(){
-        comunicador = new Label();
-        posiciones = new Label();
-        posiciones.setAlignment(Pos.CENTER);
-        comunicador.setAlignment(Pos.CENTER);
-        comunicador.setFont(Font.font("tahoma", FontWeight.EXTRA_BOLD, 14));
-        posiciones.setFont(Font.font("tahoma", FontWeight.EXTRA_BOLD, 14));
+    public void vistaCambioDeTurno(){
+        try{
+            ultimaVistaUnidadConBotonesActivos.barraDeOpciones();}
+        catch (NullPointerException e){}
     }
 
-    public void vistaLimpiaDeDatos(){
-        datosDePieza.getChildren().clear();
+
+    private void etiquetasDeTextoVista(){
+        comunicador = new Label();
+        comunicador.setTextFill(Color.color(0,0.7,0));
+        posiciones = new Label();
+        posiciones.setTextFill(Color.color(0,0.7,0));
+
+        posiciones.setAlignment(Pos.CENTER);
+        comunicador.setAlignment(Pos.CENTER);
+        comunicador.setFont(Font.font("tahoma", FontWeight.EXTRA_BOLD, 12));
+        posiciones.setFont(Font.font("tahoma", FontWeight.EXTRA_BOLD, 12));
     }
 
     private void vistaDeFondo(){
@@ -52,8 +71,11 @@ public class VistaPiezaClikeada extends VBox {
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.CENTER,
-                new BackgroundSize(200, 400, false, false, false, false)));
+                new BackgroundSize(250, 420, false, false, false, false)));
         datosDePieza.setBackground(fondoDeContenedor);
+        datosDePieza.setMinHeight(420);
+        datosDePieza.setMinWidth(250);
+
     }
 
     public void vistaAlerta(String texto){

@@ -1,9 +1,10 @@
 package vista.vistaPiezas;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import modelo.Juego;
 import modelo.pieza.Pieza;
 import vista.VistaDeTablero;
@@ -14,7 +15,7 @@ public class VistaUnidad extends Label{
     protected Pieza pieza;
     protected VistaInformacionDeUnidad vistaDatos;
     protected VistaDeTablero vistaDeTablero;
-    protected HBox barraDeOpcionesDeUnidad = new HBox();
+    protected VBox barraDeOpcionesDeUnidad = new VBox();
     protected Juego juego;
     private String nombre;
 
@@ -26,6 +27,7 @@ public class VistaUnidad extends Label{
         vistaDatos = new VistaInformacionDeUnidad (nombre, pieza);
         vistaDatos.vistaDeDatosEnPartida();
         vistaDatos.setAlignment(Pos.CENTER);
+        vistaDatos.setPadding(new Insets(40,1,1,1));
     }
 
     public void crearVistaEnTablero(){

@@ -1,7 +1,8 @@
 package vista.fasesPartida.faseMediaPartida;
 
 import javafx.geometry.Insets;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import modelo.Juego;
 import resources.sonidos.Audio;
@@ -31,6 +32,17 @@ public class PantallaFaseMediaPartida extends BorderPane {
         vistaIzquierda();
         vistaDerecha();
         vistaArriba(escenarioPrincipal);
+        vistaDeFondo();
+    }
+
+    private void vistaDeFondo(){
+        Image imangenMuro = new Image("resources/texturas/fondopixel.jpg");
+        Background fondoDeContenedor = new Background(new BackgroundImage(imangenMuro,
+                BackgroundRepeat.REPEAT,
+                BackgroundRepeat.REPEAT,
+                BackgroundPosition.DEFAULT,
+                new BackgroundSize(90, 90, false, false, false, false)));
+        this.setBackground(fondoDeContenedor);
     }
 
     private void vistaCentro() {
@@ -61,8 +73,12 @@ public class PantallaFaseMediaPartida extends BorderPane {
     public void vistaNuevoTurno(){
         barraDeJugador1.invertirEstadoDeshabilitado();
         barraDeJugador2.invertirEstadoDeshabilitado();
-        barraDeJugador1.agregarAVista(vistaDeTablero.getVistaDePiezaClikeada(),juego.getNombreJugadorEnTurno());
-        barraDeJugador2.agregarAVista(vistaDeTablero.getVistaDePiezaClikeada(),juego.getNombreJugadorEnTurno());
+
+        VistaPiezaClikeada vistaPiezaClikeada =vistaDeTablero.getVistaDePiezaClikeada();
+        vistaPiezaClikeada.vistaCambioDeTurno();
+
+        barraDeJugador1.agregarAVista(vistaPiezaClikeada,juego.getNombreJugadorEnTurno());
+        barraDeJugador2.agregarAVista(vistaPiezaClikeada,juego.getNombreJugadorEnTurno());
 
     }
 

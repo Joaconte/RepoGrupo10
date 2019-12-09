@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import modelo.Juego;
 import modelo.partida.JugadorNoPuedeManipularEsaPiezaException;
 import modelo.partida.fase.JugadorYaRealizoLaAccionException;
-import modelo.partida.fase.PiezaYaAtacoException;
+import modelo.partida.fase.PiezaYaAtacoOCuroException;
 import modelo.pieza.UnidadEstaMuertaException;
 import modelo.pieza.ataque.DistanciaDeAtaqueInvalidaException;
 import modelo.pieza.ataque.PiezaAliadaNoAtacableException;
@@ -16,7 +16,7 @@ import modelo.pieza.ataque.PiezaAtacante;
 import vista.PantallaJuegoTerminado;
 import resources.sonidos.Audio;
 import vista.VistaDeTablero;
-import vista.VistaPiezaClikeada;
+import vista.fasesPartida.faseMediaPartida.VistaPiezaClikeada;
 import vista.vistaPiezas.VistaUnidad;
 
 public class ClickEnPiezaAtaqueActivoEventHandler implements EventHandler<MouseEvent> {
@@ -40,7 +40,7 @@ public class ClickEnPiezaAtaqueActivoEventHandler implements EventHandler<MouseE
         vistaDeTablero.tableroFaseMediaNormalizado();
         try {
             Juego juego = piezaClikeada.getJuego();
-            vistaPiezaClikeada.vistaActualizada(piezaClikeada.getVistaInformacion());
+            vistaPiezaClikeada.vistaActualizada(piezaClikeada);
             juego.atacar(piezaAtacante,piezaClikeada.getPieza());
             juego.actualizarTablero();
 
@@ -62,11 +62,11 @@ public class ClickEnPiezaAtaqueActivoEventHandler implements EventHandler<MouseE
                 Scene escenaFaseInicial = new Scene (panelConBarrasDeMovimiento,1200,950);
                 stage.setScene(escenaFaseInicial);
             }
-        }catch (PiezaYaAtacoException | JugadorYaRealizoLaAccionException| DistanciaDeAtaqueInvalidaException | PiezaAliadaNoAtacableException | UnidadEstaMuertaException | JugadorNoPuedeManipularEsaPiezaException e){
+        }catch (PiezaYaAtacoOCuroException | JugadorYaRealizoLaAccionException| DistanciaDeAtaqueInvalidaException | PiezaAliadaNoAtacableException | UnidadEstaMuertaException | JugadorNoPuedeManipularEsaPiezaException e){
             vistaPiezaClikeada.vistaAlerta(e.getMessage());
         }
         finally {
-            vistaPiezaClikeada.vistaActualizada(piezaClikeada.getVistaInformacion());
+            vistaPiezaClikeada.vistaActualizada(piezaClikeada);
         }
 
     }

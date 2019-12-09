@@ -61,14 +61,14 @@ public class Juego {
         partida.moverUnidad(pieza, posicionXFinal, posicionYFinal);
     }
 
-    public void moverBatallon( Infanteria infante, int posicionXFinal, int posicionYFinal ) throws JugadorYaRealizoLaAccionException, NoHayBatallonException, UbicacionInvalidaException, JugadorNoPuedeManipularEsaPiezaException, DesplazamientoInvalidoException, NoSePuedeMoverException {
+    public void moverBatallon( Infanteria infante, int posicionXFinal, int posicionYFinal ) throws JugadorYaRealizoLaAccionException, NoHayBatallonException, UbicacionInvalidaException, JugadorNoPuedeManipularEsaPiezaException, DesplazamientoInvalidoException, NoSePuedeMoverException, PiezaYaMovioException {
         partida.moverBatallon( infante, posicionXFinal,posicionYFinal);
     }
 
     public void formarBatallon(ArrayList<Pieza> piezas) throws NoSirvenParaBatallonException, JugadorNoPuedeManipularEsaPiezaException {
         partida.formanBatallon(piezas); }
 
-    public void atacar (PiezaAtacante piezaAtacante, Pieza pieza) throws PiezaAliadaNoAtacableException, JugadorNoPuedeManipularEsaPiezaException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, JugadorYaRealizoLaAccionException, PiezaYaAtacoException {
+    public void atacar (PiezaAtacante piezaAtacante, Pieza pieza) throws PiezaAliadaNoAtacableException, JugadorNoPuedeManipularEsaPiezaException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, JugadorYaRealizoLaAccionException, PiezaYaAtacoOCuroException {
         partida.atacarPieza(piezaAtacante,pieza);
     }
 
@@ -76,7 +76,7 @@ public class Juego {
         partida.actualizarTablero();
     }
 
-    public void curarAAliado(Curandero piezaCurandera, Pieza otraPieza) throws UnidadNoSePuedeCurar, CurandoCuraADistanciaCortaException, CurandoAEnemigoException, JugadorYaRealizoLaAccionException, PiezaYaAtacoException, JugadorNoPuedeManipularEsaPiezaException {
+    public void curarAAliado(Curandero piezaCurandera, Pieza otraPieza) throws UnidadNoSePuedeCurar, CurandoCuraADistanciaCortaException, CurandoAEnemigoException, JugadorYaRealizoLaAccionException, PiezaYaAtacoOCuroException, JugadorNoPuedeManipularEsaPiezaException {
         partida.curarAAliado(piezaCurandera,otraPieza);
     }
 

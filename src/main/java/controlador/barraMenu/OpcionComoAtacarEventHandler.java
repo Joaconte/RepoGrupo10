@@ -11,7 +11,15 @@ public class OpcionComoAtacarEventHandler implements EventHandler<ActionEvent> {
                 +"Las posiciones empiezan en 0 y van de izquierda a derecha.\n"
                 +"Elegir pieza que va a atacar o curar\n"
                 +"Elegir pieza que va a recibir el daño o curacion.\n"
-            );
+                +"Atacan en rango corto: infantes, jinete.\n"
+                +"Atacan en rango largo: Catapulta.\n"
+                +"Atacan en rango medio: Jinete.\n"
+                +"Jinete debe estar sin rivales en rango corto para atacar en rango media.\n"
+                +"Jinete puede atacar a distancia media SIEMPRE si un infante aliado lo rodea.\n"
+
+
+
+        );
         alerta.setTitle("Atacar...");
         alerta.setHeaderText("Como realizar ataque o curacion:");
         alerta.showAndWait();

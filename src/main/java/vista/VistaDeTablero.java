@@ -13,6 +13,7 @@ import modelo.pieza.ataque.PiezaAtacante;
 import modelo.pieza.tipos.Curandero;
 import modelo.tablero.Tablero;
 import resources.sonidos.Audio;
+import vista.fasesPartida.faseMediaPartida.VistaPiezaClikeada;
 import vista.vistaPiezas.VistaUnidad;
 
 import java.util.ArrayList;
@@ -86,7 +87,7 @@ public class VistaDeTablero extends Group {
         listaDeUnidades.stream()
                 .filter(p-> p.getPieza().estaMuerta())
                 .forEach(p-> {Audio.reproducirMuerte(p.getNombre());
-                    casillaTabla[p.getPieza().getPosicionEnColumnaQueOcupa()][p.getPieza().getPosicionEnColumnaQueOcupa()].getChildren().clear(); });
+                    casillaTabla[p.getPieza().getPosicionEnColumnaQueOcupa()][p.getPieza().getPosicionEnFilaQueOcupa()].getChildren().clear(); });
         listaDeUnidades.stream()
                 .filter(p->p.getPieza().getPuntosVida()>0)
                 .forEach(auxiliar::add);
@@ -173,11 +174,8 @@ public class VistaDeTablero extends Group {
         return ubicacionDelCursorY;
     }
 
-    public void vistaNuevaAccionTurno() {
-        vistaUnidadClikeada.getChildren().clear();
-    }
-
     public void vistaComunicacion(String s) {
         vistaUnidadClikeada.vistaMensaje(s);
     }
+
 }

@@ -69,7 +69,7 @@ public class Partida {
 
     //---------------Acciones de Turno------------//
 
-    public void atacarPieza(PiezaAtacante atacante, Pieza atacada) throws JugadorNoPuedeManipularEsaPiezaException, PiezaAliadaNoAtacableException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, JugadorYaRealizoLaAccionException, PiezaYaAtacoException {
+    public void atacarPieza(PiezaAtacante atacante, Pieza atacada) throws JugadorNoPuedeManipularEsaPiezaException, PiezaAliadaNoAtacableException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, JugadorYaRealizoLaAccionException, PiezaYaAtacoOCuroException {
         if(!jugadorEnTurno.esTuPieza(atacante)){ throw new JugadorNoPuedeManipularEsaPiezaException();}
         miFase.atacar(atacante, atacada, tableroDePartida);
     }
@@ -83,12 +83,12 @@ public class Partida {
         miFase.moverUnidadEnTablero(tableroDePartida, pieza, posicionXFinal, posicionYFinal);
     }
 
-    public void curarAAliado(Curandero piezaCurandera, Pieza otraPieza) throws CurandoAEnemigoException, CurandoCuraADistanciaCortaException, UnidadNoSePuedeCurar, JugadorYaRealizoLaAccionException, PiezaYaAtacoException, JugadorNoPuedeManipularEsaPiezaException {
+    public void curarAAliado(Curandero piezaCurandera, Pieza otraPieza) throws CurandoAEnemigoException, CurandoCuraADistanciaCortaException, UnidadNoSePuedeCurar, JugadorYaRealizoLaAccionException, PiezaYaAtacoOCuroException, JugadorNoPuedeManipularEsaPiezaException {
         if(!jugadorEnTurno.esTuPieza(piezaCurandera)){ throw new JugadorNoPuedeManipularEsaPiezaException();}
         miFase.curarAAliado(piezaCurandera,otraPieza);
     }
 
-    public void moverBatallon( Infanteria infante, int posicionXFinal, int posicionYFinal ) throws JugadorYaRealizoLaAccionException, NoHayBatallonException, UbicacionInvalidaException, JugadorNoPuedeManipularEsaPiezaException, DesplazamientoInvalidoException, NoSePuedeMoverException {
+    public void moverBatallon( Infanteria infante, int posicionXFinal, int posicionYFinal ) throws JugadorYaRealizoLaAccionException, NoHayBatallonException, UbicacionInvalidaException, JugadorNoPuedeManipularEsaPiezaException, DesplazamientoInvalidoException, NoSePuedeMoverException, PiezaYaMovioException {
         if(!jugadorEnTurno.esTuPieza(infante)){ throw new JugadorNoPuedeManipularEsaPiezaException();}
         miFase.moverBatallon(jugadorEnTurno, tableroDePartida, infante, posicionXFinal,posicionYFinal);
 

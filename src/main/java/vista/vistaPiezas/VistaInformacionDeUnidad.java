@@ -26,7 +26,7 @@ public class VistaInformacionDeUnidad extends VBox {
         this.getChildren().add(imagenDeUnidad);
         this.getChildren().add(new Text(nombre.toUpperCase()));
         this.getChildren().add(new Text("Costo: " + unidad.getCosto()));
-        this.getChildren().add(new Text("Vida inicial: " + (int)unidad.getVidaMaxima()));
+        this.getChildren().add(new Text("Vida inicial: " + unidad.getVidaMaxima()));
 
     }
 

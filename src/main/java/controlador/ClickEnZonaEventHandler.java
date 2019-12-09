@@ -6,7 +6,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import resources.sonidos.Audio;
 import vista.VistaDeTablero;
-import vista.VistaPiezaClikeada;
+import vista.fasesPartida.faseMediaPartida.VistaPiezaClikeada;
 
 public class ClickEnZonaEventHandler implements EventHandler<MouseEvent> {
     private Node nodoAMover;

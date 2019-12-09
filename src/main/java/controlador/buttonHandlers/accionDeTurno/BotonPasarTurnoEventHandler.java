@@ -27,7 +27,6 @@ public class BotonPasarTurnoEventHandler implements EventHandler<ActionEvent> {
         try {
             juego.cambiarTurno();
             vistaFaseMedia.vistaNuevoTurno();
-            vistaDeTablero.vistaNuevaAccionTurno();
             Audio.reproducirInterfaz("switch");
 
         } catch (EjercitoIncompletoException e) {

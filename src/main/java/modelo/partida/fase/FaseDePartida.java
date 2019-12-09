@@ -28,16 +28,16 @@ public interface FaseDePartida{
 
     boolean esFaseInicial();
 
-    void atacar(PiezaAtacante atacante, Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException, JugadorYaRealizoLaAccionException, PiezaYaAtacoException;
+    void atacar(PiezaAtacante atacante, Pieza atacada, Tablero tablero) throws UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, PiezaAliadaNoAtacableException, JugadorYaRealizoLaAccionException, PiezaYaAtacoOCuroException;
 
     FaseDePartida retornarProximaFase();
 
     Pieza crearPieza(Jugador jugadorEnTurno, Tablero tableroDePartida, String nombreDeUnidad, int posicionEnX, int posicionEnY) throws UbicacionInvalidaException, PresupuestoAgotadoException, CompraInvalidaException, PiezaFueraDeSectorException;
 
-    void curarAAliado(Curandero piezaCurandera, Pieza otraPieza) throws UnidadNoSePuedeCurar, CurandoCuraADistanciaCortaException, CurandoAEnemigoException, JugadorYaRealizoLaAccionException, PiezaYaAtacoException;
+    void curarAAliado(Curandero piezaCurandera, Pieza otraPieza) throws UnidadNoSePuedeCurar, CurandoCuraADistanciaCortaException, CurandoAEnemigoException, JugadorYaRealizoLaAccionException, PiezaYaAtacoOCuroException;
 
     void moverUnidadEnTablero(Tablero tableroDePartida,  Pieza pieza, int posicionXFinal, int posicionYFinal) throws UbicacionInvalidaException, NoHayUnidadEnPosicionException, DesplazamientoInvalidoException, NoSePuedeMoverException,  JugadorYaRealizoLaAccionException, PiezaYaMovioException;
 
-    void moverBatallon(Jugador jugadorEnTurno, Tablero tableroDePartida, Infanteria infante, int posicionXFinal, int posicionYFinal) throws JugadorYaRealizoLaAccionException, NoHayBatallonException, UbicacionInvalidaException, JugadorNoPuedeManipularEsaPiezaException, DesplazamientoInvalidoException, NoSePuedeMoverException;
+    void moverBatallon(Jugador jugadorEnTurno, Tablero tableroDePartida, Infanteria infante, int posicionXFinal, int posicionYFinal) throws JugadorYaRealizoLaAccionException, NoHayBatallonException, UbicacionInvalidaException, JugadorNoPuedeManipularEsaPiezaException, DesplazamientoInvalidoException, NoSePuedeMoverException, PiezaYaMovioException;
 
 }

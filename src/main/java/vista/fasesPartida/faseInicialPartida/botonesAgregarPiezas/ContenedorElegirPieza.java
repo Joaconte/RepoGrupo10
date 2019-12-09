@@ -2,8 +2,8 @@ package vista.fasesPartida.faseInicialPartida.botonesAgregarPiezas;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import modelo.Juego;
 import modelo.pieza.Pieza;
 import modelo.pieza.tipos.Catapulta;
@@ -29,6 +29,18 @@ public class ContenedorElegirPieza extends GridPane {
         botonCatapulta = new BotonAgregarCatapulta(vistaDeTablero, vistaLateral, juego);
 
         cargarContenedor();
+        fondoContenedor();
+
+    }
+
+    private void fondoContenedor() {
+        Image imangenMuro = new Image("resources/texturas/fondocompra.png");
+        Background fondoDeContenedor = new Background(new BackgroundImage(imangenMuro,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(300, 400, false, false, false, false)));
+        this.setBackground(fondoDeContenedor);
     }
 
     private void cargarContenedor(){
@@ -47,7 +59,6 @@ public class ContenedorElegirPieza extends GridPane {
         vistaInformacion.setAlignment(Pos.CENTER);
         piezaVistaContenedor.getChildren().addAll(vistaInformacion, boton);
         piezaVistaContenedor.setSpacing(10);
-        piezaVistaContenedor.setStyle("-fx-background-color: gray;");
         return piezaVistaContenedor;
 
     }

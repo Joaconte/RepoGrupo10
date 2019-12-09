@@ -7,7 +7,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
-import vista.VistaPiezaClikeada;
 
 
 public class BarraDeJugador extends VBox {
@@ -53,7 +52,6 @@ public class BarraDeJugador extends VBox {
     public void agregarAVista(VistaPiezaClikeada vistaDePiezaClikeada, String nombreJugadorTurno) {
         if (nombre==nombreJugadorTurno){
             vistaDePiezaClikeada.vistaMensaje("Puede pasar de turno cuando desee.");
-            vistaDePiezaClikeada.vistaLimpiaDeDatos();
             this.getChildren().add(vistaDePiezaClikeada);
         }
     }

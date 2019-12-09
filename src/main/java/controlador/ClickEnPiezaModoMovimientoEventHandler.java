@@ -12,7 +12,7 @@ import modelo.tablero.DesplazamientoInvalidoException;
 import modelo.tablero.casilla.NoHayUnidadEnPosicionException;
 import resources.sonidos.Audio;
 import vista.VistaDeTablero;
-import vista.VistaPiezaClikeada;
+import vista.fasesPartida.faseMediaPartida.VistaPiezaClikeada;
 import vista.vistaPiezas.VistaUnidad;
 
 public class ClickEnPiezaModoMovimientoEventHandler implements EventHandler<MouseEvent> {
@@ -35,7 +35,7 @@ public class ClickEnPiezaModoMovimientoEventHandler implements EventHandler<Mous
 
     @Override
     public void handle(MouseEvent mouseEvent) {
-        vistaPiezaClikeada.vistaActualizada(vistaDeUnidad.getVistaInformacion());
+        vistaPiezaClikeada.vistaActualizada(vistaDeUnidad);
         try {
             juego.moverUnidad(vistaDeUnidad.getPieza() ,ubicacionFinalX, ubicacionFinalY);
             vistaDeTablero.actualizarUbicaciones();

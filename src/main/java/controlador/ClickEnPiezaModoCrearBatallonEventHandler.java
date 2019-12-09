@@ -6,7 +6,7 @@ import modelo.partida.JugadorNoPuedeManipularEsaPiezaException;
 import modelo.pieza.Pieza;
 import modelo.pieza.tipos.NoSirvenParaBatallonException;
 import vista.VistaDeTablero;
-import vista.VistaPiezaClikeada;
+import vista.fasesPartida.faseMediaPartida.VistaPiezaClikeada;
 import vista.vistaPiezas.VistaUnidad;
 
 import java.util.ArrayList;
@@ -28,6 +28,7 @@ public class ClickEnPiezaModoCrearBatallonEventHandler implements EventHandler<M
     @Override
     public void handle(MouseEvent mouseEvent) {
         vistaUnidadClickeada.vistaActualizada(nuevoCandidato.getVistaInformacion());
+        nuevoCandidato.barraDeOpcionesNoVisible();
         if (batallon.size()==2){
             batallon.add(nuevoCandidato.getPieza());
             vistaDeTablero.tableroFaseMediaNormalizado();

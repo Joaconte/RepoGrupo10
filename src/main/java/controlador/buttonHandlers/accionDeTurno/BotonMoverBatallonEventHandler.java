@@ -2,23 +2,19 @@ package controlador.buttonHandlers.accionDeTurno;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
+import javafx.scene.layout.VBox;
 import resources.sonidos.Audio;
 import vista.VistaDeTablero;
 import vista.vistaPiezas.VistaUnidad;
-import vista.vistaPiezas.VistaUnidadInfanteria;
 
 public class BotonMoverBatallonEventHandler implements EventHandler<ActionEvent> {
 
     private VistaDeTablero vistaDeTablero;
-    private HBox barraDeOpcionesDeUnidad;
+    private VBox barraDeOpcionesDeUnidad;
     private VistaUnidad vistaUnidad;
 
 
-    public BotonMoverBatallonEventHandler(VistaUnidad vistaUnidad,VistaDeTablero vistaDeTablero, HBox barraDeOpcionesDeUnidad) {
+    public BotonMoverBatallonEventHandler(VistaUnidad vistaUnidad,VistaDeTablero vistaDeTablero, VBox barraDeOpcionesDeUnidad) {
         this.vistaDeTablero=vistaDeTablero;
         this.barraDeOpcionesDeUnidad=barraDeOpcionesDeUnidad;
         this.vistaUnidad = vistaUnidad;

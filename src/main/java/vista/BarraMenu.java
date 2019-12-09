@@ -15,8 +15,12 @@ public class BarraMenu extends MenuBar {
         Menu menuSonido = new Menu("Sonido");
 
         MenuItem opcionSalir = new MenuItem("Salir");
-        MenuItem opcionComoAtacar = new MenuItem("Como atacan...");
-        MenuItem opcionFasesJuego = new MenuItem("Sobre las fases del juego...");
+        MenuItem opcionComoAtacar = new MenuItem("Como atacan.");
+        MenuItem opcionRangosAtaque = new MenuItem("Que rangos hay.");
+        MenuItem opcionAccionesDeTurno = new MenuItem("Cuantas acciones tengo.");
+
+
+        MenuItem opcionFasesJuego = new MenuItem("Fase del juego.");
         MenuItem opcionAcercaDe = new MenuItem("Acerca de...");
 
         MenuItem opcionMutear = new MenuItem("Mutear/Desmutear");
@@ -28,6 +32,12 @@ public class BarraMenu extends MenuBar {
 
         OpcionComoAtacarEventHandler comoAtacar = new OpcionComoAtacarEventHandler();
         opcionComoAtacar.setOnAction(comoAtacar);
+
+        OpcionRangosAtaqueEventHandler rangoAtaque = new OpcionRangosAtaqueEventHandler();
+        opcionRangosAtaque.setOnAction(rangoAtaque);
+
+        OpcionAccionesDeTurnoEventHandler accionTurno = new OpcionAccionesDeTurnoEventHandler();
+        opcionAccionesDeTurno.setOnAction(accionTurno);
 
         OpcionFasesJuegoEventHandler fasesJuego = new OpcionFasesJuegoEventHandler();
         opcionFasesJuego.setOnAction(fasesJuego);
@@ -45,7 +55,7 @@ public class BarraMenu extends MenuBar {
         opcionSubirVolumen.setOnAction(subirVolumen);
 
         menuArchivo.getItems().add(opcionSalir);
-        menuAyuda.getItems().addAll(opcionFasesJuego,opcionComoAtacar,opcionAcercaDe);
+        menuAyuda.getItems().addAll(opcionFasesJuego,opcionComoAtacar,opcionRangosAtaque,opcionAccionesDeTurno,opcionAcercaDe);
         menuSonido.getItems().addAll(opcionBajarVolumen, opcionSubirVolumen,opcionMutear);
 
         this.getMenus().addAll(menuArchivo,menuAyuda,menuSonido);

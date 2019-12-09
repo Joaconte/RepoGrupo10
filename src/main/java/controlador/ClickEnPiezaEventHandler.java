@@ -2,7 +2,7 @@ package controlador;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-import vista.VistaPiezaClikeada;
+import vista.fasesPartida.faseMediaPartida.VistaPiezaClikeada;
 import vista.vistaPiezas.VistaUnidad;
 
 public class ClickEnPiezaEventHandler implements EventHandler<MouseEvent> {
@@ -18,6 +18,6 @@ public class ClickEnPiezaEventHandler implements EventHandler<MouseEvent> {
     @Override
     public void handle(MouseEvent mouseEvent) {
         piezaClikeada.barraDeOpciones();
-        vistaPiezaClikeada.vistaActualizada(piezaClikeada.getVistaInformacion());
+        vistaPiezaClikeada.vistaActualizada(piezaClikeada);
     }
 }
