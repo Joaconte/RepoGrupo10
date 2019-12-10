@@ -66,10 +66,6 @@ public abstract class Pieza {
         return this.ubicacion.getDistanciaAOtroPunto(ubicacionOtra);
     }
 
-    public int getDistanciaAOtroPunto(int posicionXFinal, int posicionYFinal){
-        return ubicacion.getDistanciaAOtroPunto(posicionXFinal,posicionYFinal);
-    }
-
 
     public void recibirDanio(double danioBase) throws UnidadEstaMuertaException {
         if (vida<=0) throw new UnidadEstaMuertaException();
@@ -113,10 +109,7 @@ public abstract class Pieza {
     public int getPosicionEnFilaQueOcupa(){
         return ubicacion.getPosicionEnY();
     }
-
-    public boolean estaEnElLugar(Pieza pieza ){
-        return getDistanciaAOtraPieza(pieza)==0;
-    }
+    
 
     public boolean estaMuerta(){ return !(vida > 0);}
 

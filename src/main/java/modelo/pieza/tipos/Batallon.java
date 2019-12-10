@@ -23,9 +23,7 @@ public class Batallon {
 
 
     public boolean contiene(Pieza infante) {
-        AtomicBoolean contiene= new AtomicBoolean(false);
-        soldados.forEach(p ->{ if (p.estaEnElLugar(infante)) { contiene.set(true); } });
-        return contiene.get();
+        return soldados.contains(infante);
     }
 
     public void ordenarFormacion(ArrayList<Pieza> piezas, ArrayList<Integer> ubicacionesX, ArrayList<Integer> ubicacionesY, int posicionXFinal, int posicionYFinal) {

@@ -28,7 +28,6 @@ public class Tablero {
         if (!existePosicion(posFinalX,posFinalY)){throw new DesplazamientoInvalidoException();}
         if (casillaEstaOcupada(posFinalX,posFinalY)){throw new UbicacionInvalidaException(); }
         if (!pieza.sePuederMoverA(posFinalX,posFinalY)){throw new DesplazamientoInvalidoException();}
-
         movimiento (pieza,posFinalX,posFinalY);
     }
 

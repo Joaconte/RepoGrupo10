@@ -170,6 +170,7 @@ public class VistaDeTablero extends Group {
         ubicacionDelCursorX=columnIndex;
         ubicacionDelCursorY=rowIndex;
     }
+
     public int getUbicacionDelCursorX(){
         return ubicacionDelCursorX;
     }
