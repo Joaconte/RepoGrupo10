@@ -29,6 +29,16 @@ public class AnalizadorDeBatallon {
         return p1.esContiguoAAlguno(p2, p3) && p2.esContiguoAAlguno(p1, p3) && p3.esContiguoAAlguno(p1, p2);
     }
 
+    public boolean siguenContiguos(ArrayList<Pieza> piezas){
+        return estanContiguos(piezas) && estanTodosVivos(piezas);
+    }
+
+    public boolean estanTodosVivos(ArrayList<Pieza> piezas) {
+        Pieza p1 = piezas.get(0);
+        Pieza p2 = piezas.get(1);
+        Pieza p3 = piezas.get(2);
+        return !p1.estaMuerta() && !p2.estaMuerta() && !p3.estaMuerta();
+    }
     public boolean formanCorrectamente(ArrayList<Pieza> piezas){
         Pieza p1 = piezas.get(0);
         Pieza p2 = piezas.get(1);
@@ -42,7 +52,7 @@ public class AnalizadorDeBatallon {
 
     public boolean formanBatallon(ArrayList<Pieza> piezas){
         if (piezas.size()!=3) return false;
-        return (sonAliadosDeInfanteria(piezas)) && (estanContiguos(piezas)) && formanCorrectamente(piezas);
+        return (sonAliadosDeInfanteria(piezas)) && ( estanTodosVivos(piezas)) && (estanContiguos(piezas)) && formanCorrectamente(piezas);
     }
 
 

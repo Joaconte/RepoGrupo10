@@ -61,7 +61,7 @@ public class Juego {
         partida.moverUnidad(pieza, posicionXFinal, posicionYFinal);
     }
 
-    public void moverBatallon( Infanteria infante, int posicionXFinal, int posicionYFinal ) throws JugadorYaRealizoLaAccionException, NoHayBatallonException, UbicacionInvalidaException, JugadorNoPuedeManipularEsaPiezaException, DesplazamientoInvalidoException, NoSePuedeMoverException, PiezaYaMovioException {
+    public void moverBatallon( Infanteria infante, int posicionXFinal, int posicionYFinal ) throws JugadorYaRealizoLaAccionException, NoHayBatallonException, UbicacionInvalidaException, JugadorNoPuedeManipularEsaPiezaException, DesplazamientoInvalidoException, NoSePuedeMoverException, PiezaYaMovioException{
         partida.moverBatallon( infante, posicionXFinal,posicionYFinal);
     }
 

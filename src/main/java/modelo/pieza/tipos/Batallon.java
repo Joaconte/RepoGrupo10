@@ -18,9 +18,8 @@ public class Batallon {
     }
 
     public boolean siguenContiguos(){
-        return analizadorDeBatallon.estanContiguos(soldados);
+        return analizadorDeBatallon.siguenContiguos(soldados);
     }
-
 
     public boolean contiene(Pieza infante) {
         return soldados.contains(infante);

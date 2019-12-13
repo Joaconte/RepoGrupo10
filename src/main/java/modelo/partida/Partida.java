@@ -70,7 +70,7 @@ public class Partida {
     //---------------Acciones de Turno------------//
 
     public void atacarPieza(PiezaAtacante atacante, Pieza atacada) throws JugadorNoPuedeManipularEsaPiezaException, PiezaAliadaNoAtacableException, UnidadEstaMuertaException, DistanciaDeAtaqueInvalidaException, JugadorYaRealizoLaAccionException, PiezaYaAtacoOCuroException {
-        if(!jugadorEnTurno.esTuPieza(atacante)){ throw new JugadorNoPuedeManipularEsaPiezaException();}
+        if(!jugadorEnTurno.puedeManejarEstaPieza(atacante)){ throw new JugadorNoPuedeManipularEsaPiezaException();}
         miFase.atacar(atacante, atacada, tableroDePartida);
     }
 
@@ -78,24 +78,24 @@ public class Partida {
         return miFase.crearPieza(jugadorEnTurno,tableroDePartida,nombreDeUnidad,posicionEnX,posicionEnY);
     }
 
-    public void moverUnidad(Pieza pieza, int posicionXFinal, int posicionYFinal) throws NoHayUnidadEnPosicionException, DesplazamientoInvalidoException, NoSePuedeMoverException, UbicacionInvalidaException, JugadorYaRealizoLaAccionException, PiezaYaMovioException, JugadorNoPuedeManipularEsaPiezaException {
-        if(!jugadorEnTurno.esTuPieza(pieza)){ throw new JugadorNoPuedeManipularEsaPiezaException();}
+    public void moverUnidad(Pieza pieza, int posicionXFinal, int posicionYFinal) throws NoHayUnidadEnPosicionException, DesplazamientoInvalidoException, NoSePuedeMoverException, UbicacionInvalidaException, JugadorYaRealizoLaAccionException, PiezaYaMovioException, JugadorNoPuedeManipularEsaPiezaException{
+        if(!jugadorEnTurno.puedeManejarEstaPieza(pieza)){ throw new JugadorNoPuedeManipularEsaPiezaException();}
         miFase.moverUnidadEnTablero(tableroDePartida, pieza, posicionXFinal, posicionYFinal);
     }
 
     public void curarAAliado(Curandero piezaCurandera, Pieza otraPieza) throws CurandoAEnemigoException, CurandoCuraADistanciaCortaException, UnidadNoSePuedeCurar, JugadorYaRealizoLaAccionException, PiezaYaAtacoOCuroException, JugadorNoPuedeManipularEsaPiezaException {
-        if(!jugadorEnTurno.esTuPieza(piezaCurandera)){ throw new JugadorNoPuedeManipularEsaPiezaException();}
+        if(!jugadorEnTurno.puedeManejarEstaPieza(piezaCurandera)){ throw new JugadorNoPuedeManipularEsaPiezaException();}
         miFase.curarAAliado(piezaCurandera,otraPieza);
     }
 
     public void moverBatallon( Infanteria infante, int posicionXFinal, int posicionYFinal ) throws JugadorYaRealizoLaAccionException, NoHayBatallonException, UbicacionInvalidaException, JugadorNoPuedeManipularEsaPiezaException, DesplazamientoInvalidoException, NoSePuedeMoverException, PiezaYaMovioException {
-        if(!jugadorEnTurno.esTuPieza(infante)){ throw new JugadorNoPuedeManipularEsaPiezaException();}
+        if(!jugadorEnTurno.puedeManejarEstaPieza(infante)){ throw new JugadorNoPuedeManipularEsaPiezaException();}
         miFase.moverBatallon(jugadorEnTurno, tableroDePartida, infante, posicionXFinal,posicionYFinal);
 
     }
 
     public void formanBatallon(ArrayList<Pieza> piezas) throws JugadorNoPuedeManipularEsaPiezaException, NoSirvenParaBatallonException {
-        if(!jugadorEnTurno.esTuPieza(piezas.get(0))){ throw new JugadorNoPuedeManipularEsaPiezaException();}
+        if(!jugadorEnTurno.puedeManejarEstaPieza(piezas.get(0))){ throw new JugadorNoPuedeManipularEsaPiezaException();}
         jugadorEnTurno.formanBatallon(piezas);
     }
 

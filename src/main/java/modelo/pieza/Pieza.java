@@ -37,11 +37,6 @@ public abstract class Pieza {
     public int getVidaMaxima(){
         return vida_maxima;
     }
-
-    public Ubicacion getUbicacion(){
-        return ubicacion;
-    }
-
     public int getEquipo(){ return equipo;}
 
     public int getCosto(){ return costo;}
@@ -58,14 +53,13 @@ public abstract class Pieza {
         else this.danioARecibir = new DanioZonaPropia();
     }
 
-
     public int getDistanciaAOtraPieza(Pieza pieza) { //Mantiene encapsulamiento o es exceso?
         return pieza.getDistanciaAUbicacion(ubicacion);
     }
+
     public int getDistanciaAUbicacion(Ubicacion ubicacionOtra){
         return this.ubicacion.getDistanciaAOtroPunto(ubicacionOtra);
     }
-
 
     public void recibirDanio(double danioBase) throws UnidadEstaMuertaException {
         if (vida<=0) throw new UnidadEstaMuertaException();
@@ -109,7 +103,6 @@ public abstract class Pieza {
     public int getPosicionEnFilaQueOcupa(){
         return ubicacion.getPosicionEnY();
     }
-    
 
     public boolean estaMuerta(){ return !(vida > 0);}
 

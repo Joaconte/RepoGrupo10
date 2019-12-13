@@ -24,11 +24,11 @@ public class Tablero {
         columnas.forEach(Columna::removerTropasMuertas);
     }
 
-    public void moverUnidad(Pieza pieza, int posFinalX, int posFinalY) throws DesplazamientoInvalidoException, UbicacionInvalidaException {
-        if (!existePosicion(posFinalX,posFinalY)){throw new DesplazamientoInvalidoException();}
+    public void moverUnidad(Pieza pieza, int posFinalX, int posFinalY) throws DesplazamientoInvalidoException, UbicacionInvalidaException, NoSePuedeMoverException {
+        if (!existePosicion(posFinalX,posFinalY) || !pieza.sePuederMoverA(posFinalX,posFinalY)){throw new DesplazamientoInvalidoException();}
         if (casillaEstaOcupada(posFinalX,posFinalY)){throw new UbicacionInvalidaException(); }
-        if (!pieza.sePuederMoverA(posFinalX,posFinalY)){throw new DesplazamientoInvalidoException();}
         movimiento (pieza,posFinalX,posFinalY);
+        pieza.mover(posFinalX,posFinalY);
     }
 
     public void moverBatallon(ArrayList<Integer> ubicacionX, ArrayList<Integer> ubicacionY,ArrayList<Pieza> pieza) throws NoSePuedeMoverException, UbicacionInvalidaException {

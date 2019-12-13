@@ -65,7 +65,6 @@ public class FaseMedia implements FaseDePartida{
         if(movimientosDeJugador == MOVIMIENTOS_MAXIMOS) throw new JugadorYaRealizoLaAccionException();
         if(piezaMovidas.contains(pieza)) throw new PiezaYaMovioException();
         tableroDePartida.moverUnidad(pieza, posFinalX, posFinalY);
-        pieza.mover(posFinalX,posFinalY);
         piezaMovidas.add(pieza);
         movimientosDeJugador += 1;
 

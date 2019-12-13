@@ -54,7 +54,6 @@ public class PantallaFaseMediaPartida extends BorderPane {
         this.setLeft(barraDeJugador1);
         barraDeJugador2.getChildren().addAll(  new BotonPasarTurno(juego,this,vistaDeTablero));
         barraDeJugador2.setDisable(true);
-        barraDeJugador2.setBarraRival(barraDeJugador1);
 
     }
 
@@ -62,7 +61,6 @@ public class PantallaFaseMediaPartida extends BorderPane {
         this.setRight(barraDeJugador2);
         barraDeJugador1.getChildren().addAll( new BotonPasarTurno(juego,this,vistaDeTablero));
         barraDeJugador1.getChildren().add( vistaDeTablero.getVistaDePiezaClikeada());
-        barraDeJugador1.setBarraRival(barraDeJugador2);
 
     }
 

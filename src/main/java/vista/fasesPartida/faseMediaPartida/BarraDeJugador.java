@@ -13,7 +13,6 @@ public class BarraDeJugador extends VBox {
 
     private Rectangle fondoDeNombreJugador = new Rectangle(300,45,Color.rgb(0,0,0,0.1));
     private Label comunicador;
-    private BarraDeJugador barraRival;
     private String nombre;
 
     public BarraDeJugador(String nombreDeJugador, int numeroJugador) {
@@ -41,11 +40,6 @@ public class BarraDeJugador extends VBox {
     public void invertirEstadoDeshabilitado(){
         if (this.isDisable()) this.setDisable(false);
         else this.setDisable(true);
-    }
-
-
-    public void setBarraRival(BarraDeJugador barraRival){
-        this.barraRival=barraRival;
     }
 
 
